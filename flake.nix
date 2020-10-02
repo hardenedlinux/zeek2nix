@@ -33,19 +33,14 @@
 
               zeekCurrent = pkgs.zeek.overrideAttrs(oldAttrs: {
                 version = "3.2.1";
-                src = builtins.fetchTarball {
-                  url = flakeLock.nodes.zeek-current.locked.url;
-                  sha256 = flakeLock.nodes.zeek-current.locked.narHash;
-                };
+                src = loadInput flakeLock.nodes.zeek-current;
               });
 
               zeekTLS = pkgs.zeek.overrideAttrs(oldAttrs: {
                 version = "3.0.10";
-                src = builtins.fetchTarball {
-                  url = flakeLock.nodes.zeek-tls.locked.url;
-                  sha256 = flakeLock.nodes.zeek-tls.locked.narHash;
-                };
+                src = loadInput flakeLock.nodes.zeek-tls;
               });
+
               
               packages = inputs.flake-utils.lib.flattenTree {
                 inherit zeekCurrent zeekTLS;
