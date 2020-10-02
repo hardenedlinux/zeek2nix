@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "bro-http2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1599832710,
+        "narHash": "sha256-ta2Jk05Z3lrsfkAQsdPJEiBr/d7JSAYOy9NlVC32PJc=",
+        "owner": "MITRECND",
+        "repo": "bro-http2",
+        "rev": "5b160f38c1f7a46d858e8568ee3f9097e9c1c45f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MITRECND",
+        "ref": "master",
+        "repo": "bro-http2",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1601282935,
@@ -12,6 +29,23 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "metron-bro-plugin-kafka": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1600793201,
+        "narHash": "sha256-F2jWQYEQIo/oLdaLkBlddjlnUk8LrD3+x2QBElvQYrI=",
+        "owner": "apache",
+        "repo": "metron-bro-plugin-kafka",
+        "rev": "92b85e5e00cc2fd9023ea7f53466db6592eb6634",
+        "type": "github"
+      },
+      "original": {
+        "owner": "apache",
+        "ref": "master",
+        "repo": "metron-bro-plugin-kafka",
         "type": "github"
       }
     },
@@ -32,10 +66,13 @@
     },
     "root": {
       "inputs": {
+        "bro-http2": "bro-http2",
         "flake-utils": "flake-utils",
+        "metron-bro-plugin-kafka": "metron-bro-plugin-kafka",
         "nixpkgs": "nixpkgs",
         "zeek-current": "zeek-current",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
+        "zeek-postgresql": "zeek-postgresql",
         "zeek-tls": "zeek-tls"
       }
     },
@@ -65,6 +102,23 @@
         "owner": "ukncsc",
         "ref": "master",
         "repo": "zeek-plugin-ikev2",
+        "type": "github"
+      }
+    },
+    "zeek-postgresql": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1586473863,
+        "narHash": "sha256-AHzzid9/JkSbgvhbql0PlFLWo9pO2VJ7RQ0tdmfv1uQ=",
+        "owner": "0xxon",
+        "repo": "zeek-postgresql",
+        "rev": "fb72b41140094ec8795cd7aaecbb3997c28ff202",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xxon",
+        "ref": "master",
+        "repo": "zeek-postgresql",
         "type": "github"
       }
     },

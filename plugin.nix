@@ -1,11 +1,24 @@
-{ fetchFromGitHub, writeScript, version, confdir, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, llvmPackages_9}:
-
+{ fetchFromGitHub, writeScript, version, confdir, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, llvmPackages_9 }:
+let
+  flakeLock = builtins.importJSON ./flake.lock;
+  loadInput = { locked, ... }:
+    assert locked.type == "github";
+    builtins.fetchTarball {
+      url = "https://github.com/${locked.owner}/${locked.repo}/archive/${locked.rev}.tar.gz";
+      sha256 = locked.narHash;
+    };
+in
 rec {
-  install_plugin = writeScript "install_plugin" (import ./install_plugin.nix { inherit llvmPackages_9; });
-  zeek-postgresql = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).zeek-postgresql;
-  metron-bro-plugin-kafka = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).metron-bro-plugin-kafka;
-  bro-http2 = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).bro-http2;
+  #import zeek script 
+  zeek-postgresql = loadInput flakeLock.nodes.zeek-postgresql;
+  metron-bro-plugin-kafka = loadInput flakeLock.nodes.metron-bro-plugin-kafka;
+  bro-http2 =  loadInput flakeLock.nodes.bro-http2;
+  zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
+  ##failed spicy plugin 
   Spicy = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
+
+
+  install_plugin = writeScript "install_plugin" (import ./install_plugin.nix { inherit llvmPackages_9; });
   postFixup =  (if zeekctl then ''
          substituteInPlace $out/etc/zeekctl.cfg \
          --replace "CfgDir = $out/etc" "CfgDir = ${confdir}/etc" \

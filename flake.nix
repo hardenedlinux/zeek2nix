@@ -4,9 +4,16 @@
   inputs =  {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/302ef60620d277fc87a8aa58c5c561b62c925651";
-    zeek-plugin-ikev2 = { url = "github:ukncsc/zeek-plugin-ikev2/master"; flake = false;};
+
     zeek-tls = { url = "https://download.zeek.org/zeek-3.0.10.tar.gz"; flake = false;};
     zeek-current = { url = "https://download.zeek.org/zeek-3.2.1.tar.gz"; flake = false;};
+
+
+    zeek-plugin-ikev2 = { url = "github:ukncsc/zeek-plugin-ikev2/master"; flake = false;};
+    zeek-postgresql  = { url = "github:0xxon/zeek-postgresql/master"; flake = false;};
+    metron-bro-plugin-kafka  = { url = "github:apache/metron-bro-plugin-kafka/master"; flake = false;};
+    bro-http2 = { url = "github:MITRECND/bro-http2/master"; flake = false;};
+
   };
 
 
