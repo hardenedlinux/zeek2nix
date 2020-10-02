@@ -1,11 +1,12 @@
 { pkgs ? import <nixpkgs> {}
-, zeek
+, zeekCurrent
+, zeekTLS
 }:
 
 with pkgs;
 
 mkShell {
   buildInputs = [
-    zeek
+    zeekCurrent
   ];
 }
