@@ -1,0 +1,9 @@
+#+TITLE: Zeek to Nix Flake's feature
+* Build Zeek with nix-build -> result/bin/zeek
+#+begin_src sh :async t :exports both :results output
+nix run
+#+end_src
+* Build Zeek Env with nix-shell(shell mode)
+#+begin_src sh :async t :exports both :results output
+nix develop
+#+end_src
