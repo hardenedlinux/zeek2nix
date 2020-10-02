@@ -1,6 +1,7 @@
 { fetchFromGitHub, writeScript, version, confdir, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, llvmPackages_9 }:
 let
-  flakeLock = builtins.importJSON ./flake.lock;
+  importJSON = file: builtins.fromJSON (builtins.readFile file);
+  flakeLock = importJSON ./flake.lock;
   loadInput = { locked, ... }:
     assert locked.type == "github";
     builtins.fetchTarball {
