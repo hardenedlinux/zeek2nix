@@ -14,11 +14,11 @@ install_plugin(){
     make -j$(NIX_BUILD_CORES) && make install
     fi
     if [ $name == 'metron-bro-plugin-kafka' ] || [ $name == 'asd' ]; then
-        ./configure --bro-dist=/build/zeek-$3
+        ./configure --bro-dist=$ZEEK_SRC
          make -j$(NIX_BUILD_CORES) && make install
     fi
     if [ $name == 'zeek-postgresql' ] || [ $name == 'bro-http2' ]; then
-       ./configure --zeek-dist=/build/zeek-$3
+       ./configure --zeek-dist=$ZEEK_SRC
         make -j$(NIX_BUILD_CORES) && make install
     fi
 

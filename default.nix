@@ -1,4 +1,4 @@
-{stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
+{ stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
 , libmaxminddb, gperftools, python, swig, fetchpatch, caf
 ## Plugin dependencies
 ,  rdkafka, postgresql, fetchFromGitHub, coreutils
@@ -8,12 +8,12 @@
 ,  Http2Plugin ? false
 ,  SpicyPlugin ? false
 ,  zeekctl ? true
+,  version ? "3.0.10"
 }:
 let
   preConfigure = (import ./script.nix {inherit coreutils;});
 
   pname = "zeek";
-  version = "3.0.10";
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
@@ -65,7 +65,7 @@ stdenv.mkDerivation rec {
   ];
 
   inherit (plugin) postFixup;
-  
+
   meta = with stdenv.lib; {
     description = "Powerful network analysis framework much different from a typical IDS";
     homepage = "https://www.zeek.org";

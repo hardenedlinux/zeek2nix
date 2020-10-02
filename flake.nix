@@ -38,13 +38,15 @@
           in
             rec {
 
-              zeekCurrent = pkgs.zeek.overrideAttrs(oldAttrs: {
+              zeekCurrent = (pkgs.zeek.override({
                 version = "3.2.1";
+              })).overrideAttrs(old: rec {
                 src = loadInput flakeLock.nodes.zeek-current;
               });
-
-              zeekTLS = pkgs.zeek.overrideAttrs(oldAttrs: {
+              
+              zeekTLS = (pkgs.zeek.override({
                 version = "3.0.10";
+              })).overrideAttrs(old: rec {
                 src = loadInput flakeLock.nodes.zeek-tls;
               });
 
