@@ -7,6 +7,7 @@
 ,  KafkaPlugin ? false
 ,  Http2Plugin ? false
 ,  SpicyPlugin ? false
+,  ikev2Plugin ? false
 ,  zeekctl ? true
 ,  version ? "3.0.10"
 }:
@@ -17,7 +18,8 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit version confdir PostgresqlPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin llvmPackages_9;
+    inherit version confdir PostgresqlPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin
+      llvmPackages_9;
   };
 in
 stdenv.mkDerivation rec {

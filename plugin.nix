@@ -1,4 +1,6 @@
-{ fetchFromGitHub, writeScript, version, confdir, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, llvmPackages_9 }:
+{ fetchFromGitHub, writeScript, version, confdir
+, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, ikev2Plugin
+, llvmPackages_9 }:
 let
   importJSON = file: builtins.fromJSON (builtins.readFile file);
   flakeLock = importJSON ./flake.lock;
@@ -37,6 +39,10 @@ rec {
   (if KafkaPlugin then ''
          ##INSTALL ZEEK Plugins
        bash ${install_plugin} metron-bro-plugin-kafka ${metron-bro-plugin-kafka} ${version}
+         '' else "") +
+  (if ikev2Plugin then ''
+         ##INSTALL ZEEK Plugins
+       bash ${install_plugin} zeek-plugin-ikev2 ${zeek-plugin-ikev2} ${version}
          '' else "") +
   (if Http2Plugin then ''
          ##INSTALL ZEEK Plugins
