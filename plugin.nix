@@ -1,4 +1,4 @@
-{ fetchFromGitHub, writeScript, version, confdir
+{ fetchFromGitHub, writeScript, confdir
 , PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, ikev2Plugin
 , llvmPackages_9 }:
 let
@@ -38,15 +38,15 @@ rec {
          '' else "") +
   (if KafkaPlugin then ''
          ##INSTALL ZEEK Plugins
-       bash ${install_plugin} metron-bro-plugin-kafka ${metron-bro-plugin-kafka} ${version}
+       bash ${install_plugin} metron-bro-plugin-kafka ${metron-bro-plugin-kafka}
          '' else "") +
   (if ikev2Plugin then ''
          ##INSTALL ZEEK Plugins
-       bash ${install_plugin} zeek-plugin-ikev2 ${zeek-plugin-ikev2} ${version}
+       bash ${install_plugin} zeek-plugin-ikev2 ${zeek-plugin-ikev2}
          '' else "") +
   (if Http2Plugin then ''
          ##INSTALL ZEEK Plugins
-       bash ${install_plugin} bro-http2 ${bro-http2} ${version}
+       bash ${install_plugin} bro-http2 ${bro-http2}
          '' else "") +
   (if SpicyPlugin then ''
     mkdir -p /build/spicy
@@ -54,9 +54,9 @@ rec {
     chmod 755  /build/spicy/*
     patchShebangs /build/spicy/scripts/autogen-type-erased
     patchShebangs /build/spicy/scripts/autogen-dispatchers
-    bash ${install_plugin} spicy ${Spicy} ${version}
+    bash ${install_plugin} spicy ${Spicy}
             '' else "") +
   (if PostgresqlPlugin then ''
-             bash ${install_plugin} zeek-postgresql ${zeek-postgresql} ${version}
+             bash ${install_plugin} zeek-postgresql ${zeek-postgresql}
     '' else "");
 }

@@ -15,7 +15,7 @@ jobs:
         install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-3.0pre20200820_4d77513/install
     # Configure Nix to enable flakes
     - run: echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
-    # nix-build to zeekTLS
-    - run: nix run
-    # nix-shell env to zeekCurrent
+    # nix-build to zeekCurrent
+    - run: nix build
+    # nix-shell env to zeekTLS
     - run: nix develop -c echo OK

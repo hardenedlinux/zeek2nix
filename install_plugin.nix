@@ -4,7 +4,6 @@
 install_plugin(){
     name=$1
     path=$2
-    version=$3
     mkdir -p /build/$1
     cp -r $2/* /build/$1/
     cd /build/$name/
@@ -30,6 +29,7 @@ install_plugin(){
     fi
 
 }
-install_plugin $1 $2 $3
+
+install_plugin $1 $2
 
 ''
