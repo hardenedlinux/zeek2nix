@@ -7,6 +7,6 @@ with pkgs;
 
 mkShell {
   buildInputs = [
-    zeekCurrent
+    zeekTLS
   ];
 }

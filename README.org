@@ -1,16 +1,16 @@
 #+TITLE: Zeek to Nix Flake's feature
 
-* Build Zeek with nix-build -> result/bin/zeek
-- with flake
+* Build Zeek with nix-build -> result/bin/zeek (Current version)
+- nix run zeek app with flake -> WIP
 #+begin_src sh :async t :exports both :results output
 nix run
 #+end_src
-- with native nix-build
+- with native nix-build -> ./result/bin/zeek -N
   #+begin_src sh :async t :exports both :results output
-nix-build
+nix run
   #+end_src
 
-* Build Zeek Env with nix-shell(shell mode)
+* Build Zeek Env with nix-shell(shell mode) - TLS version
 #+begin_src sh :async t :exports both :results output
 nix develop
 #+end_src

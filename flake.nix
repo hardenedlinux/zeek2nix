@@ -9,7 +9,7 @@
     zeek-current = { url = "https://download.zeek.org/zeek-3.2.1.tar.gz"; flake = false;};
 
 
-    zeek-plugin-ikev2 = { url = "github:ukncsc/zeek-plugin-ikev2/master"; flake = false;};
+    zeek-plugin-ikev2 = { url = "github:ukncsc/zeek-plugin-ikev2/master"; flake = false;}; #failure to 3.2.1
     zeek-postgresql  = { url = "github:0xxon/zeek-postgresql/master"; flake = false;};
     metron-bro-plugin-kafka  = { url = "github:apache/metron-bro-plugin-kafka/master"; flake = false;};
     bro-http2 = { url = "github:MITRECND/bro-http2/master"; flake = false;};
@@ -19,6 +19,7 @@
 
   outputs = inputs: with builtins;
     let
+
       flakeLock = inputs.nixpkgs.lib.importJSON ./flake.lock;
       loadInput = { locked, ... }:
         builtins.fetchTarball {
@@ -56,8 +57,14 @@
               };
               
               devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
-              defaultPackage = packages.zeekTLS;
-              apps.zeek = flake-utils.lib.mkApp { drv = packages.zeekCurrent; };
+
+              apps = {
+                zeektls = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; };
+                zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; };
+              };
+
+              defaultPackage = packages.zeekCurrent;
+              defaultApp = apps.zeekCurrent;
             }
         )
       );
