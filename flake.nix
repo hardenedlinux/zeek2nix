@@ -13,7 +13,7 @@
     zeek-postgresql  = { url = "github:0xxon/zeek-postgresql/master"; flake = false;};
     metron-bro-plugin-kafka  = { url = "github:apache/metron-bro-plugin-kafka/master"; flake = false;};
     bro-http2 = { url = "github:MITRECND/bro-http2/master"; flake = false;};
-
+    zeek-community-id = { url = "github:corelight/zeek-community-id/master"; flake = false;};
   };
 
 

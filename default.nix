@@ -8,6 +8,7 @@
 ,  Http2Plugin ? false
 ,  SpicyPlugin ? false
 ,  ikev2Plugin ? false
+,  communityIdPlugin ? false
 ,  zeekctl ? true
 ,  version ? "3.0.10"
 }:
@@ -18,7 +19,7 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir PostgresqlPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin
+    inherit confdir PostgresqlPlugin communityIdPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin
       llvmPackages_9;
   };
 in

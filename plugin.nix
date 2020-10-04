@@ -1,5 +1,5 @@
 { fetchFromGitHub, writeScript, confdir
-, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, ikev2Plugin
+, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, ikev2Plugin, communityIdPlugin
 , llvmPackages_9 }:
 let
   importJSON = file: builtins.fromJSON (builtins.readFile file);
@@ -17,6 +17,7 @@ rec {
   metron-bro-plugin-kafka = loadInput flakeLock.nodes.metron-bro-plugin-kafka;
   bro-http2 =  loadInput flakeLock.nodes.bro-http2;
   zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
+  zeek-community-id = loadInput flakeLock.nodes.zeek-community-id;
   ##failed spicy plugin 
   Spicy = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
 
@@ -35,6 +36,10 @@ rec {
          echo "sitepolicypath = ${confdir}/policy" >> $out/etc/zeekctl.cfg
          ## default disable sendmail
          echo "sendmail=" >> $out/etc/zeekctl.cfg
+         '' else "") +
+  (if communityIdPlugin then ''
+         ##INSTALL ZEEK Plugins
+       bash ${install_plugin} zeek-community-id ${zeek-community-id}
          '' else "") +
   (if KafkaPlugin then ''
          ##INSTALL ZEEK Plugins

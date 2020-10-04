@@ -70,10 +70,28 @@
         "flake-utils": "flake-utils",
         "metron-bro-plugin-kafka": "metron-bro-plugin-kafka",
         "nixpkgs": "nixpkgs",
+        "zeek-community-id": "zeek-community-id",
         "zeek-current": "zeek-current",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
         "zeek-postgresql": "zeek-postgresql",
         "zeek-tls": "zeek-tls"
+      }
+    },
+    "zeek-community-id": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1600967039,
+        "narHash": "sha256-MV5Wa67u7WY91nh5jOCgiCk1ymvSKSyfT5nhl9EDA/w=",
+        "owner": "corelight",
+        "repo": "zeek-community-id",
+        "rev": "181a104b99d9019771ece7e489e46f2268b746d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "corelight",
+        "ref": "master",
+        "repo": "zeek-community-id",
+        "type": "github"
       }
     },
     "zeek-current": {
