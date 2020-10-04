@@ -23,13 +23,13 @@ install_plugin(){
          make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'zeek-community-id' ] ; then
+    if [ $name == 'zeek-community-id' ]; then
        ./configure --zeek-dist=$ZEEK_SRC
         cd build
         make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'zeek-postgresql' ] || [ $name == 'bro-http2' ] ; then
+    if [ $name == 'zeek-postgresql' ] || [ $name == 'bro-http2' ]; then
        ./configure --zeek-dist=$ZEEK_SRC
         make -j $NIX_BUILD_CORES && make install
     fi

@@ -5,16 +5,15 @@
       "locked": {
         "lastModified": 1599832710,
         "narHash": "sha256-ta2Jk05Z3lrsfkAQsdPJEiBr/d7JSAYOy9NlVC32PJc=",
-        "owner": "MITRECND",
-        "repo": "bro-http2",
+        "ref": "master",
         "rev": "5b160f38c1f7a46d858e8568ee3f9097e9c1c45f",
-        "type": "github"
+        "revCount": 44,
+        "type": "git",
+        "url": "https://github.com/MITRECND/bro-http2/"
       },
       "original": {
-        "owner": "MITRECND",
-        "ref": "master",
-        "repo": "bro-http2",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/MITRECND/bro-http2/"
       }
     },
     "flake-utils": {
@@ -37,16 +36,15 @@
       "locked": {
         "lastModified": 1600793201,
         "narHash": "sha256-F2jWQYEQIo/oLdaLkBlddjlnUk8LrD3+x2QBElvQYrI=",
-        "owner": "apache",
-        "repo": "metron-bro-plugin-kafka",
+        "ref": "master",
         "rev": "92b85e5e00cc2fd9023ea7f53466db6592eb6634",
-        "type": "github"
+        "revCount": 48,
+        "type": "git",
+        "url": "https://github.com/apache/metron-bro-plugin-kafka/"
       },
       "original": {
-        "owner": "apache",
-        "ref": "master",
-        "repo": "metron-bro-plugin-kafka",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/apache/metron-bro-plugin-kafka/"
       }
     },
     "nixpkgs": {
@@ -82,16 +80,15 @@
       "locked": {
         "lastModified": 1600967039,
         "narHash": "sha256-MV5Wa67u7WY91nh5jOCgiCk1ymvSKSyfT5nhl9EDA/w=",
-        "owner": "corelight",
-        "repo": "zeek-community-id",
+        "ref": "master",
         "rev": "181a104b99d9019771ece7e489e46f2268b746d8",
-        "type": "github"
+        "revCount": 21,
+        "type": "git",
+        "url": "https://github.com/corelight/zeek-community-id/"
       },
       "original": {
-        "owner": "corelight",
-        "ref": "master",
-        "repo": "zeek-community-id",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/corelight/zeek-community-id/"
       }
     },
     "zeek-current": {
@@ -111,16 +108,15 @@
       "locked": {
         "lastModified": 1580147366,
         "narHash": "sha256-ct1nQcbDGQ2V9lrKD/snhmF3EEkDXCbQfiJpSwOmKPI=",
-        "owner": "ukncsc",
-        "repo": "zeek-plugin-ikev2",
+        "ref": "master",
         "rev": "5b62d506573da388bb4df0446cc87cdffc12a438",
-        "type": "github"
+        "revCount": 1,
+        "type": "git",
+        "url": "https://github.com/ukncsc/zeek-plugin-ikev2"
       },
       "original": {
-        "owner": "ukncsc",
-        "ref": "master",
-        "repo": "zeek-plugin-ikev2",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/ukncsc/zeek-plugin-ikev2"
       }
     },
     "zeek-postgresql": {
@@ -128,16 +124,15 @@
       "locked": {
         "lastModified": 1586473863,
         "narHash": "sha256-AHzzid9/JkSbgvhbql0PlFLWo9pO2VJ7RQ0tdmfv1uQ=",
-        "owner": "0xxon",
-        "repo": "zeek-postgresql",
+        "ref": "master",
         "rev": "fb72b41140094ec8795cd7aaecbb3997c28ff202",
-        "type": "github"
+        "revCount": 24,
+        "type": "git",
+        "url": "https://github.com/0xxon/zeek-postgresql"
       },
       "original": {
-        "owner": "0xxon",
-        "ref": "master",
-        "repo": "zeek-postgresql",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/0xxon/zeek-postgresql"
       }
     },
     "zeek-tls": {

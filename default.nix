@@ -1,7 +1,7 @@
 { stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
 , libmaxminddb, gperftools, python, swig, fetchpatch, caf
 ## Plugin dependencies
-,  rdkafka, postgresql, fetchFromGitHub, coreutils
+,  rdkafka, postgresql, fetchFromGitHub, coreutils, fetchgit
 ,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, lib, ccache
 ,  PostgresqlPlugin ? false
 ,  KafkaPlugin ? false
@@ -19,7 +19,7 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir PostgresqlPlugin communityIdPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin
+    inherit fetchgit confdir PostgresqlPlugin communityIdPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin
       llvmPackages_9;
   };
 in

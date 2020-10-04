@@ -9,11 +9,11 @@
     zeek-current = { url = "https://download.zeek.org/zeek-3.2.1.tar.gz"; flake = false;};
 
 
-    zeek-plugin-ikev2 = { url = "github:ukncsc/zeek-plugin-ikev2/master"; flake = false;}; #failure to 3.2.1
-    zeek-postgresql  = { url = "github:0xxon/zeek-postgresql/master"; flake = false;};
-    metron-bro-plugin-kafka  = { url = "github:apache/metron-bro-plugin-kafka/master"; flake = false;};
-    bro-http2 = { url = "github:MITRECND/bro-http2/master"; flake = false;};
-    zeek-community-id = { url = "github:corelight/zeek-community-id/master"; flake = false;};
+    zeek-plugin-ikev2 = { url = "git+https://github.com/ukncsc/zeek-plugin-ikev2"; flake = false;}; #failure to 3.2.1
+    zeek-postgresql  = { url = "git+https://github.com/0xxon/zeek-postgresql"; flake = false;};
+    metron-bro-plugin-kafka  = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false;};
+    bro-http2 = { url = "git+https://github.com/MITRECND/bro-http2/"; flake = false;};
+    zeek-community-id = { url = "git+https://github.com/corelight/zeek-community-id/"; flake = false;};
   };
 
 
