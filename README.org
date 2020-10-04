@@ -7,7 +7,7 @@ nix run
 #+end_src
 - with native nix-build -> ./result/bin/zeek -N
   #+begin_src sh :async t :exports both :results output
-nix run
+nix build
   #+end_src
 
 * Build Zeek Env with nix-shell(shell mode) - TLS version
@@ -15,13 +15,26 @@ nix run
 nix develop
 #+end_src
 
-* Support Zeek pluigns list
-#+begin_src sh :async t :exports both :results ouput
-nix develop -c zeek -N > support-zeek-plugins
+* Arguments for zeek building
+
+** How to enable or disable a plugin in zeek
+- ./overlay.nix
+  set bool ~true~ or ~false~ to name of plugin in overlay.nix
+  #+begin_src sh :async t :tangle "./overlay.nix"
+final: prev:
+{
+  zeek = prev.callPackage ./. {KafkaPlugin = true; PostgresqlPlugin = true;
+                               Http2Plugin = true; ikev2Plugin = true; communityIdPlugin = true;};
+}
 #+end_src
 
-#+RESULTS:
-: warning: Git tree '/home/debian/project/zeek-nix' is dirty
+
+* Support Zeek pluigns list
+- check pluigns info
+  #+begin_src sh :async t :exports both :results output
+nix build && ./result/bin/zeek -N > support-zeek-plugins
+  #+end_src
+
 
 #+begin_src conf :tangle "./support-zeek-plugins"
 Zeek::ARP - ARP Parsing (built-in)
@@ -91,6 +104,8 @@ Zeek::VXLAN - VXLAN analyzer (built-in)
 Zeek::X509 - X509 and OCSP analyzer (built-in)
 Zeek::XMPP - XMPP analyzer (StartTLS only) (built-in)
 Zeek::ZIP - Generic ZIP support analyzer (built-in)
+Apache::Kafka - Writes logs to Kafka (dynamic, version 0.3.0)
+Corelight::CommunityID - "Community ID" flow hash support in the connection log (dynamic, version 1.1.0)
 Johanna::PostgreSQL - PostgreSQL log writer and input reader (dynamic, version 0.2.0)
 mitrecnd::HTTP2 - Hypertext Transfer Protocol Version 2 analyzer (dynamic, version 0.5.1)
 #+end_src
