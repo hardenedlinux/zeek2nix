@@ -1,8 +1,8 @@
 { stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
 , libmaxminddb, gperftools, python, swig, fetchpatch, caf
 ## Plugin dependencies
-,  rdkafka, postgresql, fetchFromGitHub, coreutils, fetchgit
-,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, lib, ccache
+,  rdkafka, postgresql, fetchFromGitHub, coreutils
+,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, ccache
 ,  PostgresqlPlugin ? false
 ,  KafkaPlugin ? false
 ,  Http2Plugin ? false
@@ -19,8 +19,7 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit fetchgit confdir PostgresqlPlugin communityIdPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin
-      llvmPackages_9;
+    inherit confdir PostgresqlPlugin communityIdPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin;
   };
 in
 stdenv.mkDerivation rec {
@@ -38,15 +37,16 @@ stdenv.mkDerivation rec {
   ##for spicy ccache
   HOME = ".";
 
-  nativeBuildInputs = [ cmake flex bison file ] ++ lib.optionals SpicyPlugin [ python38 ];
+  nativeBuildInputs = [ cmake flex bison file ]
+                      ++ stdenv.lib.optionals SpicyPlugin [ python38 ];
   buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python swig caf ]
-                ++ lib.optionals KafkaPlugin
+                ++ stdenv.lib.optionals KafkaPlugin
                   [ rdkafka ]
-                ++ lib.optionals PostgresqlPlugin
+                ++ stdenv.lib.optionals PostgresqlPlugin
                   [ postgresql ]
-                ++ lib.optionals Http2Plugin
+                ++ stdenv.lib.optionals Http2Plugin
                   [ libnghttp2 brotli ]
-                ++ lib.optionals SpicyPlugin
+                ++ stdenv.lib.optionals SpicyPlugin
                   [ which ccache llvmPackages_9.lld llvmPackages_9.clang-unwrapped llvmPackages_9.llvm ];
   
   ZEEK_DIST = "${placeholder "out"}";
