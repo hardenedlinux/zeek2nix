@@ -48,7 +48,7 @@ stdenv.mkDerivation rec {
                   [ libnghttp2 brotli ]
                 ++ stdenv.lib.optionals SpicyPlugin
                   [ which ccache llvmPackages_9.lld llvmPackages_9.clang-unwrapped llvmPackages_9.llvm ];
-  
+
   ZEEK_DIST = "${placeholder "out"}";
   #see issue https://github.com/zeek/zeek/issues/804 to modify hardlinking duplicate files.
   inherit preConfigure;
