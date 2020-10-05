@@ -17,5 +17,3 @@ jobs:
     - run: echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
     # nix-build to zeekCurrent (--dry-run just check syntax without build it)
     - run: nix build --dry-run
-    # nix-shell env to zeekTLS
-    - run: nix flake check
