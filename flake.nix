@@ -66,6 +66,8 @@
               defaultPackage = packages.zeekCurrent;
               defaultApp = apps.zeekCurrent;
             }
-        )
+        ) // {
+          nixosModule = import ./module;
+        }
       );
 }
