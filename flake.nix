@@ -59,8 +59,8 @@
               devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
 
               apps = {
-                zeektls = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; };
-                zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; };
+                zeektls = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
+                zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};
               };
 
               defaultPackage = packages.zeekCurrent;

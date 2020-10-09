@@ -1,10 +1,20 @@
 #+TITLE: Zeek to Nix Flake's feature
 
 * Build Zeek with nix-build -> result/bin/zeek (Current version)
-- nix run zeek app with flake -> WIP
+- nix run zeekctl app with flake
 #+begin_src sh :async t :exports both :results output
 nix run
 #+end_src
+
+#+RESULTS:
+: Warning: new zeek version detected (run the zeekctl "deploy" command)
+:
+: Welcome to ZeekControl 2.2.0
+:
+: Type "help" for help.
+:
+: [ZeekControl] >
+
 - with native nix-build -> ./result/bin/zeek -N
   #+begin_src sh :async t :exports both :results output
 nix build
