@@ -2,6 +2,7 @@
 
 * Build Zeek with nix-build -> result/bin/zeek (Current version)
 - nix run zeekctl app with flake
+- [[*create zeek dynamic dir to /var/lib/zeek][create zeek dynamic dir to /var/lib/zeek]] before you run command with ~zeekctl deploy~
 #+begin_src sh :async t :exports both :results output
 nix run
 #+end_src
@@ -31,6 +32,9 @@ cachix use nsm-data-analysis
   #+end_src
 
 * create zeek dynamic dir to /var/lib/zeek
+:BACKLINKS:
+[2020-10-09 Fri 19:35] <- [[*Build Zeek with nix-build -> result/bin/zeek (Current version)][Build Zeek with nix-build -> result/bin/zeek (Current version)]]
+:END:
 #+begin_src sh :async t :exports both :results output
 sudo bash ./pre-run-zeekctl.sh
 #+end_src

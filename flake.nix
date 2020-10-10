@@ -59,12 +59,12 @@
               devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
 
               apps = {
-                zeektls = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
+                zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
                 zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};
               };
 
               defaultPackage = packages.zeekTLS;
-              defaultApp = apps.zeekCurrent;
+              defaultApp = apps.zeekTLS;
             }
         ) // {
           nixosModule = import ./module;
