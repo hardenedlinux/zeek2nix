@@ -63,7 +63,7 @@
                 zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};
               };
 
-              defaultPackage = packages.zeekCurrent;
+              defaultPackage = packages.zeekTLS;
               defaultApp = apps.zeekCurrent;
             }
         ) // {
