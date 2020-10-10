@@ -20,13 +20,18 @@ nix run
 nix build
   #+end_src
 
+* create zeek dynamic dir to /var/lib/zeek
+#+begin_src sh :async t :exports both :results output
+sudo bash ./pre-run-zeekctl.sh
+#+end_src
+
+
 * Build Zeek Env with nix-shell(shell mode) - TLS version
 #+begin_src sh :async t :exports both :results output
 nix develop
 #+end_src
 
 * Arguments for zeek building
-
 ** How to enable or disable a plugin in zeek
 - ./overlay.nix
   set bool ~true~ or ~false~ to name of plugin in overlay.nix
@@ -37,7 +42,6 @@ final: prev:
                                Http2Plugin = true; ikev2Plugin = true; communityIdPlugin = true;};
 }
 #+end_src
-
 
 * Support Zeek pluigns list
 - check pluigns info
