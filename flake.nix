@@ -8,8 +8,8 @@
     zeek-tls = { url = "https://download.zeek.org/zeek-3.0.11.tar.gz"; flake = false;};
     zeek-current = { url = "https://download.zeek.org/zeek-3.2.2.tar.gz"; flake = false;};
 
-
-    zeek-plugin-zip = { url = "git+https://github.com/reservoirlabs/zeek-zip-analyzer"; flake = false;};
+    zeek-plugin-pdf = { url = "git+https://github.com/reservoirlabs/zeek-pdf-analyzer"; flake = false;}; #failure to 3.0.1
+    zeek-plugin-zip = { url = "git+https://github.com/reservoirlabs/zeek-zip-analyzer"; flake = false;}; #failure to 3.0.1
     zeek-plugin-ikev2 = { url = "git+https://github.com/ukncsc/zeek-plugin-ikev2"; flake = false;}; #failure to 3.2.1
     zeek-plugin-postgresql  = { url = "git+https://github.com/0xxon/zeek-postgresql"; flake = false;};
     zeek-plugin-http2 = { url = "git+https://github.com/MITRECND/bro-http2/"; flake = false;};
@@ -65,8 +65,8 @@
                 zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};
               };
 
-              defaultPackage = packages.zeekTLS;
-              defaultApp = apps.zeekTLS;
+              defaultPackage = packages.zeekCurrent;
+              defaultApp = apps.zeekCurrent;
             }
         ) // {
           nixosModule = import ./module;

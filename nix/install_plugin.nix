@@ -29,7 +29,7 @@ install_plugin(){
         make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'zeek-plugin-postgresql' ] || [ $name == 'zeek-plugin-http2' ] || [ $name == 'zeek-plugin-zip' ]; then
+    if [ $name == 'zeek-plugin-postgresql' ] || [ $name == 'zeek-plugin-http2' ] || [ $name == 'zeek-plugin-zip' ] || [ $name == 'zeek-plugin-pdf' ]; then
        ./configure --zeek-dist=$ZEEK_SRC
         make -j $NIX_BUILD_CORES && make install
     fi

@@ -1,5 +1,5 @@
 { fetchFromGitHub, fetchgit, writeScript, confdir
-, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, Ikev2Plugin, CommunityIdPlugin, ZipPlugin
+, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, Ikev2Plugin, CommunityIdPlugin, ZipPlugin, PdfPlugin
 , llvmPackages_9 }:
 let
   importJSON = file: builtins.fromJSON (builtins.readFile file);
@@ -13,7 +13,8 @@ let
     };
 in
 rec {
-  #import zeek script 
+  #import zeek script
+  zeek-plugin-pdf = loadInput flakeLock.nodes.zeek-plugin-pdf;
   zeek-plugin-postgresql = loadInput flakeLock.nodes.zeek-plugin-postgresql;
   zeek-plugin-zip = loadInput flakeLock.nodes.zeek-plugin-zip;
   metron-zeek-plugin-kafka = loadInput flakeLock.nodes.metron-zeek-plugin-kafka;
@@ -42,6 +43,10 @@ rec {
   (if CommunityIdPlugin then ''
          ##INSTALL ZEEK Plugins
        bash ${install_plugin} zeek-plugin-community-id ${zeek-plugin-community-id}
+         '' else "") +
+  (if PdfPlugin then ''
+         ##INSTALL ZEEK Plugins
+       bash ${install_plugin} zeek-plugin-pdf ${zeek-plugin-pdf}
          '' else "") +
   (if ZipPlugin then ''
          ##INSTALL ZEEK Plugins

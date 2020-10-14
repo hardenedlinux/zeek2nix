@@ -3,7 +3,7 @@
 ## Plugin dependencies
 ,  rdkafka, postgresql, coreutils
 ,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, ccache
-,  libzip
+,  libzip, podofo
 ,  PostgresqlPlugin ? false
 ,  KafkaPlugin ? false
 ,  Http2Plugin ? false
@@ -11,8 +11,9 @@
 ,  Ikev2Plugin ? false
 ,  CommunityIdPlugin ? false
 ,  ZipPlugin ? false
+,  PdfPlugin ? false
 ,  zeekctl ? true
-,  version ? "3.0.11"
+,  version ? "3.2.2"
 }:
 let
   preConfigure = (import ./script.nix {inherit coreutils;});
@@ -22,14 +23,14 @@ let
 
   plugin = callPackage ./plugin.nix {
     inherit confdir zeekctl
-      PostgresqlPlugin ZipPlugin CommunityIdPlugin KafkaPlugin  Http2Plugin SpicyPlugin Ikev2Plugin;
+      PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin  Http2Plugin SpicyPlugin Ikev2Plugin;
   };
 in
 stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = "sha256-/qcJTYxEcAFOHiRNzj/bnlWMDstzM7SwgXXkZVmb+ic=";
+    sha256 = "sha256-bFdIxJIHJBl3oNn8usjOO2q7+Gb/KUaf0MLc09T5nQE=";
   };
 
   configureFlags = [
@@ -49,6 +50,8 @@ stdenv.mkDerivation rec {
                   [ postgresql ]
                 ++ stdenv.lib.optionals ZipPlugin
                   [ libzip ]
+                ++ stdenv.lib.optionals PdfPlugin
+                  [ podofo ]
                 ++ stdenv.lib.optionals Http2Plugin
                   [ libnghttp2 brotli ]
                 ++ stdenv.lib.optionals SpicyPlugin

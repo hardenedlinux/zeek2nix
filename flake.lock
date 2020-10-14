@@ -55,6 +55,7 @@
         "zeek-plugin-community-id": "zeek-plugin-community-id",
         "zeek-plugin-http2": "zeek-plugin-http2",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
+        "zeek-plugin-pdf": "zeek-plugin-pdf",
         "zeek-plugin-postgresql": "zeek-plugin-postgresql",
         "zeek-plugin-zip": "zeek-plugin-zip",
         "zeek-tls": "zeek-tls"
@@ -118,6 +119,22 @@
       "original": {
         "type": "git",
         "url": "https://github.com/ukncsc/zeek-plugin-ikev2"
+      }
+    },
+    "zeek-plugin-pdf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1602586202,
+        "narHash": "sha256-0zO7RwCJx8W8rn5ebjZUn/xLGl0M1ljCSNWSxawflLA=",
+        "ref": "master",
+        "rev": "3b52f87943f04685da600f4b00b4ad27f8cd28c6",
+        "revCount": 18,
+        "type": "git",
+        "url": "https://github.com/reservoirlabs/zeek-pdf-analyzer"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/reservoirlabs/zeek-pdf-analyzer"
       }
     },
     "zeek-plugin-postgresql": {
