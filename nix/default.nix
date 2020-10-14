@@ -1,14 +1,16 @@
 { stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
 , libmaxminddb, gperftools, python, swig, fetchpatch, caf
 ## Plugin dependencies
-,  rdkafka, postgresql, fetchFromGitHub, coreutils
+,  rdkafka, postgresql, coreutils
 ,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, ccache
+,  libzip
 ,  PostgresqlPlugin ? false
 ,  KafkaPlugin ? false
 ,  Http2Plugin ? false
 ,  SpicyPlugin ? false
-,  ikev2Plugin ? false
-,  communityIdPlugin ? false
+,  Ikev2Plugin ? false
+,  CommunityIdPlugin ? false
+,  ZipPlugin ? false
 ,  zeekctl ? true
 ,  version ? "3.0.11"
 }:
@@ -19,7 +21,8 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir PostgresqlPlugin communityIdPlugin KafkaPlugin zeekctl Http2Plugin SpicyPlugin ikev2Plugin;
+    inherit confdir zeekctl
+      PostgresqlPlugin ZipPlugin CommunityIdPlugin KafkaPlugin  Http2Plugin SpicyPlugin Ikev2Plugin;
   };
 in
 stdenv.mkDerivation rec {
@@ -44,6 +47,8 @@ stdenv.mkDerivation rec {
                   [ rdkafka ]
                 ++ stdenv.lib.optionals PostgresqlPlugin
                   [ postgresql ]
+                ++ stdenv.lib.optionals ZipPlugin
+                  [ libzip ]
                 ++ stdenv.lib.optionals Http2Plugin
                   [ libnghttp2 brotli ]
                 ++ stdenv.lib.optionals SpicyPlugin

@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "bro-http2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1599832710,
-        "narHash": "sha256-ta2Jk05Z3lrsfkAQsdPJEiBr/d7JSAYOy9NlVC32PJc=",
-        "ref": "master",
-        "rev": "5b160f38c1f7a46d858e8568ee3f9097e9c1c45f",
-        "revCount": 44,
-        "type": "git",
-        "url": "https://github.com/MITRECND/bro-http2/"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://github.com/MITRECND/bro-http2/"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1601282935,
@@ -31,7 +15,7 @@
         "type": "github"
       }
     },
-    "metron-bro-plugin-kafka": {
+    "metron-zeek-plugin-kafka": {
       "flake": false,
       "locked": {
         "lastModified": 1600793201,
@@ -64,18 +48,31 @@
     },
     "root": {
       "inputs": {
-        "bro-http2": "bro-http2",
         "flake-utils": "flake-utils",
-        "metron-bro-plugin-kafka": "metron-bro-plugin-kafka",
+        "metron-zeek-plugin-kafka": "metron-zeek-plugin-kafka",
         "nixpkgs": "nixpkgs",
-        "zeek-community-id": "zeek-community-id",
         "zeek-current": "zeek-current",
+        "zeek-plugin-community-id": "zeek-plugin-community-id",
+        "zeek-plugin-http2": "zeek-plugin-http2",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
-        "zeek-postgresql": "zeek-postgresql",
+        "zeek-plugin-postgresql": "zeek-plugin-postgresql",
+        "zeek-plugin-zip": "zeek-plugin-zip",
         "zeek-tls": "zeek-tls"
       }
     },
-    "zeek-community-id": {
+    "zeek-current": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-7i3RHzLuMVXfzaLtOsjMZBTyNdmbWa2DWfsFAxkyDpQ=",
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
+      }
+    },
+    "zeek-plugin-community-id": {
       "flake": false,
       "locked": {
         "lastModified": 1600967039,
@@ -91,16 +88,20 @@
         "url": "https://github.com/corelight/zeek-community-id/"
       }
     },
-    "zeek-current": {
+    "zeek-plugin-http2": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-7i3RHzLuMVXfzaLtOsjMZBTyNdmbWa2DWfsFAxkyDpQ=",
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
+        "lastModified": 1599832710,
+        "narHash": "sha256-ta2Jk05Z3lrsfkAQsdPJEiBr/d7JSAYOy9NlVC32PJc=",
+        "ref": "master",
+        "rev": "5b160f38c1f7a46d858e8568ee3f9097e9c1c45f",
+        "revCount": 44,
+        "type": "git",
+        "url": "https://github.com/MITRECND/bro-http2/"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
+        "type": "git",
+        "url": "https://github.com/MITRECND/bro-http2/"
       }
     },
     "zeek-plugin-ikev2": {
@@ -119,7 +120,7 @@
         "url": "https://github.com/ukncsc/zeek-plugin-ikev2"
       }
     },
-    "zeek-postgresql": {
+    "zeek-plugin-postgresql": {
       "flake": false,
       "locked": {
         "lastModified": 1586473863,
@@ -133,6 +134,22 @@
       "original": {
         "type": "git",
         "url": "https://github.com/0xxon/zeek-postgresql"
+      }
+    },
+    "zeek-plugin-zip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1602585700,
+        "narHash": "sha256-1JKcDOVLQh9wyipGrVtmDnVrEXoMqjxtXqPs1rQo150=",
+        "ref": "master",
+        "rev": "df3344f1e161da9349d5257fc9137acc09d4af55",
+        "revCount": 6,
+        "type": "git",
+        "url": "https://github.com/reservoirlabs/zeek-zip-analyzer"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/reservoirlabs/zeek-zip-analyzer"
       }
     },
     "zeek-tls": {

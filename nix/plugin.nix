@@ -1,9 +1,9 @@
 { fetchFromGitHub, fetchgit, writeScript, confdir
-, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, ikev2Plugin, communityIdPlugin
+, PostgresqlPlugin, KafkaPlugin, zeekctl, Http2Plugin, SpicyPlugin, Ikev2Plugin, CommunityIdPlugin, ZipPlugin
 , llvmPackages_9 }:
 let
   importJSON = file: builtins.fromJSON (builtins.readFile file);
-  flakeLock = importJSON ./flake.lock;
+  flakeLock = importJSON ../flake.lock;
   loadInput = { locked, ... }:
     assert locked.type == "git";
     fetchgit {
@@ -14,11 +14,12 @@ let
 in
 rec {
   #import zeek script 
-  zeek-postgresql = loadInput flakeLock.nodes.zeek-postgresql;
-  metron-bro-plugin-kafka = loadInput flakeLock.nodes.metron-bro-plugin-kafka;
-  bro-http2 =  loadInput flakeLock.nodes.bro-http2;
+  zeek-plugin-postgresql = loadInput flakeLock.nodes.zeek-plugin-postgresql;
+  zeek-plugin-zip = loadInput flakeLock.nodes.zeek-plugin-zip;
+  metron-zeek-plugin-kafka = loadInput flakeLock.nodes.metron-zeek-plugin-kafka;
+  zeek-plugin-http2 =  loadInput flakeLock.nodes.zeek-plugin-http2;
   zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
-  zeek-community-id = loadInput flakeLock.nodes.zeek-community-id;
+  zeek-plugin-community-id = loadInput flakeLock.nodes.zeek-plugin-community-id;
   ##failed spicy plugin 
   Spicy = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
 
@@ -38,21 +39,25 @@ rec {
          ## default disable sendmail
          echo "sendmail=" >> $out/etc/zeekctl.cfg
          '' else "") +
-  (if communityIdPlugin then ''
+  (if CommunityIdPlugin then ''
          ##INSTALL ZEEK Plugins
-       bash ${install_plugin} zeek-community-id ${zeek-community-id}
+       bash ${install_plugin} zeek-plugin-community-id ${zeek-plugin-community-id}
+         '' else "") +
+  (if ZipPlugin then ''
+         ##INSTALL ZEEK Plugins
+       bash ${install_plugin} zeek-plugin-zip ${zeek-plugin-zip}
          '' else "") +
   (if KafkaPlugin then ''
          ##INSTALL ZEEK Plugins
-       bash ${install_plugin} metron-bro-plugin-kafka ${metron-bro-plugin-kafka}
+       bash ${install_plugin} metron-zeek-plugin-kafka ${metron-zeek-plugin-kafka}
          '' else "") +
-  (if ikev2Plugin then ''
+  (if Ikev2Plugin then ''
          ##INSTALL ZEEK Plugins
        bash ${install_plugin} zeek-plugin-ikev2 ${zeek-plugin-ikev2}
          '' else "") +
   (if Http2Plugin then ''
          ##INSTALL ZEEK Plugins
-       bash ${install_plugin} bro-http2 ${bro-http2}
+       bash ${install_plugin} zeek-plugin-http2 ${zeek-plugin-http2}
          '' else "") +
   (if SpicyPlugin then ''
     mkdir -p /build/spicy
@@ -63,6 +68,6 @@ rec {
     bash ${install_plugin} spicy ${Spicy}
             '' else "") +
   (if PostgresqlPlugin then ''
-             bash ${install_plugin} zeek-postgresql ${zeek-postgresql}
+             bash ${install_plugin} zeek-plugin-postgresql ${zeek-plugin-postgresql}
     '' else "");
 }

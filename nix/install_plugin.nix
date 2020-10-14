@@ -12,7 +12,7 @@ install_plugin(){
     ./configure --with-zeek=$out --prefix=$out --build-type=Release --enable-ccache --with-cxx-compiler=${llvmPackages_9.clang}/bin/clang++ --with-c-compiler=${llvmPackages_9.clang}/bin/clang
     make -j $NIX_BUILD_CORES && make install
     fi
-    if [ $name == 'metron-bro-plugin-kafka' ] || [ $name == 'sasd' ]; then
+    if [ $name == 'metron-zeek-plugin-kafka' ] || [ $name == 'sasd' ]; then
         export PATH="$out/bin:$PATH"
         ./configure
          make -j $NIX_BUILD_CORES && make install
@@ -23,13 +23,13 @@ install_plugin(){
          make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'zeek-community-id' ]; then
+    if [ $name == 'zeek-plugin-community-id' ]; then
        ./configure --zeek-dist=$ZEEK_SRC
         cd build
         make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'zeek-postgresql' ] || [ $name == 'bro-http2' ]; then
+    if [ $name == 'zeek-plugin-postgresql' ] || [ $name == 'zeek-plugin-http2' ] || [ $name == 'zeek-plugin-zip' ]; then
        ./configure --zeek-dist=$ZEEK_SRC
         make -j $NIX_BUILD_CORES && make install
     fi
