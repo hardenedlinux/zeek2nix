@@ -94,13 +94,13 @@
     "zeek-current": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-AAwHfbT6OCvcVuOdgJhgwM0Q+SIZwwleclUGAkyFCEA=",
+        "narHash": "sha256-7i3RHzLuMVXfzaLtOsjMZBTyNdmbWa2DWfsFAxkyDpQ=",
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.2.1.tar.gz"
+        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.2.1.tar.gz"
+        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
       }
     },
     "zeek-plugin-ikev2": {
@@ -138,13 +138,13 @@
     "zeek-tls": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-LNuAEk5oLpt4J0HnQGLwbzTVMekflob1VzVeWqNaBv4=",
+        "narHash": "sha256-baZv6KqVP/H33YXkPpMaCIzGQDOk1D2o/FiOG/rWX5A=",
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.0.10.tar.gz"
+        "url": "https://download.zeek.org/zeek-3.0.11.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.0.10.tar.gz"
+        "url": "https://download.zeek.org/zeek-3.0.11.tar.gz"
       }
     }
   },

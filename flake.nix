@@ -5,8 +5,8 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/302ef60620d277fc87a8aa58c5c561b62c925651";
 
-    zeek-tls = { url = "https://download.zeek.org/zeek-3.0.10.tar.gz"; flake = false;};
-    zeek-current = { url = "https://download.zeek.org/zeek-3.2.1.tar.gz"; flake = false;};
+    zeek-tls = { url = "https://download.zeek.org/zeek-3.0.11.tar.gz"; flake = false;};
+    zeek-current = { url = "https://download.zeek.org/zeek-3.2.2.tar.gz"; flake = false;};
 
 
     zeek-plugin-ikev2 = { url = "git+https://github.com/ukncsc/zeek-plugin-ikev2"; flake = false;}; #failure to 3.2.1
@@ -40,13 +40,13 @@
             rec {
 
               zeekCurrent = (pkgs.zeek.override({
-                version = "3.2.1";
+                version = "3.2.2";
               })).overrideAttrs(old: rec {
                 src = loadInput flakeLock.nodes.zeek-current;
               });
               
               zeekTLS = (pkgs.zeek.override({
-                version = "3.0.10";
+                version = "3.0.11";
               })).overrideAttrs(old: rec {
                 src = loadInput flakeLock.nodes.zeek-tls;
               });
@@ -57,7 +57,7 @@
               };
               
               devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
-
+#
               apps = {
                 zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
                 zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};

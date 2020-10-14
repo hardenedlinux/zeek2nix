@@ -10,7 +10,7 @@
 ,  ikev2Plugin ? false
 ,  communityIdPlugin ? false
 ,  zeekctl ? true
-,  version ? "3.0.10"
+,  version ? "3.0.11"
 }:
 let
   preConfigure = (import ./script.nix {inherit coreutils;});
@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = "sha256-VaQ7NIk0Gsxv0ONMgPwfmgZeY+i2hQR0stoYft1CMZ4=";
+    sha256 = "sha256-/qcJTYxEcAFOHiRNzj/bnlWMDstzM7SwgXXkZVmb+ic=";
   };
 
   configureFlags = [
