@@ -16,6 +16,54 @@
         "type": "github"
       }
     },
+    "conn-burst": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1529064833,
+        "narHash": "sha256-7VSb3vL9mylrkRuBCEB0Q+ghsC9ripZPcMNjLHoYMUM=",
+        "owner": "corelight",
+        "repo": "conn-burst",
+        "rev": "6a054496e58a8f49254f3c9a9af580b340fc2864",
+        "type": "github"
+      },
+      "original": {
+        "owner": "corelight",
+        "repo": "conn-burst",
+        "type": "github"
+      }
+    },
+    "dns-axfr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1592926814,
+        "narHash": "sha256-bktZeB+lQCHW9F8Vfmc8nLWcD///0izzXo6WtU/syEk=",
+        "owner": "srozb",
+        "repo": "dns_axfr",
+        "rev": "fda4b70516f576a698e0f0f6f1f1e62fc98d258f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srozb",
+        "repo": "dns_axfr",
+        "type": "github"
+      }
+    },
+    "dns-tunnels": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1502138732,
+        "narHash": "sha256-LAptyu4Cm4yhY+NoRQT4wJaVadQdXXMH/6FSScO7qnQ=",
+        "owner": "hhzzk",
+        "repo": "dns-tunnels",
+        "rev": "4180a7b2606d11fadb64878d653739a9815ce359",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hhzzk",
+        "repo": "dns-tunnels",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1601282935,
@@ -49,9 +97,30 @@
     "root": {
       "inputs": {
         "CVE-2020-16898": "CVE-2020-16898",
+        "conn-burst": "conn-burst",
+        "dns-axfr": "dns-axfr",
+        "dns-tunnels": "dns-tunnels",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "zeek-known-hosts-with-dns": "zeek-known-hosts-with-dns"
+        "top-dns": "top-dns",
+        "zeek-known-hosts-with-dns": "zeek-known-hosts-with-dns",
+        "zeek-long-connections": "zeek-long-connections"
+      }
+    },
+    "top-dns": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1593613962,
+        "narHash": "sha256-ZMtwwaJO2TSEtyW7aqpFhORPrUEQosZ4lwVuqmS1hpM=",
+        "owner": "corelight",
+        "repo": "top-dns",
+        "rev": "d08b1a5665e47ff983debe5a85c0dc8b52aee019",
+        "type": "github"
+      },
+      "original": {
+        "owner": "corelight",
+        "repo": "top-dns",
+        "type": "github"
       }
     },
     "zeek-known-hosts-with-dns": {
@@ -67,6 +136,22 @@
       "original": {
         "owner": "dopheide-esnet",
         "repo": "zeek-known-hosts-with-dns",
+        "type": "github"
+      }
+    },
+    "zeek-long-connections": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1591798643,
+        "narHash": "sha256-K63K7kxS5NIvKUTSzlE2jMUNO8Im0zkfivlbWHOp5zo=",
+        "owner": "corelight",
+        "repo": "bro-long-connections",
+        "rev": "adf4f270d29bf8b56a1c60ac223a298097f904a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "corelight",
+        "repo": "bro-long-connections",
         "type": "github"
       }
     }
