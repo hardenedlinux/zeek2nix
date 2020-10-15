@@ -17,6 +17,7 @@ let
     flakeLock.top-dns
     flakeLock.zeek-long-connections
     flakeLock.conn-burst
+    flakeLock.log-add-vlan-everywhere
   ]);
 
 in

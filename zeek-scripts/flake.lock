@@ -19,15 +19,16 @@
     "conn-burst": {
       "flake": false,
       "locked": {
-        "lastModified": 1529064833,
-        "narHash": "sha256-7VSb3vL9mylrkRuBCEB0Q+ghsC9ripZPcMNjLHoYMUM=",
-        "owner": "corelight",
+        "lastModified": 1602742143,
+        "narHash": "sha256-GJGe0s4Y9nzfC9OWg4UQJ64CUMI2qX5enUEavxbr0qE=",
+        "owner": "GTrunSec",
         "repo": "conn-burst",
-        "rev": "6a054496e58a8f49254f3c9a9af580b340fc2864",
+        "rev": "b5264ea97bd11e2999f83d54f42cb533cb65b1d7",
         "type": "github"
       },
       "original": {
-        "owner": "corelight",
+        "owner": "GTrunSec",
+        "ref": "update-zeek3",
         "repo": "conn-burst",
         "type": "github"
       }
@@ -79,6 +80,23 @@
         "type": "github"
       }
     },
+    "log-add-vlan-everywhere": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1602743370,
+        "narHash": "sha256-uNXNQlgDo2mOAARwi/8ZvEA2GGCdhlJTAHKF/EqxAOc=",
+        "owner": "GTrunSec",
+        "repo": "log-add-vlan-everywhere",
+        "rev": "727fa61c22fea2b89e1001cd2d90214c4567fe7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GTrunSec",
+        "ref": "update-zeek3",
+        "repo": "log-add-vlan-everywhere",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1601539597,
@@ -101,6 +119,7 @@
         "dns-axfr": "dns-axfr",
         "dns-tunnels": "dns-tunnels",
         "flake-utils": "flake-utils",
+        "log-add-vlan-everywhere": "log-add-vlan-everywhere",
         "nixpkgs": "nixpkgs",
         "top-dns": "top-dns",
         "zeek-known-hosts-with-dns": "zeek-known-hosts-with-dns",
