@@ -19,12 +19,6 @@
   };
 
   outputs = inputs: with builtins;
-
-    overlay = final: prev: {
-      zeekCurrent = outputs.self.packages.zeekCurrent;
-      zeekTLS = outputs.self.packages.zeekTLS;
-    };
-
     let
       flakeLock = inputs.nixpkgs.lib.importJSON ./flake.lock;
       loadInput = { locked, ... }:
@@ -36,6 +30,10 @@
       (inputs.flake-utils.lib.eachDefaultSystem
         (system:
           let
+            overlay = final: prev: {
+              zeekCurrent = outputs.self.packages.zeekCurrent;
+              zeekTLS = outputs.self.packages.zeekTLS;
+            };
             pkgs = import inputs.nixpkgs {
               inherit system;
               overlays = [
