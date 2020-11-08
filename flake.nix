@@ -18,10 +18,14 @@
     metron-zeek-plugin-kafka  = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false;};
   };
 
-
   outputs = inputs: with builtins;
-    let
 
+    overlay = final: prev: {
+      zeekCurrent = outputs.self.packages.zeekCurrent;
+      zeekTLS = outputs.self.packages.zeekTLS;
+    };
+
+    let
       flakeLock = inputs.nixpkgs.lib.importJSON ./flake.lock;
       loadInput = { locked, ... }:
         builtins.fetchTarball {
