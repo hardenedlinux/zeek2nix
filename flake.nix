@@ -19,59 +19,51 @@
   };
 
   outputs = inputs: with builtins;
-    let
-      flakeLock = inputs.nixpkgs.lib.importJSON ./flake.lock;
-      loadInput = { locked, ... }:
-        builtins.fetchTarball {
-          url = locked.url;
-          sha256 = locked.narHash;
-        };
-    in
-      (inputs.flake-utils.lib.eachDefaultSystem
-        (system:
-          let
-            overlay = final: prev: {
-              zeekCurrent = outputs.self.packages.zeekCurrent;
-              zeekTLS = outputs.self.packages.zeekTLS;
+    (inputs.flake-utils.lib.eachDefaultSystem
+      (system:
+        let
+          overlay = final: prev: {
+            zeekCurrent = outputs.self.packages.zeekCurrent;
+            zeekTLS = outputs.self.packages.zeekTLS;
+          };
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              (import ./overlay.nix)
+            ];
+          };
+        in
+          rec {
+
+            zeekCurrent = (pkgs.zeek.override({
+              version = "3.2.2";
+            })).overrideAttrs(old: rec {
+              src = inputs.zeek-current;
+            });
+
+            zeekTLS = (pkgs.zeek.override({
+              version = "3.0.11";
+            })).overrideAttrs(old: rec {
+              src = inputs.zeek-tls;
+            });
+
+
+            packages = inputs.flake-utils.lib.flattenTree {
+              inherit zeekCurrent zeekTLS;
             };
-            pkgs = import inputs.nixpkgs {
-              inherit system;
-              overlays = [
-                (import ./overlay.nix)
-              ];
+
+            devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
+            #
+            apps = {
+              zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
+              zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};
             };
-          in
-            rec {
 
-              zeekCurrent = (pkgs.zeek.override({
-                version = "3.2.2";
-              })).overrideAttrs(old: rec {
-                src = loadInput flakeLock.nodes.zeek-current;
-              });
-              
-              zeekTLS = (pkgs.zeek.override({
-                version = "3.0.11";
-              })).overrideAttrs(old: rec {
-                src = loadInput flakeLock.nodes.zeek-tls;
-              });
-
-              
-              packages = inputs.flake-utils.lib.flattenTree {
-                inherit zeekCurrent zeekTLS;
-              };
-              
-              devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
-#
-              apps = {
-                zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
-                zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl";};
-              };
-
-              defaultPackage = packages.zeekCurrent;
-              defaultApp = apps.zeekCurrent;
-            }
-        ) // {
-          nixosModule = import ./module;
-        }
-      );
+            defaultPackage = packages.zeekCurrent;
+            defaultApp = apps.zeekCurrent;
+          }
+      ) // {
+        nixosModule = import ./module;
+      }
+    );
 }
