@@ -1,4 +1,3 @@
-@load Corelight/CommunityID
 @load http2
 @load Analyzer/PDF/notify.zeek
 # @load ./zeek-scripts/zeek-pdf-analyzer/scripts/

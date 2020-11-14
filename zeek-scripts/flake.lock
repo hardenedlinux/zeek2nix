@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "CVE-2020-14882-weblogicRCE": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1605223535,
+        "narHash": "sha256-sKfrlK9GxeopeF5V3FvQl0jeoUf4ljAK/Y/SUyov4W0=",
+        "owner": "corelight",
+        "repo": "CVE-2020-14882-weblogicRCE",
+        "rev": "c95554711a165aa2ee45d7d7db857a657eeac427",
+        "type": "github"
+      },
+      "original": {
+        "owner": "corelight",
+        "repo": "CVE-2020-14882-weblogicRCE",
+        "type": "github"
+      }
+    },
     "CVE-2020-16898": {
       "flake": false,
       "locked": {
@@ -114,6 +130,7 @@
     },
     "root": {
       "inputs": {
+        "CVE-2020-14882-weblogicRCE": "CVE-2020-14882-weblogicRCE",
         "CVE-2020-16898": "CVE-2020-16898",
         "conn-burst": "conn-burst",
         "dns-axfr": "dns-axfr",

@@ -9,15 +9,16 @@ let
       sha256 = locked.narHash;
     };
 
-  srcDepsSet = (map loadInput [
-    flakeLock.CVE-2020-16898
-    flakeLock.zeek-known-hosts-with-dns
-    flakeLock.dns-tunnels
-    flakeLock.dns-axfr
-    flakeLock.top-dns
-    flakeLock.zeek-long-connections
-    flakeLock.conn-burst
-    flakeLock.log-add-vlan-everywhere
+  srcDepsSet = with flakeLock; (map loadInput [
+    CVE-2020-16898
+    CVE-2020-14882-weblogicRCE
+    zeek-known-hosts-with-dns
+    dns-tunnels
+    dns-axfr
+    top-dns
+    zeek-long-connections
+    conn-burst
+    log-add-vlan-everywhere
   ]);
 
 in

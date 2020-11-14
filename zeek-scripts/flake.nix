@@ -7,7 +7,7 @@
 
     #CVE detection
     CVE-2020-16898 = { url = "github:corelight/CVE-2020-16898"; flake = false; };
-
+    CVE-2020-14882-weblogicRCE = { url = "github:corelight/CVE-2020-14882-weblogicRCE"; flake = false; };
     #Vlan
     log-add-vlan-everywhere = { url = "github:GTrunSec/log-add-vlan-everywhere/update-zeek3"; flake = false; };
 
