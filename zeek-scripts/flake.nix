@@ -31,7 +31,9 @@
               inherit system;
             };
           in
-            { }
+            {
+              defaultPackage = import ./default.nix {inherit pkgs;};
+            }
         )
     );
 }
