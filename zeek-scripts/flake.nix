@@ -10,7 +10,8 @@
     CVE-2020-14882-weblogicRCE = { url = "github:corelight/CVE-2020-14882-weblogicRCE"; flake = false; };
     #Vlan
     log-add-vlan-everywhere = { url = "github:GTrunSec/log-add-vlan-everywhere/update-zeek3"; flake = false; };
-
+    #IRC
+    zeek-IRC = { url = "github:stratosphereips/IRC-Zeek-package"; flake = false; };
     #CONN
     zeek-long-connections = { url = "github:corelight/bro-long-connections"; flake = false; };
     conn-burst = { url = "github:GTrunSec/conn-burst/update-zeek3"; flake = false; };

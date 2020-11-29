@@ -19,6 +19,7 @@ let
     zeek-long-connections
     conn-burst
     log-add-vlan-everywhere
+    zeek-IRC
   ]);
 
 in
@@ -37,5 +38,6 @@ pkgs.stdenv.mkDerivation rec {
      fi
      cp -r $i/* $out/$name;
      done
+     sed -i 's|use_json = T;|use_json = F;|' $out/zeek-plugin/irc_feature_extractor.zeek
   '';
 }

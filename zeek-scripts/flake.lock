@@ -139,6 +139,7 @@
         "log-add-vlan-everywhere": "log-add-vlan-everywhere",
         "nixpkgs": "nixpkgs",
         "top-dns": "top-dns",
+        "zeek-IRC": "zeek-IRC",
         "zeek-known-hosts-with-dns": "zeek-known-hosts-with-dns",
         "zeek-long-connections": "zeek-long-connections"
       }
@@ -156,6 +157,22 @@
       "original": {
         "owner": "corelight",
         "repo": "top-dns",
+        "type": "github"
+      }
+    },
+    "zeek-IRC": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1589900388,
+        "narHash": "sha256-gbYZtxO19KwyJQWaJuszQ6P3PTvbPykDRoYBjzZFlXQ=",
+        "owner": "stratosphereips",
+        "repo": "IRC-Zeek-package",
+        "rev": "cdfee23b447cf2fe89618a0ed52e4aa537e7a0df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stratosphereips",
+        "repo": "IRC-Zeek-package",
         "type": "github"
       }
     },

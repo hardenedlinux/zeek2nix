@@ -23,7 +23,7 @@
       (system:
         let
           overlay = final: prev: {
-            zeekCurrent = outputs.self.packages.zeekCurrent;
+            zeek = outputs.self.packages.zeekCurrent;
             zeekTLS = outputs.self.packages.zeekTLS;
           };
           pkgs = import inputs.nixpkgs {
