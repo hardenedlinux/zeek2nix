@@ -22,10 +22,6 @@
     (inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
-          overlay = final: prev: {
-            zeek = outputs.self.packages.zeekCurrent;
-            zeekTLS = outputs.self.packages.zeekTLS;
-          };
           pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [
@@ -34,7 +30,6 @@
           };
         in
           rec {
-
             zeekCurrent = (pkgs.zeek.override({
               version = "3.2.2";
             })).overrideAttrs(old: rec {
@@ -64,6 +59,10 @@
           }
       ) // {
         nixosModule = import ./module;
+        overlay = final: prev: {
+          zeek = packages.zeekCurrent;
+          zeekTLS = packages.zeekTLS;
+        };
       }
     );
 }
