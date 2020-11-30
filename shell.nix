@@ -1,7 +1,4 @@
-{ pkgs ? import <nixpkgs> {}
-, zeekCurrent
-, zeekTLS
-}:
+{ pkgs ? import <nixpkgs> {}}:
 
 with pkgs;
 

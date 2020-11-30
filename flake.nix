@@ -18,7 +18,20 @@
     metron-zeek-plugin-kafka  = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false;};
   };
 
-  outputs = inputs: with builtins;
+  outputs = inputs: with builtins;let
+    overlay = final: prev: {
+      zeekCurrent = (prev.zeek.override({
+        version = "3.2.2";
+      })).overrideAttrs(old: rec {
+        src = inputs.zeek-current;
+      });
+      zeekTLS = (prev.zeek.override({
+        version = "3.0.11";
+      })).overrideAttrs(old: rec {
+        src = inputs.zeek-tls;
+      });
+    };
+  in
     (inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -26,28 +39,17 @@
             inherit system;
             overlays = [
               (import ./overlay.nix)
+              overlay
             ];
           };
         in
           rec {
-            zeekCurrent = (pkgs.zeek.override({
-              version = "3.2.2";
-            })).overrideAttrs(old: rec {
-              src = inputs.zeek-current;
-            });
-
-            zeekTLS = (pkgs.zeek.override({
-              version = "3.0.11";
-            })).overrideAttrs(old: rec {
-              src = inputs.zeek-tls;
-            });
-
-
             packages = inputs.flake-utils.lib.flattenTree {
-              inherit zeekCurrent zeekTLS;
+              zeekCurrent = pkgs.zeekCurrent;
+              zeekTLS= pkgs.zeekTLS;
             };
 
-            devShell = import ./shell.nix { inherit pkgs zeekCurrent zeekTLS;};
+            devShell = import ./shell.nix { inherit pkgs;};
             #
             apps = {
               zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
@@ -59,10 +61,6 @@
           }
       ) // {
         nixosModule = import ./module;
-        overlay = final: prev: {
-          zeek = packages.zeekCurrent;
-          zeekTLS = packages.zeekTLS;
-        };
       }
     );
 }
