@@ -13,7 +13,7 @@
 ,  ZipPlugin ? false
 ,  PdfPlugin ? false
 ,  zeekctl ? true
-,  version ? "3.2.2"
+,  version ? "3.2.3"
 }:
 let
   preConfigure = (import ./script.nix {inherit coreutils;});
@@ -35,8 +35,6 @@ stdenv.mkDerivation rec {
 
   configureFlags = [
     "--with-geoip=${geoip}"
-    "--with-python=${python}/bin"
-    "--with-python-lib=${python}/${python.sitePackages}"
   ];
   ##for spicy ccache
   HOME = ".";

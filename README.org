@@ -3,33 +3,27 @@
 * Build Zeek with nix-build -> result/bin/zeek (Current version)
 - nix run zeekctl app with flake
 - [[*create zeek dynamic dir to /var/lib/zeek][create zeek dynamic dir to /var/lib/zeek]] before you run command with ~zeekctl deploy~
+  nix run to zeekctl
 #+begin_src sh :async t :exports both :results output
 nix run
 #+end_src
 
-#+RESULTS:
-: Warning: new zeek version detected (run the zeekctl "deploy" command)
-:
-: Welcome to ZeekControl 2.2.0
-:
-: Type "help" for help.
-:
-: [ZeekControl] >
-
 - with native nix-build -> ./result/bin/zeek -N
-  #+begin_src sh :async t :exports both :results output
-nix build
-  #+end_src
 
-* Optional: unsing cachix to speed up binary build
+
 #+begin_src sh :async t :exports both :results output
-nix-env -iA cachix -f https://cachix.org/api/v1/install
-cachix use nsm-data-analysis
+# flake feature
+nix build
+# or
+nix-build
 #+end_src
-- push binary cache to nsm-data-analsis->cachix
-  #+begin_src sh :async t :exports both :results output
- nix path-info --json | jq -r '.[].path' | cachix push nsm-data-analysis
-  #+end_src
+
+* Build Zeek Env with nix-shell(shell mode) - TLS version
+#+begin_src sh :async t :exports both :results output
+nix develop
+# or
+nix-shell
+#+end_src
 
 * create zeek dynamic dir to /var/lib/zeek
 :BACKLINKS:
@@ -40,10 +34,6 @@ sudo bash ./pre-run-zeekctl.sh
 #+end_src
 
 
-* Build Zeek Env with nix-shell(shell mode) - TLS version
-#+begin_src sh :async t :exports both :results output
-nix develop
-#+end_src
 
 * Arguments for zeek building
 ** How to enable or disable a plugin in zeek
@@ -56,6 +46,16 @@ final: prev:
                                Http2Plugin = true; ikev2Plugin = true; communityIdPlugin = true;};
 }
 #+end_src
+
+* Optional: unsing cachix to speed up binary build
+#+begin_src sh :async t :exports both :results output
+nix-env -iA cachix -f https://cachix.org/api/v1/install
+cachix use nsm-data-analysis
+#+end_src
+- push binary cache to nsm-data-analsis->cachix
+  #+begin_src sh :async t :exports both :results output
+ nix path-info --json | jq -r '.[].path' | cachix push nsm-data-analysis
+  #+end_src
 
 * Support Zeek pluigns list
 - check pluigns info

@@ -2,11 +2,11 @@
   "nodes": {
     "flake-utils": {
       "locked": {
-        "lastModified": 1601282935,
-        "narHash": "sha256-WQAFV6sGGQxrRs3a+/Yj9xUYvhTpukQJIcMbIi7LCJ4=",
+        "lastModified": 1605370193,
+        "narHash": "sha256-YyMTf3URDL/otKdKgtoMChu4vfVL3vCMkRqpGifhUn0=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "588973065fce51f4763287f0fda87a174d78bf48",
+        "rev": "5021eac20303a61fafe17224c087f5519baed54d",
         "type": "github"
       },
       "original": {
@@ -33,16 +33,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1601539597,
-        "narHash": "sha256-gOuB2wl8C0Nxi68VsFL+FP30yj62Yt4izr8WtSldQgI=",
+        "lastModified": 1607560137,
+        "narHash": "sha256-qI5U28r9Ie11OlkwzNFkhW0Z4jLanntJdb3JeFq/85A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "302ef60620d277fc87a8aa58c5c561b62c925651",
+        "rev": "7ff5e241a2b96fff7912b7d793a06b4374bd846c",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
-        "rev": "302ef60620d277fc87a8aa58c5c561b62c925651",
+        "rev": "7ff5e241a2b96fff7912b7d793a06b4374bd846c",
         "type": "indirect"
       }
     },
@@ -51,6 +51,7 @@
         "flake-utils": "flake-utils",
         "metron-zeek-plugin-kafka": "metron-zeek-plugin-kafka",
         "nixpkgs": "nixpkgs",
+        "zeek-4": "zeek-4",
         "zeek-current": "zeek-current",
         "zeek-plugin-community-id": "zeek-plugin-community-id",
         "zeek-plugin-http2": "zeek-plugin-http2",
@@ -61,16 +62,28 @@
         "zeek-tls": "zeek-tls"
       }
     },
-    "zeek-current": {
+    "zeek-4": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-7i3RHzLuMVXfzaLtOsjMZBTyNdmbWa2DWfsFAxkyDpQ=",
+        "narHash": "sha256-Smo6OmO43+yQm4AuFF6oHwCVkjujWTLT+i63Ip8vPSY=",
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
+        "url": "https://download.zeek.org/zeek-4.0.0-rc1.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.2.2.tar.gz"
+        "url": "https://download.zeek.org/zeek-4.0.0-rc1.tar.gz"
+      }
+    },
+    "zeek-current": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-QSYi9Tl3b3QaAZyk848CHAFUdG++taP6XSCm+L9xQX8=",
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-3.2.3.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-3.2.3.tar.gz"
       }
     },
     "zeek-plugin-community-id": {
@@ -92,11 +105,11 @@
     "zeek-plugin-http2": {
       "flake": false,
       "locked": {
-        "lastModified": 1599832710,
-        "narHash": "sha256-ta2Jk05Z3lrsfkAQsdPJEiBr/d7JSAYOy9NlVC32PJc=",
+        "lastModified": 1607350298,
+        "narHash": "sha256-UpNfsYfNKMb8yO8X5bdwB2wSQo9KWsjZbVqzteKYY3Q=",
         "ref": "master",
-        "rev": "5b160f38c1f7a46d858e8568ee3f9097e9c1c45f",
-        "revCount": 44,
+        "rev": "70008f0f40e6c942547285f8c43b9aabd1efc909",
+        "revCount": 50,
         "type": "git",
         "url": "https://github.com/MITRECND/bro-http2/"
       },
@@ -172,13 +185,13 @@
     "zeek-tls": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-baZv6KqVP/H33YXkPpMaCIzGQDOk1D2o/FiOG/rWX5A=",
+        "narHash": "sha256-en2U615vY+1B+h/AcuqtEBCRvprN19t1uMk+TUk9nKg=",
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.0.11.tar.gz"
+        "url": "https://download.zeek.org/zeek-3.0.12.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.0.11.tar.gz"
+        "url": "https://download.zeek.org/zeek-3.0.12.tar.gz"
       }
     }
   },
