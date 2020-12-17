@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = "sha256-bFdIxJIHJBl3oNn8usjOO2q7+Gb/KUaf0MLc09T5nQE=";
+    sha256 = "sha256-+SlcLdQHanEEK8g6JnsLDV1dspHXx6ErbFusdSkrwsY=";
   };
 
   configureFlags = [
