@@ -1,5 +1,13 @@
 {
   description = "Zeek to Nix";
+  # nixConfig = {
+  #   substituters = [
+  #     "http://221.4.35.244:8301/"
+  #   ];
+  #   trusted-public-keys = [
+  #     "221.4.35.244:3ehdeUIC5gWzY+I7iF3lrpmxOMyEZQbZlcjOmlOVpeo="
+  #   ];
+  # };
 
   inputs =  {
     flake-utils.url = "github:numtide/flake-utils";
@@ -58,7 +66,9 @@
               zeek4 = pkgs.zeek4;
             };
 
-            devShell = import ./dev-shell.nix { inherit pkgs;};
+            devShell = with pkgs; mkShell {
+              buildInputs = [ pkgs.zeekTLS ];
+            };
             #
             apps = {
               zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
