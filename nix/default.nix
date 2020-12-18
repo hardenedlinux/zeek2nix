@@ -1,5 +1,5 @@
 { stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
-, libmaxminddb, gperftools, python, swig, fetchpatch, caf
+, libmaxminddb, gperftools, python, swig, fetchpatch, ncurses5, caf
 ## Plugin dependencies
 ,  rdkafka, postgresql, coreutils
 ,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, ccache
@@ -41,7 +41,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake flex bison file ]
                       ++ stdenv.lib.optionals SpicyPlugin [ python38 ];
-  buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python swig caf ]
+  buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python swig caf ncurses5 ]
                 ++ stdenv.lib.optionals KafkaPlugin
                   [ rdkafka ]
                 ++ stdenv.lib.optionals PostgresqlPlugin
@@ -62,7 +62,7 @@ stdenv.mkDerivation rec {
   enableParallelBuilding = true;
 
   cmakeFlags = [
-    "-DPYTHON_EXECUTABLE=${python}/bin/python2.7"
+    "-DPYTHON_EXECUTABLE=${python}/bin/python"
     "-DPYTHON_INCLUDE_DIR=${python}/include"
     "-DPYTHON_LIBRARY=${python}/lib"
     "-DPY_MOD_INSTALL_DIR=${placeholder "out"}/${python.sitePackages}"
@@ -70,7 +70,6 @@ stdenv.mkDerivation rec {
     "-DINSTALL_AUX_TOOLS=true"
     "-DINSTALL_ZEEKCTL=true"
     "-DZEEK_ETC_INSTALL_DIR=${placeholder "out"}/etc"
-    "-DCAF_ROOT_DIR=${caf}"
   ];
 
   inherit (plugin) postFixup;

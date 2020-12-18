@@ -31,6 +31,7 @@
     overlay = final: prev: {
       zeek4 = (prev.zeek.override({
         version = "4.0.0";
+        python = prev.python3;
       })).overrideAttrs(old: rec {
         src = inputs.zeek-4;
       });
