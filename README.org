@@ -47,12 +47,12 @@ final: prev:
 }
 #+end_src
 
-* Optional: unsing cachix to speed up binary build
+* Optional: using cachix to speed up binary build
 #+begin_src sh :async t :exports both :results output
 nix-env -iA cachix -f https://cachix.org/api/v1/install
 cachix use nsm-data-analysis
 #+end_src
-- push binary cache to nsm-data-analsis->cachix
+- push binary cache to nsm-data-analsis->cachix (For Maintainer)
   #+begin_src sh :async t :exports both :results output
  nix path-info --json | jq -r '.[].path' | cachix push nsm-data-analysis
   #+end_src
