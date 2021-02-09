@@ -65,13 +65,13 @@
     "zeek-4": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Smo6OmO43+yQm4AuFF6oHwCVkjujWTLT+i63Ip8vPSY=",
+        "narHash": "sha256-sD4BE06pNWCXFkw1V+XfvVSj0dFCvp9lAhuEVpfT1NQ=",
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0-rc1.tar.gz"
+        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0-rc1.tar.gz"
+        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
       }
     },
     "zeek-current": {

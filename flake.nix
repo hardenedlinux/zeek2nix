@@ -15,7 +15,7 @@
 
     zeek-tls = { url = "https://download.zeek.org/zeek-3.0.12.tar.gz"; flake = false;};
     zeek-current = { url = "https://download.zeek.org/zeek-3.2.3.tar.gz"; flake = false;};
-    zeek-4 = { url = "https://download.zeek.org/zeek-4.0.0-rc1.tar.gz"; flake = false;};
+    zeek-4 = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false;};
 
     zeek-plugin-pdf = { url = "git+https://github.com/reservoirlabs/zeek-pdf-analyzer"; flake = false;}; #failure to 3.0.1
     zeek-plugin-zip = { url = "git+https://github.com/reservoirlabs/zeek-zip-analyzer"; flake = false;}; #failure to 3.0.1
@@ -30,13 +30,14 @@
   outputs = inputs: with builtins;let
     overlay = final: prev: {
       zeek4 = (prev.zeek.override({
-        version = "4.0.0";
+        version = "4.0.0-rc2";
         python = prev.python3;
       })).overrideAttrs(old: rec {
         src = inputs.zeek-4;
       });
       zeekCurrent = (prev.zeek.override({
         version = "3.2.3";
+        python = prev.python3;
       })).overrideAttrs(old: rec {
         src = inputs.zeek-current;
       });

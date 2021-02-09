@@ -1,7 +1,7 @@
 { stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
 , libmaxminddb, gperftools, python, swig, fetchpatch, ncurses5, caf
 ## Plugin dependencies
-,  rdkafka, postgresql, coreutils
+,  rdkafka, postgresql, coreutils, rsync, openssh
 ,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, ccache
 ,  libzip, podofo
 ,  PostgresqlPlugin ? false
@@ -16,7 +16,7 @@
 ,  version ? "3.2.3"
 }:
 let
-  preConfigure = (import ./script.nix {inherit coreutils;});
+  preConfigure = (import ./script.nix {inherit coreutils rsync openssh;});
 
   pname = "zeek";
   confdir = "/var/lib/${pname}";
