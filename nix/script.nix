@@ -7,8 +7,7 @@
    sed -i 's|/bin/cat|${coreutils}/bin/cat|' scripts/base/frameworks/notice/actions/pp-alarms.zeek
    sed -i 's|/bin/cat|${coreutils}/bin/cat|' scripts/base/frameworks/notice/main.zeek
 
-   # sed -i 's|ssh -o|${openssh}/bin/ssh -o|' auxil/zeekctl/ZeekControl/execute.py
-   # sed -i 's|rsync %s|${rsync}/bin/rsync %s|' auxil/zeekctl/ZeekControl/execute.py
+   sed -i 's|rsync %s|${rsync}/bin/rsync %s|' auxil/zeekctl/ZeekControl/execute.py
 
    substituteInPlace zeek-config.in --subst-var ZEEK_DIST
 

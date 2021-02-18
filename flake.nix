@@ -23,7 +23,7 @@
     zeek-plugin-postgresql  = { url = "git+https://github.com/0xxon/zeek-postgresql"; flake = false;};
     zeek-plugin-http2 = { url = "git+https://github.com/MITRECND/bro-http2/"; flake = false;};
     zeek-plugin-community-id = { url = "git+https://github.com/corelight/zeek-community-id/"; flake = false;};
-
+    icsnpp-bacnet = { url = "git+https://github.com/cisagov/icsnpp-bacnet"; flake = false;};
     metron-zeek-plugin-kafka  = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false;};
   };
 
@@ -69,7 +69,7 @@
             };
 
             devShell = with pkgs; mkShell {
-              buildInputs = [ pkgs.zeekTLS ];
+              buildInputs = [ pkgs.zeek4 ];
             };
             #
             apps = {

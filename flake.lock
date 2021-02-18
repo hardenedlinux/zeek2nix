@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "icsnpp-bacnet": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1611095103,
+        "narHash": "sha256-LM6yZKtmr9/tdVRhkMAxVY8dEh1JeOdIZUhK2BDrZGE=",
+        "ref": "master",
+        "rev": "9c6e6b097b4799245af740402ced96383784e599",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://github.com/cisagov/icsnpp-bacnet"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/cisagov/icsnpp-bacnet"
+      }
+    },
     "metron-zeek-plugin-kafka": {
       "flake": false,
       "locked": {
@@ -49,6 +65,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "icsnpp-bacnet": "icsnpp-bacnet",
         "metron-zeek-plugin-kafka": "metron-zeek-plugin-kafka",
         "nixpkgs": "nixpkgs",
         "zeek-4": "zeek-4",
