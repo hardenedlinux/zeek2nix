@@ -1,29 +1,56 @@
-{ stdenv, fetchurl, cmake, flex, bison, openssl, libpcap, zlib, file, curl
-, libmaxminddb, gperftools, python, swig, fetchpatch, ncurses5, caf
-## Plugin dependencies
-,  rdkafka, postgresql, coreutils, rsync, openssh
-,  callPackage, libnghttp2, brotli, python38, llvmPackages_9, which, geoip, ccache
-,  libzip, podofo
-,  PostgresqlPlugin ? false
-,  KafkaPlugin ? false
-,  Http2Plugin ? false
-,  SpicyPlugin ? false
-,  Ikev2Plugin ? false
-,  CommunityIdPlugin ? false
-,  ZipPlugin ? false
-,  PdfPlugin ? false
-,  zeekctl ? true
-,  version ? "3.2.3"
+{ stdenv
+, fetchurl
+, cmake
+, flex
+, bison
+, openssl
+, libpcap
+, zlib
+, file
+, curl
+, libmaxminddb
+, gperftools
+, python
+, swig
+, fetchpatch
+, ncurses5
+, caf
+  ## Plugin dependencies
+, rdkafka
+, postgresql
+, coreutils
+, rsync
+, openssh
+, callPackage
+, libnghttp2
+, brotli
+, python38
+, llvmPackages_9
+, which
+, geoip
+, ccache
+, libzip
+, podofo
+, PostgresqlPlugin ? false
+, KafkaPlugin ? false
+, Http2Plugin ? false
+, SpicyPlugin ? false
+, Ikev2Plugin ? false
+, CommunityIdPlugin ? false
+, ZipPlugin ? false
+, PdfPlugin ? false
+, zeekctl ? true
+, version ? "3.2.3"
 }:
 let
-  preConfigure = (import ./script.nix {inherit coreutils rsync openssh;});
+  preConfigure = (import ./script.nix { inherit coreutils rsync openssh; });
 
   pname = "zeek";
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
     inherit confdir zeekctl
-      PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin  Http2Plugin SpicyPlugin Ikev2Plugin;
+      PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin SpicyPlugin Ikev2Plugin;
   };
 in
 stdenv.mkDerivation rec {
@@ -40,20 +67,20 @@ stdenv.mkDerivation rec {
   HOME = ".";
 
   nativeBuildInputs = [ cmake flex bison file ]
-                      ++ stdenv.lib.optionals SpicyPlugin [ python38 ];
+    ++ stdenv.lib.optionals SpicyPlugin [ python38 ];
   buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python swig caf ncurses5 ]
-                ++ stdenv.lib.optionals KafkaPlugin
-                  [ rdkafka ]
-                ++ stdenv.lib.optionals PostgresqlPlugin
-                  [ postgresql ]
-                ++ stdenv.lib.optionals ZipPlugin
-                  [ libzip ]
-                ++ stdenv.lib.optionals PdfPlugin
-                  [ podofo ]
-                ++ stdenv.lib.optionals Http2Plugin
-                  [ libnghttp2 brotli ]
-                ++ stdenv.lib.optionals SpicyPlugin
-                  [ which ccache llvmPackages_9.lld llvmPackages_9.clang-unwrapped llvmPackages_9.llvm ];
+    ++ stdenv.lib.optionals KafkaPlugin
+    [ rdkafka ]
+    ++ stdenv.lib.optionals PostgresqlPlugin
+    [ postgresql ]
+    ++ stdenv.lib.optionals ZipPlugin
+    [ libzip ]
+    ++ stdenv.lib.optionals PdfPlugin
+    [ podofo ]
+    ++ stdenv.lib.optionals Http2Plugin
+    [ libnghttp2 brotli ]
+    ++ stdenv.lib.optionals SpicyPlugin
+    [ which ccache llvmPackages_9.lld llvmPackages_9.clang-unwrapped llvmPackages_9.llvm ];
 
   ZEEK_DIST = "${placeholder "out"}";
   #see issue https://github.com/zeek/zeek/issues/804 to modify hardlinking duplicate files.
