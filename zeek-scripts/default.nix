@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {}}:
+{ pkgs ? import <nixpkgs> { } }:
 with pkgs.lib;
 let
   flakeLock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes;

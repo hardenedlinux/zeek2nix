@@ -1,7 +1,7 @@
 {
   description = "Zeek to Nix";
 
-  inputs =  {
+  inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/302ef60620d277fc87a8aa58c5c561b62c925651";
 
@@ -26,15 +26,15 @@
 
   outputs = inputs: with builtins;
     (inputs.flake-utils.lib.eachDefaultSystem
-        (system:
-          let
-            pkgs = import inputs.nixpkgs {
-              inherit system;
-            };
-          in
-            {
-              defaultPackage = import ./default.nix {inherit pkgs;};
-            }
-        )
+      (system:
+        let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+          };
+        in
+        {
+          defaultPackage = import ./default.nix { inherit pkgs; };
+        }
+      )
     );
 }
