@@ -42,7 +42,7 @@
         src = inputs.zeek-current;
       });
       zeekTLS = (prev.zeek.override ({
-        version = "3.0.12";
+        version = "3.0.13";
         PdfPlugin = false; #failed
         ZipPlugin = false; #failed
       })).overrideAttrs (old: rec {
