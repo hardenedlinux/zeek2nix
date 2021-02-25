@@ -68,6 +68,10 @@
           zeek4 = pkgs.zeek4;
         };
 
+        hydraJobs = {
+          inherit packages;
+        };
+
         devShell = with pkgs; mkShell {
           buildInputs = [ pkgs.zeek4 ];
         };
