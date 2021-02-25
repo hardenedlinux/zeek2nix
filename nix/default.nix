@@ -40,7 +40,7 @@
 , ZipPlugin ? false
 , PdfPlugin ? false
 , zeekctl ? true
-, version ? "3.2.3"
+, version ? "3.2.4"
 }:
 let
   preConfigure = (import ./script.nix { inherit coreutils rsync openssh; });
@@ -57,7 +57,7 @@ stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = "sha256-+SlcLdQHanEEK8g6JnsLDV1dspHXx6ErbFusdSkrwsY=";
+    sha256 = "sha256-o4DKdAFVcf/czQeLYjFqGugE7BsC3j/stul41eIzNq0=";
   };
 
   configureFlags = [
