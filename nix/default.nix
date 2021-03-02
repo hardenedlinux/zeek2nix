@@ -19,8 +19,6 @@
 , rdkafka
 , postgresql
 , coreutils
-, rsync
-, openssh
 , callPackage
 , libnghttp2
 , brotli
@@ -40,10 +38,10 @@
 , ZipPlugin ? false
 , PdfPlugin ? false
 , zeekctl ? true
-, version ? "3.2.4"
+, version ? "4.0.0"
 }:
 let
-  preConfigure = (import ./script.nix { inherit coreutils rsync openssh; });
+  preConfigure = (import ./script.nix { });
 
   pname = "zeek";
   confdir = "/var/lib/${pname}";
@@ -57,7 +55,7 @@ stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = "sha256-o4DKdAFVcf/czQeLYjFqGugE7BsC3j/stul41eIzNq0=";
+    sha256 = "sha256-MV5Wa67u7WY91nh5jOCgiCk1ymvSKSyfT5nhl9EDA/w=";
   };
 
   configureFlags = [
@@ -98,6 +96,17 @@ stdenv.mkDerivation rec {
     "-DINSTALL_ZEEKCTL=true"
     "-DZEEK_ETC_INSTALL_DIR=${placeholder "out"}/etc"
   ];
+
+  postInstall = ''
+    for file in $out/share/zeek/base/frameworks/notice/actions/pp-alarms.zeek $out/share/zeek/base/frameworks/notice/main.zeek; do
+      substituteInPlace $file \
+         --replace "/bin/rm" "${coreutils}/bin/rm" \
+         --replace "/bin/cat" "${coreutils}/bin/cat"
+    done
+    for file in $out/share/zeek/policy/misc/trim-trace-file.zeek $out/share/zeek/base/frameworks/logging/postprocessors/scp.zeek $out/share/zeek/base/frameworks/logging/postprocessors/sftp.zeek; do
+      substituteInPlace $file --replace "/bin/rm" "${coreutils}/bin/rm"
+    done
+  '';
 
   inherit (plugin) postFixup;
 

@@ -14,7 +14,7 @@
     nixpkgs.url = "nixpkgs/7ff5e241a2b96fff7912b7d793a06b4374bd846c";
 
     zeek-tls = { url = "https://download.zeek.org/zeek-3.0.13.tar.gz"; flake = false; };
-    zeek-current = { url = "https://download.zeek.org/zeek-3.2.4.tar.gz"; flake = false; };
+    zeek-current = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
     zeek-4 = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false; };
 
     zeek-plugin-pdf = { url = "git+https://github.com/reservoirlabs/zeek-pdf-analyzer"; flake = false; }; #failure to 3.0.1
@@ -36,7 +36,7 @@
         src = inputs.zeek-4;
       });
       zeekCurrent = (prev.zeek.override ({
-        version = "3.2.4";
+        version = "4.0.0";
         python = prev.python3;
       })).overrideAttrs (old: rec {
         src = inputs.zeek-current;
