@@ -30,6 +30,7 @@
 , ccache
 , libzip
 , podofo
+, makeWrapper
 , PostgresqlPlugin ? false
 , KafkaPlugin ? false
 , Http2Plugin ? false
@@ -67,7 +68,7 @@ stdenv.mkDerivation rec {
   ##for spicy ccache
   HOME = ".";
 
-  nativeBuildInputs = [ cmake flex bison file ]
+  nativeBuildInputs = [ cmake flex bison file makeWrapper ]
     ++ stdenv.lib.optionals SpicyPlugin [ python38 ];
   buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python swig caf ncurses5 ]
     ++ stdenv.lib.optionals KafkaPlugin
