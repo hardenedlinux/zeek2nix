@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , fetchurl
 , cmake
 , flex
@@ -6,6 +7,7 @@
 , openssl
 , libpcap
 , zlib
+, glibc
 , file
 , curl
 , libmaxminddb
@@ -47,8 +49,10 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl
-      PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin SpicyPlugin Ikev2Plugin;
+    inherit confdir zeekctl lib
+      PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
+      SpicyPlugin flex bison python38 zlib glibc llvmPackages_9
+      Ikev2Plugin;
   };
 in
 stdenv.mkDerivation rec {

@@ -12,6 +12,12 @@
 , ZipPlugin
 , PdfPlugin
 , llvmPackages_9
+, lib
+, flex
+, bison
+, python38
+, zlib
+, glibc
 }:
 let
   importJSON = file: builtins.fromJSON (builtins.readFile file);
@@ -84,6 +90,12 @@ rec {
     patchShebangs /build/spicy/scripts/autogen-type-erased
     patchShebangs /build/spicy/scripts/autogen-dispatchers
     bash ${install_plugin} spicy ${Spicy}
+    for e in $(cd $out/bin && ls |  grep -E 'spicy|hilti' ); do
+      wrapProgram $out/bin/$e \
+        --set CLANG_PATH      "${llvmPackages_9.clang}/bin/clang" \
+        --set CLANGPP_PATH    "${llvmPackages_9.clang}/bin/clang++" \
+        --set LIBRARY_PATH    "${lib.makeLibraryPath [ flex bison python38 zlib glibc llvmPackages_9.libclang llvmPackages_9.libcxxabi llvmPackages_9.libcxx ]}"
+     done
   '' else "") +
   (if PostgresqlPlugin then ''
     bash ${install_plugin} zeek-plugin-postgresql ${zeek-plugin-postgresql}

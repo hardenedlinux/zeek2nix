@@ -8,5 +8,6 @@ final: prev:
     CommunityIdPlugin = true;
     ZipPlugin = true;
     PdfPlugin = true;
+    SpicyPlugin = true;
   };
 }

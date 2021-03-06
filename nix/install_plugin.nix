@@ -7,11 +7,13 @@ install_plugin(){
     mkdir -p /build/$1
     cp -r $2/* /build/$1/
     cd /build/$name/
+
     if [ $name == 'spicy' ] ; then
     mkdir -p /.ccache/tmp
     ./configure --with-zeek=$out --prefix=$out --build-type=Release --enable-ccache --with-cxx-compiler=${llvmPackages_9.clang}/bin/clang++ --with-c-compiler=${llvmPackages_9.clang}/bin/clang
     make -j $NIX_BUILD_CORES && make install
     fi
+
     if [ $name == 'metron-zeek-plugin-kafka' ] || [ $name == 'sasd' ]; then
         export PATH="$out/bin:$PATH"
         ./configure
