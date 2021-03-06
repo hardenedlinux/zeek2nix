@@ -11,14 +11,9 @@
 , CommunityIdPlugin
 , ZipPlugin
 , PdfPlugin
-, llvmPackages_9
-, lib
-, flex
-, bison
-, python38
-, zlib
-, glibc
+, pkgs
 }:
+with pkgs;
 let
   importJSON = file: builtins.fromJSON (builtins.readFile file);
   flakeLock = importJSON ../flake.lock;
@@ -40,10 +35,22 @@ rec {
   zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
   zeek-plugin-community-id = loadInput flakeLock.nodes.zeek-plugin-community-id;
   ##failed spicy plugin
-  Spicy = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
+  Spicy = runCommand "spciy-patch"
+    {
+      src = importJSON flakeLockfetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
+      buildInputs = [ patchelf ];
+    }
+    ''
+      mkdir -p $out
+      patch < ${./version.patch} $src/scripts/autogen-version
+      cp -r $src/. $out
+    '';
 
 
-  install_plugin = writeScript "install_plugin" (import ./install_plugin.nix { inherit llvmPackages_9; });
+
+  install_plugin = writeScript "install_plugin" (import ./install_plugin.nix {
+    inherit llvmPackages_9;
+  });
 
   postFixup = (if zeekctl then ''
     substituteInPlace $out/etc/zeekctl.cfg \
