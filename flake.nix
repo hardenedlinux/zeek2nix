@@ -73,7 +73,7 @@
         };
 
         devShell = with pkgs; mkShell {
-          buildInputs = [ pkgs.zeek4 ];
+          buildInputs = [ pkgs.zeekCurrent ];
         };
         #
         apps = {

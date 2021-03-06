@@ -59,7 +59,7 @@ cachix use nsm-data-analysis
 * Test Spicy
 
 #+begin_src sh :async t :exports both :results output
-./result/bin/spicyc -j hello.spicy
+./result/bin/spicyc -j misc/hello.spicy
 #+end_src
 
 #+RESULTS:
