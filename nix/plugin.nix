@@ -37,13 +37,15 @@ rec {
   ##failed spicy plugin
   Spicy = runCommand "spciy-patch"
     {
-      src = importJSON flakeLockfetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
+      src = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
       buildInputs = [ patchelf ];
     }
     ''
       mkdir -p $out
-      patch < ${./version.patch} $src/scripts/autogen-version
-      cp -r $src/. $out
+      cp -r $src/ patch-dir
+      chmod -R +rw patch-dir
+      patch < ${./version.patch} patch-dir/scripts/autogen-version
+      cp -r patch-dir/. $out
     '';
 
 

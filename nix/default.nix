@@ -16,6 +16,7 @@
 , ncurses5
 , caf
   ## Plugin dependencies
+, pkgs
 , rdkafka
 , postgresql
 , coreutils
@@ -47,7 +48,7 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl lib
+    inherit confdir zeekctl
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
       SpicyPlugin pkgs
       Ikev2Plugin;
