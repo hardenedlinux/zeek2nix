@@ -13,9 +13,8 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/7ff5e241a2b96fff7912b7d793a06b4374bd846c";
 
-    zeek-tls = { url = "https://download.zeek.org/zeek-3.0.13.tar.gz"; flake = false; };
-    zeek-current = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
-    zeek-4 = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false; };
+    zeek-tls = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
+    zeek-rc = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false; };
 
     zeek-plugin-pdf = { url = "git+https://github.com/reservoirlabs/zeek-pdf-analyzer"; flake = false; }; #failure to 3.0.1
     zeek-plugin-zip = { url = "git+https://github.com/reservoirlabs/zeek-zip-analyzer"; flake = false; }; #failure to 3.0.1
@@ -29,22 +28,13 @@
 
   outputs = inputs: with builtins;let
     overlay = final: prev: {
-      zeek4 = (prev.zeek.override ({
+      zeek-rc = (prev.zeek.override ({
         version = "4.0.0-rc2";
-        python = prev.python3;
       })).overrideAttrs (old: rec {
-        src = inputs.zeek-4;
-      });
-      zeekCurrent = (prev.zeek.override ({
-        version = "4.0.0";
-        python = prev.python3;
-      })).overrideAttrs (old: rec {
-        src = inputs.zeek-current;
+        src = inputs.zeek-rc;
       });
       zeekTLS = (prev.zeek.override ({
-        version = "3.0.13";
-        PdfPlugin = false; #failed
-        ZipPlugin = false; #failed
+        version = "4.0.0";
       })).overrideAttrs (old: rec {
         src = inputs.zeek-tls;
       });
@@ -63,9 +53,8 @@
       in
       rec {
         packages = inputs.flake-utils.lib.flattenTree rec {
-          zeekCurrent = pkgs.zeekCurrent;
           zeekTLS = pkgs.zeekTLS;
-          zeek4 = pkgs.zeek4;
+          zeek-rc = pkgs.zeek-rc;
         };
 
         hydraJobs = {
@@ -73,17 +62,16 @@
         };
 
         devShell = with pkgs; mkShell {
-          buildInputs = [ pkgs.zeekCurrent ];
+          buildInputs = [ pkgs.zeekTLS ];
         };
         #
         apps = {
           zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
-          zeekCurrent = inputs.flake-utils.lib.mkApp { drv = packages.zeekCurrent; exePath = "/bin/zeekctl"; };
-          zeek4 = inputs.flake-utils.lib.mkApp { drv = packages.zeek4; exePath = "/bin/zeekctl"; };
+          zeek-rc = inputs.flake-utils.lib.mkApp { drv = packages.zeek-rc; exePath = "/bin/zeekctl"; };
         };
 
-        defaultPackage = packages.zeekCurrent;
-        defaultApp = apps.zeekCurrent;
+        defaultPackage = packages.zeekTLS;
+        defaultApp = apps.zeekTLS;
       }
     ) // {
     nixosModule = import ./module;

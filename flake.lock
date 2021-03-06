@@ -68,39 +68,14 @@
         "icsnpp-bacnet": "icsnpp-bacnet",
         "metron-zeek-plugin-kafka": "metron-zeek-plugin-kafka",
         "nixpkgs": "nixpkgs",
-        "zeek-4": "zeek-4",
-        "zeek-current": "zeek-current",
         "zeek-plugin-community-id": "zeek-plugin-community-id",
         "zeek-plugin-http2": "zeek-plugin-http2",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
         "zeek-plugin-pdf": "zeek-plugin-pdf",
         "zeek-plugin-postgresql": "zeek-plugin-postgresql",
         "zeek-plugin-zip": "zeek-plugin-zip",
+        "zeek-rc": "zeek-rc",
         "zeek-tls": "zeek-tls"
-      }
-    },
-    "zeek-4": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-sD4BE06pNWCXFkw1V+XfvVSj0dFCvp9lAhuEVpfT1NQ=",
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
-      }
-    },
-    "zeek-current": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-DfOAe+F0X+HHGX3amIvvHJsDJHJVw2nFZVjbbvEa1vI=",
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0.tar.gz"
       }
     },
     "zeek-plugin-community-id": {
@@ -199,16 +174,28 @@
         "url": "https://github.com/reservoirlabs/zeek-zip-analyzer"
       }
     },
-    "zeek-tls": {
+    "zeek-rc": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-HWgBJqnfZnVzdoZI39yrB2L6agRokVgsUTxZOWj+2/U=",
+        "narHash": "sha256-sD4BE06pNWCXFkw1V+XfvVSj0dFCvp9lAhuEVpfT1NQ=",
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.0.13.tar.gz"
+        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://download.zeek.org/zeek-3.0.13.tar.gz"
+        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
+      }
+    },
+    "zeek-tls": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-DfOAe+F0X+HHGX3amIvvHJsDJHJVw2nFZVjbbvEa1vI=",
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-4.0.0.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-4.0.0.tar.gz"
       }
     }
   },
