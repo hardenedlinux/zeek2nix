@@ -11,7 +11,7 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs/7ff5e241a2b96fff7912b7d793a06b4374bd846c";
+    nixpkgs.url = "nixpkgs/7d71001b796340b219d1bfa8552c81995017544a";
 
     zeek-tls = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
     zeek-rc = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false; };
@@ -26,55 +26,65 @@
     metron-zeek-plugin-kafka = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false; };
   };
 
-  outputs = inputs: with builtins;let
-    overlay = final: prev: {
-      zeek-rc = (prev.zeek.override ({
-        version = "4.0.0-rc2";
-      })).overrideAttrs (old: rec {
-        src = inputs.zeek-rc;
-      });
-      zeekTLS = (prev.zeek.override ({
-        version = "4.0.0";
-      })).overrideAttrs (old: rec {
-        src = inputs.zeek-tls;
-      });
-    };
-  in
-  (inputs.flake-utils.lib.eachDefaultSystem
-    (system:
-      let
-        pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = [
-            (import ./overlay.nix)
-            overlay
-          ];
+  outputs = inputs: with builtins;
+    {
+      overlay = final: prev: {
+        zeek = prev.callPackage ./nix {
+          KafkaPlugin = true;
+          PostgresqlPlugin = true;
+          Http2Plugin = true;
+          Ikev2Plugin = true;
+          CommunityIdPlugin = true;
+          ZipPlugin = true;
+          PdfPlugin = true;
+          SpicyPlugin = true;
         };
-      in
-      rec {
-        packages = inputs.flake-utils.lib.flattenTree rec {
-          zeekTLS = pkgs.zeekTLS;
-          zeek-rc = pkgs.zeek-rc;
-        };
+        zeek-rc = (final.zeek.override ({
+          version = "4.0.0-rc2";
+        })).overrideAttrs (old: rec {
+          src = inputs.zeek-rc;
+        });
+        zeekTLS = (final.zeek.override ({
+          version = "4.0.0";
+        })).overrideAttrs (old: rec {
+          src = inputs.zeek-tls;
+        });
+      };
+    } //
+    (inputs.flake-utils.lib.eachDefaultSystem
+      (system:
+        let
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.self.overlay
+            ];
+          };
+        in
+        rec {
+          packages = inputs.flake-utils.lib.flattenTree rec {
+            zeekTLS = pkgs.zeekTLS;
+            zeek-rc = pkgs.zeek-rc;
+          };
 
-        hydraJobs = {
-          inherit packages;
-        };
+          hydraJobs = {
+            inherit packages;
+          };
 
-        devShell = with pkgs; mkShell {
-          buildInputs = [ pkgs.zeekTLS ];
-        };
-        #
-        apps = {
-          zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
-          zeek-rc = inputs.flake-utils.lib.mkApp { drv = packages.zeek-rc; exePath = "/bin/zeekctl"; };
-        };
+          devShell = with pkgs; mkShell {
+            buildInputs = [ pkgs.zeekTLS ];
+          };
+          #
+          apps = {
+            zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
+            zeek-rc = inputs.flake-utils.lib.mkApp { drv = packages.zeek-rc; exePath = "/bin/zeekctl"; };
+          };
 
-        defaultPackage = packages.zeekTLS;
-        defaultApp = apps.zeekTLS;
-      }
-    ) // {
-    nixosModule = import ./module;
-  }
-  );
+          defaultPackage = packages.zeekTLS;
+          defaultApp = apps.zeekTLS;
+        }
+      ) // {
+      nixosModule = import ./module;
+    }
+    );
 }
