@@ -11,7 +11,7 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs/7d71001b796340b219d1bfa8552c81995017544a";
+    nixpkgs.url = "nixpkgs";
 
     zeek-tls = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
     zeek-rc = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false; };
@@ -51,7 +51,7 @@
         });
       };
     } //
-    (inputs.flake-utils.lib.eachDefaultSystem
+    (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
       (system:
         let
           pkgs = import inputs.nixpkgs {
@@ -59,6 +59,9 @@
             overlays = [
               inputs.self.overlay
             ];
+            config = {
+              allowUnsupportedSystem = true;
+            };
           };
         in
         rec {

@@ -1,4 +1,4 @@
-{ llvmPackages_9 }:
+{ llvmPackages }:
 ''
 
 install_plugin(){
@@ -10,7 +10,7 @@ install_plugin(){
 
     if [ $name == 'spicy' ] ; then
     mkdir -p /.ccache/tmp
-    ./configure --with-zeek=$out --prefix=$out --build-type=Release --enable-ccache --with-cxx-compiler=${llvmPackages_9.clang}/bin/clang++ --with-c-compiler=${llvmPackages_9.clang}/bin/clang
+    ./configure --with-zeek=$out --prefix=$out --build-type=Release --enable-ccache --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ --with-c-compiler=${llvmPackages.clang}/bin/clang
     make -j $NIX_BUILD_CORES && make install
     fi
 

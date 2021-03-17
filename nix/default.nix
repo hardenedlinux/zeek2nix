@@ -23,7 +23,7 @@
 , libnghttp2
 , brotli
 , python38
-, llvmPackages_9
+, llvmPackages
 , which
 , geoip
 , ccache
@@ -64,6 +64,7 @@ stdenv.mkDerivation rec {
   configureFlags = [
     "--with-geoip=${geoip}"
   ];
+
   ##for spicy ccache
   HOME = ".";
 
@@ -81,7 +82,7 @@ stdenv.mkDerivation rec {
     ++ stdenv.lib.optionals Http2Plugin
     [ libnghttp2 brotli ]
     ++ stdenv.lib.optionals SpicyPlugin
-    [ which ccache llvmPackages_9.lld llvmPackages_9.clang-unwrapped llvmPackages_9.llvm ];
+    [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ];
 
   ZEEK_DIST = "${placeholder "out"}";
   #see issue https://github.com/zeek/zeek/issues/804 to modify hardlinking duplicate files.
@@ -117,8 +118,7 @@ stdenv.mkDerivation rec {
     description = "Powerful network analysis framework much different from a typical IDS";
     homepage = "https://www.zeek.org";
     license = licenses.bsd3;
-    #GTrunSec
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [ gtrunsec ];
     platforms = platforms.unix;
   };
 }
