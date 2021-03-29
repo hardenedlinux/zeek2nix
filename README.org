@@ -25,6 +25,33 @@ nix develop
 nix-shell
 #+end_src
 
+* Deploy Zeek with NixOS
+#+begin_src nix :async t :exports both :results output
+{
+    inputs =
+    {
+        zeek-nix = {
+            url = "github:hardenedlinux/zeek-nix/main";
+            inputs.nixpkgs.follows = "nixos";
+        };
+        "..."
+    };
+    outputs = { self, zeek-nix, nixpkgs, ... }: {
+        nixosConfigurations.myConfig = nixpkgs.lib.nixosSystem {
+            system = "...";
+
+            modules = [
+                zeek-nix.nixosModules.zeek
+                ({ ... }: {
+                     services.MyService.enable = true;
+                 })
+            ];
+        };
+    };
+}
+#+end_src
+
+
 * create zeek dynamic dir to /var/lib/zeek
 :BACKLINKS:
 [2020-10-09 Fri 19:35] <- [[*Build Zeek with nix-build -> result/bin/zeek (Current version)][Build Zeek with nix-build -> result/bin/zeek (Current version)]]
