@@ -87,7 +87,7 @@
           defaultApp = apps.zeekTLS;
         }
       ) // {
-      nixosModule = import ./module;
+      nixosModules = { zeek = import ./module; };
     }
     );
 }

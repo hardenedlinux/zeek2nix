@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , fetchurl
 , cmake
 , flex
@@ -69,19 +70,19 @@ stdenv.mkDerivation rec {
   HOME = ".";
 
   nativeBuildInputs = [ cmake flex bison file makeWrapper ]
-    ++ stdenv.lib.optionals SpicyPlugin [ python38 ];
+    ++ lib.optionals SpicyPlugin [ python38 ];
   buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python38 swig caf ncurses5 ]
-    ++ stdenv.lib.optionals KafkaPlugin
+    ++ lib.optionals KafkaPlugin
     [ rdkafka ]
-    ++ stdenv.lib.optionals PostgresqlPlugin
+    ++ lib.optionals PostgresqlPlugin
     [ postgresql ]
-    ++ stdenv.lib.optionals ZipPlugin
+    ++ lib.optionals ZipPlugin
     [ libzip ]
-    ++ stdenv.lib.optionals PdfPlugin
+    ++ lib.optionals PdfPlugin
     [ podofo ]
-    ++ stdenv.lib.optionals Http2Plugin
+    ++ lib.optionals Http2Plugin
     [ libnghttp2 brotli ]
-    ++ stdenv.lib.optionals SpicyPlugin
+    ++ lib.optionals SpicyPlugin
     [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ];
 
   ZEEK_DIST = "${placeholder "out"}";
@@ -114,7 +115,7 @@ stdenv.mkDerivation rec {
 
   inherit (plugin) postFixup;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Powerful network analysis framework much different from a typical IDS";
     homepage = "https://www.zeek.org";
     license = licenses.bsd3;
