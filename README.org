@@ -25,30 +25,49 @@ nix develop
 nix-shell
 #+end_src
 
-* Deploy Zeek with NixOS
+* Deploy Zeek with NixOS (flakes)
 #+begin_src nix :async t :exports both :results output
 {
-    inputs =
+  inputs =
     {
-        zeek-nix = {
-            url = "github:hardenedlinux/zeek-nix/main";
-            inputs.nixpkgs.follows = "nixos";
+      zeek-nix = {
+        url = "github:hardenedlinux/zeek-nix/main";
+        inputs.nixpkgs.follows = "nixos";
+      };
+      "..."
         };
-        "..."
-    };
-    outputs = { self, zeek-nix, nixpkgs, ... }: {
+        outputs = { self, zeek-nix, nixpkgs, ... }: {
         nixosConfigurations.myConfig = nixpkgs.lib.nixosSystem {
-            system = "...";
+          system = "...";
 
-            modules = [
-                zeek-nix.nixosModules.zeek
-                ({ ... }: {
-                     services.MyService.enable = true;
-                 })
-            ];
+          modules = [
+            zeek-nix.nixosModules.zeek
+            ({ ... }: {
+              services.zeek = {
+                enable = true;
+                standalone = true;
+                interface = "eno1";
+                listenAddress = "localhost";
+                package = pkgs.zeek.override {
+                  KafkaPlugin = true;
+                  PostgresqlPlugin = true;
+                  Http2Plugin = true;
+                  Ikev2Plugin = true;
+                  CommunityIdPlugin = true;
+                  ZipPlugin = true;
+                  PdfPlugin = true;
+                  SpicyPlugin = true;
+                };
+                privateScript = ''
+                  @load /home/gtrun/project/hardenedlinux-zeek-script/scripts/zeek-query.zeek
+                  @load /home/gtrun/project/hardenedlinux-zeek-script/scripts/log-passwords.zeek
+                '';
+              };
+            })
+          ];
         };
-    };
-}
+      };
+    }
 #+end_src
 
 
