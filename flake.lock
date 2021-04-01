@@ -49,11 +49,12 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1610942247,
-        "narHash": "sha256-PKo1ATAlC6BmfYSRmX0TVmNoFbrec+A5OKcabGEu2yU=",
-        "path": "/nix/store/sdjxjsd5phr225rs2qzklj2xci0c9gr0-source",
-        "rev": "7d71001b796340b219d1bfa8552c81995017544a",
-        "type": "path"
+        "lastModified": 1617247901,
+        "narHash": "sha256-/3wVdSnuE+TCQCZsdDid7CZBrt7MHV6nJFdiS5FOYMc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8d54ed2ab941adef95af5bf0f6ca1fa86fcfe352",
+        "type": "github"
       },
       "original": {
         "id": "nixpkgs",
@@ -66,6 +67,7 @@
         "icsnpp-bacnet": "icsnpp-bacnet",
         "metron-zeek-plugin-kafka": "metron-zeek-plugin-kafka",
         "nixpkgs": "nixpkgs",
+        "spicy-analyzers": "spicy-analyzers",
         "zeek-plugin-community-id": "zeek-plugin-community-id",
         "zeek-plugin-http2": "zeek-plugin-http2",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
@@ -74,6 +76,23 @@
         "zeek-plugin-zip": "zeek-plugin-zip",
         "zeek-rc": "zeek-rc",
         "zeek-tls": "zeek-tls"
+      }
+    },
+    "spicy-analyzers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1617206134,
+        "narHash": "sha256-iJc+CAYW1SXU2OMAkyF4JKJzUpSQhZooBzE+npNxy4w=",
+        "ref": "main",
+        "rev": "26696b65574faf6282aaa5e7836fda1f43a09092",
+        "revCount": 108,
+        "type": "git",
+        "url": "https://github.com/zeek/spicy-analyzers"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://github.com/zeek/spicy-analyzers"
       }
     },
     "zeek-plugin-community-id": {

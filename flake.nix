@@ -24,6 +24,7 @@
     zeek-plugin-community-id = { url = "git+https://github.com/corelight/zeek-community-id/"; flake = false; };
     icsnpp-bacnet = { url = "git+https://github.com/cisagov/icsnpp-bacnet"; flake = false; };
     metron-zeek-plugin-kafka = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false; };
+    spicy-analyzers = { url = "git+https://github.com/zeek/spicy-analyzers?ref=main"; flake = false; };
   };
 
   outputs = inputs: with builtins;
@@ -38,6 +39,7 @@
           ZipPlugin = true;
           PdfPlugin = true;
           SpicyPlugin = true;
+          SpicyAnalyzersPlugin = true;
         };
         zeek-rc = (final.zeek.override ({
           version = "4.0.0-rc2";

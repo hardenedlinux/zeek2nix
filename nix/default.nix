@@ -35,6 +35,7 @@
 , KafkaPlugin ? false
 , Http2Plugin ? false
 , SpicyPlugin ? false
+, SpicyAnalyzersPlugin ? false
 , Ikev2Plugin ? false
 , CommunityIdPlugin ? false
 , ZipPlugin ? false
@@ -49,9 +50,9 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl
+    inherit confdir zeekctl pkgs
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
-      SpicyPlugin pkgs
+      SpicyPlugin SpicyAnalyzersPlugin
       Ikev2Plugin;
   };
 in

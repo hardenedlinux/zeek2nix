@@ -14,6 +14,13 @@ install_plugin(){
     make -j $NIX_BUILD_CORES && make install
     fi
 
+    if [ $name == 'spicy-analyzers' ] ; then
+     mkdir build
+     cd build
+     cmake -DCMAKE_INSTALL_PREFIX=$out ..
+     make -j $NIX_BUILD_CORES && make install
+    fi
+
     if [ $name == 'metron-zeek-plugin-kafka' ] || [ $name == 'sasd' ]; then
         export PATH="$out/bin:$PATH"
         ./configure

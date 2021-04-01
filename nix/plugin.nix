@@ -7,6 +7,7 @@
 , zeekctl
 , Http2Plugin
 , SpicyPlugin
+, SpicyAnalyzersPlugin
 , Ikev2Plugin
 , CommunityIdPlugin
 , ZipPlugin
@@ -34,6 +35,8 @@ rec {
   zeek-plugin-http2 = loadInput flakeLock.nodes.zeek-plugin-http2;
   zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
   zeek-plugin-community-id = loadInput flakeLock.nodes.zeek-plugin-community-id;
+  spicy-analyzers = loadInput flakeLock.nodes.spicy-analyzers;
+
   ##failed spicy plugin
   Spicy = runCommand "spciy-patch"
     {
@@ -47,8 +50,6 @@ rec {
       patch < ${./version.patch} patch-dir/scripts/autogen-version
       cp -r patch-dir/. $out
     '';
-
-
 
   install_plugin = writeScript "install_plugin" (import ./install_plugin.nix {
     inherit llvmPackages;
@@ -105,6 +106,9 @@ rec {
         --set CLANGPP_PATH    "${llvmPackages.clang}/bin/clang++" \
         --set LIBRARY_PATH    "${lib.makeLibraryPath [ flex bison python38 zlib glibc llvmPackages.libclang llvmPackages.libcxxabi llvmPackages.libcxx ]}"
      done
+  '' else "") +
+  (if SpicyAnalyzersPlugin then ''
+    bash ${install_plugin} spicy-analyzers ${spicy-analyzers}
   '' else "") +
   (if PostgresqlPlugin then ''
     bash ${install_plugin} zeek-plugin-postgresql ${zeek-plugin-postgresql}
