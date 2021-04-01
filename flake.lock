@@ -49,15 +49,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1617247901,
-        "narHash": "sha256-/3wVdSnuE+TCQCZsdDid7CZBrt7MHV6nJFdiS5FOYMc=",
+        "lastModified": 1617259757,
+        "narHash": "sha256-PFyms6aSWxlvNJJ5bPWJIzfCiLnhe6k2Cy8y3QXfek8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8d54ed2ab941adef95af5bf0f6ca1fa86fcfe352",
+        "rev": "dc68bad367deb8ad1aec9632fef4381c4c8da39a",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
+        "rev": "dc68bad367deb8ad1aec9632fef4381c4c8da39a",
         "type": "indirect"
       }
     },
@@ -98,15 +99,17 @@
     "zeek-plugin-community-id": {
       "flake": false,
       "locked": {
-        "lastModified": 1612397448,
-        "narHash": "sha256-NuYFwhnAVWL643YhDYA9hmAigmMViUpTPo608vW23YI=",
+        "lastModified": 1600967039,
+        "narHash": "sha256-MV5Wa67u7WY91nh5jOCgiCk1ymvSKSyfT5nhl9EDA/w=",
         "ref": "master",
-        "rev": "889c1fcda0016e64fd40cab518183d55e3346661",
-        "revCount": 22,
+        "rev": "181a104b99d9019771ece7e489e46f2268b746d8",
+        "revCount": 21,
         "type": "git",
         "url": "https://github.com/corelight/zeek-community-id/"
       },
       "original": {
+        "ref": "master",
+        "rev": "181a104b99d9019771ece7e489e46f2268b746d8",
         "type": "git",
         "url": "https://github.com/corelight/zeek-community-id/"
       }

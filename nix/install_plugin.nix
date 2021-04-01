@@ -2,29 +2,31 @@
 ''
 
 install_plugin(){
+    if [ $name != 'spicy' ]; then
     name=$1
     path=$2
     mkdir -p /build/$1
     cp -r $2/* /build/$1/
     cd /build/$name/
-
-    if [ $name == 'spicy' ] ; then
-    mkdir -p /.ccache/tmp
-    ./configure --with-zeek=$out --prefix=$out --build-type=Release --enable-ccache --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ --with-c-compiler=${llvmPackages.clang}/bin/clang
-    make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'spicy-analyzers' ] ; then
+    if [ $name == 'spicy' ]; then
+    ./configure --with-zeek=$out --build-zeek-plugin=yes --generator=Ninja --prefix=$out --build-type=Release --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ --with-c-compiler=${llvmPackages.clang}/bin/clang
+    make -j $NIX_BUILD_CORES && make install
+
+    if [ -d "/build/spicy-analyzers" ]; then
+     cd /build/spicy-analyzers
      mkdir build
      cd build
      cmake -DCMAKE_INSTALL_PREFIX=$out ..
      make -j $NIX_BUILD_CORES && make install
+     fi
     fi
 
     if [ $name == 'metron-zeek-plugin-kafka' ] || [ $name == 'sasd' ]; then
-        export PATH="$out/bin:$PATH"
-        ./configure
-         make -j $NIX_BUILD_CORES && make install
+      export PATH="$out/bin:$PATH"
+      ./configure
+      make -j $NIX_BUILD_CORES && make install
     fi
 
     if [ $name == 'zeek-plugin-ikev2' ]; then

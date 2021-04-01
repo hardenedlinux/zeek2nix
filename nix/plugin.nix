@@ -1,5 +1,6 @@
 { fetchFromGitHub
 , fetchgit
+, llvmPackages
 , writeScript
 , confdir
 , PostgresqlPlugin
@@ -99,6 +100,13 @@ rec {
     chmod 755  /build/spicy/*
     patchShebangs /build/spicy/scripts/autogen-type-erased
     patchShebangs /build/spicy/scripts/autogen-dispatchers
+    ${lib.optionalString SpicyAnalyzersPlugin
+      ''bash ${install_plugin} spicy-analyzers ${spicy-analyzers}
+      substituteInPlace /build/spicy-analyzers/CMakeLists.txt \
+      --replace "0.4" "0" \
+      --replace "00400" "0"
+      ''
+     }
     bash ${install_plugin} spicy ${Spicy}
     for e in $(cd $out/bin && ls |  grep -E 'spicy|hilti' ); do
       wrapProgram $out/bin/$e \
@@ -106,9 +114,6 @@ rec {
         --set CLANGPP_PATH    "${llvmPackages.clang}/bin/clang++" \
         --set LIBRARY_PATH    "${lib.makeLibraryPath [ flex bison python38 zlib glibc llvmPackages.libclang llvmPackages.libcxxabi llvmPackages.libcxx ]}"
      done
-  '' else "") +
-  (if SpicyAnalyzersPlugin then ''
-    bash ${install_plugin} spicy-analyzers ${spicy-analyzers}
   '' else "") +
   (if PostgresqlPlugin then ''
     bash ${install_plugin} zeek-plugin-postgresql ${zeek-plugin-postgresql}

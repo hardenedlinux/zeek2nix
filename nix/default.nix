@@ -24,7 +24,8 @@
 , libnghttp2
 , brotli
 , python38
-, llvmPackages
+, llvmPackages_11
+, ninja
 , which
 , geoip
 , ccache
@@ -45,12 +46,13 @@
 }:
 let
   preConfigure = (import ./script.nix { });
+  llvmPackages = llvmPackages_11;
 
   pname = "zeek";
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl pkgs
+    inherit confdir zeekctl llvmPackages pkgs
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
       SpicyPlugin SpicyAnalyzersPlugin
       Ikev2Plugin;
@@ -84,7 +86,7 @@ stdenv.mkDerivation rec {
     ++ lib.optionals Http2Plugin
     [ libnghttp2 brotli ]
     ++ lib.optionals SpicyPlugin
-    [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ];
+    [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ninja ];
 
   ZEEK_DIST = "${placeholder "out"}";
   #see issue https://github.com/zeek/zeek/issues/804 to modify hardlinking duplicate files.

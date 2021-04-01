@@ -1,17 +1,9 @@
 {
   description = "Zeek to Nix";
-  # nixConfig = {
-  #   substituters = [
-  #     "http://221.4.35.244:8301/"
-  #   ];
-  #   trusted-public-keys = [
-  #     "221.4.35.244:3ehdeUIC5gWzY+I7iF3lrpmxOMyEZQbZlcjOmlOVpeo="
-  #   ];
-  # };
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "nixpkgs/dc68bad367deb8ad1aec9632fef4381c4c8da39a";
 
     zeek-tls = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
     zeek-rc = { url = "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"; flake = false; };
@@ -21,7 +13,7 @@
     zeek-plugin-ikev2 = { url = "git+https://github.com/ukncsc/zeek-plugin-ikev2"; flake = false; }; #failure to 3.2.1
     zeek-plugin-postgresql = { url = "git+https://github.com/0xxon/zeek-postgresql"; flake = false; };
     zeek-plugin-http2 = { url = "git+https://github.com/MITRECND/bro-http2/"; flake = false; };
-    zeek-plugin-community-id = { url = "git+https://github.com/corelight/zeek-community-id/"; flake = false; };
+    zeek-plugin-community-id = { url = "git+https://github.com/corelight/zeek-community-id/?ref=master&rev=181a104b99d9019771ece7e489e46f2268b746d8"; flake = false; };
     icsnpp-bacnet = { url = "git+https://github.com/cisagov/icsnpp-bacnet"; flake = false; };
     metron-zeek-plugin-kafka = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false; };
     spicy-analyzers = { url = "git+https://github.com/zeek/spicy-analyzers?ref=main"; flake = false; };

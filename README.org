@@ -111,6 +111,43 @@ cachix use nsm-data-analysis
 #+RESULTS:
 : Hello, world!
 
+- check spicy plugins
+#+begin_src sh :async t :exports both :results output
+./result/bin/zeek -NN _Zeek::Spicy
+#+end_src
+
+#+RESULTS:
+#+begin_example
+_Zeek::Spicy - Support for Spicy parsers (*.spicy, *.evt, *.hlto) (dynamic, version 0.99.3)
+    [Analyzer] spicy_DHCP (ANALYZER_SPICY_DHCP, enabled)
+    [Analyzer] spicy_DNS (ANALYZER_SPICY_DNS, enabled)
+    [Analyzer] spicy_HTTP (ANALYZER_SPICY_HTTP, enabled)
+    [Analyzer] spicy_OpenVPN_TCP (ANALYZER_SPICY_OPENVPN_TCP, enabled)
+    [Analyzer] spicy_OpenVPN_TCP_HMAC (ANALYZER_SPICY_OPENVPN_TCP_HMAC, enabled)
+    [Analyzer] spicy_OpenVPN_UDP (ANALYZER_SPICY_OPENVPN_UDP, enabled)
+    [Analyzer] spicy_OpenVPN_UDP_HMAC (ANALYZER_SPICY_OPENVPN_UDP_HMAC, enabled)
+    [File Analyzer] spicy_PE (ANALYZER_SPICY_PE)
+    [File Analyzer] spicy_PNG (ANALYZER_SPICY_PNG)
+    [Analyzer] spicy_TFTP (ANALYZER_SPICY_TFTP, enabled)
+    [Analyzer] spicy_Wireguard (ANALYZER_SPICY_WIREGUARD, enabled)
+    [Analyzer] spicy_ipsec_ike_udp (ANALYZER_SPICY_IPSEC_IKE_UDP, enabled)
+    [Analyzer] spicy_ipsec_tcp (ANALYZER_SPICY_IPSEC_TCP, enabled)
+    [Analyzer] spicy_ipsec_udp (ANALYZER_SPICY_IPSEC_UDP, enabled)
+    [Constant] Spicy::codegen_debug
+    [Constant] Spicy::debug
+    [Constant] Spicy::debug_addl
+    [Constant] Spicy::dump_code
+    [Constant] Spicy::optimize
+    [Constant] Spicy::report_times
+    [Constant] Spicy::skip_validation
+    [Constant] Spicy::enable_print
+    [Constant] Spicy::abort_on_exceptions
+    [Constant] Spicy::show_backtraces
+    [Function] Spicy::__toggle_analyzer
+    Implements LoadFile (priority 0)
+
+#+end_example
+
 
 * Support Zeek pluigns list
 - check pluigns info
