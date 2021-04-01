@@ -31,22 +31,6 @@
         "url": "https://github.com/cisagov/icsnpp-bacnet"
       }
     },
-    "metron-zeek-plugin-kafka": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1600793201,
-        "narHash": "sha256-F2jWQYEQIo/oLdaLkBlddjlnUk8LrD3+x2QBElvQYrI=",
-        "ref": "master",
-        "rev": "92b85e5e00cc2fd9023ea7f53466db6592eb6634",
-        "revCount": 48,
-        "type": "git",
-        "url": "https://github.com/apache/metron-bro-plugin-kafka/"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://github.com/apache/metron-bro-plugin-kafka/"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1617259757,
@@ -66,12 +50,12 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "icsnpp-bacnet": "icsnpp-bacnet",
-        "metron-zeek-plugin-kafka": "metron-zeek-plugin-kafka",
         "nixpkgs": "nixpkgs",
         "spicy-analyzers": "spicy-analyzers",
         "zeek-plugin-community-id": "zeek-plugin-community-id",
         "zeek-plugin-http2": "zeek-plugin-http2",
         "zeek-plugin-ikev2": "zeek-plugin-ikev2",
+        "zeek-plugin-kafka": "zeek-plugin-kafka",
         "zeek-plugin-pdf": "zeek-plugin-pdf",
         "zeek-plugin-postgresql": "zeek-plugin-postgresql",
         "zeek-plugin-zip": "zeek-plugin-zip",
@@ -144,6 +128,23 @@
       "original": {
         "type": "git",
         "url": "https://github.com/ukncsc/zeek-plugin-ikev2"
+      }
+    },
+    "zeek-plugin-kafka": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1614206104,
+        "narHash": "sha256-rpKlIo08GOrYWPU+UcPZ7QmmQqb1udjLLRJ75Zo+v7Q=",
+        "ref": "main",
+        "rev": "f8b9c5fe89917641845be572119f354d06a6409f",
+        "revCount": 55,
+        "type": "git",
+        "url": "https://github.com/SeisoLLC/zeek-kafka"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://github.com/SeisoLLC/zeek-kafka"
       }
     },
     "zeek-plugin-pdf": {

@@ -32,7 +32,7 @@ rec {
   zeek-plugin-pdf = loadInput flakeLock.nodes.zeek-plugin-pdf;
   zeek-plugin-postgresql = loadInput flakeLock.nodes.zeek-plugin-postgresql;
   zeek-plugin-zip = loadInput flakeLock.nodes.zeek-plugin-zip;
-  metron-zeek-plugin-kafka = loadInput flakeLock.nodes.metron-zeek-plugin-kafka;
+  zeek-plugin-kafka = loadInput flakeLock.nodes.zeek-plugin-kafka;
   zeek-plugin-http2 = loadInput flakeLock.nodes.zeek-plugin-http2;
   zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
   zeek-plugin-community-id = loadInput flakeLock.nodes.zeek-plugin-community-id;
@@ -84,7 +84,7 @@ rec {
   '' else "") +
   (if KafkaPlugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} metron-zeek-plugin-kafka ${metron-zeek-plugin-kafka}
+    bash ${install_plugin} zeek-plugin-kafka ${zeek-plugin-kafka}
   '' else "") +
   (if Ikev2Plugin then ''
       ##INSTALL ZEEK Plugins

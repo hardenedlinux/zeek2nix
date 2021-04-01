@@ -15,7 +15,7 @@
     zeek-plugin-http2 = { url = "git+https://github.com/MITRECND/bro-http2/"; flake = false; };
     zeek-plugin-community-id = { url = "git+https://github.com/corelight/zeek-community-id/?ref=master&rev=181a104b99d9019771ece7e489e46f2268b746d8"; flake = false; };
     icsnpp-bacnet = { url = "git+https://github.com/cisagov/icsnpp-bacnet"; flake = false; };
-    metron-zeek-plugin-kafka = { url = "git+https://github.com/apache/metron-bro-plugin-kafka/"; flake = false; };
+    zeek-plugin-kafka = { url = "git+https://github.com/SeisoLLC/zeek-kafka?ref=main"; flake = false; };
     spicy-analyzers = { url = "git+https://github.com/zeek/spicy-analyzers?ref=main"; flake = false; };
   };
 
@@ -26,7 +26,7 @@
           KafkaPlugin = true;
           PostgresqlPlugin = true;
           Http2Plugin = true;
-          Ikev2Plugin = true;
+          Ikev2Plugin = false; #failed Cannot determine Bro source directory, use --bro-dist=DIR.
           CommunityIdPlugin = true;
           ZipPlugin = true;
           PdfPlugin = true;

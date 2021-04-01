@@ -89,7 +89,7 @@ stdenv.mkDerivation rec {
     [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ninja ];
 
   ZEEK_DIST = "${placeholder "out"}";
-  #see issue https://github.com/zeek/zeek/issues/804 to modify hardlinking duplicate files.
+
   inherit preConfigure;
 
   enableParallelBuilding = true;
