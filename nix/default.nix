@@ -62,7 +62,7 @@ stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = builtins.fromJSON (builtins.readFile ../flake.lock).nodes.zeek-tls.locled.narHash;
+    hash = "sha256-ZZqJD0M8tzBRmWa9xB8aA/tn4n6UtdUq2e6JACKhLDo=";
   };
 
   configureFlags = [

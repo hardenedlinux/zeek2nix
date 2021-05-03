@@ -4,6 +4,7 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/dc68bad367deb8ad1aec9632fef4381c4c8da39a";
+    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
 
     zeek-tls = { url = "https://download.zeek.org/zeek-4.0.1.tar.gz"; flake = false; };
     zeek-rc = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
@@ -62,6 +63,7 @@
           packages = inputs.flake-utils.lib.flattenTree rec {
             zeekTLS = pkgs.zeekTLS;
             zeek-rc = pkgs.zeek-rc;
+            zeek = pkgs.zeek;
           };
 
           hydraJobs = {
