@@ -2,11 +2,11 @@
   "nodes": {
     "flake-utils": {
       "locked": {
-        "lastModified": 1614513358,
-        "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
+        "lastModified": 1619345332,
+        "narHash": "sha256-qHnQkEp1uklKTpx3MvKtY6xzgcqXDsz5nLilbbuL+3A=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "5466c5bbece17adaab2d82fae80b46e807611bf3",
+        "rev": "2ebf2558e5bf978c7fb8ea927dfaed8fefab2e28",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     "icsnpp-bacnet": {
       "flake": false,
       "locked": {
-        "lastModified": 1611095103,
-        "narHash": "sha256-LM6yZKtmr9/tdVRhkMAxVY8dEh1JeOdIZUhK2BDrZGE=",
+        "lastModified": 1619638397,
+        "narHash": "sha256-+xIhXFCTOYQgD/A+dX+uiHIsuTOS1ZAjk6Y4F68z/Os=",
         "ref": "master",
-        "rev": "9c6e6b097b4799245af740402ced96383784e599",
-        "revCount": 1,
+        "rev": "b4d9019a12fe927bb1653c9eb06ff7e14340eb61",
+        "revCount": 14,
         "type": "git",
         "url": "https://github.com/cisagov/icsnpp-bacnet"
       },
@@ -66,11 +66,11 @@
     "spicy-analyzers": {
       "flake": false,
       "locked": {
-        "lastModified": 1617206134,
-        "narHash": "sha256-iJc+CAYW1SXU2OMAkyF4JKJzUpSQhZooBzE+npNxy4w=",
+        "lastModified": 1619175235,
+        "narHash": "sha256-disoORky2BXrqM/g+VQpwEQi+0KZeLq4uEOw9E4PIWc=",
         "ref": "main",
-        "rev": "26696b65574faf6282aaa5e7836fda1f43a09092",
-        "revCount": 108,
+        "rev": "290ebf208458e74849dd05c3efc2413b62375988",
+        "revCount": 120,
         "type": "git",
         "url": "https://github.com/zeek/spicy-analyzers"
       },
@@ -83,17 +83,16 @@
     "zeek-plugin-community-id": {
       "flake": false,
       "locked": {
-        "lastModified": 1600967039,
-        "narHash": "sha256-MV5Wa67u7WY91nh5jOCgiCk1ymvSKSyfT5nhl9EDA/w=",
+        "lastModified": 1612397448,
+        "narHash": "sha256-NuYFwhnAVWL643YhDYA9hmAigmMViUpTPo608vW23YI=",
         "ref": "master",
-        "rev": "181a104b99d9019771ece7e489e46f2268b746d8",
-        "revCount": 21,
+        "rev": "889c1fcda0016e64fd40cab518183d55e3346661",
+        "revCount": 22,
         "type": "git",
         "url": "https://github.com/corelight/zeek-community-id/"
       },
       "original": {
         "ref": "master",
-        "rev": "181a104b99d9019771ece7e489e46f2268b746d8",
         "type": "git",
         "url": "https://github.com/corelight/zeek-community-id/"
       }
@@ -166,15 +165,16 @@
     "zeek-plugin-postgresql": {
       "flake": false,
       "locked": {
-        "lastModified": 1586473863,
-        "narHash": "sha256-AHzzid9/JkSbgvhbql0PlFLWo9pO2VJ7RQ0tdmfv1uQ=",
-        "ref": "master",
-        "rev": "fb72b41140094ec8795cd7aaecbb3997c28ff202",
-        "revCount": 24,
+        "lastModified": 1618480322,
+        "narHash": "sha256-Z5ImP8/WPcnfuXC8ZnE5ijERePRC6MdL12CiRuJJfTg=",
+        "ref": "main",
+        "rev": "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5",
+        "revCount": 30,
         "type": "git",
         "url": "https://github.com/0xxon/zeek-postgresql"
       },
       "original": {
+        "ref": "main",
         "type": "git",
         "url": "https://github.com/0xxon/zeek-postgresql"
       }
@@ -198,18 +198,6 @@
     "zeek-rc": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-sD4BE06pNWCXFkw1V+XfvVSj0dFCvp9lAhuEVpfT1NQ=",
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://download.zeek.org/zeek-4.0.0-rc2.tar.gz"
-      }
-    },
-    "zeek-tls": {
-      "flake": false,
-      "locked": {
         "narHash": "sha256-DfOAe+F0X+HHGX3amIvvHJsDJHJVw2nFZVjbbvEa1vI=",
         "type": "tarball",
         "url": "https://download.zeek.org/zeek-4.0.0.tar.gz"
@@ -217,6 +205,18 @@
       "original": {
         "type": "tarball",
         "url": "https://download.zeek.org/zeek-4.0.0.tar.gz"
+      }
+    },
+    "zeek-tls": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-1xwByOWXS1+peP6PBvm0hbYUaEy08UClG+9WY5XPtB0=",
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-4.0.1.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://download.zeek.org/zeek-4.0.1.tar.gz"
       }
     }
   },

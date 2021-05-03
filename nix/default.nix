@@ -42,7 +42,7 @@
 , ZipPlugin ? false
 , PdfPlugin ? false
 , zeekctl ? true
-, version ? "4.0.0"
+, version ? "4.0.1"
 }:
 let
   preConfigure = (import ./script.nix { });
@@ -62,7 +62,7 @@ stdenv.mkDerivation rec {
   inherit pname version;
   src = fetchurl {
     url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    sha256 = "sha256-8u7asyYuqj9YqDRCsfOLrTXtcjmVZJF7cbukImbx/1Q=";
+    sha256 = builtins.fromJSON (builtins.readFile ../flake.lock).nodes.zeek-tls.locled.narHash;
   };
 
   configureFlags = [
