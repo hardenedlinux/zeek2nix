@@ -23,7 +23,7 @@
   outputs = inputs: with builtins;
     {
       overlay = final: prev: {
-        zeek = prev.callPackage ./nix {
+        zeekMain = prev.callPackage ./nix {
           KafkaPlugin = true;
           PostgresqlPlugin = true;
           Http2Plugin = true;
@@ -34,12 +34,12 @@
           SpicyPlugin = true;
           SpicyAnalyzersPlugin = true;
         };
-        zeek-rc = (final.zeek.override ({
+        zeek-rc = (final.zeekMain.override ({
           version = "4.0.0";
         })).overrideAttrs (old: rec {
           src = inputs.zeek-rc;
         });
-        zeekTLS = (final.zeek.override ({
+        zeekTLS = (final.zeekMain.override ({
           version = "4.0.1";
         })).overrideAttrs (old: rec {
           src = inputs.zeek-tls;
