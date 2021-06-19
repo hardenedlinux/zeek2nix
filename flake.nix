@@ -78,8 +78,8 @@
           };
           #
           apps = {
-            zeek-master = inputs.flake-utils.lib.mkApp { drv = packages.zeek-master; exePath = "/bin/zeekctl"; };
-            zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeekctl"; };
+            zeek-master = inputs.flake-utils.lib.mkApp { drv = packages.zeek-master; exePath = "/bin/zeek"; };
+            zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeek"; };
           };
 
           defaultPackage = packages.zeek-release;

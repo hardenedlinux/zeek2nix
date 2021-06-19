@@ -1,9 +1,9 @@
-name: "zeek-flake"
+name: "CI"
 on:
   pull_request:
   push:
 jobs:
-  tests:
+  nix-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.3.4
@@ -19,3 +19,5 @@ jobs:
       run: nix -Lv flake check
     - name: Build Zeek Release
       run: nix -Lv build ./#zeek-release
+    - name: Check Zeek Version
+      run: nix -Lv run .#zeek-release -- -NN
