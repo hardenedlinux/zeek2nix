@@ -10,7 +10,7 @@ fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.
 src.prefix = "v"
 
 
-[zeek-release]
-src.github = "zeek/zeek"
-fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
-src.prefix = "v"
+[spicy]
+src.manual = "8fdeb3be1965cf31badac68dd0031416dfe1dca3"
+fetch.github = "zeek/spicy"
+git.fetchSubmodules = true

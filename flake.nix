@@ -72,7 +72,7 @@
               {
                 name = pkgs.nvfetcher-bin.pname;
                 help = pkgs.nvfetcher-bin.meta.description;
-                command = "cd $DEVSHELL_ROOT/nix; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml $@";
+                command = "cd $DEVSHELL_ROOT/nix; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml --no-output $@";
               }
             ];
           };
@@ -82,8 +82,8 @@
             zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeekctl"; };
           };
 
-          defaultPackage = packages.zeek-master;
-          defaultApp = apps.zeek-master;
+          defaultPackage = packages.zeek-release;
+          defaultApp = apps.zeek-release;
         }
       ) // {
       nixosModules = {

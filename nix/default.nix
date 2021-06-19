@@ -52,7 +52,7 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl llvmPackages pkgs
+    inherit confdir zeekctl llvmPackages pkgs sources
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
       SpicyPlugin SpicyAnalyzersPlugin
       Ikev2Plugin;

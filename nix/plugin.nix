@@ -14,6 +14,7 @@
 , ZipPlugin
 , PdfPlugin
 , pkgs
+, sources
 }:
 with pkgs;
 let
@@ -41,7 +42,7 @@ rec {
   ##failed spicy plugin
   Spicy = runCommand "spciy-patch"
     {
-      src = fetchFromGitHub (builtins.fromJSON (builtins.readFile ./zeek-plugin.json)).spicy;
+      inherit (sources.spicy) src;
       buildInputs = [ patchelf ];
     }
     ''

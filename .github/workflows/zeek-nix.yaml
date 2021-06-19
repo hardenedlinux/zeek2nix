@@ -16,3 +16,5 @@ jobs:
     # Configure Nix to enable flakes
     - run: echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
     - run: nix -Lv flake check
+    - name: Build Zeek Release
+    - run: nix -Lv build ./#zeek-release
