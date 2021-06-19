@@ -1,0 +1,16 @@
+# nvfetcher.toml
+[zeek-master]
+src.git = "https://github.com/zeek/zeek"
+fetch.github = "zeek/zeek"
+git.fetchSubmodules = true
+
+[zeek-release]
+src.github = "zeek/zeek"
+fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
+src.prefix = "v"
+
+
+[zeek-release]
+src.github = "zeek/zeek"
+fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
+src.prefix = "v"

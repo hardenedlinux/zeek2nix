@@ -42,7 +42,7 @@
 , ZipPlugin ? false
 , PdfPlugin ? false
 , zeekctl ? true
-, version ? "4.0.1"
+, sources
 }:
 let
   preConfigure = (import ./script.nix { });
@@ -59,11 +59,7 @@ let
   };
 in
 stdenv.mkDerivation rec {
-  inherit pname version;
-  src = fetchurl {
-    url = "https://download.zeek.org/zeek-${version}.tar.gz";
-    hash = "sha256-ZZqJD0M8tzBRmWa9xB8aA/tn4n6UtdUq2e6JACKhLDo=";
-  };
+  inherit (sources.zeek-release) src pname version;
 
   configureFlags = [
     "--with-geoip=${geoip}"

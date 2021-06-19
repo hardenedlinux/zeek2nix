@@ -3,11 +3,13 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs/dc68bad367deb8ad1aec9632fef4381c4c8da39a";
+    nixpkgs.url = "nixpkgs/release-21.05";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
-
-    zeek-tls = { url = "https://download.zeek.org/zeek-4.0.1.tar.gz"; flake = false; };
-    zeek-rc = { url = "https://download.zeek.org/zeek-4.0.0.tar.gz"; flake = false; };
+    devshell-flake = { url = "github:numtide/devshell"; };
+    nvfetcher-flake = {
+      url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zeek-plugin-pdf = { url = "git+https://github.com/reservoirlabs/zeek-pdf-analyzer"; flake = false; }; #failure to 3.0.1
     zeek-plugin-zip = { url = "git+https://github.com/reservoirlabs/zeek-zip-analyzer"; flake = false; }; #failure to 3.0.1
@@ -20,10 +22,10 @@
     spicy-analyzers = { url = "git+https://github.com/zeek/spicy-analyzers?ref=main"; flake = false; };
   };
 
-  outputs = inputs: with builtins;
+  outputs = inputs: with builtins; with inputs;
     {
       overlay = final: prev: {
-        zeekMain = prev.callPackage ./nix {
+        zeek-release = prev.callPackage ./nix {
           KafkaPlugin = true;
           PostgresqlPlugin = true;
           Http2Plugin = true;
@@ -34,16 +36,9 @@
           SpicyPlugin = true;
           SpicyAnalyzersPlugin = true;
         };
-        zeek-rc = (final.zeekMain.override ({
-          version = "4.0.0";
-        })).overrideAttrs (old: rec {
-          src = inputs.zeek-rc;
-        });
-        zeekTLS = (final.zeekMain.override ({
-          version = "4.0.1";
-        })).overrideAttrs (old: rec {
-          src = inputs.zeek-tls;
-        });
+        zeek-master = (final.zeek-release.overrideAttrs (old: rec {
+          inherit (final.sources.zeek-master) src pname version;
+        }));
       };
     } //
     (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
@@ -52,7 +47,10 @@
           pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [
-              inputs.self.overlay
+              self.overlay
+              devshell-flake.overlay
+              nvfetcher-flake.overlay
+              (final: prev: { sources = prev.callPackage (import ./nix/_sources/generated.nix) { }; })
             ];
             config = {
               allowUnsupportedSystem = true;
@@ -61,29 +59,35 @@
         in
         rec {
           packages = inputs.flake-utils.lib.flattenTree rec {
-            zeekTLS = pkgs.zeekTLS;
-            zeek-rc = pkgs.zeek-rc;
-            zeek = pkgs.zeek;
+            zeek-release = pkgs.zeek-release;
+            zeek-master = pkgs.zeek-master;
           };
 
           hydraJobs = {
             inherit packages;
           };
 
-          devShell = with pkgs; mkShell {
-            buildInputs = [ pkgs.zeekTLS ];
+          devShell = with pkgs; devshell.mkShell {
+            commands = [
+              {
+                name = pkgs.nvfetcher-bin.pname;
+                help = pkgs.nvfetcher-bin.meta.description;
+                command = "cd $DEVSHELL_ROOT/nix; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml $@";
+              }
+            ];
           };
           #
           apps = {
-            zeekTLS = inputs.flake-utils.lib.mkApp { drv = packages.zeekTLS; exePath = "/bin/zeekctl"; };
-            zeek-rc = inputs.flake-utils.lib.mkApp { drv = packages.zeek-rc; exePath = "/bin/zeekctl"; };
+            zeek-master = inputs.flake-utils.lib.mkApp { drv = packages.zeek-master; exePath = "/bin/zeekctl"; };
+            zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeekctl"; };
           };
 
-          defaultPackage = packages.zeekTLS;
-          defaultApp = apps.zeekTLS;
+          defaultPackage = packages.zeek-master;
+          defaultApp = apps.zeek-master;
         }
       ) // {
-      nixosModules = { zeek = import ./module; };
-    }
-    );
+      nixosModules = {
+        zeek = import ./module;
+      };
+    });
 }
