@@ -42,7 +42,7 @@
 , ZipPlugin ? false
 , PdfPlugin ? false
 , zeekctl ? true
-, sources
+, zeek-sources
 }:
 let
   preConfigure = (import ./script.nix { });
@@ -52,14 +52,14 @@ let
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl llvmPackages pkgs sources
+    inherit confdir zeekctl llvmPackages pkgs zeek-sources
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
       SpicyPlugin SpicyAnalyzersPlugin
       Ikev2Plugin;
   };
 in
 stdenv.mkDerivation rec {
-  inherit (sources.zeek-release) src pname version;
+  inherit (zeek-sources.zeek-release) src pname version;
 
   configureFlags = [
     "--with-geoip=${geoip}"

@@ -37,8 +37,9 @@
           SpicyAnalyzersPlugin = true;
         };
         zeek-master = (final.zeek-release.overrideAttrs (old: rec {
-          inherit (final.sources.zeek-master) src pname version;
+          inherit (final.zeek-sources.zeek-master) src pname version;
         }));
+        zeek-sources = prev.callPackage (import ./nix/_sources/generated.nix) { };
       };
     } //
     (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
@@ -50,7 +51,6 @@
               self.overlay
               devshell-flake.overlay
               nvfetcher-flake.overlay
-              (final: prev: { sources = prev.callPackage (import ./nix/_sources/generated.nix) { }; })
             ];
             config = {
               allowUnsupportedSystem = true;
