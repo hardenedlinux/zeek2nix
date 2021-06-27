@@ -18,5 +18,9 @@ jobs:
       run: nix -Lv flake check
     - name: Build Zeek Release
       run: nix -Lv build ./#zeek-release
-    - name: Check Zeek Version
+    - name: Check Zeek Release Version
       run: nix -Lv run .#zeek-release -- -NN
+    - name: Build Zeek Master
+      run: nix -Lv build ./#zeek-master
+    - name: Check Zeek Master Version
+      run: nix -Lv run .#zeek-master -- -NN
