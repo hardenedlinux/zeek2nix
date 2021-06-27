@@ -108,7 +108,7 @@
         "type": "indirect"
       }
     },
-    "nvfetcher-flake": {
+    "nvfetcher": {
       "inputs": {
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_2",
@@ -117,11 +117,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1623767613,
-        "narHash": "sha256-dckkA2T0rxWXsVjip4nYpIY+9Ex/0CvWlGdOoR9nq2M=",
+        "lastModified": 1624534673,
+        "narHash": "sha256-7HWt8Xh4aIFfGKAFQus5euhYxcWLe6kXz1DsGuV0WbU=",
         "owner": "berberman",
         "repo": "nvfetcher",
-        "rev": "f02c9c0d4b7efa339f6f52bc5a0ea5c9ce209566",
+        "rev": "a8514f53c7999d23b48d2f42de63660bc3d7850f",
         "type": "github"
       },
       "original": {
@@ -137,7 +137,7 @@
         "flake-utils": "flake-utils",
         "icsnpp-bacnet": "icsnpp-bacnet",
         "nixpkgs": "nixpkgs",
-        "nvfetcher-flake": "nvfetcher-flake",
+        "nvfetcher": "nvfetcher",
         "spicy-analyzers": "spicy-analyzers",
         "zeek-plugin-community-id": "zeek-plugin-community-id",
         "zeek-plugin-http2": "zeek-plugin-http2",

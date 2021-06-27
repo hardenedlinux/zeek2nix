@@ -6,7 +6,7 @@
     nixpkgs.url = "nixpkgs/release-21.05";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     devshell-flake = { url = "github:numtide/devshell"; };
-    nvfetcher-flake = {
+    nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -50,7 +50,7 @@
             overlays = [
               self.overlay
               devshell-flake.overlay
-              nvfetcher-flake.overlay
+              nvfetcher.overlay
             ];
             config = {
               allowUnsupportedSystem = true;
@@ -68,11 +68,14 @@
           };
 
           devShell = with pkgs; devshell.mkShell {
+            packages = [
+              nixpkgs-fmt
+            ];
             commands = [
               {
                 name = pkgs.nvfetcher-bin.pname;
                 help = pkgs.nvfetcher-bin.meta.description;
-                command = "cd $DEVSHELL_ROOT/nix; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml --no-output $@";
+                command = "cd $DEVSHELL_ROOT/nix; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml --no-output $@; nixpkgs-fmt _sources";
               }
             ];
           };

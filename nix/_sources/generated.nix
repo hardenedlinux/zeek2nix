@@ -12,20 +12,20 @@
       leaveDotGit = false;
       sha256 = "1175jz3v6cbq4qb2apqdbksz9x1iknidwg1sab35d3lrchlay0iw";
     };
-    
+
   };
   zeek-master = {
     pname = "zeek-master";
-    version = "2de38750fd76c90e3a0a76e87af9a2b2c8158d87";
+    version = "b04c611058216060365c270f955b26c1f5f3e1cf";
     src = fetchgit {
       url = "https://github.com/zeek/zeek";
-      rev = "2de38750fd76c90e3a0a76e87af9a2b2c8158d87";
+      rev = "b04c611058216060365c270f955b26c1f5f3e1cf";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "16l12my18yqbd54awnmbr0m063nrhz21qnq8zvg61dmc2acrf0ph";
+      sha256 = "0gxdx7idpili9gssva3v1vs7za35gaa7sqycbk9bxgcmijv88rg5";
     };
-    
+
   };
   zeek-release = {
     pname = "zeek-release";
@@ -34,6 +34,6 @@
       sha256 = "15gxxgg7nmfmswlbxhvcp6alq5k9wpvrm5cwyf1qfd7xsfli61sm";
       url = "https://github.com/zeek/zeek/releases/download/v4.0.2/zeek-4.0.2.tar.gz";
     };
-    
+
   };
 }

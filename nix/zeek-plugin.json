@@ -1,9 +1,0 @@
-{
-    "spicy": {
-        "owner": "zeek",
-        "repo": "spicy",
-        "rev": "21a1529383e23486a61f696907cc2298cb842279",
-        "sha256": "sha256-fByFmAVda5FWaeCcqfcOssDtBdr6voSzcqTbfh5dhQQ=",
-        "fetchSubmodules": true
-    }
-}
