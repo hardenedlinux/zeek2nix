@@ -1,0 +1,34 @@
+name: "CI"
+on:
+  pull_request:
+  push:
+jobs:
+  nix-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.3.4
+      with:
+        fetch-depth: 0
+    - uses: cachix/install-nix-action@v13
+      with:
+        install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210604_8e6ee1b/install
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+          system-features = nixos-test benchmark big-parallel kvm recursive-nix
+          substituters = https://zeek.cachix.org https://nix-community.cachix.org https://cache.nixos.org
+          trusted-public-keys = zeek.cachix.org-1:w590YE/k5sB26LSWvDCI3dccCXipBwyPenhBH2WNDWI= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
+    - name: Nix Flake Check
+      run: nix -Lv flake check
+    - name: Build Zeek Release
+      run: nix -Lv build ./#zeek-release
+    - name: Check Zeek Release Version
+      run: nix -Lv run .#zeek-release -- -NN
+    - name: Build Zeek Master
+      run: nix -Lv build ./#zeek-master
+    - name: Check Zeek Master Version
+      run: nix -Lv run .#zeek-master -- -NN
+    - uses: cachix/cachix-action@v10
+      with:
+        name: zeek
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
