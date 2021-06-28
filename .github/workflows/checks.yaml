@@ -27,5 +27,12 @@ jobs:
       run: nix -Lv flake check
     - name: Build Zeek Release
       run: nix -Lv build ./#zeek-release
-    - name: Check Zeek Release Version
+    - name: Check Zeek Plugins
       run: nix -Lv run .#zeek-release -- -N
+    - name: Check Zeek Release Version
+      run: |
+        nix -Lv run .#zeek-release -- --version
+    - name: Check Spicy
+      run: |
+        nix -Lv run .#zeek-release -- misc/hello.spicy
+        ./result/bin/spicyc -j misc/hello.spicy
