@@ -15,41 +15,21 @@
 , PdfPlugin
 , pkgs
 , zeek-sources
+, spicy-sources
 }:
 with pkgs;
-let
-  importJSON = file: builtins.fromJSON (builtins.readFile file);
-  flakeLock = importJSON ../flake.lock;
-  loadInput = { locked, ... }:
-    assert locked.type == "git";
-    fetchgit {
-      url = "${locked.url}";
-      rev = "${locked.rev}";
-      sha256 = locked.narHash;
-    };
-in
 rec {
-  #import zeek script
-  zeek-plugin-pdf = loadInput flakeLock.nodes.zeek-plugin-pdf;
-  zeek-plugin-postgresql = loadInput flakeLock.nodes.zeek-plugin-postgresql;
-  zeek-plugin-zip = loadInput flakeLock.nodes.zeek-plugin-zip;
-  zeek-plugin-kafka = loadInput flakeLock.nodes.zeek-plugin-kafka;
-  zeek-plugin-http2 = loadInput flakeLock.nodes.zeek-plugin-http2;
-  zeek-plugin-ikev2 = loadInput flakeLock.nodes.zeek-plugin-ikev2;
-  zeek-plugin-community-id = loadInput flakeLock.nodes.zeek-plugin-community-id;
-  spicy-analyzers = loadInput flakeLock.nodes.spicy-analyzers;
-
   ##failed spicy plugin
   Spicy = runCommand "spciy-patch"
     {
-      inherit (zeek-sources.spicy) src;
+      inherit (spicy-sources.spicy-release) src;
       buildInputs = [ patchelf ];
     }
     ''
       mkdir -p $out
       cp -r $src/ patch-dir
       chmod -R +rw patch-dir
-      patch < ${./version.patch} patch-dir/scripts/autogen-version
+      cp ${./VERSION} patch-dir/VERSION
       cp -r patch-dir/. $out
     '';
 
@@ -73,27 +53,27 @@ rec {
   '' else "") +
   (if CommunityIdPlugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} zeek-plugin-community-id ${zeek-plugin-community-id}
+    bash ${install_plugin} zeek-plugin-community-id ${zeek-sources.zeek-plugin-community-id.src}
   '' else "") +
   (if PdfPlugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} zeek-plugin-pdf ${zeek-plugin-pdf}
+    bash ${install_plugin} zeek-plugin-pdf ${zeek-sources.zeek-plugin-pdf.src}
   '' else "") +
   (if ZipPlugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} zeek-plugin-zip ${zeek-plugin-zip}
+    bash ${install_plugin} zeek-plugin-zip ${zeek-sources.zeek-plugin-zip.src}
   '' else "") +
   (if KafkaPlugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} zeek-plugin-kafka ${zeek-plugin-kafka}
+    bash ${install_plugin} zeek-plugin-kafka ${zeek-sources.zeek-plugin-kafka.src}
   '' else "") +
   (if Ikev2Plugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} zeek-plugin-ikev2 ${zeek-plugin-ikev2}
+    bash ${install_plugin} zeek-plugin-ikev2 ${zeek-sources.zeek-plugin-ikev2.src}
   '' else "") +
   (if Http2Plugin then ''
       ##INSTALL ZEEK Plugins
-    bash ${install_plugin} zeek-plugin-http2 ${zeek-plugin-http2}
+    bash ${install_plugin} zeek-plugin-http2 ${zeek-sources.zeek-plugin-http2.src}
   '' else "") +
   (if SpicyPlugin then ''
     mkdir -p /build/spicy
@@ -102,7 +82,7 @@ rec {
     patchShebangs /build/spicy/scripts/autogen-type-erased
     patchShebangs /build/spicy/scripts/autogen-dispatchers
     ${lib.optionalString SpicyAnalyzersPlugin
-      ''bash ${install_plugin} spicy-analyzers ${spicy-analyzers}
+      ''bash ${install_plugin} spicy-analyzers ${zeek-sources.spicy-analyzers.src}
       substituteInPlace /build/spicy-analyzers/CMakeLists.txt \
       --replace "0.4" "0" \
       --replace "00400" "0"
@@ -117,6 +97,6 @@ rec {
      done
   '' else "") +
   (if PostgresqlPlugin then ''
-    bash ${install_plugin} zeek-plugin-postgresql ${zeek-plugin-postgresql}
+    bash ${install_plugin} zeek-plugin-postgresql ${zeek-sources.zeek-plugin-postgresql.src}
   '' else "");
 }

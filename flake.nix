@@ -6,26 +6,18 @@
     nixpkgs.url = "nixpkgs/release-21.05";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     devshell-flake = { url = "github:numtide/devshell"; };
+    spicy-with-nix-flake = { url = "github:GTrunSec/spicy-with-nix-flake"; };
     nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    zeek-plugin-pdf = { url = "git+https://github.com/reservoirlabs/zeek-pdf-analyzer"; flake = false; }; #failure to 3.0.1
-    zeek-plugin-zip = { url = "git+https://github.com/reservoirlabs/zeek-zip-analyzer"; flake = false; }; #failure to 3.0.1
-    zeek-plugin-ikev2 = { url = "git+https://github.com/ukncsc/zeek-plugin-ikev2"; flake = false; }; #failure to 3.2.1
-    zeek-plugin-postgresql = { url = "git+https://github.com/0xxon/zeek-postgresql?ref=main"; flake = false; };
-    zeek-plugin-http2 = { url = "git+https://github.com/MITRECND/bro-http2/"; flake = false; };
-    zeek-plugin-community-id = { url = "git+https://github.com/corelight/zeek-community-id/?ref=master"; flake = false; };
-    icsnpp-bacnet = { url = "git+https://github.com/cisagov/icsnpp-bacnet"; flake = false; };
-    zeek-plugin-kafka = { url = "git+https://github.com/SeisoLLC/zeek-kafka?ref=main"; flake = false; };
-    spicy-analyzers = { url = "git+https://github.com/zeek/spicy-analyzers?ref=main"; flake = false; };
   };
 
   outputs = inputs: with builtins; with inputs;
     {
       overlay = final: prev: {
         zeek-release = prev.callPackage ./nix {
+          llvmPackages = prev.llvmPackages_latest;
           KafkaPlugin = true;
           PostgresqlPlugin = true;
           Http2Plugin = true;
@@ -51,6 +43,7 @@
               self.overlay
               devshell-flake.overlay
               nvfetcher.overlay
+              spicy-with-nix-flake.overlay
             ];
             config = {
               allowUnsupportedSystem = true;

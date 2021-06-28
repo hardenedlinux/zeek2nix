@@ -14,3 +14,45 @@ src.prefix = "v"
 src.manual = "8fdeb3be1965cf31badac68dd0031416dfe1dca3"
 fetch.github = "zeek/spicy"
 git.fetchSubmodules = true
+
+
+[zeek-plugin-pdf]
+src.git = "https://github.com/reservoirlabs/zeek-pdf-analyzer"
+fetch.github = "reservoirlabs/zeek-pdf-analyzer"
+
+[zeek-plugin-zip]
+src.git = "https://github.com/reservoirlabs/zeek-zip-analyzer"
+fetch.github = "reservoirlabs/zeek-zip-analyzer"
+
+[zeek-plugin-ikev2]
+src.git = "https://github.com/ukncsc/zeek-ikev2"
+fetch.github = "ukncsc/zeek-ikev2"
+
+
+[zeek-plugin-postgresql]
+src.git = "https://github.com/0xxon/zeek-postgresql"
+fetch.github = "0xxon/zeek-postgresql"
+
+[zeek-plugin-http2]
+src.git = "https://github.com/MITRECND/bro-http2"
+fetch.github = "MITRECND/bro-http2"
+
+
+[zeek-plugin-community-id]
+src.git = "https://github.com/corelight/zeek-community-id"
+fetch.github = "corelight/zeek-community-id"
+
+
+[icsnpp-bacnet]
+src.git = "https://github.com/cisagov/icsnpp-bacnet"
+fetch.github = "cisagov/icsnpp-bacnet"
+
+
+[zeek-plugin-kafka]
+src.git = "https://github.com/SeisoLLC/zeek-kafka"
+fetch.github = "SeisoLLC/zeek-kafka"
+
+
+[spicy-analyzers]
+src.git = "https://github.com/zeek/spicy-analyzers"
+fetch.github = "zeek/spicy-analyzers"

@@ -24,7 +24,7 @@
 , libnghttp2
 , brotli
 , python38
-, llvmPackages_11
+, llvmPackages
 , ninja
 , which
 , geoip
@@ -32,6 +32,7 @@
 , libzip
 , podofo
 , makeWrapper
+, git
 , PostgresqlPlugin ? false
 , KafkaPlugin ? false
 , Http2Plugin ? false
@@ -43,16 +44,15 @@
 , PdfPlugin ? false
 , zeekctl ? true
 , zeek-sources
+, spicy-sources
 }:
 let
   preConfigure = (import ./script.nix { });
-  llvmPackages = llvmPackages_11;
-
   pname = "zeek";
   confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl llvmPackages pkgs zeek-sources
+    inherit confdir zeekctl llvmPackages pkgs zeek-sources spicy-sources
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
       SpicyPlugin SpicyAnalyzersPlugin
       Ikev2Plugin;
@@ -82,7 +82,7 @@ stdenv.mkDerivation rec {
     ++ lib.optionals Http2Plugin
     [ libnghttp2 brotli ]
     ++ lib.optionals SpicyPlugin
-    [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ninja ];
+    [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ninja git ];
 
   ZEEK_DIST = "${placeholder "out"}";
 
@@ -93,7 +93,6 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     "-DPYTHON_EXECUTABLE=${python38}/bin/python"
     "-DPYTHON_INCLUDE_DIR=${python38}/include"
-    "-DPYTHON_LIBRARY=${python38}/lib"
     "-DPY_MOD_INSTALL_DIR=${placeholder "out"}/${python38.sitePackages}"
     "-DENABLE_PERFTOOLS=true"
     "-DINSTALL_AUX_TOOLS=true"
