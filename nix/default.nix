@@ -37,7 +37,6 @@
 , KafkaPlugin ? false
 , Http2Plugin ? false
 , SpicyPlugin ? false
-, SpicyAnalyzersPlugin ? false
 , Ikev2Plugin ? false
 , CommunityIdPlugin ? false
 , ZipPlugin ? false
@@ -54,7 +53,7 @@ let
   plugin = callPackage ./plugin.nix {
     inherit confdir zeekctl llvmPackages pkgs zeek-sources spicy-sources
       PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
-      SpicyPlugin SpicyAnalyzersPlugin
+      SpicyPlugin
       Ikev2Plugin;
   };
 in

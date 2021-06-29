@@ -83,9 +83,9 @@ sudo bash ./pre-run-zeekctl.sh
 
 * Arguments for zeek building
 ** How to enable or disable a plugin in zeek
-- ./overlay.nix
+- ./flake.nix
   set bool ~true~ or ~false~ to name of plugin in overlay.nix
-  #+begin_src sh :async t :tangle "./overlay.nix"
+  #+begin_src sh :async t :tangle "./flake.nix"
 final: prev:
 {
   zeek = prev.callPackage ./. {KafkaPlugin = true; PostgresqlPlugin = true;
@@ -96,12 +96,8 @@ final: prev:
 * Optional: using cachix to speed up binary build
 #+begin_src sh :async t :exports both :results output
 nix-env -iA cachix -f https://cachix.org/api/v1/install
-cachix use nsm-data-analysis
+cachix use zeek
 #+end_src
-- push binary cache to nsm-data-analsis->cachix (For Maintainer)
-  #+begin_src sh :async t :exports both :results output
- nix path-info --json | jq -r '.[].path' | cachix push nsm-data-analysis
-  #+end_src
 * Test Spicy
 
 #+begin_src sh :async t :exports both :results output

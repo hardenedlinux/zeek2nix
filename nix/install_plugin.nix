@@ -14,13 +14,6 @@ install_plugin(){
     ./configure --with-zeek=$out --build-zeek-plugin=yes --generator=Ninja --prefix=$out --build-type=Release --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ --with-c-compiler=${llvmPackages.clang}/bin/clang
     make -j $NIX_BUILD_CORES && make install
     # intenrel spicy plugin
-    if [ -d "/build/spicy-analyzers" ]; then
-     cd /build/spicy-analyzers
-     mkdir build
-     cd build
-     cmake -DCMAKE_INSTALL_PREFIX=$out ..
-     make -j $NIX_BUILD_CORES && make install
-     fi
     fi
 
     if [ $name == 'zeek-plugin-kafka' ] || [ $name == 'zeek-plugin-ikev2' ]; then

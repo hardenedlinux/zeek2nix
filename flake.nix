@@ -26,7 +26,6 @@
           ZipPlugin = true;
           PdfPlugin = true;
           SpicyPlugin = true;
-          SpicyAnalyzersPlugin = true;
         };
         zeek-master = (final.zeek-release.overrideAttrs (old: rec {
           inherit (final.zeek-sources.zeek-master) src pname version;

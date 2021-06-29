@@ -8,7 +8,6 @@
 , zeekctl
 , Http2Plugin
 , SpicyPlugin
-, SpicyAnalyzersPlugin
 , Ikev2Plugin
 , CommunityIdPlugin
 , ZipPlugin
@@ -81,13 +80,6 @@ rec {
     chmod 755  /build/spicy/*
     patchShebangs /build/spicy/scripts/autogen-type-erased
     patchShebangs /build/spicy/scripts/autogen-dispatchers
-    ${lib.optionalString SpicyAnalyzersPlugin
-      ''bash ${install_plugin} spicy-analyzers ${zeek-sources.spicy-analyzers.src}
-      substituteInPlace /build/spicy-analyzers/CMakeLists.txt \
-      --replace "0.4" "0" \
-      --replace "00400" "0"
-      ''
-     }
     bash ${install_plugin} spicy ${Spicy}
     for e in $(cd $out/bin && ls |  grep -E 'spicy|hilti' ); do
       wrapProgram $out/bin/$e \
