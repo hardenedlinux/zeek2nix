@@ -30,7 +30,7 @@
         zeek-master = (final.zeek-release.overrideAttrs (old: rec {
           inherit (final.zeek-sources.zeek-master) src pname version;
         }));
-        zeek-sources = prev.callPackage (import ./nix/_sources/generated.nix) { };
+        zeek-sources = prev.callPackage ./nix/_sources/generated.nix { };
       };
     } //
     (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
