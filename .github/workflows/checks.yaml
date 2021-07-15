@@ -36,3 +36,5 @@ jobs:
       run: |
         nix -Lv run .#zeek-release -- misc/hello.spicy
         ./result/bin/spicyc -j misc/hello.spicy
+     - name: Check Zeek Systemd module
+       run: nix -Lv build ./#zeek-vm-service-tests

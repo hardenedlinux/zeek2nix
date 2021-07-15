@@ -31,6 +31,13 @@
           inherit (final.zeek-sources.zeek-master) src pname version;
         }));
         zeek-sources = prev.callPackage ./nix/_sources/generated.nix { };
+
+        zeek-vm-tests = prev.lib.optionalAttrs prev.stdenv.isLinux (import ./nixos-test.nix
+          {
+            makeTest = (import (prev.path + "/nixos/tests/make-test-python.nix"));
+            pkgs = final;
+            inherit self;
+          });
       };
     } //
     (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
@@ -50,9 +57,12 @@
           };
         in
         rec {
-          packages = inputs.flake-utils.lib.flattenTree rec {
-            zeek-release = pkgs.zeek-release;
-            zeek-master = pkgs.zeek-master;
+          packages = inputs.flake-utils.lib.flattenTree
+            rec {
+              zeek-release = pkgs.zeek-release;
+              zeek-master = pkgs.zeek-master;
+            } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+            zeek-vm-service-tests = pkgs.zeek-vm-tests.zeekService;
           };
 
           hydraJobs = {
