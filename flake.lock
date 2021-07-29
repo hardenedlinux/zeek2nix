@@ -211,7 +211,6 @@
         "flake-compat": "flake-compat_4",
         "flake-utils": "flake-utils_4",
         "nixpkgs": [
-          "spicy2nix",
           "nixpkgs"
         ]
       },
