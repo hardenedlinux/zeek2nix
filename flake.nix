@@ -71,7 +71,6 @@
           };
 
           devShell = with pkgs; devshell.mkShell {
-            packages = [ cachix ];
             commands = [
               {
                 name = pkgs.nvfetcher-bin.pname;
