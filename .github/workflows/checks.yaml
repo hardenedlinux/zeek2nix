@@ -18,23 +18,45 @@ jobs:
           substituters = https://zeek.cachix.org https://cache.nixos.org
           trusted-public-keys = zeek.cachix.org-1:w590YE/k5sB26LSWvDCI3dccCXipBwyPenhBH2WNDWI= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
 
-    - uses: cachix/cachix-action@v10
-      with:
-        name: zeek
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
     - name: Nix Flake Check
       run: nix -Lv flake check
+
+    - name: Run nvfetcher
+      run: nix -Lv develop --command nvfetcher -l changelog
+
+    - name: Check Spicy2nix Latest Rev
+      run: nix flake lock --update-input spicy2nix
+
     - name: Build Zeek Release
       run: nix -Lv build ./#zeek-release
+
     - name: Check Zeek Plugins
-      run: nix -Lv run .#zeek-release -- -N
-    - name: Check Zeek Release Version
       run: |
-        nix -Lv run .#zeek-release -- --version
+        nix -Lv run .#zeek-release -- -N
+        nix-build | cachix push zeek
+
+    - name: Check Zeek Release Version
+      run: nix -Lv run .#zeek-release -- --version
+
     - name: Check Spicy
       run: |
         nix -Lv run .#zeek-release -- misc/hello.spicy
-        ./result/bin/spicyc -j misc/hello.spicy
+
     - name: Check Zeek Systemd module
-      run: nix -Lv build ./#zeek-vm-service-tests
+      run: nix -Lv build ./#zeek-vm-systemd
+
+    - name: COMMIT_MSG
+      run: |
+        if [ ! -z "$(cat nix/changelog)" ]; then
+        cat <<EOF >> "$GITHUB_ENV"
+        COMMIT_MSG=$(cat nix/changelog)
+        EOF
+        fi
+
+
+    - name: Commit changes
+      if: ${{ env.COMMIT_MSG != null }}
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: ${{ env.COMMIT_MSG }}

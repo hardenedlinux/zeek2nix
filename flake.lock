@@ -141,11 +141,11 @@
     },
     "flake-utils_4": {
       "locked": {
-        "lastModified": 1620759905,
-        "narHash": "sha256-WiyWawrgmyN0EdmiHyG2V+fqReiVi8bM9cRdMaKQOFg=",
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "b543720b25df6ffdfcf9227afafc5b8c1fabfae8",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
         "type": "github"
       },
       "original": {
@@ -211,15 +211,16 @@
         "flake-compat": "flake-compat_4",
         "flake-utils": "flake-utils_4",
         "nixpkgs": [
+          "spicy2nix",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1624534673,
-        "narHash": "sha256-7HWt8Xh4aIFfGKAFQus5euhYxcWLe6kXz1DsGuV0WbU=",
+        "lastModified": 1627523399,
+        "narHash": "sha256-j9CgnUQpWcb8OB4LRzPW8BdxvmoROJptgptDlPA8Heo=",
         "owner": "berberman",
         "repo": "nvfetcher",
-        "rev": "a8514f53c7999d23b48d2f42de63660bc3d7850f",
+        "rev": "fb8f2cc770ad3dd3e29d7ba3004692d4d53fba9b",
         "type": "github"
       },
       "original": {
@@ -235,10 +236,10 @@
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "nvfetcher": "nvfetcher",
-        "spicy-with-nix-flake": "spicy-with-nix-flake"
+        "spicy2nix": "spicy2nix"
       }
     },
-    "spicy-with-nix-flake": {
+    "spicy2nix": {
       "inputs": {
         "devshell-flake": "devshell-flake_2",
         "flake-compat": "flake-compat_3",
@@ -247,16 +248,16 @@
         "nvfetcher": "nvfetcher_2"
       },
       "locked": {
-        "lastModified": 1624814511,
-        "narHash": "sha256-8uUo3r5Gb/Tf9yxK68M92D5cGU4TFyeAv6+CcOUejeM=",
+        "lastModified": 1627584370,
+        "narHash": "sha256-ytGZjJLbAABAQslSyvfsyxrgb2/ex2QIgBV6EEDC37s=",
         "owner": "GTrunSec",
-        "repo": "spicy-with-nix-flake",
-        "rev": "d83a8bb8b30e57a8a4d9e2554d2a4e03fcbdf332",
+        "repo": "spicy2nix",
+        "rev": "1a18d4f7d47a3af8aeee2b4205aef8e12f2b4916",
         "type": "github"
       },
       "original": {
         "owner": "GTrunSec",
-        "repo": "spicy-with-nix-flake",
+        "repo": "spicy2nix",
         "type": "github"
       }
     }

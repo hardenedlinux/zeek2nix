@@ -5,3 +5,4 @@ zeek-profile*
 tmp/
 
 result
+nix/changelog
