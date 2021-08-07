@@ -25,8 +25,20 @@
       sha256 = "0sdz4w7cjc1gl8zgmdv2jj55xrjkrg0vaf4xrq5sbpzg499nyqrx";
     };
   };
-  zeek-master = {
-    pname = "zeek-master";
+  vast-broker = {
+    pname = "vast-broker";
+    version = "v1.4.0";
+    src = fetchgit {
+      url = "https://github.com/zeek/broker";
+      rev = "v1.4.0";
+      fetchSubmodules = true;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "14r522w2chzn1fv2z9zl395nv17as49y5rgcl37pg124fs2h0z1i";
+    };
+  };
+  zeek-latest = {
+    pname = "zeek-latest";
     version = "2476e366348344edc17a025d1de38b4984fd50bd";
     src = fetchgit {
       url = "https://github.com/zeek/zeek";
