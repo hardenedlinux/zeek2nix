@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
   schedule:
-    - cron: '* * 1,7,14,21,28 * *'
+    - cron: '* * 7 * *'
 jobs:
   nix-build:
     runs-on: ubuntu-latest
