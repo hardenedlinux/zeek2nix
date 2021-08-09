@@ -27,8 +27,8 @@
           PdfPlugin = true;
           SpicyPlugin = true;
         };
-        zeek-master = (final.zeek-release.overrideAttrs (old: rec {
-          inherit (final.zeek-sources.zeek-master) src pname version;
+        zeek-latest = (final.zeek-release.overrideAttrs (old: rec {
+          inherit (final.zeek-sources.zeek-latest) src pname version;
         }));
         zeek-sources = prev.callPackage ./nix/_sources/generated.nix { };
 
@@ -60,7 +60,7 @@
           packages = inputs.flake-utils.lib.flattenTree
             rec {
               zeek-release = pkgs.zeek-release;
-              zeek-master = pkgs.zeek-master;
+              zeek-latest = pkgs.zeek-latest;
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
             inherit (pkgs.zeek-vm-tests)
               zeek-vm-systemd;
@@ -71,7 +71,13 @@
           };
 
           devShell = with pkgs; devshell.mkShell {
+            packages = [ cachix ];
             commands = [
+              {
+                name = "cachix-push";
+                help = "push zeek-master binary cachix to cachix";
+                command = "nix-build | cachix push zeek";
+              }
               {
                 name = pkgs.nvfetcher-bin.pname;
                 help = pkgs.nvfetcher-bin.meta.description;

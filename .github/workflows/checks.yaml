@@ -17,13 +17,8 @@ jobs:
         extra_nix_config: |
           experimental-features = nix-command flakes
           system-features = nixos-test benchmark big-parallel kvm recursive-nix
-          substituters = https://zeek.cachix.org https://cache.nixos.org
-          trusted-public-keys = zeek.cachix.org-1:w590YE/k5sB26LSWvDCI3dccCXipBwyPenhBH2WNDWI= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-
-    - uses: cachix/cachix-action@v10
-      with:
-        name: zeek
-        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          extra-substituters = https://zeek.cachix.org
+          extra-trusted-public-keys = zeek.cachix.org-1:pI1yRThH7gSh0ty7WmMWXqYFYigjcXFwiGiaaMmVpfA=
 
     - name: Nix Flake Check
       run: nix -Lv flake check
@@ -38,16 +33,13 @@ jobs:
       run: nix -Lv build ./#zeek-release
 
     - name: Check Zeek Plugins
-      run: |
-        nix -Lv run .#zeek-release -- -N
-        nix-build | cachix push zeek
+      run: nix -Lv run .#zeek-release -- -N
 
     - name: Check Zeek Release Version
       run: nix -Lv run .#zeek-release -- --version
 
     - name: Check Spicy
-      run: |
-        nix -Lv run .#zeek-release -- misc/hello.spicy
+      run: nix -Lv run .#zeek-release -- misc/hello.spicy
 
     - name: Check Zeek Systemd module
       run: nix -Lv build ./#zeek-vm-systemd
