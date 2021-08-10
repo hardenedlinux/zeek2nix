@@ -106,7 +106,7 @@ in
 
     package = mkOption {
       description = "Zeek package to use.";
-      default = pkgs.zeek;
+      default = pkgs.zeek-release;
       defaultText = "pkgs.zeek";
       type = types.package;
     };

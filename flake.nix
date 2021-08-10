@@ -96,7 +96,16 @@
         }
       ) // {
       nixosModules = {
-        zeek = import ./module;
+        zeek = { ... }: {
+          imports = [
+            {
+              nixpkgs.config.packageOverrides = pkgs: {
+                inherit (self.packages.${pkgs.system}) zeek-release;
+              };
+            }
+            ./module
+          ];
+        };
       };
     });
 }
