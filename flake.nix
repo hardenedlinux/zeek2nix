@@ -20,11 +20,11 @@
           llvmPackages = prev.llvmPackages_latest;
           KafkaPlugin = true;
           PostgresqlPlugin = true;
-          Http2Plugin = true;
+          Http2Plugin = false; #4.1.0
           Ikev2Plugin = false; #failed Cannot determine Bro source directory, use --bro-dist=DIR.
           CommunityIdPlugin = true;
-          ZipPlugin = true;
-          PdfPlugin = true;
+          ZipPlugin = false; #4.1.0
+          PdfPlugin = false; #4.1.0
           SpicyPlugin = true;
         };
         zeek-latest = (final.zeek-release.overrideAttrs (old: rec {
