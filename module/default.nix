@@ -130,12 +130,11 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
-
     systemd.services.zeek = {
       description = "Zeek Daemon";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-      path = [ cfg.package pkgs.gawk pkgs.gzip ];
+      path = with pkgs;[ cfg.package nettools nettools iputils ];
       preStart = ''
         ${pkgs.bash}/bin/bash ${preRun}
       '';
@@ -147,9 +146,6 @@ in
         User = "root";
         PrivateTmp = "yes";
         PrivateDevices = "yes";
-        RuntimeDirectory = "zeek";
-        RuntimeDirectoryMode = "0755";
-        LimitNOFILE = "30000";
       };
     };
   };
