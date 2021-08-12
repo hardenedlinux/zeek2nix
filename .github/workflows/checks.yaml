@@ -42,7 +42,9 @@ jobs:
       run: nix -Lv run .#zeek-release -- misc/hello.spicy
 
     - name: Check Zeek Systemd module
-      run: nix -Lv build ./#zeek-vm-systemd
+      run: |
+        nix -Lv build ./#zeek-standalone-vm-systemd
+        nix -Lv build ./#zeek-manager-vm-systemd
 
     - name: COMMIT_MSG
       run: |

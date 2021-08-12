@@ -112,7 +112,7 @@ in
         172.16.0.0/12       Private IP space
         192.168.0.0/16      Private IP space
       '';
-      type = types.str;
+      type = types.lines;
     };
 
     privateScript = mkOption {
@@ -140,7 +140,7 @@ in
         ${pkgs.bash}/bin/bash ${preRun}
       '';
       serviceConfig = {
-        ExecStart = mkIf cfg.standalone ''
+        ExecStart = ''
           ${pkgs.bash}/bin/bash ${zeek-oneshot}
         '';
         ExecStop = "${cfg.package}/bin/zeekctl stop";

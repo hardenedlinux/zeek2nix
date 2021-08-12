@@ -86,7 +86,8 @@
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
             zeek-docker = pkgs.zeek-docker;
             inherit (pkgs.zeek-vm-tests)
-              zeek-vm-systemd;
+              zeek-standalone-vm-systemd
+              zeek-manager-vm-systemd;
           };
 
           hydraJobs = {
