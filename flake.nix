@@ -87,7 +87,7 @@
             zeek-docker = pkgs.zeek-docker;
             inherit (pkgs.zeek-vm-tests)
               zeek-standalone-vm-systemd
-              zeek-manager-vm-systemd;
+              zeek-cluster-vm-systemd;
           };
 
           hydraJobs = {

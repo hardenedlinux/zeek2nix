@@ -35,9 +35,9 @@
       inherit (pkgs) system;
     };
 
-  zeek-manager-vm-systemd = makeTest
+  zeek-cluster-vm-systemd = makeTest
     {
-      name = "zeek-manager-vm-systemd";
+      name = "zeek-cluster-vm-systemd";
       machine = { config, pkgs, ... }: {
         imports = [
           self.nixosModules.zeek
