@@ -81,8 +81,8 @@
             rec {
               zeek-release = pkgs.zeek-release;
               zeek-latest = pkgs.zeek-latest;
-              zeek-docker = pkgs.zeek-docker;
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+            zeek-docker = pkgs.zeek-docker;
             inherit (pkgs.zeek-vm-tests)
               zeek-vm-systemd;
           };
