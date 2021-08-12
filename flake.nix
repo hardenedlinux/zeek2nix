@@ -1,5 +1,7 @@
 {
   description = "Zeek to Nix";
+  nixConfig.extra-substituters = "https://zeek.cachix.org";
+  nixConfig.extra-trusted-public-keys = "zeek.cachix.org-1:pI1yRThH7gSh0ty7WmMWXqYFYigjcXFwiGiaaMmVpfA=";
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
