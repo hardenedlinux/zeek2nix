@@ -10,7 +10,7 @@ let
     exit
     fi
   '';
-  StandaloneConfig = ''
+  standaloneConfig = ''
     [zeek]
     type=standalone
     host=${cfg.listenAddress}
@@ -40,7 +40,7 @@ let
     interface=eth0
   '';
 
-  nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then StandaloneConfig else cfg.extraConfig);
+  nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then standaloneConfig else cfg.extraConfig);
   networkConf = pkgs.writeText "networks.cfg" cfg.network;
 
   preRun = pkgs.writeScript "run-zeekctl" ''
@@ -85,7 +85,7 @@ in
 
     standalone = mkOption {
       description = "Whether to enable zeek Standalone mode";
-      default = true;
+      default = false;
       type = types.bool;
     };
 
