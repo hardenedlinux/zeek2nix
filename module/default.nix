@@ -2,18 +2,11 @@
 with lib;
 let
   cfg = config.services.zeek;
-  zeek-oneshot = pkgs.writeScript "zeek-oneshot" ''
-    ${cfg.package}/bin/zeekctl deploy
-    if [ $? -eq 0 ]; then
-    sleep infinity
-    else
-    exit
-    fi
-  '';
+
   standaloneConfig = ''
     [zeek]
     type=standalone
-    host=${cfg.listenAddress}
+    host=${cfg.host}
     interface=${cfg.interface}
   '';
 
@@ -40,23 +33,11 @@ let
     interface=eth0
   '';
 
-  nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then standaloneConfig else cfg.extraConfig);
+  nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then standaloneConfig else cfg.node);
   networkConf = pkgs.writeText "networks.cfg" cfg.network;
 
   preRun = pkgs.writeScript "run-zeekctl" ''
-     if [[ ! -d "/var/lib/zeek" ]];then
-         mkdir -p /var/lib/zeek/policy \
-             /var/lib/zeek/spool \
-             /var/lib/zeek/logs \
-             /var/lib/zeek/scripts\
-             /var/lib/zeek/etc
-         cp -r ${cfg.package}/share/zeekctl/scripts/* /var/lib/zeek/scripts/
-     fi
-     ln -sf ${nodeConf} /var/lib/zeek/etc/node.cfg
-     ln -sf ${networkConf} /var/lib/zeek/etc/networks.cfg
-    ${optionalString (cfg.privateScript != null)
-      "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
-     }
+
   '';
 in
 {
@@ -95,7 +76,7 @@ in
       type = types.str;
     };
 
-    listenAddress = mkOption {
+    host = mkOption {
       description = "Zeek listen address.";
       default = "localhost";
       type = types.str;
@@ -121,31 +102,40 @@ in
       type = types.str;
     };
 
-    extraConfig = mkOption {
+    node = mkOption {
       type = types.lines;
-      default = ClusterConfig;
+      default = "";
       description = "Zeek cluster configuration.";
     };
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
     systemd.services.zeek = {
       description = "Zeek Daemon";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-      path = with pkgs;[ cfg.package nettools nettools iputils ];
-      preStart = ''
-        ${pkgs.bash}/bin/bash ${preRun}
+      path = with pkgs;
+        [ "/run/current-system/sw" cfg.package nettools nettools iputils coreutils ];
+
+      script = ''
+        if [[ ! -d "${cfg.dataDir}/logs/current" ]];then
+        mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc}
+        cp -r ${cfg.package}/share/zeekctl/scripts/* ${cfg.dataDir}/scripts/
+        fi
+        ${pkgs.coreutils}/bin/ln -sf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
+        ${pkgs.coreutils}/bin/ln -sf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
+        ${cfg.package}/bin/zeekctl deploy
       '';
+
       serviceConfig = {
-        ExecStart = ''
-          ${pkgs.bash}/bin/bash ${zeek-oneshot}
-        '';
-        ExecStop = "${cfg.package}/bin/zeekctl stop";
+        Type = "oneshot";
         User = "root";
-        PrivateTmp = "yes";
-        PrivateDevices = "yes";
+        RemainAfterExit = true;
+        restartTriggers = [
+          cfg.node
+          cfg.network
+        ];
+        restartIfChanged = true;
       };
     };
   };
