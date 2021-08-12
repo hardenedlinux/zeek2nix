@@ -15,15 +15,7 @@
           standalone = true;
           interface = "eth0";
           listenAddress = "localhost";
-          package = self.packages."${pkgs.system}".zeek-release.override {
-            KafkaPlugin = true;
-            PostgresqlPlugin = true;
-            Http2Plugin = true;
-            CommunityIdPlugin = true;
-            ZipPlugin = true;
-            PdfPlugin = true;
-            SpicyPlugin = true;
-          };
+          package = self.packages."${pkgs.system}".zeek-release.override { };
         };
       };
       testScript = ''
@@ -32,6 +24,7 @@
         machine.wait_for_unit("zeek.service")
         machine.sleep(5)
         print(machine.succeed("ls -il /var/lib/zeek"))
+        print(machine.succeed("ls -il /var/lib/zeek/logs/current"))
       '';
     }
     {

@@ -108,6 +108,11 @@ stdenv.mkDerivation rec {
     for file in $out/share/zeek/policy/misc/trim-trace-file.zeek $out/share/zeek/base/frameworks/logging/postprocessors/scp.zeek $out/share/zeek/base/frameworks/logging/postprocessors/sftp.zeek; do
       substituteInPlace $file --replace "/bin/rm" "${coreutils}/bin/rm"
     done
+    #zeekctl
+    for file in $out/lib/zeek/python/zeekctl/ZeekControl/ssh_runner.py; do
+    substituteInPlace $file \
+      --replace "/bin/echo" "${coreutils}/bin/echo"
+    done
   '';
 
   inherit (plugin) postFixup;

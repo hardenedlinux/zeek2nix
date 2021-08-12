@@ -4,10 +4,10 @@ src.git = "https://github.com/zeek/zeek"
 fetch.github = "zeek/zeek"
 git.fetchSubmodules = true
 
-[vast-broker]
-src.manual= "v1.4.0"
-fetch.github = "zeek/broker"
-git.fetchSubmodules = true
+# [vast-broker]
+# src.manual= "v1.4.0"
+# fetch.github = "zeek/broker"
+# git.fetchSubmodules = true
 
 [zeek-release]
 src.github = "zeek/zeek"

@@ -3,16 +3,11 @@ with lib;
 let
   cfg = config.services.zeek;
   zeek-oneshot = pkgs.writeScript "zeek-oneshot" ''
-     if [ ! -d "/var/lib/zeek/logs/current/stats.log" ];then
-     ${cfg.package}/bin/zeekctl install || true
-     rm -rf ${cfg.dataDir}/logs/current
-     mkdir -p ${cfg.dataDir}/logs/current
-     cd ${cfg.dataDir}/logs/current
-     chown root:root /var/lib/zeek/logs/current
-    ${cfg.dataDir}/scripts/run-zeek -1 -i ${cfg.interface} -U .status -p zeekctl -p zeekctl-live -p standalone -p local -p zeek local.zeek zeekctl zeekctl/standalone zeekctl/auto
-      else
-       cd ${cfg.dataDir}/logs/current
-      ${cfg.dataDir}/scripts/run-zeek -1 -i ${cfg.interface} -U .status -p zeekctl -p zeekctl-live -p standalone -p local -p zeek local.zeek zeekctl zeekctl/standalone zeekctl/auto
+    ${cfg.package}/bin/zeekctl deploy
+    if [ $? -eq 0 ]; then
+    sleep infinity
+    else
+    exit
     fi
   '';
   StandaloneConfig = ''
@@ -45,46 +40,23 @@ let
     interface=eth0
   '';
 
-  NodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then StandaloneConfig else cfg.extraConfig);
-  NetworkConf = pkgs.writeText "networks.cfg" cfg.network;
+  nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then StandaloneConfig else cfg.extraConfig);
+  networkConf = pkgs.writeText "networks.cfg" cfg.network;
 
-  PreShell = pkgs.writeScript "Pre-runZeek" ''
-     if [ ! -d "/var/lib/zeek/logs" ];then
-       mkdir -p  /var/lib/zeek/logs
-      chown root:root /var/lib/zeek/logs
-       fi
-     if [ ! -d "/var/lib/zeek/spool" ];then
-       mkdir -p  /var/lib/zeek/spool
-      chown root:root /var/lib/zeek/spool
-       fi
-     if [ ! -d "/var/lib/zeek/etc" ];then
-       mkdir -p  /var/lib/zeek/etc
-      chown root:root /var/lib/zeek/etc
-       fi
-     if [ ! -d "/var/lib/zeek/scripts" ];then
-       mkdir -p  /var/lib/zeek/scripts
-      chown root:root /var/lib/zeek/scripts
-       fi
-     if [ ! -d "/var/lib/zeek/policy" ];then
-       mkdir -p  /var/lib/zeek/policy
-      chown root:root /var/lib/zeek/policy
-       fi
-
-    ln -sf ${NodeConf} /var/lib/zeek/etc/node.cfg
-    ln -sf ${NetworkConf} /var/lib/zeek/etc/networks.cfg
-    if [ ! -d "/var/lib/zeek/scripts/helpers" ];then
-    cp -r ${cfg.package}/share/zeekctl/scripts/helpers /var/lib/zeek/scripts/
-    cp -r ${cfg.package}/share/zeekctl/scripts/postprocessors /var/lib/zeek/scripts/
-    fi
-    cp -r ${cfg.package}/share/zeek/site/local.zeek /var/lib/zeek/policy
-    for i in  run-zeek crash-diag         expire-logs        post-terminate     run-zeek-on-trace  stats-to-csv        check-config       expire-crash       make-archive-name  run-zeek           set-zeek-path             archive-log        delete-log     send-mail
-    do
-    ln -sf ${cfg.package}/share/zeekctl/scripts/$i /var/lib/zeek/scripts/
-    done
-
-         ${optionalString (cfg.privateScript != null)
-           "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
-          }
+  preRun = pkgs.writeScript "run-zeekctl" ''
+     if [[ ! -d "/var/lib/zeek" ]];then
+         mkdir -p /var/lib/zeek/policy \
+             /var/lib/zeek/spool \
+             /var/lib/zeek/logs \
+             /var/lib/zeek/scripts\
+             /var/lib/zeek/etc
+         cp -r ${cfg.package}/share/zeekctl/scripts/* /var/lib/zeek/scripts/
+     fi
+     ln -sf ${nodeConf} /var/lib/zeek/etc/node.cfg
+     ln -sf ${networkConf} /var/lib/zeek/etc/networks.cfg
+    ${optionalString (cfg.privateScript != null)
+      "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
+     }
   '';
 in
 {
@@ -116,7 +88,6 @@ in
       default = true;
       type = types.bool;
     };
-
 
     interface = mkOption {
       description = "Zeek listen address.";
@@ -166,13 +137,13 @@ in
       wantedBy = [ "multi-user.target" ];
       path = [ cfg.package pkgs.gawk pkgs.gzip ];
       preStart = ''
-        ${pkgs.bash}/bin/bash ${PreShell}
+        ${pkgs.bash}/bin/bash ${preRun}
       '';
       serviceConfig = {
         ExecStart = mkIf cfg.standalone ''
           ${pkgs.bash}/bin/bash ${zeek-oneshot}
         '';
-        ExecStop = "${pkgs.coreutils}/bin/kill -INT $MAINPID";
+        ExecStop = "${cfg.package}/bin/zeekctl stop";
         User = "root";
         PrivateTmp = "yes";
         PrivateDevices = "yes";

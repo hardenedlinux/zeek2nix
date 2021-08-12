@@ -38,6 +38,26 @@
             pkgs = final;
             inherit self;
           });
+
+        zeek-docker = with final; dockerTools.buildImage {
+          name = "zeek-docker";
+          tag = "latest";
+          contents = [
+            zeek-release
+            coreutils
+            zsh
+          ];
+          runAsRoot = ''
+            #!${pkgs.runtimeShell}
+            mkdir -p /var/lib/zeek
+            #Is there need to run the pre-run-zeelctl.sh?
+          '';
+          config = {
+            Cmd = [ "/bin/zeek" ];
+            WorkingDir = "/var/lib/zeek";
+            Volumes = { "/var/lib/zeek" = { }; };
+          };
+        };
       };
     } //
     (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
@@ -61,6 +81,7 @@
             rec {
               zeek-release = pkgs.zeek-release;
               zeek-latest = pkgs.zeek-latest;
+              zeek-docker = pkgs.zeek-docker;
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
             inherit (pkgs.zeek-vm-tests)
               zeek-vm-systemd;
