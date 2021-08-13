@@ -35,16 +35,18 @@ let
 
   nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then standaloneConfig else cfg.node);
   networkConf = pkgs.writeText "networks.cfg" cfg.network;
-
-  preRun = pkgs.writeScript "run-zeekctl" ''
-
-  '';
 in
 {
 
   options.services.zeek = {
     enable = mkOption {
       description = "Whether to enable zeek.";
+      default = false;
+      type = types.bool;
+    };
+
+    sensor = mkOption {
+      description = "Whether to enable zeek sensor mode.";
       default = false;
       type = types.bool;
     };
@@ -98,8 +100,8 @@ in
 
     privateScript = mkOption {
       description = "Zeek load private script path";
-      default = "";
-      type = types.str;
+      default = null;
+      type = types.nullOr types.str;
     };
 
     node = mkOption {
@@ -120,11 +122,18 @@ in
       script = ''
         if [[ ! -d "${cfg.dataDir}/logs/current" ]];then
         mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc}
-        cp -r ${cfg.package}/share/zeekctl/scripts/* ${cfg.dataDir}/scripts/
         fi
+        for file in ${cfg.package}/share/zeekctl/scripts/*; do
+        cp -rf $file ${cfg.dataDir}/scripts/.
+        done
         ${pkgs.coreutils}/bin/ln -sf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         ${pkgs.coreutils}/bin/ln -sf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
-        ${cfg.package}/bin/zeekctl deploy
+        ${optionalString (cfg.privateScript != null)
+          "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
+         }
+        ${optionalString (cfg.sensor != true)''
+          ${cfg.package}/bin/zeekctl deploy
+         ''}
       '';
 
       serviceConfig = {
