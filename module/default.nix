@@ -29,11 +29,11 @@ let
 
     [worker-2]
     type=worker
-    host=localhost
+    host=<remotehost>
     interface=eth0
   '';
 
-  nodeConf = pkgs.writeText "node.cfg" (if cfg.standalone then standaloneConfig else cfg.node);
+  nodeConf = pkgs.writeText "node.cfg" (if cfg.node == null then standaloneConfig else cfg.node);
   networkConf = pkgs.writeText "networks.cfg" cfg.network;
 in
 {
@@ -105,8 +105,8 @@ in
     };
 
     node = mkOption {
-      type = types.lines;
-      default = "";
+      type = types.nullOr types.str;
+      default = null;
       description = "Zeek cluster configuration.";
     };
   };
@@ -128,6 +128,7 @@ in
         done
         ${pkgs.coreutils}/bin/ln -sf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         ${pkgs.coreutils}/bin/ln -sf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
+        ${cfg.package}/bin/zeekctl install
         ${optionalString (cfg.privateScript != null)
           "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
          }
