@@ -27,7 +27,6 @@
 , llvmPackages
 , ninja
 , which
-, geoip
 , ccache
 , libzip
 , podofo
@@ -59,10 +58,6 @@ let
 in
 stdenv.mkDerivation rec {
   inherit (zeek-sources.zeek-release) src pname version;
-
-  configureFlags = [
-    "--with-geoip=${geoip}"
-  ];
 
   ##for spicy ccache
   HOME = ".";

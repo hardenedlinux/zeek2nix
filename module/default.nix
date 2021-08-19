@@ -112,12 +112,29 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    security.wrappers = {
+      zeek = {
+        source = "${cfg.package}/bin/zeek";
+        capabilities = "cap_net_raw,cap_net_admin+eip";
+      };
+      zeekctl = {
+        source = "${cfg.package}/bin/zeekctl";
+        capabilities = "cap_net_raw,cap_net_admin+eip";
+      };
+    };
+
+    users.users.zeek = { isSystemUser = true; group = "zeek"; };
+
+    users.groups.zeek = { };
+
     systemd.services.zeek = {
       description = "Zeek Daemon";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       path = with pkgs;
-        [ "/run/current-system/sw" cfg.package nettools nettools iputils coreutils ];
+        [ "/run/current-system/sw" "/run/wrappers/bin/" nettools nettools iputils coreutils ];
+
 
       script = ''
         if [[ ! -d "${cfg.dataDir}/logs/current" ]];then
@@ -128,19 +145,26 @@ in
         done
         ${pkgs.coreutils}/bin/ln -sf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         ${pkgs.coreutils}/bin/ln -sf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
-        ${cfg.package}/bin/zeekctl install
+        /run/wrappers/bin/zeekctl install
         ${optionalString (cfg.privateScript != null)
           "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
          }
         ${optionalString (cfg.sensor != true)''
-          ${cfg.package}/bin/zeekctl deploy
+          /run/wrappers/bin/zeekctl deploy
          ''}
       '';
 
       serviceConfig = {
         Type = "oneshot";
-        User = "root";
+        User = if cfg.standalone then "zeek" else "root";
+        Group = if cfg.standalone then "zeek" else "root";
+        WorkingDirectory = "${cfg.dataDir}";
+        ReadWritePaths = "${cfg.dataDir}";
+        RuntimeDirectory = "zeek";
+        CacheDirectory = "zeek";
+        StateDirectory = "zeek";
         RemainAfterExit = true;
+
         restartTriggers = [
           cfg.node
           cfg.network
