@@ -143,8 +143,8 @@ in
         for file in ${cfg.package}/share/zeekctl/scripts/*; do
         cp -rf $file ${cfg.dataDir}/scripts/.
         done
-        ${pkgs.coreutils}/bin/ln -sf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
-        ${pkgs.coreutils}/bin/ln -sf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
+        cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
+        cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
         /run/wrappers/bin/zeekctl install
         ${optionalString (cfg.privateScript != null)
           "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
