@@ -32,28 +32,41 @@
 , podofo
 , makeWrapper
 , git
-, PostgresqlPlugin ? false
-, KafkaPlugin ? false
-, Http2Plugin ? false
-, SpicyPlugin ? false
-, Ikev2Plugin ? false
-, CommunityIdPlugin ? false
-, ZipPlugin ? false
-, PdfPlugin ? false
+, linuxHeaders
+, postgresqlPlugin ? false
+, kafkaPlugin ? false
+, http2Plugin ? false
+, spicyPlugin ? false
+, ikev2Plugin ? false
+, af_packetPlugin ? false
+, communityIdPlugin ? false
+, zipPlugin ? false
+, pdfPlugin ? false
 , zeekctl ? true
 , zeek-sources
 , spicy-sources
-}:
+, confDir ? "/var/lib/zeek"
+}@args:
 let
   preConfigure = (import ./script.nix { });
   pname = "zeek";
-  confdir = "/var/lib/${pname}";
 
   plugin = callPackage ./plugin.nix {
-    inherit confdir zeekctl llvmPackages pkgs zeek-sources spicy-sources
-      PostgresqlPlugin ZipPlugin PdfPlugin CommunityIdPlugin KafkaPlugin Http2Plugin
-      SpicyPlugin
-      Ikev2Plugin;
+    inherit
+      llvmPackages
+      linuxHeaders
+      confDir
+      zeekctl
+      af_packetPlugin
+      postgresqlPlugin
+      zipPlugin
+      pdfPlugin
+      communityIdPlugin
+      kafkaPlugin
+      http2Plugin
+      spicyPlugin
+      ikev2Plugin
+      args;
   };
 in
 stdenv.mkDerivation rec {
@@ -63,19 +76,22 @@ stdenv.mkDerivation rec {
   HOME = ".";
 
   nativeBuildInputs = [ cmake flex bison file makeWrapper ]
-    ++ lib.optionals SpicyPlugin [ python38 ];
+    ++ lib.optionals spicyPlugin [ python38 ]
+    ++ lib.optionals af_packetPlugin
+    [ linuxHeaders ];
+
   buildInputs = [ openssl libpcap zlib curl libmaxminddb gperftools python38 swig caf ncurses5 ]
-    ++ lib.optionals KafkaPlugin
+    ++ lib.optionals kafkaPlugin
     [ rdkafka ]
-    ++ lib.optionals PostgresqlPlugin
+    ++ lib.optionals postgresqlPlugin
     [ postgresql ]
-    ++ lib.optionals ZipPlugin
+    ++ lib.optionals zipPlugin
     [ libzip ]
-    ++ lib.optionals PdfPlugin
+    ++ lib.optionals pdfPlugin
     [ podofo ]
-    ++ lib.optionals Http2Plugin
+    ++ lib.optionals http2Plugin
     [ libnghttp2 brotli ]
-    ++ lib.optionals SpicyPlugin
+    ++ lib.optionals spicyPlugin
     [ which ccache llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm ninja git ];
 
   ZEEK_DIST = "${placeholder "out"}";
@@ -112,11 +128,12 @@ stdenv.mkDerivation rec {
 
   inherit (plugin) postFixup;
 
-  meta = with lib; {
-    description = "Powerful network analysis framework much different from a typical IDS";
-    homepage = "https://www.zeek.org";
-    license = licenses.bsd3;
-    #maintainers = with maintainers; [ gtrunsec ];
-    platforms = platforms.unix;
-  };
+  meta = with lib;
+    {
+      description = "Powerful network analysis framework much different from a typical IDS";
+      homepage = "https://www.zeek.org";
+      license = licenses.bsd3;
+      #maintainers = with maintainers; [ gtrunsec ];
+      platforms = platforms.unix;
+    };
 }

@@ -14,6 +14,14 @@ src.github = "zeek/zeek"
 fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
 src.prefix = "v"
 
+[zeek-plugin-af_packet]
+src.git = "https://github.com/J-Gras/zeek-af_packet-plugin"
+fetch.github = "J-Gras/zeek-af_packet-plugin"
+
+[zeek-ja3]
+src.git = "https://github.com/salesforce/ja3"
+fetch.github = "salesforce/ja3"
+
 [zeek-plugin-pdf]
 src.git = "https://github.com/reservoirlabs/zeek-pdf-analyzer"
 fetch.github = "reservoirlabs/zeek-pdf-analyzer"

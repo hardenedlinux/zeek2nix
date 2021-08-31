@@ -1,4 +1,4 @@
-{ llvmPackages }:
+{ llvmPackages, linuxHeaders }:
 ''
 
 install_plugin(){
@@ -16,11 +16,11 @@ install_plugin(){
     # intenrel spicy plugin
     fi
 
-    if [ $name == 'zeek-plugin-kafka' ] || [ $name == 'zeek-plugin-ikev2' ]; then
-      export PATH="$out/bin:$PATH"
-      ./configure --bro-dist=$ZEEK_SRC
-      make -j $NIX_BUILD_CORES && make install
-    fi
+    # if [ $name == 'zeek-plugin-kafka' ] || [ $name == 'zeek-plugin-ikev2' ]; then
+    #   export PATH="$out/bin:$PATH"
+    #   ./configure --ze-dist=$ZEEK_SRC
+    #   make -j $NIX_BUILD_CORES && make install
+    # fi
 
     if [ $name == 'zeek-plugin-community-id' ]; then
     ./configure --zeek-dist=$ZEEK_SRC
@@ -28,7 +28,17 @@ install_plugin(){
     make -j $NIX_BUILD_CORES && make install
     fi
 
-    if [ $name == 'zeek-plugin-postgresql' ] || [ $name == 'zeek-plugin-http2' ] || [ $name == 'zeek-plugin-zip' ] || [ $name == 'zeek-plugin-pdf' ]; then
+    if [ $name == 'zeek-plugin-af_packet' ]; then
+    ./configure --zeek-dist=$ZEEK_SRC --with-kernel=${linuxHeaders}
+    cd build
+    make -j $NIX_BUILD_CORES && make install
+    fi
+
+    if [ $name == 'zeek-plugin-postgresql' ] \
+    || [ $name == 'zeek-plugin-http2' ] \
+    || [ $name == 'zeek-plugin-zip' ] \
+    || [ $name == 'zeek-plugin-kafka' ] \
+    || [ $name == 'zeek-plugin-pdf' ]; then
     ./configure --zeek-dist=$ZEEK_SRC
     make -j $NIX_BUILD_CORES && make install
     fi

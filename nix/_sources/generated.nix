@@ -15,26 +15,50 @@
   };
   spicy-analyzers = {
     pname = "spicy-analyzers";
-    version = "2f421c7d3e14f013e0f984e9f6a5e904cdb195e0";
+    version = "109f048a48175a66d36240f2b4e53633446d6f65";
     src = fetchgit {
       url = "https://github.com/zeek/spicy-analyzers";
-      rev = "2f421c7d3e14f013e0f984e9f6a5e904cdb195e0";
+      rev = "109f048a48175a66d36240f2b4e53633446d6f65";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0sdz4w7cjc1gl8zgmdv2jj55xrjkrg0vaf4xrq5sbpzg499nyqrx";
+      sha256 = "1v0hr05n9l67yfvrwyq71d9fi3sk8x89lhm4jjpk6wfjpa61aj8g";
+    };
+  };
+  zeek-ja3 = {
+    pname = "zeek-ja3";
+    version = "1ea6f1dee4e2668d376905c5443b835bca5d2fd7";
+    src = fetchgit {
+      url = "https://github.com/salesforce/ja3";
+      rev = "1ea6f1dee4e2668d376905c5443b835bca5d2fd7";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "0985vq0aqy8ld66hi1p822qfalc6bn4vs06ykl8dhmvl028rpykm";
     };
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "8d9b06a12e837cb70c8743dc100210fabd78859d";
+    version = "fda1b1db681330b23af41a3199945f59d161f71d";
     src = fetchgit {
       url = "https://github.com/zeek/zeek";
-      rev = "8d9b06a12e837cb70c8743dc100210fabd78859d";
+      rev = "fda1b1db681330b23af41a3199945f59d161f71d";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "15xdv0wvh1npw5862qjf2bmnsb7qgvhnciwzi95xkd8iiwz1mizn";
+      sha256 = "1niqmjm1559sxj6vr2p11xfayfh76yjs0pss71idymi13pl5dp5n";
+    };
+  };
+  zeek-plugin-af_packet = {
+    pname = "zeek-plugin-af_packet";
+    version = "e3ec2d94951a86d5e913f42559f459a53831b2a7";
+    src = fetchgit {
+      url = "https://github.com/J-Gras/zeek-af_packet-plugin";
+      rev = "e3ec2d94951a86d5e913f42559f459a53831b2a7";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "0fi6nymmaahbbfcxag5y4y4ldglm64h165v3d5hr7fvsln6k16ah";
     };
   };
   zeek-plugin-community-id = {

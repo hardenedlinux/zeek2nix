@@ -20,14 +20,15 @@
       overlay = final: prev: {
         zeek-release = prev.callPackage ./nix {
           llvmPackages = prev.llvmPackages_latest;
-          KafkaPlugin = true;
-          PostgresqlPlugin = true;
-          Http2Plugin = false; #4.1.0
-          Ikev2Plugin = false; #failed Cannot determine Bro source directory, use --bro-dist=DIR.
-          CommunityIdPlugin = true;
-          ZipPlugin = false; #4.1.0
-          PdfPlugin = false; #4.1.0
-          SpicyPlugin = true;
+          kafkaPlugin = true;
+          af_packetPlugin = true;
+          postgresqlPlugin = true;
+          http2Plugin = false; #4.1.0
+          ikev2Plugin = false; #failed Cannot determine Bro source directory, use --bro-dist=DIR.
+          communityIdPlugin = true;
+          zipPlugin = false; #4.1.0
+          pdfPlugin = false; #4.1.0
+          spicyPlugin = true;
         };
         zeek-latest = (final.zeek-release.overrideAttrs (old: rec {
           inherit (final.zeek-sources.zeek-latest) src pname version;

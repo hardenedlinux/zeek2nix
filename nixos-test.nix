@@ -60,7 +60,10 @@
             self.packages."${pkgs.system}".zeek-release
           ];
 
-          virtualisation.memorySize = 4046;
+          virtualisation = {
+            memorySize = 4046;
+            cores = 4;
+          };
 
           services.openssh = {
             enable = true;
@@ -107,12 +110,18 @@
               [worker-1]
               type=worker
               host=${host}
-              interface=${interface}
+              interface=af_packet::${interface}
+              lb_method=custom
+              lb_procs=4
+              pin_cpus=0,1,2,3,4
 
               [worker-2]
               type=worker
               host=192.168.1.2
-              interface=${interface}
+              interface=af_packet::${interface}
+              lb_method=custom
+              lb_procs=4
+              pin_cpus=0,1,2,3,4
             '';
             package = self.packages."${pkgs.system}".zeek-release.override { };
           };
@@ -122,6 +131,11 @@
           imports = [
             self.nixosModules.zeek
           ];
+
+          virtualisation = {
+            memorySize = 4046;
+            cores = 4;
+          };
 
           environment.systemPackages = [
             self.packages."${pkgs.system}".zeek-release

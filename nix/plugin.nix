@@ -1,22 +1,19 @@
-{ fetchFromGitHub
-, fetchgit
+{ args
 , llvmPackages
-, writeScript
-, confdir
-, PostgresqlPlugin
-, KafkaPlugin
+, linuxHeaders
+, postgresqlPlugin
+, kafkaPlugin
+, confDir
 , zeekctl
-, Http2Plugin
-, SpicyPlugin
-, Ikev2Plugin
-, CommunityIdPlugin
-, ZipPlugin
-, PdfPlugin
-, pkgs
-, zeek-sources
-, spicy-sources
+, http2Plugin
+, spicyPlugin
+, ikev2Plugin
+, af_packetPlugin
+, communityIdPlugin
+, zipPlugin
+, pdfPlugin
 }:
-with pkgs;
+with args.pkgs;
 rec {
   ##failed spicy plugin
   Spicy = runCommand "spciy-patch"
@@ -32,49 +29,54 @@ rec {
       cp -r patch-dir/. $out
     '';
 
-  install_plugin = writeScript "install_plugin" (import ./install_plugin.nix {
-    inherit llvmPackages;
+  install_plugin = pkgs.writeScript "install_plugin" (import ./install_plugin.nix {
+    inherit llvmPackages linuxHeaders;
   });
 
   postFixup = (if zeekctl then ''
     substituteInPlace $out/etc/zeekctl.cfg \
-    --replace "CfgDir = $out/etc" "CfgDir = ${confdir}/etc" \
-    --replace "SpoolDir = $out/spool" "SpoolDir = ${confdir}/spool" \
-    --replace "LogDir = $out/logs" "LogDir = ${confdir}/logs"
+    --replace "CfgDir = $out/etc" "CfgDir = ${confDir}/etc" \
+    --replace "SpoolDir = $out/spool" "SpoolDir = ${confDir}/spool" \
+    --replace "LogDir = $out/logs" "LogDir = ${confDir}/logs"
 
 
-    echo "scriptsdir = ${confdir}/scripts" >> $out/etc/zeekctl.cfg
-    echo "helperdir = ${confdir}/scripts/helpers" >> $out/etc/zeekctl.cfg
-    echo "postprocdir = ${confdir}/scripts/postprocessors" >> $out/etc/zeekctl.cfg
-    echo "sitepolicypath = ${confdir}/policy" >> $out/etc/zeekctl.cfg
+    echo "scriptsdir = ${confDir}/scripts" >> $out/etc/zeekctl.cfg
+    echo "helperdir = ${confDir}/scripts/helpers" >> $out/etc/zeekctl.cfg
+    echo "postprocdir = ${confDir}/scripts/postprocessors" >> $out/etc/zeekctl.cfg
+    echo "sitepolicypath = ${confDir}/policy" >> $out/etc/zeekctl.cfg
     ## default disable sendmail
     echo "sendmail=" >> $out/etc/zeekctl.cfg
   '' else "") +
-  (if CommunityIdPlugin then ''
+  (if communityIdPlugin then ''
       ##INSTALL ZEEK Plugins
     bash ${install_plugin} zeek-plugin-community-id ${zeek-sources.zeek-plugin-community-id.src}
   '' else "") +
-  (if PdfPlugin then ''
+  (if af_packetPlugin then ''
+      ##INSTALL ZEEK Plugins
+
+    bash ${install_plugin} zeek-plugin-af_packet ${zeek-sources.zeek-plugin-af_packet.src}
+  '' else "") +
+  (if pdfPlugin then ''
       ##INSTALL ZEEK Plugins
     bash ${install_plugin} zeek-plugin-pdf ${zeek-sources.zeek-plugin-pdf.src}
   '' else "") +
-  (if ZipPlugin then ''
+  (if zipPlugin then ''
       ##INSTALL ZEEK Plugins
     bash ${install_plugin} zeek-plugin-zip ${zeek-sources.zeek-plugin-zip.src}
   '' else "") +
-  (if KafkaPlugin then ''
+  (if kafkaPlugin then ''
       ##INSTALL ZEEK Plugins
     bash ${install_plugin} zeek-plugin-kafka ${zeek-sources.zeek-plugin-kafka.src}
   '' else "") +
-  (if Ikev2Plugin then ''
+  (if ikev2Plugin then ''
       ##INSTALL ZEEK Plugins
     bash ${install_plugin} zeek-plugin-ikev2 ${zeek-sources.zeek-plugin-ikev2.src}
   '' else "") +
-  (if Http2Plugin then ''
+  (if http2Plugin then ''
       ##INSTALL ZEEK Plugins
     bash ${install_plugin} zeek-plugin-http2 ${zeek-sources.zeek-plugin-http2.src}
   '' else "") +
-  (if SpicyPlugin then ''
+  (if spicyPlugin then ''
     mkdir -p /build/spicy
     cp -r ${Spicy}/* /build/spicy
     chmod 755  /build/spicy/*
@@ -88,7 +90,7 @@ rec {
         --set LIBRARY_PATH    "${lib.makeLibraryPath [ flex bison python38 zlib glibc llvmPackages.libclang llvmPackages.libcxxabi llvmPackages.libcxx ]}"
      done
   '' else "") +
-  (if PostgresqlPlugin then ''
+  (if postgresqlPlugin then ''
     bash ${install_plugin} zeek-plugin-postgresql ${zeek-sources.zeek-plugin-postgresql.src}
   '' else "");
 }
