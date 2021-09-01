@@ -51,14 +51,14 @@
   };
   zeek-plugin-af_packet = {
     pname = "zeek-plugin-af_packet";
-    version = "e3ec2d94951a86d5e913f42559f459a53831b2a7";
+    version = "93934b0cc865211662342f495ea247df9a37d141";
     src = fetchgit {
       url = "https://github.com/J-Gras/zeek-af_packet-plugin";
-      rev = "e3ec2d94951a86d5e913f42559f459a53831b2a7";
+      rev = "93934b0cc865211662342f495ea247df9a37d141";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0fi6nymmaahbbfcxag5y4y4ldglm64h165v3d5hr7fvsln6k16ah";
+      sha256 = "08qkzxd1xbmavwb76r7sgql790xyvsqcms58wcr34yymdlcpmmkn";
     };
   };
   zeek-plugin-community-id = {
