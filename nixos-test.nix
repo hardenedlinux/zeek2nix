@@ -112,16 +112,16 @@
               host=${host}
               interface=af_packet::${interface}
               lb_method=custom
-              lb_procs=4
-              pin_cpus=0,1,2,3,4
+              lb_procs=2
+              pin_cpus=0,1,2
 
               [worker-2]
               type=worker
               host=192.168.1.2
               interface=af_packet::${interface}
               lb_method=custom
-              lb_procs=4
-              pin_cpus=0,1,2,3,4
+              lb_procs=2
+              pin_cpus=0,1,2
             '';
             package = self.packages."${pkgs.system}".zeek-release.override { };
           };

@@ -49,14 +49,13 @@ nix-shell
                 interface = "eno1";
                 listenAddress = "localhost";
                 package = pkgs.zeek.override {
-                  KafkaPlugin = true;
-                  PostgresqlPlugin = true;
-                  Http2Plugin = true;
-                  Ikev2Plugin = true;
-                  CommunityIdPlugin = true;
-                  ZipPlugin = true;
-                  PdfPlugin = true;
-                  SpicyPlugin = true;
+                  plugins = [
+                    "zeek-plugin-kafka"
+                    "zeek-plugin-spicy"
+                    "zeek-plugin-community-id"
+                    "zeek-plugin-af_packet"
+                    "zeek-plugin-postgresql"
+                  ];
                 };
                 privateScript = ''
                   @load /home/gtrun/project/hardenedlinux-zeek-script/scripts/zeek-query.zeek
@@ -113,47 +112,3 @@ cachix use zeek
 #+end_src
 
 #+RESULTS:
-#+begin_example
-_Zeek::Spicy - Support for Spicy parsers (*.spicy, *.evt, *.hlto) (dynamic, version 0.99.3)
-    [Analyzer] spicy_DHCP (ANALYZER_SPICY_DHCP, enabled)
-    [Analyzer] spicy_DNS (ANALYZER_SPICY_DNS, enabled)
-    [Analyzer] spicy_HTTP (ANALYZER_SPICY_HTTP, enabled)
-    [Analyzer] spicy_OpenVPN_TCP (ANALYZER_SPICY_OPENVPN_TCP, enabled)
-    [Analyzer] spicy_OpenVPN_TCP_HMAC (ANALYZER_SPICY_OPENVPN_TCP_HMAC, enabled)
-    [Analyzer] spicy_OpenVPN_UDP (ANALYZER_SPICY_OPENVPN_UDP, enabled)
-    [Analyzer] spicy_OpenVPN_UDP_HMAC (ANALYZER_SPICY_OPENVPN_UDP_HMAC, enabled)
-    [File Analyzer] spicy_PE (ANALYZER_SPICY_PE)
-    [File Analyzer] spicy_PNG (ANALYZER_SPICY_PNG)
-    [Analyzer] spicy_TFTP (ANALYZER_SPICY_TFTP, enabled)
-    [Analyzer] spicy_Wireguard (ANALYZER_SPICY_WIREGUARD, enabled)
-    [Analyzer] spicy_ipsec_ike_udp (ANALYZER_SPICY_IPSEC_IKE_UDP, enabled)
-    [Analyzer] spicy_ipsec_tcp (ANALYZER_SPICY_IPSEC_TCP, enabled)
-    [Analyzer] spicy_ipsec_udp (ANALYZER_SPICY_IPSEC_UDP, enabled)
-    [Constant] Spicy::codegen_debug
-    [Constant] Spicy::debug
-    [Constant] Spicy::debug_addl
-    [Constant] Spicy::dump_code
-    [Constant] Spicy::optimize
-    [Constant] Spicy::report_times
-    [Constant] Spicy::skip_validation
-    [Constant] Spicy::enable_print
-    [Constant] Spicy::abort_on_exceptions
-    [Constant] Spicy::show_backtraces
-    [Function] Spicy::__toggle_analyzer
-    Implements LoadFile (priority 0)
-
-#+end_example
-
-
-* Support Zeek pluigns list
-- check pluigns info
-
-
-#+begin_src sh :async t :exports both :results code
-echo $(./result/bin/zeek -N)
-#+end_src
-
-#+RESULTS:
-#+begin_src sh
-Zeek::ARP - ARP packet analyzer (built-in) Zeek::AsciiReader - ASCII input reader (built-in) Zeek::AsciiWriter - ASCII log writer (built-in) Zeek::AYIYA - AYIYA Analyzer (built-in) Zeek::BenchmarkReader - Benchmark input reader (built-in) Zeek::BinaryReader - Binary input reader (built-in) Zeek::BitTorrent - BitTorrent Analyzer (built-in) Zeek::ConfigReader - Configuration file input reader (built-in) Zeek::ConnSize - Connection size analyzer (built-in) Zeek::DCE_RPC - DCE-RPC analyzer (built-in) Zeek::DHCP - DHCP analyzer (built-in) Zeek::DNP3 - DNP3 UDP/TCP analyzers (built-in) Zeek::DNS - DNS analyzer (built-in) Zeek::Ethernet - Ethernet packet analyzer (built-in) Zeek::FDDI - FDDI packet analyzer (built-in) Zeek::File - Generic file analyzer (built-in) Zeek::FileDataEvent - Delivers file content (built-in) Zeek::FileEntropy - Entropy test file content (built-in) Zeek::FileExtract - Extract file content (built-in) Zeek::FileHash - Hash file content (built-in) Zeek::Finger - Finger analyzer (built-in) Zeek::FTP - FTP analyzer (built-in) Zeek::Gnutella - Gnutella analyzer (built-in) Zeek::GRE - GRE packet analyzer (built-in) Zeek::GSSAPI - GSSAPI analyzer (built-in) Zeek::GTPv1 - GTPv1 analyzer (built-in) Zeek::HTTP - HTTP analyzer (built-in) Zeek::ICMP - ICMP analyzer (built-in) Zeek::Ident - Ident analyzer (built-in) Zeek::IEEE802_11 - IEEE 802.11 packet analyzer (built-in) Zeek::IEEE802_11_Radio - IEEE 802.11 Radiotap packet analyzer (built-in) Zeek::IMAP - IMAP analyzer (StartTLS only) (built-in) Zeek::IP - Packet analyzer for IP fallback (v4 or v6) (built-in) Zeek::IPTunnel - IPTunnel packet analyzer (built-in) Zeek::IRC - IRC analyzer (built-in) Zeek::KRB - Kerberos analyzer (built-in) Zeek::LinuxSLL - Linux cooked capture (SLL) packet analyzer (built-in) Zeek::Login - Telnet/Rsh/Rlogin analyzers (built-in) Zeek::MIME - MIME parsing (built-in) Zeek::Modbus - Modbus analyzer (built-in) Zeek::MPLS - MPLS packet analyzer (built-in) Zeek::MQTT - Message Queuing Telemetry Transport v3.1.1 Protocol analyzer (built-in) Zeek::MySQL - MySQL analyzer (built-in) Zeek::NCP - NCP analyzer (built-in) Zeek::NetBIOS - NetBIOS analyzer support (built-in) Zeek::NFLog - NFLog packet analyzer (built-in) Zeek::NoneWriter - None log writer (primarily for debugging) (built-in) Zeek::NTLM - NTLM analyzer (built-in) Zeek::NTP - NTP analyzer (built-in) Zeek::Null - Null packet analyzer (built-in) Zeek::Pcap - Packet acquisition via libpcap (built-in) Zeek::PE - Portable Executable analyzer (built-in) Zeek::PIA - Analyzers implementing Dynamic Protocol (built-in) Zeek::POP3 - POP3 analyzer (built-in) Zeek::PPPoE - PPPoE packet analyzer (built-in) Zeek::PPPSerial - PPPSerial packet analyzer (built-in) Zeek::RADIUS - RADIUS analyzer (built-in) Zeek::RawReader - Raw input reader (built-in) Zeek::RDP - RDP analyzer (built-in) Zeek::RFB - Parser for rfb (VNC) analyzer (built-in) Zeek::Root - Root packet analyzer (built-in) Zeek::RPC - Analyzers for RPC-based protocols (built-in) Zeek::SIP - SIP analyzer UDP-only (built-in) Zeek::Skip - Skip packet analyzer (built-in) Zeek::SMB - SMB analyzer (built-in) Zeek::SMTP - SMTP analyzer (built-in) Zeek::SNMP - SNMP analyzer (built-in) Zeek::SOCKS - SOCKS analyzer (built-in) Zeek::SQLiteReader - SQLite input reader (built-in) Zeek::SQLiteWriter - SQLite log writer (built-in) Zeek::SSH - Secure Shell analyzer (built-in) Zeek::SSL - SSL/TLS and DTLS analyzers (built-in) Zeek::SteppingStone - Stepping stone analyzer (built-in) Zeek::Syslog - Syslog analyzer UDP-only (built-in) Zeek::TCP - TCP analyzer (built-in) Zeek::Teredo - Teredo analyzer (built-in) Zeek::UDP - UDP Analyzer (built-in) Zeek::Unified2 - Analyze Unified2 alert files. (built-in) Zeek::VLAN - VLAN packet analyzer (built-in) Zeek::VXLAN - VXLAN analyzer (built-in) Zeek::X509 - X509 and OCSP analyzer (built-in) Zeek::XMPP - XMPP analyzer (StartTLS only) (built-in) Zeek::ZIP - Generic ZIP support analyzer (built-in) _Zeek::Spicy - Support for Spicy parsers (*.spicy, *.evt, *.hlto) (dynamic, version 0.0.0) Corelight::CommunityID - "Community ID" flow hash support in the connection log (dynamic, version 1.1.0) Johanna::PostgreSQL - PostgreSQL log writer and input reader (dynamic, version 0.2.0) mitrecnd::HTTP2 - Hypertext Transfer Protocol Version 2 analyzer (dynamic, version 0.5.3) Zeek::PDF - a PDF file analyzer for Zeek (dynamic, version 1.0.0) Zeek::ZIP - a ZIP file analyzer for Zeek (dynamic, version 1.0.0)
-#+end_src

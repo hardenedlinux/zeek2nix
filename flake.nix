@@ -20,15 +20,13 @@
       overlay = final: prev: {
         zeek-release = prev.callPackage ./nix {
           llvmPackages = prev.llvmPackages_latest;
-          kafkaPlugin = true;
-          af_packetPlugin = true;
-          postgresqlPlugin = true;
-          http2Plugin = false; #4.1.0
-          ikev2Plugin = false; #failed Cannot determine Bro source directory, use --bro-dist=DIR.
-          communityIdPlugin = true;
-          zipPlugin = false; #4.1.0
-          pdfPlugin = false; #4.1.0
-          spicyPlugin = true;
+          plugins = [
+            "zeek-plugin-kafka"
+            "zeek-plugin-spicy" #FIXME: failed with unknown error
+            "zeek-plugin-community-id"
+            "zeek-plugin-af_packet"
+            "zeek-plugin-postgresql"
+          ];
         };
         zeek-latest = (final.zeek-release.overrideAttrs (old: rec {
           inherit (final.zeek-sources.zeek-latest) src pname version;
