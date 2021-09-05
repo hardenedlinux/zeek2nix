@@ -12,7 +12,6 @@
 , libmaxminddb
 , gperftools
 , swig
-, fetchpatch
 , ncurses5
 , caf
   ## Plugin dependencies
@@ -20,17 +19,12 @@
 , rdkafka
 , postgresql
 , coreutils
-, callPackage
 , libnghttp2
 , brotli
 , python38
 , llvmPackages
-, which
-, ccache
 , libzip
 , podofo
-, makeWrapper
-, git
 , linuxHeaders
 , zeek-sources
 , spicy-latest
@@ -45,10 +39,11 @@ let
   preConfigure = (import ./script.nix { });
   pname = "zeek";
 
-  plugin = callPackage ./plugin.nix {
+  plugin = import ./plugin.nix {
     inherit
       plugins
       linuxHeaders
+      llvmPackages
       confDir
       zeekctl
       checkPlugin
@@ -62,7 +57,7 @@ stdenv.mkDerivation rec {
   ##for spicy ccache
   HOME = ".";
 
-  nativeBuildInputs = [ cmake flex bison file makeWrapper ]
+  nativeBuildInputs = [ cmake flex bison file ]
     ++ lib.optionals (checkPlugin "zeek-plugin-spicy") [ python38 ]
     ++ lib.optionals (checkPlugin "zeek-plugin-af_packet")
     [ linuxHeaders ];
@@ -117,7 +112,6 @@ stdenv.mkDerivation rec {
     ''
       ln -s  ${spicy-latest}/bin/* $out/bin
     '' else "");
-
 
   inherit (plugin) postFixup;
 

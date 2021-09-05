@@ -1,5 +1,6 @@
 { args
 , linuxHeaders
+, llvmPackages
 , confDir
 , zeekctl
 , plugins
@@ -8,7 +9,7 @@
 with args.pkgs;
 rec {
   install_plugin = pkgs.writeScript "install_plugin" (import ./install_plugin.nix {
-    inherit linuxHeaders;
+    inherit linuxHeaders llvmPackages;
   });
 
   pluginsScript = lib.concatStringsSep "\n" (map (f: "bash ${install_plugin} ${f} ${zeek-sources.${f}.src}") plugins);
