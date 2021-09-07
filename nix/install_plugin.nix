@@ -1,4 +1,4 @@
-{ llvmPackages, linuxHeaders }:
+{ llvmPackages, linuxHeaders, confDir }:
 ''
 
 install_plugin(){
@@ -12,7 +12,9 @@ install_plugin(){
     export PATH="$out/bin:$PATH"
     mkdir build && cd build
     export NIX_CFLAGS_LINK="$NIX_CFLAGS_LINK -ldl"
-    cmake -DCMAKE_CXX_COMPILER=${llvmPackages.clang}/bin/clang++ -DCMAKE_C_COMPILER=${llvmPackages.clang}/bin/clang -DCMAKE_INSTALL_PREFIX=$out .. && make -j $NIX_BUILD_CORES && make install
+    cmake -DCMAKE_CXX_COMPILER=${llvmPackages.clang}/bin/clang++ -DCMAKE_C_COMPILER=${llvmPackages.clang}/bin/clang \
+    -DCMAKE_INSTALL_PREFIX=$out .. && make -j $NIX_BUILD_CORES \
+     && cd .. && make -C build install
     # intenrel spicy plugin
     fi
 

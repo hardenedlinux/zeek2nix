@@ -9,7 +9,7 @@
 with args.pkgs;
 rec {
   install_plugin = pkgs.writeScript "install_plugin" (import ./install_plugin.nix {
-    inherit linuxHeaders llvmPackages;
+    inherit linuxHeaders llvmPackages confDir;
   });
 
   pluginsScript = lib.concatStringsSep "\n" (map (f: "bash ${install_plugin} ${f} ${zeek-sources.${f}.src}") plugins);

@@ -98,10 +98,15 @@ in
       type = types.lines;
     };
 
-    privateScript = mkOption {
+    privateScripts = mkOption {
       description = "Zeek load private script path";
       default = null;
       type = types.nullOr types.str;
+    };
+
+    privateSpicyScripts = mkOption {
+      description = "Zeek load private Spicy *.htl";
+      default = [ ];
     };
 
     node = mkOption {
@@ -138,7 +143,7 @@ in
 
       script = ''
         if [[ ! -d "${cfg.dataDir}/logs/current" ]];then
-        mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc}
+        mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc,zeek-spicy/modules}
         fi
         for file in ${cfg.package}/share/zeekctl/scripts/*; do
         cp -rf $file ${cfg.dataDir}/scripts/.
@@ -146,8 +151,11 @@ in
         cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
         /run/wrappers/bin/zeekctl install
-        ${optionalString (cfg.privateScript != null)
-          "echo \"${cfg.privateScript}\" >> ${cfg.dataDir}/policy/local.zeek"
+        ${optionalString (cfg.privateScripts != null)
+          "echo \"${cfg.privateScripts}\" >> ${cfg.dataDir}/policy/local.zeek"
+         }
+        ${optionalString (cfg.privateSpicyScripts != [])
+          "${lib.concatStringsSep "\n" (map (f: "cp -rf ${f} ${cfg.dataDir}/zeek-spicy/modules") cfg.privateSpicyScripts)}"
          }
         ${optionalString (cfg.sensor != true)''
           /run/wrappers/bin/zeekctl deploy

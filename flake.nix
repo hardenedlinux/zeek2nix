@@ -22,7 +22,7 @@
           llvmPackages = prev.llvmPackages_latest;
           plugins = [
             "zeek-plugin-kafka"
-            "zeek-plugin-spicy" #FIXME: failed with unknown error
+            "zeek-plugin-spicy"
             "zeek-plugin-community-id"
             "zeek-plugin-af_packet"
             "zeek-plugin-postgresql"

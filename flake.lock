@@ -186,6 +186,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1627857416,
+        "narHash": "sha256-AV0MsFVzbWI2MZbJ2j0kc8ooFLGSCZHuM9ipaWR9ds4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "aaf9676fbb7fb4570216ca1e189a3dc769d62c45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvfetcher": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -212,9 +228,7 @@
       "inputs": {
         "flake-compat": "flake-compat_4",
         "flake-utils": "flake-utils_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1628690139,
@@ -249,11 +263,11 @@
         "nvfetcher": "nvfetcher_2"
       },
       "locked": {
-        "lastModified": 1630808407,
-        "narHash": "sha256-ilYQmGSJ0Kb51cGg54L9bYFMAW7orBNtniikwRSbuy8=",
+        "lastModified": 1630977648,
+        "narHash": "sha256-HutQkLKUx7m0doF4lOArLxmMt0qRKGIUpv6SJq+sF2E=",
         "owner": "GTrunSec",
         "repo": "spicy2nix",
-        "rev": "efed149ae0907d19cae203bc3dd887faa6d2f9ea",
+        "rev": "2f550e5c53a307082a8698798256fbdbb6b5a36d",
         "type": "github"
       },
       "original": {

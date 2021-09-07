@@ -21,11 +21,14 @@
           interface = "eth0";
           host = "127.0.0.1";
           package = self.packages."${pkgs.system}".zeek-release.override { };
-          privateScript = ''
+          privateScripts = ''
             @load ${./misc/zeek-query.zeek}
 
             @load ${./misc/http_remove.zeek}
           '';
+          #./result/bin/spicyc -j -o misc/my-http.hlto misc/my-http.spicy
+          # FIXME:
+          # privateSpicyScripts = [ ./misc/my-http.hlto ];
         };
       };
       testScript = ''
@@ -35,8 +38,9 @@
         machine.sleep(5)
         print(machine.succeed("ls -il /var/lib/zeek"))
         print(machine.succeed("zeekctl status"))
+        print(machine.succeed("ls -il /var/lib/zeek/zeek-spicy/modules"))
         machine.sleep(5)
-        # for privateScript
+        # for privateScripts
         machine.wait_for_file("/var/lib/zeek/spool/zeek/loaded_scripts.log")
         print(machine.succeed("cat /var/lib/zeek/spool/zeek/loaded_scripts.log | grep 'zeek-query.zeek\|http_remove.zeek'"))
       '';

@@ -27,7 +27,7 @@
 , podofo
 , linuxHeaders
 , zeek-sources
-, spicy-latest
+, spicy-release
 , zeekctl ? true
 , confDir ? "/var/lib/zeek"
 , plugins ? [ ]
@@ -74,7 +74,7 @@ stdenv.mkDerivation rec {
     ++ lib.optionals (checkPlugin "zeek-plugin-http2")
     [ libnghttp2 brotli ]
     ++ lib.optionals (checkPlugin "zeek-plugin-spicy")
-    [ spicy-latest ];
+    [ spicy-release ];
 
   ZEEK_DIST = "${placeholder "out"}";
 
@@ -110,7 +110,7 @@ stdenv.mkDerivation rec {
 
   preFixup = (if checkPlugin "zeek-plugin-spicy" then
     ''
-      ln -s  ${spicy-latest}/bin/* $out/bin
+      ln -s  ${spicy-release}/bin/* $out/bin
     '' else "");
 
   inherit (plugin) postFixup;
