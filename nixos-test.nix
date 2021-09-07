@@ -66,7 +66,7 @@
 
           virtualisation = {
             memorySize = 4046;
-            cores = 4;
+            cores = 2;
           };
 
           services.openssh = {
@@ -138,7 +138,7 @@
 
           virtualisation = {
             memorySize = 4046;
-            cores = 4;
+            cores = 2;
           };
 
           environment.systemPackages = [

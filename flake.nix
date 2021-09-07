@@ -9,6 +9,7 @@
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     devshell-flake = { url = "github:numtide/devshell"; };
     spicy2nix = { url = "github:GTrunSec/spicy2nix"; };
+    nixpkgs-hardenedlinux = { url = "github:hardenedlinux/nixpkgs-hardenedlinux"; };
     nvfetcher = {
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +18,7 @@
 
   outputs = inputs: with builtins; with inputs;
     {
-      overlay = final: prev: {
+      overlay = final: prev: rec {
         zeek-release = prev.callPackage ./nix {
           llvmPackages = prev.llvmPackages_latest;
           plugins = [
@@ -31,6 +32,7 @@
         zeek-latest = (final.zeek-release.overrideAttrs (old: rec {
           inherit (final.zeek-sources.zeek-latest) src pname version;
         }));
+
         zeek-sources = prev.callPackage ./nix/_sources/generated.nix { };
 
         zeek-vm-tests = prev.lib.optionalAttrs prev.stdenv.isLinux (import ./nixos-test.nix
@@ -71,6 +73,7 @@
               devshell-flake.overlay
               nvfetcher.overlay
               spicy2nix.overlay
+              (final: prev: { btest = nixpkgs-hardenedlinux.packages."x86_64-linux".btest; })
             ];
             config = {
               allowUnsupportedSystem = true;
@@ -94,7 +97,10 @@
           };
 
           devShell = with pkgs; devshell.mkShell {
-            packages = [ cachix ];
+            packages = [
+              # zeek-release #debug
+              # btest
+            ];
             commands = [
               {
                 name = "cachix-push";
