@@ -12,7 +12,9 @@ install_plugin(){
     export PATH="$out/bin:$PATH"
     mkdir build && cd build
     export NIX_CFLAGS_LINK="$NIX_CFLAGS_LINK -ldl"
-    cmake -DCMAKE_CXX_COMPILER=${llvmPackages.clang}/bin/clang++ -DCMAKE_C_COMPILER=${llvmPackages.clang}/bin/clang \
+    cmake -DZEEK_DEBUG_BUILD=yes \
+    -DCMAKE_CXX_COMPILER=${llvmPackages.clang}/bin/clang++ \
+    -DCMAKE_C_COMPILER=${llvmPackages.clang}/bin/clang \
     -DCMAKE_INSTALL_PREFIX=$out .. && make -j $NIX_BUILD_CORES \
      && cd .. && make -C build install
     # intenrel spicy plugin
