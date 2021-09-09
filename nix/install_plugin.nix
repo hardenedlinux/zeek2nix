@@ -8,6 +8,12 @@ install_plugin(){
     cp -r $2/* /build/$1/
     cd /build/$name/
 
+    if [ $name == 'spicy' ]; then
+    ./configure --prefix=$out --build-type=Release --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ --with-c-compiler=${llvmPackages.clang}/bin/clang
+    make -j $NIX_BUILD_CORES && make install
+    # intenrel spicy plugin
+    fi
+
     if [[ $name == 'zeek-plugin-spicy' ]]; then
     export PATH="$out/bin:$PATH"
     mkdir build && cd build
@@ -19,12 +25,6 @@ install_plugin(){
      && cd .. && make -C build install
     # intenrel spicy plugin
     fi
-
-    # if [ $name == 'zeek-plugin-kafka' ] || [ $name == 'zeek-plugin-ikev2' ]; then
-    #   export PATH="$out/bin:$PATH"
-    #   ./configure --zeek-dist=$ZEEK_SRC
-    #   make -j $NIX_BUILD_CORES && make install
-    # fi
 
     if [ $name == 'zeek-plugin-community-id' ]; then
     ./configure --zeek-dist=$ZEEK_SRC

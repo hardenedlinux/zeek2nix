@@ -8,13 +8,28 @@
 }:
 with args.pkgs;
 rec {
-  install_plugin = pkgs.writeScript "install_plugin" (import ./install_plugin.nix {
+
+  spicyInZeek = runCommand "patchedSpicy"
+    {
+      inherit (spicy-sources.spicy-release) src;
+      buildInputs = [ python38 ];
+    }
+    ''
+      cp -r $src $out
+      chmod -R +rw $out
+      cat <<EOF > $out/VERSION
+      ${lib.removePrefix "v" spicy-sources.spicy-release.version}-release
+      EOF
+      patchShebangs $out/scripts
+    '';
+
+  install_plugin = pkgs.writeShellScript "install_plugin.sh" (import ./install_plugin.nix {
     inherit linuxHeaders llvmPackages confDir;
   });
 
   pluginsScript = lib.concatStringsSep "\n" (map (f: "bash ${install_plugin} ${f} ${zeek-sources.${f}.src}") plugins);
 
-  postFixup = (if zeekctl then ''
+  preFixup = (if zeekctl then ''
     substituteInPlace $out/etc/zeekctl.cfg \
     --replace "CfgDir = $out/etc" "CfgDir = ${confDir}/etc" \
     --replace "SpoolDir = $out/spool" "SpoolDir = ${confDir}/spool" \
@@ -27,6 +42,8 @@ rec {
     echo "sitepolicypath = ${confDir}/policy" >> $out/etc/zeekctl.cfg
     ## default disable sendmail
     echo "sendmail=" >> $out/etc/zeekctl.cfg
+  '' else "") + (if checkPlugin "zeek-plugin-spicy" then ''
+    ${install_plugin} spicy ${spicyInZeek}
   '' else "") + ''
     ${pluginsScript}
   '';

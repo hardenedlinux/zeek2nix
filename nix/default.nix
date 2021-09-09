@@ -24,10 +24,14 @@
 , python38
 , llvmPackages
 , libzip
+, glibc
+, which
+, makeWrapper
+, git
 , podofo
 , linuxHeaders
 , zeek-sources
-, spicy-release
+, spicy-sources
 , zeekctl ? true
 , confDir ? "/var/lib/zeek"
 , plugins ? [ ]
@@ -37,6 +41,7 @@ let
   checkPlugin = v: (toString (lib.intersectLists [ "${v}" ] plugins)) == v;
 
   preConfigure = (import ./script.nix { });
+
   pname = "zeek";
 
   plugin = import ./plugin.nix {
@@ -74,7 +79,7 @@ stdenv.mkDerivation rec {
     ++ lib.optionals (checkPlugin "zeek-plugin-http2")
     [ libnghttp2 brotli ]
     ++ lib.optionals (checkPlugin "zeek-plugin-spicy")
-    [ spicy-release ];
+    [ which llvmPackages.lld llvmPackages.clang-unwrapped llvmPackages.llvm git makeWrapper ];
 
   ZEEK_DIST = "${placeholder "out"}";
 
@@ -108,12 +113,17 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  preFixup = (if checkPlugin "zeek-plugin-spicy" then
+  postFixup = (if checkPlugin "zeek-plugin-spicy" then
     ''
-      ln -s  ${spicy-release}/bin/* $out/bin
+      for e in $(cd $out/bin && ls |  grep -E 'spicy|hilti' ); do
+        wrapProgram $out/bin/$e \
+          --set CLANG_PATH      "${llvmPackages.clang}/bin/clang" \
+          --set CLANGPP_PATH    "${llvmPackages.clang}/bin/clang++" \
+          --set LIBRARY_PATH    "${lib.makeLibraryPath [ flex bison python38 zlib glibc llvmPackages.libclang llvmPackages.libcxxabi llvmPackages.libcxx ]}"
+       done
     '' else "");
 
-  inherit (plugin) postFixup;
+  inherit (plugin) preFixup;
 
   meta = with lib; {
     description = "Powerful network analysis framework much different from a typical IDS";

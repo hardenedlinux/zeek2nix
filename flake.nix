@@ -98,14 +98,19 @@
 
           devShell = with pkgs; devshell.mkShell {
             packages = [
-              # zeek-release #debug
-              # btest
+              zeek-release #debug
+              btest
             ];
             commands = [
               {
                 name = "cachix-push";
                 help = "push zeek-master binary cachix to cachix";
                 command = "nix-build | cachix push zeek";
+              }
+              {
+                name = "spicy-plugin-btest";
+                help = "Test";
+                command = "btest -d -j -a installation && btest -d -j";
               }
               {
                 name = pkgs.nvfetcher-bin.pname;
@@ -118,6 +123,7 @@
           apps = {
             zeek-latest = inputs.flake-utils.lib.mkApp { drv = packages.zeek-latest; exePath = "/bin/zeek"; };
             zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeek"; };
+            spicyz = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/spicyz"; };
           };
 
           defaultPackage = packages.zeek-release;
