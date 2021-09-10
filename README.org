@@ -70,7 +70,7 @@ nix-shell
 #+end_src
 
 
-* create zeek dynamic dir to /var/lib/zeek
+* create zeek dynamic dir to ~/var/lib/zeek~
 :BACKLINKS:
 [2020-10-09 Fri 19:35] <- [[*Build Zeek with nix-build -> result/bin/zeek (Current version)][Build Zeek with nix-build -> result/bin/zeek (Current version)]]
 :END:
@@ -79,18 +79,6 @@ sudo bash ./pre-run-zeekctl.sh
 #+end_src
 
 
-
-* Arguments for zeek building
-** How to enable or disable a plugin in zeek
-- ./flake.nix
-  set bool ~true~ or ~false~ to name of plugin in overlay.nix
-  #+begin_src sh :async t :tangle "./flake.nix"
-final: prev:
-{
-  zeek = prev.callPackage ./. {KafkaPlugin = true; PostgresqlPlugin = true;
-                               Http2Plugin = true; ikev2Plugin = true; communityIdPlugin = true;};
-}
-#+end_src
 
 * Optional: using cachix to speed up binary build
 #+begin_src sh :async t :exports both :results output

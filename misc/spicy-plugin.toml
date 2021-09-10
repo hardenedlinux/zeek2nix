@@ -1,0 +1,5 @@
+[[commands]]
+name = "hello-spicy"
+category = "spicy-plugin"
+command = "zeek misc/hello.spicy"
+help = "misc/hello.spicy"
