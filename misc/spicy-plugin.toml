@@ -3,3 +3,9 @@ name = "hello-spicy"
 category = "spicy-plugin"
 command = "zeek misc/hello.spicy"
 help = "misc/hello.spicy"
+
+[[commands]]
+name = "my-http-zeek"
+category = "spicy-plugin"
+command = "zeek -Cr ~/ghq/github.com/zeek/spicy/doc/examples/request-line.pcap misc/my-http.hlto misc/my-http.zeek"
+help = "load my-http.hlto with zeek script"

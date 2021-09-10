@@ -26,7 +26,11 @@
             "zeek-plugin-spicy"
             "zeek-plugin-community-id"
             "zeek-plugin-af_packet"
-            "zeek-plugin-postgresql"
+            #./result/bin/zeek -dZeek script debugging ON.
+            # internal error in /nix/store/xrs4li5n46r0hmnvaza7gj65jbrw21c5-zeek-release-4.1.0/lib/zeek/plugins/Johanna_PostgreSQL/scripts/__preload__.zeek, line 10: Failed to fread() file data
+            # recommanded change: commmtes __preload__.zeek
+            # FIXME: remove postgresql and use vast instead
+            # "zeek-plugin-postgresql"
           ];
         };
         zeek-latest = (final.zeek-release.overrideAttrs (old: rec {

@@ -6,5 +6,5 @@ tmp/
 
 result
 nix/changelog
-my-http.hlto
+misc/*.hlto
 spicy-plugin
