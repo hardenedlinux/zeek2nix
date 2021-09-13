@@ -128,8 +128,9 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Powerful network analysis framework much different from a typical IDS";
     homepage = "https://www.zeek.org";
-    license = licenses.bsd3;
-    #maintainers = with maintainers; [ gtrunsec ];
+    changelog = "https://github.com/zeek/zeek//blob/v${version}/CHANGELOG.md";
+    license = with licenses; [ bsd3 ];
+    maintainers = with maintainers; [ gtrunsec ];
     platforms = platforms.unix;
   };
 }

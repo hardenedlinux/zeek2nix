@@ -20,9 +20,6 @@ jobs:
           extra-substituters = https://zeek.cachix.org
           extra-trusted-public-keys = zeek.cachix.org-1:pI1yRThH7gSh0ty7WmMWXqYFYigjcXFwiGiaaMmVpfA=
 
-    - name: Nix Flake Check
-      run: nix -Lv flake check
-
     - name: Run nvfetcher
       run: nix -Lv develop --command nvfetcher -l changelog
 

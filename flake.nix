@@ -133,6 +133,7 @@
 
           defaultPackage = packages.zeek-release;
           defaultApp = apps.zeek-release;
+          checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" ]);
         }
       ) // {
       nixosModules = {
