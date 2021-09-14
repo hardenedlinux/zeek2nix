@@ -1,7 +1,7 @@
 [[commands]]
 name = "hello-spicy"
 category = "spicy-plugin"
-command = "zeek misc/hello.spicy"
+command = "zeek misc/hello.spicy Spicy::enable_print=T"
 help = "misc/hello.spicy"
 
 [[commands]]

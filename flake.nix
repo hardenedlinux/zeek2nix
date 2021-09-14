@@ -14,6 +14,10 @@
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: with builtins; with inputs;
@@ -46,25 +50,26 @@
             inherit self;
           });
 
-        zeek-docker = with final; dockerTools.buildImage {
-          name = "zeek-docker";
-          tag = "latest";
-          contents = [
-            zeek-release
-            coreutils
-            zsh
-          ];
-          runAsRoot = ''
-            #!${pkgs.runtimeShell}
-            mkdir -p /var/lib/zeek
-            #Is there need to run the pre-run-zeelctl.sh?
-          '';
-          config = {
-            Cmd = [ "/bin/zeek" ];
-            WorkingDir = "/var/lib/zeek";
-            Volumes = { "/var/lib/zeek" = { }; };
+        zeek-docker = with final;
+          dockerTools.buildImage {
+            name = "zeek-docker";
+            tag = "latest";
+            contents = [
+              zeek-release
+              coreutils
+              zsh
+            ];
+            runAsRoot = ''
+              #!${pkgs.runtimeShell}
+              mkdir -p /var/lib/zeek
+              #Is there need to run the pre-run-zeelctl.sh?
+            '';
+            config = {
+              Cmd = [ "/bin/zeek" ];
+              WorkingDir = "/var/lib/zeek";
+              Volumes = { "/var/lib/zeek" = { }; };
+            };
           };
-        };
       };
     } //
     (inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
@@ -85,12 +90,36 @@
           };
         in
         rec {
+          inherit pkgs;
           packages = inputs.flake-utils.lib.flattenTree
             rec {
               zeek-release = pkgs.zeek-release;
               zeek-latest = pkgs.zeek-latest;
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
             zeek-docker = pkgs.zeek-docker;
+            zeek-vm-misc = microvm.lib.runner
+              {
+                inherit system;
+                hypervisor = "qemu";
+                nixosConfig = { pkgs, ... }: {
+                  imports = [
+                    self.nixosModules.zeek
+                  ];
+                  services.zeek = {
+                    enable = true;
+                    standalone = true;
+                  };
+                  networking.hostName = "zeek-microvm";
+                  users.users.root.password = "";
+                };
+                volumes = [{
+                  mountpoint = "/var";
+                  image = "var.img";
+                  size = 256;
+                }];
+                socket = "control.socket";
+              };
+
             inherit (pkgs.zeek-vm-tests)
               zeek-standalone-vm-systemd
               zeek-cluster-vm-systemd;
