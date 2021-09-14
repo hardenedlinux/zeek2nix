@@ -143,14 +143,14 @@
   };
   zeek-spicy-analyzers = {
     pname = "zeek-spicy-analyzers";
-    version = "109f048a48175a66d36240f2b4e53633446d6f65";
+    version = "7a73fe1f86203b2b62d8d81c0833b408b0c65f92";
     src = fetchgit {
       url = "https://github.com/zeek/spicy-analyzers";
-      rev = "109f048a48175a66d36240f2b4e53633446d6f65";
+      rev = "7a73fe1f86203b2b62d8d81c0833b408b0c65f92";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "1v0hr05n9l67yfvrwyq71d9fi3sk8x89lhm4jjpk6wfjpa61aj8g";
+      sha256 = "1mihbl87v5gi2xg7id13bq3dzhnah24q15cvj2vg1vq79775rm9i";
     };
   };
 }
