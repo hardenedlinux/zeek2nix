@@ -148,6 +148,7 @@ in
         for file in ${cfg.package}/share/zeekctl/scripts/*; do
         cp -rf $file ${cfg.dataDir}/scripts/.
         done
+        chmod -R +rw ${cfg.dataDir}/scripts/{helpers,postprocessors}
         cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
         /run/wrappers/bin/zeekctl install

@@ -43,7 +43,7 @@
 
         zeek-sources = prev.callPackage ./nix/_sources/generated.nix { };
 
-        zeek-vm-tests = prev.lib.optionalAttrs prev.stdenv.isLinux (import ./nixos-test.nix
+        zeek-vm-tests = prev.lib.optionalAttrs prev.stdenv.isLinux (import ./tests/nixos-test.nix
           {
             makeTest = (import (prev.path + "/nixos/tests/make-test-python.nix"));
             pkgs = final;
@@ -97,24 +97,19 @@
               zeek-latest = pkgs.zeek-latest;
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
             zeek-docker = pkgs.zeek-docker;
-            zeek-vm-misc = microvm.lib.runner
+            # nix -Lv run ./\#zeek-microvm
+            # spawn shell with microvm env
+            zeek-microvm = microvm.lib.runner
               {
                 inherit system;
                 hypervisor = "qemu";
                 nixosConfig = { pkgs, ... }: {
-                  imports = [
-                    self.nixosModules.zeek
-                  ];
-                  services.zeek = {
-                    enable = true;
-                    standalone = true;
-                  };
                   networking.hostName = "zeek-microvm";
                   users.users.root.password = "";
-                };
+                } // import ./tests/standalone.nix { inherit pkgs self; };
                 volumes = [{
                   mountpoint = "/var";
-                  image = "var.img";
+                  image = "tests/zeek-microvm.img";
                   size = 256;
                 }];
                 socket = "control.socket";
