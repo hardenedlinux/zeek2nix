@@ -5,7 +5,7 @@
 - [[*create zeek dynamic dir to /var/lib/zeek][create zeek dynamic dir to /var/lib/zeek]] before you run command with ~zeekctl deploy~
   nix run to zeekctl
 #+begin_src sh :async t :exports both :results output
-nix run
+nix run github:hardenedlinux/zeek2nix
 #+end_src
 
 - with native nix-build -> ./result/bin/zeek -N
@@ -13,14 +13,14 @@ nix run
 
 #+begin_src sh :async t :exports both :results output
 # flake feature
-nix build
+nix build github:hardenedlinux/zeek2nix
 # or
 nix-build
 #+end_src
 
-* Build Zeek Env with nix-shell(shell mode) - TLS version
+* Build Zeek Env with nix-shell(shell mode) - release version
 #+begin_src sh :async t :exports both :results output
-nix develop
+nix develop github:hardenedlinux/zeek2nix
 # or
 nix-shell
 #+end_src
@@ -85,18 +85,3 @@ sudo bash ./pre-run-zeekctl.sh
 nix-env -iA cachix -f https://cachix.org/api/v1/install
 cachix use zeek
 #+end_src
-* Test Spicy
-
-#+begin_src sh :async t :exports both :results output
-./result/bin/spicyc -j misc/hello.spicy
-#+end_src
-
-#+RESULTS:
-: Hello, world!
-
-- check spicy plugins
-#+begin_src sh :async t :exports both :results output
-./result/bin/zeek -NN _Zeek::Spicy
-#+end_src
-
-#+RESULTS:

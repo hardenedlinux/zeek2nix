@@ -15,14 +15,14 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "1260f6b5850b66241869c0b186df2795897b7b0d";
+    version = "0a0ed65306a3ae727a9e935fc36b52ffeab53a5d";
     src = fetchgit {
       url = "https://github.com/zeek/zeek";
-      rev = "1260f6b5850b66241869c0b186df2795897b7b0d";
+      rev = "0a0ed65306a3ae727a9e935fc36b52ffeab53a5d";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0iy6zhjh3n2qn7cl2hvgip3b3svfjf5axc7fwp3p6pm5a56v0km7";
+      sha256 = "02408zg7zr9p0gamzjkzdgv8a5h65k64kv5cz7f85l88lggm3i8y";
     };
   };
   zeek-plugin-af_packet = {
@@ -111,14 +111,14 @@
   };
   zeek-plugin-spicy = {
     pname = "zeek-plugin-spicy";
-    version = "073b94bc4f49c1920e7f0f78075e10160cadcbc1";
+    version = "dab1eb494cbfff2ab36fee2c026fb6de3639db8b";
     src = fetchgit {
       url = "https://github.com/zeek/spicy-plugin";
-      rev = "073b94bc4f49c1920e7f0f78075e10160cadcbc1";
+      rev = "dab1eb494cbfff2ab36fee2c026fb6de3639db8b";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0hafm19b7slxpzbawhx1g2flngy0s6x2lqivxgl6w19ab74mgvbq";
+      sha256 = "1h70k31f5wphd4bb38glblkpyiknb9j35jz8gzyp8141iigplbr1";
     };
   };
   zeek-plugin-zip = {
@@ -135,10 +135,10 @@
   };
   zeek-release = {
     pname = "zeek-release";
-    version = "4.1.0";
+    version = "4.1.1";
     src = fetchurl {
-      url = "https://github.com/zeek/zeek/releases/download/v4.1.0/zeek-4.1.0.tar.gz";
-      sha256 = "165kva8dgf152ahizqdk0g2y466ij2gyxja5fjxlkxcxr5p357pj";
+      url = "https://github.com/zeek/zeek/releases/download/v4.1.1/zeek-4.1.1.tar.gz";
+      sha256 = "0wq3kjc3zc5ikzwix7k7gr92v75rg6283kx5fzvc3lcdkaczq2lc";
     };
   };
   zeek-spicy-analyzers = {
@@ -151,6 +151,14 @@
       deepClone = false;
       leaveDotGit = false;
       sha256 = "0x5hh5w2xgdq8i9mnj4bx7qzvxplxjqrmvrly8h2pr9vas910g2b";
+    };
+  };
+  zeek-tls = {
+    pname = "zeek-tls";
+    version = "4.0.4";
+    src = fetchurl {
+      url = "https://github.com/zeek/zeek/releases/download/v4.0.4/zeek-4.0.4.tar.gz";
+      sha256 = "0p2hq3jywvff3la3rrgmqhi9xp2mjqq3f20k5p4xi3ps8kiiv6fr";
     };
   };
 }
