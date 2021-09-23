@@ -10,6 +10,11 @@ git.fetchSubmodules = true
 # git.fetchSubmodules = true
 
 [zeek-release]
+src.manual= "v4.1.1"
+fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
+src.prefix = "v"
+
+[zeek-tls]
 src.github = "zeek/zeek"
 fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
 src.prefix = "v"
@@ -60,5 +65,6 @@ src.git = "https://github.com/zeek/spicy-analyzers"
 fetch.github = "zeek/spicy-analyzers"
 
 [zeek-plugin-spicy]
-src.git = "https://github.com/zeek/spicy-plugin"
+src.manual = "073b94bc4f49c1920e7f0f78075e10160cadcbc1"
+#src.git = "https://github.com/zeek/spicy-plugin"
 fetch.github = "zeek/spicy-plugin"
