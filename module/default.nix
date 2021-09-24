@@ -101,7 +101,7 @@ in
     privateScripts = mkOption {
       description = "Zeek load private script path";
       default = null;
-      type = types.nullOr types.str;
+      type = types.nullOr types.lines;
     };
 
     privateSpicyScripts = mkOption {
@@ -110,7 +110,7 @@ in
     };
 
     node = mkOption {
-      type = types.nullOr types.str;
+      type = types.nullOr types.lines;
       default = null;
       description = "Zeek cluster configuration.";
     };
@@ -151,13 +151,18 @@ in
         chmod -R +rw ${cfg.dataDir}/scripts/{helpers,postprocessors}
         cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
-        /run/wrappers/bin/zeekctl install
+
+
         ${optionalString (cfg.privateScripts != null)
           "echo \"${cfg.privateScripts}\" >> ${cfg.dataDir}/policy/local.zeek"
          }
         ${optionalString (cfg.privateSpicyScripts != [])
           "${lib.concatStringsSep "\n" (map (f: "cp -rf ${f} ${cfg.dataDir}/zeek-spicy/modules") cfg.privateSpicyScripts)}"
          }
+
+        ${optionalString (cfg.sensor == true)''
+         /run/wrappers/bin/zeekctl install
+         ''}
         ${optionalString (cfg.sensor != true)''
           /run/wrappers/bin/zeekctl deploy
          ''}
@@ -167,6 +172,8 @@ in
         Type = "oneshot";
         User = if cfg.standalone then "zeek" else "root";
         Group = if cfg.standalone then "zeek" else "root";
+        ExecReload = "/run/wrappers/bin/zeekctl restart";
+        ExecStop = "/run/wrappers/bin/zeekctl stop";
         WorkingDirectory = "${cfg.dataDir}";
         ReadWritePaths = "${cfg.dataDir}";
         RuntimeDirectory = "zeek";
@@ -175,8 +182,8 @@ in
         RemainAfterExit = true;
 
         restartTriggers = [
-          cfg.node
-          cfg.network
+          networkConf
+          nodeConf
         ];
         restartIfChanged = true;
       };
