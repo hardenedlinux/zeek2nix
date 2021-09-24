@@ -15,14 +15,14 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "ce143d78b04a7142dc8570270d2a296af367bfce";
+    version = "f50df2dda69c26be78f2d4c5092fc4b7dc8e5ee7";
     src = fetchgit {
       url = "https://github.com/zeek/zeek";
-      rev = "ce143d78b04a7142dc8570270d2a296af367bfce";
+      rev = "f50df2dda69c26be78f2d4c5092fc4b7dc8e5ee7";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "013f0l4w7adlg1krx266ij0hrc5q9h6y115p5py3asj9lpxn77mn";
+      sha256 = "055yxin1jnlcln8nkwix18854bbkfk7w2l99zb9wv9y2r3hbn0gy";
     };
   };
   zeek-plugin-af_packet = {
