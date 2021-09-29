@@ -2,11 +2,11 @@
   "nodes": {
     "devshell-flake": {
       "locked": {
-        "lastModified": 1630239564,
-        "narHash": "sha256-lv7atkVE1+dFw0llmzONsbSIo5ao85KpNSRoFk4K8vU=",
+        "lastModified": 1632436039,
+        "narHash": "sha256-OtITeVWcKXn1SpVEnImpTGH91FycCskGBPqmlxiykv4=",
         "owner": "numtide",
         "repo": "devshell",
-        "rev": "bd86d3a2bb28ce4d223315e0eca0d59fef8a0a73",
+        "rev": "7a7a7aa0adebe5488e5abaec688fd9ae0f8ea9c6",
         "type": "github"
       },
       "original": {
@@ -455,11 +455,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1631450739,
-        "narHash": "sha256-jpAS7rrEVbw+9cwe+JnNRvBd9Pmh36B1BVfFD7N2y30=",
+        "lastModified": 1631721967,
+        "narHash": "sha256-qDTmmn/DF75FiiSoZ8I6zscR3zWD0mqoQeC4CRF4RIg=",
         "owner": "astro",
         "repo": "microvm.nix",
-        "rev": "d2331b824808e815ca12cb51962e58e4df7f1edc",
+        "rev": "a7fc1d09ad63263a61a97415a05920cb895a8787",
         "type": "github"
       },
       "original": {
