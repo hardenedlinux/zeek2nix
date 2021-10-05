@@ -11,14 +11,14 @@ rec {
 
   spicyInZeek = runCommand "patchedSpicy"
     {
-      inherit (spicy-sources.spicy-latest) src;
+      inherit (spicy-sources.spicy-release) src;
       buildInputs = [ python38 ];
     }
     ''
       cp -r $src $out
       chmod -R +rw $out
       cat <<EOF > $out/VERSION
-      ${lib.removePrefix "v" spicy-sources.spicy-release.version}-dev
+      ${lib.removePrefix "v" spicy-sources.spicy-release.version}
       EOF
       patchShebangs $out/scripts
     '';
