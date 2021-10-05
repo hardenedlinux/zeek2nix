@@ -14,10 +14,7 @@
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    microvm = {
-      url = "github:astro/microvm.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    microvm.follows = "nixpkgs-hardenedlinux/microvm";
   };
 
   outputs = inputs: with builtins; with inputs;
