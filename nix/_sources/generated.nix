@@ -51,14 +51,14 @@
   };
   zeek-plugin-http2 = {
     pname = "zeek-plugin-http2";
-    version = "f4c4014a43c664e78d49b5ccc584d8e05e557e09";
+    version = "7dc14042d1602065d60601d193b99b005f08fe34";
     src = fetchgit {
       url = "https://github.com/MITRECND/bro-http2";
-      rev = "f4c4014a43c664e78d49b5ccc584d8e05e557e09";
+      rev = "7dc14042d1602065d60601d193b99b005f08fe34";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0djh7r9sksxvs5yf9vhszzyqh4f2qwj8knxyp2xk6ynnnj9ndp9d";
+      sha256 = "03xsw36ir6f2kxnycy83i4qn7wrwx7gr31968m3mnw2zbmcvmcqi";
     };
   };
   zeek-plugin-ikev2 = {
@@ -143,14 +143,14 @@
   };
   zeek-spicy-analyzers = {
     pname = "zeek-spicy-analyzers";
-    version = "3b5d78920088a2079ab2c277ead00cb54708e86d";
+    version = "3c09a13b0e08cf16b06ea94bdf51efb28808b3a3";
     src = fetchgit {
       url = "https://github.com/zeek/spicy-analyzers";
-      rev = "3b5d78920088a2079ab2c277ead00cb54708e86d";
+      rev = "3c09a13b0e08cf16b06ea94bdf51efb28808b3a3";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "1cgi5491pr0j86cw96ar6zbkqqifsbg8sh6ig5gjvk30xj2b4n9x";
+      sha256 = "0m75nnbl86xs95qqlqaj4hn4avz9wjrc1g257m3w59nk0vp12znn";
     };
   };
   zeek-tls = {
