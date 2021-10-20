@@ -8,9 +8,8 @@ git.fetchSubmodules = true
 # src.manual= "v1.4.0"
 # fetch.github = "zeek/broker"
 # git.fetchSubmodules = true
-
 [zeek-release]
-src.manual= "v4.1.1"
+src.manual = "v4.1.1"
 fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
 src.prefix = "v"
 
@@ -35,7 +34,6 @@ fetch.github = "reservoirlabs/zeek-zip-analyzer"
 src.git = "https://github.com/ukncsc/zeek-ikev2"
 fetch.github = "ukncsc/zeek-ikev2"
 
-
 [zeek-plugin-postgresql]
 src.git = "https://github.com/0xxon/zeek-postgresql"
 fetch.github = "0xxon/zeek-postgresql"
@@ -44,27 +42,24 @@ fetch.github = "0xxon/zeek-postgresql"
 src.git = "https://github.com/MITRECND/bro-http2"
 fetch.github = "MITRECND/bro-http2"
 
-
 [zeek-plugin-community-id]
 src.git = "https://github.com/corelight/zeek-community-id"
 fetch.github = "corelight/zeek-community-id"
-
 
 [icsnpp-bacnet]
 src.git = "https://github.com/cisagov/icsnpp-bacnet"
 fetch.github = "cisagov/icsnpp-bacnet"
 
-
 [zeek-plugin-kafka]
 src.git = "https://github.com/SeisoLLC/zeek-kafka"
 fetch.github = "SeisoLLC/zeek-kafka"
-
-
-[zeek-spicy-analyzers]
-src.git = "https://github.com/zeek/spicy-analyzers"
-fetch.github = "zeek/spicy-analyzers"
 
 [zeek-plugin-spicy]
 src.manual = "073b94bc4f49c1920e7f0f78075e10160cadcbc1"
 #src.git = "https://github.com/zeek/spicy-plugin"
 fetch.github = "zeek/spicy-plugin"
+
+[zeek-agent]
+src.git = "https://github.com/zeek/zeek-agent"
+fetch.github = "zeek/zeek-agent"
+git.fetchSubmodules = true

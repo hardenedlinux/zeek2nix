@@ -13,6 +13,18 @@
       sha256 = "1szw6fpiff56jcir1mcj6fwjqwl8mrzpagph1wh88fcka1f224pv";
     };
   };
+  zeek-agent = {
+    pname = "zeek-agent";
+    version = "c67772b3acbeb1b5d3d74349aee9e6a8521da983";
+    src = fetchgit {
+      url = "https://github.com/zeek/zeek-agent";
+      rev = "c67772b3acbeb1b5d3d74349aee9e6a8521da983";
+      fetchSubmodules = true;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "09xy0i5lk704d1795c05rdz58mfgx0d1pg7ryb4lv4fb43isv8c2";
+    };
+  };
   zeek-latest = {
     pname = "zeek-latest";
     version = "4d48272adbcf21ac0c2a5e9f67a879e33e743e7b";
@@ -139,18 +151,6 @@
     src = fetchurl {
       url = "https://github.com/zeek/zeek/releases/download/v4.1.1/zeek-4.1.1.tar.gz";
       sha256 = "0wq3kjc3zc5ikzwix7k7gr92v75rg6283kx5fzvc3lcdkaczq2lc";
-    };
-  };
-  zeek-spicy-analyzers = {
-    pname = "zeek-spicy-analyzers";
-    version = "3c09a13b0e08cf16b06ea94bdf51efb28808b3a3";
-    src = fetchgit {
-      url = "https://github.com/zeek/spicy-analyzers";
-      rev = "3c09a13b0e08cf16b06ea94bdf51efb28808b3a3";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "0m75nnbl86xs95qqlqaj4hn4avz9wjrc1g257m3w59nk0vp12znn";
     };
   };
   zeek-tls = {

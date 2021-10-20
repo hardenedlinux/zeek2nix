@@ -106,7 +106,7 @@
                 } // import ./tests/standalone.nix { inherit pkgs self; };
                 volumes = [{
                   mountpoint = "/var";
-                  image = "tests/zeek-microvm.img";
+                  image = "/tmp/zeek-microvm.img";
                   size = 256;
                 }];
                 socket = "control.socket";
@@ -155,6 +155,13 @@
           defaultPackage = packages.zeek-release;
           defaultApp = apps.zeek-release;
           checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" ]);
+          apps = {
+            checks = flake-utils.lib.mkApp {
+              drv = with import nixpkgs { inherit system; };
+                pkgs.writeShellScriptBin "checks" ((pkgs.lib.fileContents ./tests/test.sh) + ''
+                '');
+            };
+          };
         }
       ) // {
       nixosModules = {
