@@ -3,14 +3,14 @@
 {
   icsnpp-bacnet = {
     pname = "icsnpp-bacnet";
-    version = "b4d9019a12fe927bb1653c9eb06ff7e14340eb61";
+    version = "791dd31fbca6e85b89a9b3dd5c0f8a49d5bad5e2";
     src = fetchgit {
       url = "https://github.com/cisagov/icsnpp-bacnet";
-      rev = "b4d9019a12fe927bb1653c9eb06ff7e14340eb61";
+      rev = "791dd31fbca6e85b89a9b3dd5c0f8a49d5bad5e2";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "1szw6fpiff56jcir1mcj6fwjqwl8mrzpagph1wh88fcka1f224pv";
+      sha256 = "16g04k4xasvc7hhvga6mhhxsqkskl9aw4a2rvdbqhk89913y7ffg";
     };
   };
   zeek-agent = {
@@ -27,14 +27,14 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "4d48272adbcf21ac0c2a5e9f67a879e33e743e7b";
+    version = "237a21c3bf2f7bc4da147ca12e96ab771d384c0e";
     src = fetchgit {
       url = "https://github.com/zeek/zeek";
-      rev = "4d48272adbcf21ac0c2a5e9f67a879e33e743e7b";
+      rev = "237a21c3bf2f7bc4da147ca12e96ab771d384c0e";
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0s7r5r30gx2sqf8h2c04wvbxx3xryl1jgi94q9n3ykilyhjbrk8z";
+      sha256 = "1qj46ffkmgifw99488s7winkhl8qly55r9iygrra0ny7bzy6pzzq";
     };
   };
   zeek-plugin-af_packet = {

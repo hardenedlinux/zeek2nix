@@ -801,11 +801,11 @@
         "nvfetcher": "nvfetcher_4"
       },
       "locked": {
-        "lastModified": 1633303056,
-        "narHash": "sha256-aXIHDA6EF08g4qndzNj8nlD7mrdT43c4u9RaslyZeoQ=",
+        "lastModified": 1634173634,
+        "narHash": "sha256-ioDF2kZsdWx90cewECwXTexv5e/XzhuB5eWbb36siLg=",
         "owner": "GTrunSec",
         "repo": "spicy2nix",
-        "rev": "37328f33dfaa0aad13289de017080fcd0613d80b",
+        "rev": "00f086fdef157ef2fd76748e1e1dcb2db4933dc9",
         "type": "github"
       },
       "original": {
