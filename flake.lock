@@ -2,21 +2,6 @@
   "nodes": {
     "devshell": {
       "locked": {
-        "lastModified": 1632436039,
-        "narHash": "sha256-OtITeVWcKXn1SpVEnImpTGH91FycCskGBPqmlxiykv4=",
-        "owner": "numtide",
-        "repo": "devshell",
-        "rev": "7a7a7aa0adebe5488e5abaec688fd9ae0f8ea9c6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "devshell",
-        "type": "github"
-      }
-    },
-    "devshell-flake": {
-      "locked": {
         "lastModified": 1634850494,
         "narHash": "sha256-8bD1CgAJovKjb88I9F/Lxa2Q9VdZBEJYX5rUqHHbaP4=",
         "owner": "numtide",
@@ -30,7 +15,7 @@
         "type": "github"
       }
     },
-    "devshell-flake_2": {
+    "devshell-flake": {
       "locked": {
         "lastModified": 1632436039,
         "narHash": "sha256-OtITeVWcKXn1SpVEnImpTGH91FycCskGBPqmlxiykv4=",
@@ -46,6 +31,21 @@
       }
     },
     "devshell_2": {
+      "locked": {
+        "lastModified": 1632436039,
+        "narHash": "sha256-OtITeVWcKXn1SpVEnImpTGH91FycCskGBPqmlxiykv4=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "7a7a7aa0adebe5488e5abaec688fd9ae0f8ea9c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
+        "type": "github"
+      }
+    },
+    "devshell_3": {
       "locked": {
         "lastModified": 1632436039,
         "narHash": "sha256-OtITeVWcKXn1SpVEnImpTGH91FycCskGBPqmlxiykv4=",
@@ -485,7 +485,7 @@
     },
     "nixpkgs-hardenedlinux": {
       "inputs": {
-        "devshell": "devshell",
+        "devshell": "devshell_2",
         "flake-compat": "flake-compat_2",
         "gomod2nix": "gomod2nix",
         "mach-nix": "mach-nix",
@@ -512,7 +512,7 @@
     },
     "nixpkgs-hardenedlinux_2": {
       "inputs": {
-        "devshell": "devshell_2",
+        "devshell": "devshell_3",
         "flake-compat": "flake-compat_6",
         "gomod2nix": "gomod2nix_2",
         "mach-nix": "mach-nix_2",
@@ -778,7 +778,7 @@
     },
     "root": {
       "inputs": {
-        "devshell-flake": "devshell-flake",
+        "devshell": "devshell",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "microvm": [
@@ -793,7 +793,7 @@
     },
     "spicy2nix": {
       "inputs": {
-        "devshell-flake": "devshell-flake_2",
+        "devshell-flake": "devshell-flake",
         "flake-compat": "flake-compat_5",
         "flake-utils": "flake-utils_7",
         "nixpkgs": "nixpkgs_5",

@@ -7,7 +7,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/release-21.05";
     flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
-    devshell-flake = { url = "github:numtide/devshell"; };
+    devshell = { url = "github:numtide/devshell"; };
     spicy2nix = { url = "github:GTrunSec/spicy2nix"; };
     nixpkgs-hardenedlinux = { url = "github:hardenedlinux/nixpkgs-hardenedlinux"; };
     nvfetcher = {
@@ -76,7 +76,7 @@
             inherit system;
             overlays = [
               self.overlay
-              devshell-flake.overlay
+              devshell.overlay
               nvfetcher.overlay
               spicy2nix.overlay
               (final: prev: { btest = nixpkgs-hardenedlinux.packages."x86_64-linux".btest; })
