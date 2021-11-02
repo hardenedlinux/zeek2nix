@@ -25,13 +25,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "f1c81e3ab9cd6a70edc3d51c596e782069ae152d";
+    version = "c25d5cecb260920af5a0403fdd73985b070dfef9";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "f1c81e3ab9cd6a70edc3d51c596e782069ae152d";
+      rev = "c25d5cecb260920af5a0403fdd73985b070dfef9";
       fetchSubmodules = true;
-      sha256 = "sha256-B47b9wObwYnRR60lixjpiojGCG2lnCEPNie8xC77Gak=";
+      sha256 = "sha256-3vedUl7ZD0a/c/6CYIt4+qqSmCssJ30znVVv4ae9nRw=";
     });
   };
   zeek-plugin-af_packet = {
@@ -80,13 +80,13 @@
   };
   zeek-plugin-kafka = {
     pname = "zeek-plugin-kafka";
-    version = "c9a3d869231ceb1ab871b3fa166e810dbf7e5d3c";
+    version = "a2003110fe68e07a4f738b7c4ed440e07173ed84";
     src = fetchFromGitHub ({
       owner = "SeisoLLC";
       repo = "zeek-kafka";
-      rev = "c9a3d869231ceb1ab871b3fa166e810dbf7e5d3c";
+      rev = "a2003110fe68e07a4f738b7c4ed440e07173ed84";
       fetchSubmodules = false;
-      sha256 = "sha256-AzcfMhNYvd/j3yKtU279TVOPcz8vOAImJ2CTEzTdSx8=";
+      sha256 = "sha256-sui3z1mJshNqVErYtDiaQ97nbt+vu1FKvUSylxuNt5A=";
     });
   };
   zeek-plugin-pdf = {
