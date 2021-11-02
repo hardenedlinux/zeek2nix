@@ -154,7 +154,7 @@
 
           defaultPackage = packages.zeek-release;
           defaultApp = apps.zeek-release;
-          checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" ]);
+          checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" "zeek-release" ]);
           apps = {
             checks = flake-utils.lib.mkApp {
               drv = with import nixpkgs { inherit system; };
