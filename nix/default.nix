@@ -40,7 +40,7 @@ let
 
   checkPlugin = v: (toString (lib.intersectLists [ "${v}" ] plugins)) == v;
 
-  preConfigure = (import ./script.nix { });
+  preConfigure = import ./script.nix { };
 
   pname = "zeek";
 
@@ -113,7 +113,7 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  postFixup = (if checkPlugin "zeek-plugin-spicy" then
+  postFixup = if checkPlugin "zeek-plugin-spicy" then
     ''
       for e in $(cd $out/bin && ls |  grep -E 'spicy|hilti' ); do
         wrapProgram $out/bin/$e \
@@ -121,7 +121,7 @@ stdenv.mkDerivation rec {
           --set CLANGPP_PATH    "${llvmPackages.clang}/bin/clang++" \
           --set LIBRARY_PATH    "${lib.makeLibraryPath [ flex bison python38 zlib glibc llvmPackages.libclang llvmPackages.libcxxabi llvmPackages.libcxx ]}"
        done
-    '' else "");
+    '' else "";
 
   inherit (plugin) preFixup;
 

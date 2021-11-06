@@ -34,15 +34,15 @@
             # "zeek-plugin-postgresql"
           ];
         };
-        zeek-latest = (final.zeek-release.overrideAttrs (old: rec {
+        zeek-latest = final.zeek-release.overrideAttrs (old: rec {
           inherit (final.zeek-sources.zeek-latest) src pname version;
-        }));
+        });
 
         zeek-sources = prev.callPackage ./nix/_sources/generated.nix { };
 
         zeek-vm-tests = prev.lib.optionalAttrs prev.stdenv.isLinux (import ./tests/nixos-test.nix
           {
-            makeTest = (import (prev.path + "/nixos/tests/make-test-python.nix"));
+            makeTest = import (prev.path + "/nixos/tests/make-test-python.nix");
             pkgs = final;
             inherit self;
           });
@@ -79,7 +79,7 @@
               devshell.overlay
               nvfetcher.overlay
               spicy2nix.overlay
-              (final: prev: { btest = nixpkgs-hardenedlinux.packages."x86_64-linux".btest; })
+              (final: prev: { inherit (nixpkgs-hardenedlinux.packages."x86_64-linux") btest; })
             ];
             config = {
               allowUnsupportedSystem = true;
@@ -90,10 +90,11 @@
           inherit pkgs;
           packages = inputs.flake-utils.lib.flattenTree
             rec {
-              zeek-release = pkgs.zeek-release;
-              zeek-latest = pkgs.zeek-latest;
+              inherit (pkgs)
+                zeek-release
+                zeek-latest;
             } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
-            zeek-docker = pkgs.zeek-docker;
+            inherit (pkgs) zeek-docker;
             # nix -Lv run ./\#zeek-microvm
             # spawn shell with microvm env
             zeek-microvm = microvm.lib.runner
@@ -150,26 +151,24 @@
             zeek-latest = inputs.flake-utils.lib.mkApp { drv = packages.zeek-latest; exePath = "/bin/zeek"; };
             zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeek"; };
             spicyz = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/spicyz"; };
+            checks = flake-utils.lib.mkApp {
+              drv = with pkgs; writeShellScriptBin "checks" (''
+                ''
+              + (lib.fileContents ./tests/test.sh));
+            };
           };
 
           defaultPackage = packages.zeek-release;
           defaultApp = apps.zeek-release;
           checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" "zeek-release" ]);
-          apps = {
-            checks = flake-utils.lib.mkApp {
-              drv = with import nixpkgs { inherit system; };
-                pkgs.writeShellScriptBin "checks" ((pkgs.lib.fileContents ./tests/test.sh) + ''
-                '');
-            };
-          };
         }
       ) // {
       nixosModules = {
-        zeek = { ... }: {
+        zeek = {
           imports = [
             {
               nixpkgs.config.packageOverrides = pkgs: {
-                inherit (self.packages.${pkgs.system}) zeek-release;
+                inherit (self.packages."${pkgs.system}") zeek-release;
               };
             }
             ./module

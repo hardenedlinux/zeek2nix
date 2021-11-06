@@ -27,7 +27,7 @@ rec {
     inherit linuxHeaders llvmPackages confDir;
   });
 
-  pluginsScript = lib.concatStringsSep "\n" (map (f: "bash ${install_plugin} ${f} ${zeek-sources.${f}.src}") plugins);
+  pluginsScript = lib.concatStringsSep "\n" (map (f: "bash ${install_plugin} ${f} ${zeek-sources."${f}".src}") plugins);
 
   preFixup = (if zeekctl then ''
     substituteInPlace $out/etc/zeekctl.cfg \

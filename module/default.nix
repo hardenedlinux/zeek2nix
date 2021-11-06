@@ -140,7 +140,6 @@ in
       path = with pkgs;
         [ "/run/current-system/sw" "/run/wrappers/bin/" nettools nettools iputils coreutils ];
 
-
       script = ''
         if [[ ! -d "${cfg.dataDir}/logs/current" ]];then
         mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc,zeek-spicy/modules}
@@ -152,7 +151,6 @@ in
         cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
 
-
         ${optionalString (cfg.privateScripts != null)
           "echo \"${cfg.privateScripts}\" >> ${cfg.dataDir}/policy/local.zeek"
          }
@@ -160,10 +158,10 @@ in
           "${lib.concatStringsSep "\n" (map (f: "cp -rf ${f} ${cfg.dataDir}/zeek-spicy/modules") cfg.privateSpicyScripts)}"
          }
 
-        ${optionalString (cfg.sensor == true)''
+        ${optionalString cfg.sensor ''
          /run/wrappers/bin/zeekctl install
          ''}
-        ${optionalString (cfg.sensor != true)''
+        ${optionalString (!cfg.sensor)''
           /run/wrappers/bin/zeekctl deploy
          ''}
       '';
