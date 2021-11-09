@@ -14,7 +14,7 @@ install_plugin(){
     --with-c-compiler=${llvmPackages.clang}/bin/clang \
     --disable-precompiled-headers
     make -j $NIX_BUILD_CORES && make install
-    # intenrel spicy plugin
+    # intenrel spicy
     fi
 
     if [[ $name == 'zeek-plugin-spicy' ]]; then

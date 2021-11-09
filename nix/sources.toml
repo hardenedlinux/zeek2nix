@@ -55,8 +55,8 @@ src.git = "https://github.com/SeisoLLC/zeek-kafka"
 fetch.github = "SeisoLLC/zeek-kafka"
 
 [zeek-plugin-spicy]
-src.manual = "073b94bc4f49c1920e7f0f78075e10160cadcbc1"
-#src.git = "https://github.com/zeek/spicy-plugin"
+#src.manual = "073b94bc4f49c1920e7f0f78075e10160cadcbc1"
+src.git = "https://github.com/zeek/spicy-plugin"
 fetch.github = "zeek/spicy-plugin"
 
 [zeek-agent]
