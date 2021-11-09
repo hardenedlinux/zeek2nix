@@ -9,7 +9,10 @@ install_plugin(){
     cd /build/$name/
 
     if [ $name == 'spicy' ]; then
-    ./configure --prefix=$out --build-type=Release --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ --with-c-compiler=${llvmPackages.clang}/bin/clang
+    ./configure --prefix=$out --build-type=Release \
+    --with-cxx-compiler=${llvmPackages.clang}/bin/clang++ \
+    --with-c-compiler=${llvmPackages.clang}/bin/clang \
+    --disable-precompiled-headers
     make -j $NIX_BUILD_CORES && make install
     # intenrel spicy plugin
     fi
