@@ -24,7 +24,7 @@ jobs:
         run: nix -Lv develop --command nvfetcher -l changelog
 
       - name: Update nix verison of GH
-        run: nix -Lv run github:hardenedlinux/nixpkgs-hardenedlinux#gh-nix-update
+        run: nix -Lv develop github:hardenedlinux/nixpkgs-hardenedlinux -c nixpkgs-hardenedlinux gh-nix-update
 
       - name: Check Spicy2nix Latest Rev
         run: nix flake lock --update-input spicy2nix
