@@ -25,13 +25,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "0604df01e3243f18330489c945c5055578bc261d";
+    version = "bdb5222c272eb0aabada6e4968147824dcf9cd29";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "0604df01e3243f18330489c945c5055578bc261d";
+      rev = "bdb5222c272eb0aabada6e4968147824dcf9cd29";
       fetchSubmodules = true;
-      sha256 = "sha256-4C6d6E+LtLAtvwaf4G3PtKErig+tG1TDxTjT+Z+aY2M=";
+      sha256 = "sha256-Qj7+U4zYrXmBIHwzsZrQK3btIDDTS4OHpepYyCxsdDc=";
     });
   };
   zeek-plugin-af_packet = {
@@ -143,10 +143,10 @@
   };
   zeek-tls = {
     pname = "zeek-tls";
-    version = "4.0.4";
+    version = "4.1.1";
     src = fetchurl {
-      url = "https://github.com/zeek/zeek/releases/download/v4.0.4/zeek-4.0.4.tar.gz";
-      sha256 = "sha256-2Zkd40T6jtjJLRMINzCWVdyeIsT15TwUHc5t7uXAUFw=";
+      url = "https://github.com/zeek/zeek/releases/download/v4.1.1/zeek-4.1.1.tar.gz";
+      sha256 = "sha256-jAr8mZqN0cH2d6XPgYR5uZwtUn5nnh75n7GwP5icA3M=";
     };
   };
 }
