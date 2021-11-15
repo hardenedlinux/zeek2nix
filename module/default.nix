@@ -122,10 +122,12 @@ in
       zeek = {
         source = "${cfg.package}/bin/zeek";
         capabilities = "cap_net_raw,cap_net_admin+eip";
+        owner = "zeek";
       };
       zeekctl = {
         source = "${cfg.package}/bin/zeekctl";
         capabilities = "cap_net_raw,cap_net_admin+eip";
+        owner = "zeek";
       };
     };
 
