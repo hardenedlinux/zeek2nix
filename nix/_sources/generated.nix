@@ -25,13 +25,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "bdb5222c272eb0aabada6e4968147824dcf9cd29";
+    version = "f6a9dc416e60833ce80f96051eef3112f5b0e8ff";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "bdb5222c272eb0aabada6e4968147824dcf9cd29";
+      rev = "f6a9dc416e60833ce80f96051eef3112f5b0e8ff";
       fetchSubmodules = true;
-      sha256 = "sha256-Qj7+U4zYrXmBIHwzsZrQK3btIDDTS4OHpepYyCxsdDc=";
+      sha256 = "sha256-5h+ihLSmp8pGxZiVpjvIIrLAfFkNb623fJM4LUTMTwM=";
     });
   };
   zeek-plugin-af_packet = {
@@ -113,13 +113,13 @@
   };
   zeek-plugin-spicy = {
     pname = "zeek-plugin-spicy";
-    version = "067c4f2f614fa5028b504eb73cc0604da3321875";
+    version = "aac8ba379750fa9260bf27c2356945c838b123cf";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "spicy-plugin";
-      rev = "067c4f2f614fa5028b504eb73cc0604da3321875";
+      rev = "aac8ba379750fa9260bf27c2356945c838b123cf";
       fetchSubmodules = false;
-      sha256 = "sha256-2z0wH3xZl/PinpcHHJKnHUZZU5w5O+8xc4sS3EnohSA=";
+      sha256 = "sha256-NBsEdZzl5hzHov2ezM7YdmMjj/Gke0Ei+P6oez7QIK4=";
     });
   };
   zeek-plugin-zip = {
