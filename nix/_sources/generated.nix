@@ -113,13 +113,13 @@
   };
   zeek-plugin-spicy = {
     pname = "zeek-plugin-spicy";
-    version = "aac8ba379750fa9260bf27c2356945c838b123cf";
+    version = "2331bb0522ed104685c94036e60fb49ee43d9821";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "spicy-plugin";
-      rev = "aac8ba379750fa9260bf27c2356945c838b123cf";
+      rev = "2331bb0522ed104685c94036e60fb49ee43d9821";
       fetchSubmodules = false;
-      sha256 = "sha256-NBsEdZzl5hzHov2ezM7YdmMjj/Gke0Ei+P6oez7QIK4=";
+      sha256 = "sha256-uuMOjHfJWe2oV6bgjZeMYaWq0ddf9sEughxRmn/gJ0U=";
     });
   };
   zeek-plugin-zip = {

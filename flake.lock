@@ -565,7 +565,11 @@
     },
     "gomod2nix_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_16",
+        "nixpkgs": [
+          "spicy2nix",
+          "nixpkgs-hardenedlinux",
+          "nixpkgs"
+        ],
         "utils": "utils_4"
       },
       "locked": {
@@ -620,8 +624,12 @@
     "mach-nix_2": {
       "inputs": {
         "flake-utils": "flake-utils_11",
-        "nixpkgs": "nixpkgs_17",
-        "pypi-deps-db": "pypi-deps-db_3"
+        "nixpkgs": "nixpkgs_16",
+        "pypi-deps-db": [
+          "spicy2nix",
+          "nixpkgs-hardenedlinux",
+          "pypi-deps-db"
+        ]
       },
       "locked": {
         "lastModified": 1629464241,
@@ -730,9 +738,9 @@
         "flake-compat": "flake-compat_8",
         "gomod2nix": "gomod2nix_2",
         "mach-nix": "mach-nix_2",
-        "nixpkgs": "nixpkgs_18",
+        "nixpkgs": "nixpkgs_17",
         "nvfetcher": "nvfetcher_3",
-        "pypi-deps-db": "pypi-deps-db_4",
+        "pypi-deps-db": "pypi-deps-db_3",
         "stable": "stable_2",
         "utils": "utils_5"
       },
@@ -847,22 +855,6 @@
     },
     "nixpkgs_16": {
       "locked": {
-        "lastModified": 1637155076,
-        "narHash": "sha256-26ZPNiuzlsnXpt55Q44+yzXvp385aNAfevzVEKbrU5Q=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "715f63411952c86c8f57ab9e3e3cb866a015b5f2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_17": {
-      "locked": {
         "lastModified": 1622797669,
         "narHash": "sha256-xIyWeoYExzF0KNaKcqfxEX58fN4JTIQxTJWbsAujllc=",
         "owner": "NixOS",
@@ -876,7 +868,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_18": {
+    "nixpkgs_17": {
       "locked": {
         "lastModified": 1632701959,
         "narHash": "sha256-CKh3O7CW+bowtTqmz5I1tfOk1Dcte3HxR3wiBxn+GP4=",
@@ -890,6 +882,22 @@
         "id": "nixpkgs",
         "ref": "release-21.05",
         "type": "indirect"
+      }
+    },
+    "nixpkgs_18": {
+      "locked": {
+        "lastModified": 1632411313,
+        "narHash": "sha256-lekODc44lVo9/0EwGiX6LoEt2KhiPdcfNopealMJ7n4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "51bcdc4cdaac48535dabf0ad4642a66774c609ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_19": {
@@ -920,22 +928,6 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable-small",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_20": {
-      "locked": {
-        "lastModified": 1632411313,
-        "narHash": "sha256-lekODc44lVo9/0EwGiX6LoEt2KhiPdcfNopealMJ7n4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "51bcdc4cdaac48535dabf0ad4642a66774c609ed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1096,7 +1088,7 @@
       "inputs": {
         "flake-compat": "flake-compat_9",
         "flake-utils": "flake-utils_12",
-        "nixpkgs": "nixpkgs_19"
+        "nixpkgs": "nixpkgs_18"
       },
       "locked": {
         "lastModified": 1632700276,
@@ -1116,7 +1108,7 @@
       "inputs": {
         "flake-compat": "flake-compat_10",
         "flake-utils": "flake-utils_14",
-        "nixpkgs": "nixpkgs_20"
+        "nixpkgs": "nixpkgs_19"
       },
       "locked": {
         "lastModified": 1632700276,
@@ -1184,22 +1176,6 @@
       }
     },
     "pypi-deps-db_3": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1637569327,
-        "narHash": "sha256-o4rX/uN1x4Ijx5UFe2qGsk2f+z1UCf1DBt+oyPYA8eQ=",
-        "owner": "DavHau",
-        "repo": "pypi-deps-db",
-        "rev": "d3c981d59402e1611a63052d5a34a6da645f299f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DavHau",
-        "repo": "pypi-deps-db",
-        "type": "github"
-      }
-    },
-    "pypi-deps-db_4": {
       "flake": false,
       "locked": {
         "lastModified": 1633119742,
