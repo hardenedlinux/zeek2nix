@@ -123,7 +123,10 @@
           };
 
           devShell = with pkgs; devshell.mkShell {
-            imports = [ (devshell.importTOML ./misc/spicy-plugin.toml) ];
+            imports = [
+              (devshell.importTOML ./misc/spicy-plugin.toml)
+              (devshell.importTOML ./devshell.toml)
+            ];
             packages = [
               #zeek-release #debug
               btest

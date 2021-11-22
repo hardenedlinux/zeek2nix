@@ -1,0 +1,11 @@
+[[commands]]
+name = "update-locks"
+category = "Update"
+command = '''
+nix flake lock --update-input nixpkgs-hardenedlinux
+nix flake lock --update-input spicy2nix
+nix flake lock --update-input nvfetcher
+nix flake lock --update-input flake-utils
+nix flake lock --update-input flake-compat
+'''
+help = "Updating inputs lock without nixpkgs"
