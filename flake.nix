@@ -1,7 +1,7 @@
 {
   description = "Zeek to Nix";
   nixConfig.extra-substituters = "https://zeek.cachix.org";
-  nixConfig.extra-trusted-public-keys = "zeek.cachix.org-1:pI1yRThH7gSh0ty7WmMWXqYFYigjcXFwiGiaaMmVpfA=";
+  nixConfig.extra-trusted-public-keys = "zeek.cachix.org-1:Jv0hB/P5eF7RQUZgSQiVqzqzgweP29YIwpSiukGlDWQ=";
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     microvm.follows = "nixpkgs-hardenedlinux/microvm";
+    # Fixup input tempalte
+    # zeek2nix = {
+    #   url = "github:hardenedlinux/zeek2nix";
+    #   inputs.microvm.follows = "zeek2nix/nixpkgs-hardenedlinux/microvm";
+    # };
   };
 
   outputs = inputs: with builtins; with inputs;
@@ -105,6 +110,11 @@
                   networking.hostName = "zeek-microvm";
                   users.users.root.password = "";
                 } // import ./tests/standalone.nix { inherit pkgs self; };
+                interfaces = [{
+                  type = "bridge,br=virbr0";
+                  id = "qemu-eth0";
+                  mac = "00:02:00:01:01:01";
+                }];
                 volumes = [{
                   mountpoint = "/var";
                   image = "/tmp/zeek-microvm.img";
