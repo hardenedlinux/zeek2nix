@@ -1234,11 +1234,11 @@
         "nvfetcher": "nvfetcher_4"
       },
       "locked": {
-        "lastModified": 1639444299,
-        "narHash": "sha256-fCN5czm7LkCAbawgK8ySvidv/7eX0WquAH23GHseoBI=",
+        "lastModified": 1640049628,
+        "narHash": "sha256-xQqhpFmpIU1QVYkldFDwe9kmXURsKiAcNM2ynIWLwk0=",
         "owner": "GTrunSec",
         "repo": "spicy2nix",
-        "rev": "29e416754fd373678b7ccb4a2b7e5728c8fd648b",
+        "rev": "8bc1033b1182d95efbbb6ce95600f6d48be3f4a1",
         "type": "github"
       },
       "original": {
