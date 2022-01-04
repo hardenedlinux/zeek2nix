@@ -3,8 +3,8 @@
   nixConfig.extra-substituters = "https://zeek.cachix.org";
   nixConfig.extra-trusted-public-keys = "zeek.cachix.org-1:Jv0hB/P5eF7RQUZgSQiVqzqzgweP29YIwpSiukGlDWQ=";
   nixConfig = {
-    #flake-registry = "https://github.com/hardenedlinux/flake-registry/raw/main/flake-registry.json";
-    flake-registry = "/home/gtrun/ghq/github.com/hardenedlinux/flake-registry/flake-registry.json";
+    flake-registry = "https://github.com/hardenedlinux/flake-registry/raw/main/flake-registry.json";
+    #flake-registry = "/home/gtrun/ghq/github.com/hardenedlinux/flake-registry/flake-registry.json";
   };
 
   inputs = {
