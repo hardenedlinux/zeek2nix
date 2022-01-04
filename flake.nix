@@ -149,7 +149,10 @@
             {
               name = "cachix-push";
               help = "push zeek-master binary cachix to cachix";
-              command = "nix -Lv build .\#zeek-release --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek";
+              command = ''
+                nix -Lv build .\#zeek-release --no-link --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek
+                nix -Lv build .\#zeek-microvm --no-link --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek
+              '';
             }
             {
               name = "spicy-plugin-btest";

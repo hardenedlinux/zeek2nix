@@ -1,17 +1,5 @@
 [[commands]]
-name = "update-locks"
-category = "Update"
-command = '''
-nix flake lock --update-input nixpkgs-hardenedlinux
-nix flake lock --update-input spicy2nix
-nix flake lock --update-input nvfetcher
-nix flake lock --update-input flake-utils
-nix flake lock --update-input flake-compat
-'''
-help = "Updating inputs lock without nixpkgs"
-
-[[commands]]
 name = "nvfetcher"
 category = "Update"
-command = "nix -Lv develop nixpkgs-hardenedlinux --no-update-lock-file --no-write-lock-file -c update nvfetcher"
+command = "nix -Lv develop github:hardenedlinux/nixpkgs-hardenedlinux --no-update-lock-file --no-write-lock-file -c update nvfetcher"
 help = "run nvfetcher for updating"
