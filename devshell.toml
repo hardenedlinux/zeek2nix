@@ -9,3 +9,9 @@ nix flake lock --update-input flake-utils
 nix flake lock --update-input flake-compat
 '''
 help = "Updating inputs lock without nixpkgs"
+
+[[commands]]
+name = "nvfetcher"
+category = "Update"
+command = "nix -Lv develop nixpkgs-hardenedlinux --no-update-lock-file --no-write-lock-file -c update nvfetcher"
+help = "run nvfetcher for updating"

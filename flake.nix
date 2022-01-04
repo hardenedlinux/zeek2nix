@@ -2,19 +2,14 @@
   description = "Zeek to Nix";
   nixConfig.extra-substituters = "https://zeek.cachix.org";
   nixConfig.extra-trusted-public-keys = "zeek.cachix.org-1:Jv0hB/P5eF7RQUZgSQiVqzqzgweP29YIwpSiukGlDWQ=";
+  nixConfig = {
+    #flake-registry = "https://github.com/hardenedlinux/flake-registry/raw/main/flake-registry.json";
+    flake-registry = "/home/gtrun/ghq/github.com/hardenedlinux/flake-registry/flake-registry.json";
+  };
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs/release-21.05";
-    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
-    devshell = { url = "github:numtide/devshell"; };
     spicy2nix = { url = "github:GTrunSec/spicy2nix"; };
-    nixpkgs-hardenedlinux = { url = "github:hardenedlinux/nixpkgs-hardenedlinux"; };
-    nvfetcher = {
-      url = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    microvm.follows = "nixpkgs-hardenedlinux/microvm";
+    flake-compat.flake = false;
     # Fixup input tempalte
     # zeek2nix = {
     #   url = "github:hardenedlinux/zeek2nix";
@@ -22,7 +17,17 @@
     # };
   };
 
-  outputs = inputs: with builtins; with inputs;
+  outputs =
+    { self
+    , nixpkgs_21_05
+    , flake-utils
+    , flake-compat
+    , devshell
+    , nixpkgs-hardenedlinux
+    , microvm
+    , spicy2nix
+    , ...
+    }@inputs:
     {
       overlay = final: prev: rec {
         zeek-release = prev.callPackage ./nix {
@@ -76,105 +81,99 @@
     } //
     (inputs.flake-utils.lib.eachDefaultSystem
       (system:
-        let
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [
-              self.overlay
-              devshell.overlay
-              nvfetcher.overlay
-              spicy2nix.overlay
-              (final: prev: { inherit (nixpkgs-hardenedlinux.packages."x86_64-linux") btest; })
-            ];
-            config = {
-              allowUnsupportedSystem = true;
+      let
+        pkgs = import nixpkgs_21_05 {
+          inherit system;
+          overlays = [
+            self.overlay
+            devshell.overlay
+            spicy2nix.overlay
+            (final: prev: { inherit (nixpkgs-hardenedlinux.packages."x86_64-linux") btest; })
+          ];
+          config = {
+            allowUnsupportedSystem = true;
+          };
+        };
+      in
+      rec {
+        inherit pkgs;
+        packages = inputs.flake-utils.lib.flattenTree
+          rec {
+            inherit (pkgs)
+              zeek-release
+              zeek-latest;
+          } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+          inherit (pkgs) zeek-docker;
+          # nix -Lv run ./\#zeek-microvm
+          # spawn shell with microvm env
+          zeek-microvm = microvm.lib.runner
+            {
+              inherit system;
+              hypervisor = "qemu";
+              nixosConfig = { pkgs, ... }: {
+                networking.hostName = "zeek-microvm";
+                users.users.root.password = "";
+              } // import ./tests/standalone.nix { inherit pkgs self; };
+              interfaces = [{
+                type = "bridge,br=virbr0";
+                id = "qemu-eth0";
+                mac = "00:02:00:01:01:01";
+              }];
+              volumes = [{
+                mountpoint = "/var";
+                image = "/tmp/zeek-microvm.img";
+                size = 256;
+              }];
+              socket = "control.socket";
             };
-          };
-        in
-        rec {
-          inherit pkgs;
-          packages = inputs.flake-utils.lib.flattenTree
-            rec {
-              inherit (pkgs)
-                zeek-release
-                zeek-latest;
-            } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
-            inherit (pkgs) zeek-docker;
-            # nix -Lv run ./\#zeek-microvm
-            # spawn shell with microvm env
-            zeek-microvm = microvm.lib.runner
-              {
-                inherit system;
-                hypervisor = "qemu";
-                nixosConfig = { pkgs, ... }: {
-                  networking.hostName = "zeek-microvm";
-                  users.users.root.password = "";
-                } // import ./tests/standalone.nix { inherit pkgs self; };
-                interfaces = [{
-                  type = "bridge,br=virbr0";
-                  id = "qemu-eth0";
-                  mac = "00:02:00:01:01:01";
-                }];
-                volumes = [{
-                  mountpoint = "/var";
-                  image = "/tmp/zeek-microvm.img";
-                  size = 256;
-                }];
-                socket = "control.socket";
-              };
 
-            inherit (pkgs.zeek-vm-tests)
-              zeek-standalone-vm-systemd
-              zeek-cluster-vm-systemd;
-          };
+          inherit (pkgs.zeek-vm-tests)
+            zeek-standalone-vm-systemd
+            zeek-cluster-vm-systemd;
+        };
 
-          hydraJobs = {
-            inherit packages;
-          };
+        hydraJobs = {
+          inherit packages;
+        };
 
-          devShell = with pkgs; devshell.mkShell {
-            imports = [
-              (devshell.importTOML ./misc/spicy-plugin.toml)
-              (devshell.importTOML ./devshell.toml)
-            ];
-            packages = [
-              #zeek-release #debug
-              btest
-            ];
-            commands = [
-              {
-                name = "cachix-push";
-                help = "push zeek-master binary cachix to cachix";
-                command = "nix -Lv build .\#zeek-release --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek";
-              }
-              {
-                name = "spicy-plugin-btest";
-                help = "Test";
-                command = "btest -d -j -a installation && btest -d -j";
-              }
-              {
-                name = pkgs.nvfetcher-bin.pname;
-                help = pkgs.nvfetcher-bin.meta.description;
-                command = "export NIX_PATH=nixpkgs=${pkgs.path}; cd $PRJ_ROOT/nix; ${pkgs.nvfetcher-bin}/bin/nvfetcher -c ./sources.toml $@";
-              }
-            ];
-          };
-          #
-          apps = {
-            zeek-latest = inputs.flake-utils.lib.mkApp { drv = packages.zeek-latest; exePath = "/bin/zeek"; };
-            zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeek"; };
-            spicyz = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/spicyz"; };
-            checks = flake-utils.lib.mkApp {
-              drv = with pkgs; writeShellScriptBin "checks" (''
+        devShell = with pkgs; pkgs.devshell.mkShell {
+          imports = [
+            (pkgs.devshell.importTOML ./misc/spicy-plugin.toml)
+            (pkgs.devshell.importTOML ./devshell.toml)
+          ];
+          packages = [
+            #zeek-release #debug
+            btest
+          ];
+          commands = [
+            {
+              name = "cachix-push";
+              help = "push zeek-master binary cachix to cachix";
+              command = "nix -Lv build .\#zeek-release --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek";
+            }
+            {
+              name = "spicy-plugin-btest";
+              help = "Test";
+              command = "btest -d -j -a installation && btest -d -j";
+            }
+          ];
+        };
+        #
+        apps = {
+          zeek-latest = inputs.flake-utils.lib.mkApp { drv = packages.zeek-latest; exePath = "/bin/zeek"; };
+          zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeek"; };
+          spicyz = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/spicyz"; };
+          checks = flake-utils.lib.mkApp {
+            drv = with pkgs; writeShellScriptBin "checks" (''
                 ''
-              + (lib.fileContents ./tests/test.sh));
-            };
+            + (lib.fileContents ./tests/test.sh));
           };
+        };
 
-          defaultPackage = packages.zeek-release;
-          defaultApp = apps.zeek-release;
-          checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" "zeek-release" ]);
-        }
+        defaultPackage = packages.zeek-release;
+        defaultApp = apps.zeek-release;
+        checks = { } // (removeAttrs packages [ "zeek-latest" "zeek-docker" "zeek-release" ]);
+      }
       ) // {
       nixosModules = {
         zeek = {
