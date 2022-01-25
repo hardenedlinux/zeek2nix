@@ -9,13 +9,13 @@ git.fetchSubmodules = true
 # fetch.github = "zeek/broker"
 # git.fetchSubmodules = true
 [zeek-release]
-src.manual = "v4.1.1"
+src.manual = "v4.2.0"
 fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
 src.prefix = "v"
 
 [zeek-tls]
 src.github = "zeek/zeek"
-fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
+fetch.url = "https://github.com/zeek/zeek/archive/refs/tags/v$ver.tar.gz"
 src.prefix = "v"
 
 [zeek-plugin-af_packet]
