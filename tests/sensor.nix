@@ -1,13 +1,12 @@
-{ pkgs, self, ... }:
-with pkgs.lib;
+{ pkgs, inputs, ... }:
 
 {
   imports = [
-    self.nixosModules.zeek
+    inputs.self.nixosModules.zeek
   ];
 
   environment.systemPackages = [
-    self.packages."${pkgs.system}".zeek-release
+    inputs.self.packages."${pkgs.system}".zeek-release
     pkgs.coreutils
   ];
 
@@ -24,7 +23,7 @@ with pkgs.lib;
     dhcpcd.enable = false;
     useNetworkd = true;
     useDHCP = false;
-    interfaces.eth0.ipv4.addresses = mkForce [{ address = "192.168.1.2"; prefixLength = 24; }];
+    interfaces.eth0.ipv4.addresses = pkgs.lib.mkForce [{ address = "192.168.1.2"; prefixLength = 24; }];
   };
 
   services.zeek = {

@@ -9,14 +9,9 @@
   inputs = {
     spicy2nix = { url = "github:GTrunSec/spicy2nix"; };
     flake-compat.flake = false;
-    # Fixup input tempalte
-    # zeek2nix = {
-    #   url = "github:hardenedlinux/zeek2nix";
-    #   inputs.microvm.follows = "zeek2nix/nixpkgs-hardenedlinux/microvm";
-    # };
   };
 
-  outputs =
+  outputs =    
     { self
     , nixpkgs_21_05
     , flake-utils
@@ -53,7 +48,7 @@
           {
             makeTest = import (prev.path + "/nixos/tests/make-test-python.nix");
             pkgs = final;
-            inherit self;
+            inherit inputs;
           });
 
         zeek-docker = with final;
@@ -67,8 +62,7 @@
             ];
             runAsRoot = ''
               #!${pkgs.runtimeShell}
-              mkdir -p /var/lib/zeek
-              #Is there need to run the pre-run-zeelctl.sh?
+              ${./pre-run-zeekctl.sh}
             '';
             config = {
               Cmd = [ "/bin/zeek" ];
@@ -81,13 +75,13 @@
     (inputs.flake-utils.lib.eachDefaultSystem
       (system:
       let
-        pkgs = import nixpkgs_21_05 {
+        pkgs = import inputs.nixpkgs_21_05 {
           inherit system;
           overlays = [
-            self.overlay
-            devshell.overlay
-            spicy2nix.overlay
-            (final: prev: { inherit (nixpkgs-hardenedlinux.packages."x86_64-linux") btest; })
+            inputs.self.overlay
+            inputs.devshell.overlay
+            inputs.spicy2nix.overlay
+            (final: prev: { inherit (inputs.nixpkgs-hardenedlinux.packages."x86_64-linux") btest; })
           ];
           config = {
             allowUnsupportedSystem = true;
@@ -105,14 +99,14 @@
           inherit (pkgs) zeek-docker;
           # nix -Lv run ./\#zeek-microvm
           # spawn shell with microvm env
-          zeek-microvm = microvm.lib.runner
+          zeek-microvm = inputs.microvm.lib.runner
             {
               inherit system;
               hypervisor = "qemu";
               nixosConfig = { pkgs, ... }: {
                 networking.hostName = "zeek-microvm";
                 users.users.root.password = "";
-              } // import ./tests/standalone.nix { inherit pkgs self; };
+              } // import ./tests/standalone.nix { inherit pkgs inputs; };
               interfaces = [{
                 type = "bridge,br=virbr0";
                 id = "qemu-eth0";
@@ -165,7 +159,7 @@
           zeek-latest = inputs.flake-utils.lib.mkApp { drv = packages.zeek-latest; exePath = "/bin/zeek"; };
           zeek-release = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/zeek"; };
           spicyz = inputs.flake-utils.lib.mkApp { drv = packages.zeek-release; exePath = "/bin/spicyz"; };
-          checks = flake-utils.lib.mkApp {
+          checks = inputs.flake-utils.lib.mkApp {
             drv = with pkgs; writeShellScriptBin "checks" (''
                 ''
             + (lib.fileContents ./tests/test.sh));
@@ -182,7 +176,7 @@
           imports = [
             {
               nixpkgs.config.packageOverrides = pkgs: {
-                inherit (self.packages."${pkgs.system}") zeek-release;
+                inherit (inputs.self.packages."${pkgs.system}") zeek-release;
               };
             }
             ./module

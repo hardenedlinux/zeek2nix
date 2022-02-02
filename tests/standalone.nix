@@ -1,10 +1,10 @@
-{ pkgs, self, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
-    self.nixosModules.zeek
+    inputs.self.nixosModules.zeek
   ];
   environment.systemPackages = [
-    self.packages."${pkgs.system}".zeek-release
+    inputs.self.packages."${pkgs.system}".zeek-release
     pkgs.coreutils
     pkgs.gnugrep
   ];
@@ -14,7 +14,7 @@
     standalone = true;
     interface = "eth0";
     host = "127.0.0.1";
-    package = self.packages."${pkgs.system}".zeek-release.override { };
+    package = inputs.self.packages."${pkgs.system}".zeek-release.override { };
     privateScripts = ''
       @load ${../misc/zeek-query.zeek}
 

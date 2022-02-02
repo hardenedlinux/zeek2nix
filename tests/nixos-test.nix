@@ -1,17 +1,17 @@
-{ makeTest, pkgs, self, ... }:
+{ makeTest, pkgs, inputs, ... }:
 {
   zeek-standalone-vm-systemd = makeTest
     {
       name = "zeek-standalone-vm-systemd";
       machine = { ... }: {
         virtualisation.memorySize = 2046;
-      } // import ./standalone.nix { inherit pkgs self; };
+      } // import ./standalone.nix { inherit pkgs inputs; };
       testScript = ''
         start_all()
         machine.wait_for_unit("network.target")
         machine.wait_for_unit("zeek.service")
         machine.sleep(5)
-        print(machine.succeed("ls -il /var/lib/zeek"))
+        print(machine.succeed("ls -il /var/zeek/lib")
         print(machine.succeed("zeekctl status"))
         print(machine.succeed("ls -il /var/lib/zeek/zeek-spicy/modules"))
         machine.sleep(5)
@@ -35,14 +35,14 @@
             memorySize = 4046;
             cores = 2;
           };
-        } // import ./cluster.nix { inherit pkgs self; };
+        } // import ./cluster.nix { inherit pkgs inputs; };
 
         sensor = { ... }: {
           virtualisation = {
             memorySize = 4046;
             cores = 2;
           };
-        } // import ./sensor.nix { inherit pkgs self; };
+        } // import ./sensor.nix { inherit pkgs inputs; };
 
       };
       testScript = { nodes, ... }: ''

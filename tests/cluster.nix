@@ -1,12 +1,12 @@
-{ pkgs, self, ... }:
+{ pkgs, inputs, ... }:
 with pkgs.lib;
 {
   imports = [
-    self.nixosModules.zeek
+    inputs.self.nixosModules.zeek
   ];
 
   environment.systemPackages = [
-    self.packages."${pkgs.system}".zeek-release
+    inputs.self.packages."${pkgs.system}".zeek-release
   ];
 
   services.openssh = {
@@ -67,6 +67,6 @@ with pkgs.lib;
       lb_procs=1
       pin_cpus=0,1
     '';
-    package = self.packages."${pkgs.system}".zeek-release.override { };
+    package = inputs.self.packages."${pkgs.system}".zeek-release.override { };
   };
 }
