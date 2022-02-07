@@ -15,7 +15,6 @@
     , flake-compat
     , devshell
     , nixpkgs-hardenedlinux
-    , microvm
     , spicy2nix
     , ...
     }

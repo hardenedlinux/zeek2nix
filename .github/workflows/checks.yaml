@@ -40,9 +40,6 @@ jobs:
           nix -Lv run .#zeek-release -- -NN _Zeek::Spicy
           nix -Lv run .#spicyz -- -D zeek misc/my-http.spicy misc/my-http.evt -o misc/my-http.hlto
 
-      - name: Build Zeek Micro-vm
-        run: nix -Lv build ./#zeek-microvm
-
       - name: Check Zeek Systemd stand-alone module
         run: nix -Lv build ./#zeek-standalone-vm-systemd
 
