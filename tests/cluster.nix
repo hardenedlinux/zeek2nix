@@ -23,14 +23,12 @@ with pkgs.lib;
     dhcpcd.enable = false;
     useNetworkd = true;
     useDHCP = false;
-    interfaces.eth0.ipv4.addresses =
-      mkForce
-        [
-          {
-            address = "192.168.1.1";
-            prefixLength = 24;
-          }
-        ];
+    interfaces.eth0.ipv4.addresses = mkForce [
+      {
+        address = "192.168.1.1";
+        prefixLength = 24;
+      }
+    ];
   };
   # proxy login
   services.zeek = rec {

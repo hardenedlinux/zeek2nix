@@ -8,27 +8,23 @@
 }:
 with args.pkgs;
 rec {
-  spicyInZeek =
-    runCommand
-      "patchedSpicy"
-      {
-        inherit (spicy-sources.spicy-release) src;
-        buildInputs = [ python38 ];
-      }
-      ''
-        cp -r $src $out
-        chmod -R +rw $out
-        cat <<EOF > $out/VERSION
-        ${lib.removePrefix "v" spicy-sources.spicy-release.version}
-        EOF
-        patchShebangs $out/scripts
-      '';
-  install_plugin =
-    pkgs.writeShellScript
-      "install_plugin.sh"
-      (import ./install_plugin.nix { inherit linuxHeaders llvmPackages confDir; });
-  pluginsScript =
-    lib.concatStringsSep "\n" (map (f: "bash ${install_plugin} ${f} ${zeek-sources."${f}".src}") plugins);
+  spicyInZeek = runCommand "patchedSpicy" {
+    inherit (spicy-sources.spicy-release) src;
+    buildInputs = [ python3 ];
+  } ''
+    cp -r $src $out
+    chmod -R +rw $out
+    cat <<EOF > $out/VERSION
+    ${lib.removePrefix "v" spicy-sources.spicy-release.version}
+    EOF
+    patchShebangs $out/scripts
+  '';
+  install_plugin = pkgs.writeShellScript "install_plugin.sh" (
+    import ./install_plugin.nix { inherit linuxHeaders llvmPackages confDir; }
+  );
+  pluginsScript = lib.concatStringsSep "\n" (
+    map (f: "bash ${install_plugin} ${f} ${zeek-sources."${f}".src}") plugins
+  );
   preFixup =
     (
       if zeekctl

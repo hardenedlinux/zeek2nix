@@ -4,7 +4,11 @@
 }:
 {
   imports = [ inputs.self.nixosModules.zeek ];
-  environment.systemPackages = [ inputs.self.packages."${pkgs.system}".zeek-release pkgs.coreutils pkgs.gnugrep ];
+  environment.systemPackages = [
+    inputs.self.packages."${pkgs.system}".zeek-release
+    pkgs.coreutils
+    pkgs.gnugrep
+  ];
   services.zeek = {
     enable = true;
     standalone = true;
