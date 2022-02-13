@@ -1513,11 +1513,11 @@
         "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux_2"
       },
       "locked": {
-        "lastModified": 1644231911,
-        "narHash": "sha256-M8CPdXqk62d5FVjpAwvVVWUwTKk7AT9AGGeMmlRjPAA=",
+        "lastModified": 1644400013,
+        "narHash": "sha256-vzvpI78IWDYgGxDArV46OqDFAQi69NnhiHVgqD+7NxI=",
         "owner": "gtrunsec",
         "repo": "spicy2nix",
-        "rev": "88faeef7578dfad53f057daa04e86a73e1821232",
+        "rev": "62803ab7e8bdeee3c95bbd0538b59b9af81c6b0c",
         "type": "github"
       },
       "original": {
