@@ -6,8 +6,7 @@
 , plugins
 , checkPlugin
 }:
-with args.pkgs;
-rec {
+with args.pkgs; rec {
   spicyInZeek = runCommand "patchedSpicy" {
     inherit (spicy-sources.spicy-release) src;
     buildInputs = [ python3 ];

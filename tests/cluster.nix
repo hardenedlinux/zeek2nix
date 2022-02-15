@@ -2,8 +2,7 @@
 , inputs
 , ...
 }:
-with pkgs.lib;
-{
+with pkgs.lib; {
   imports = [ inputs.self.nixosModules.zeek ];
   environment.systemPackages = [ inputs.self.packages."${pkgs.system}".zeek-release ];
   services.openssh = {

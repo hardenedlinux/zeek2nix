@@ -131,8 +131,7 @@ stdenv.mkDerivation rec {
     else "";
   inherit (plugin) preFixup;
   meta =
-    with lib;
-    {
+    with lib; {
       description = "Powerful network analysis framework much different from a typical IDS";
       homepage = "https://www.zeek.org";
       changelog = "https://github.com/zeek/zeek//blob/v${version}/CHANGELOG.md";

@@ -8,8 +8,8 @@
     name = "zeek-standalone-vm-systemd";
     machine =
       { ... }:
-      { virtualisation.memorySize = 2046; }
-      // import ./standalone.nix { inherit pkgs inputs; };
+        { virtualisation.memorySize = 2046; }
+        // import ./standalone.nix { inherit pkgs inputs; };
     testScript = ''
       start_all()
       machine.wait_for_unit("network.target")
@@ -31,22 +31,22 @@
     nodes = {
       machine =
         { ... }:
-        {
-          virtualisation = {
-            memorySize = 4046;
-            cores = 2;
-          };
-        }
-        // import ./cluster.nix { inherit pkgs inputs; };
+          {
+            virtualisation = {
+              memorySize = 4046;
+              cores = 2;
+            };
+          }
+          // import ./cluster.nix { inherit pkgs inputs; };
       sensor =
         { ... }:
-        {
-          virtualisation = {
-            memorySize = 4046;
-            cores = 2;
-          };
-        }
-        // import ./sensor.nix { inherit pkgs inputs; };
+          {
+            virtualisation = {
+              memorySize = 4046;
+              cores = 2;
+            };
+          }
+          // import ./sensor.nix { inherit pkgs inputs; };
     };
     testScript =
       { nodes

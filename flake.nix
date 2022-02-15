@@ -18,20 +18,24 @@
     , spicy2nix
     , ...
     }
-      @ inputs:
+    @ inputs:
     (
       inputs.flake-utils.lib.eachDefaultSystem
-        (
-          system:
-          let
-            overlay = import ./nix/overlay.nix { inherit inputs; };
-            pkgs = inputs.nixpkgs.legacyPackages."${system}".appendOverlays [ overlay ];
-            devshell = inputs.devshell.legacyPackages."${system}";
-            btest = inputs.nixpkgs-hardenedlinux.packages.${system}.btest;
-          in
+      (
+        system: let
+          overlay = import ./nix/overlay.nix { inherit inputs; };
+          pkgs = inputs.nixpkgs.legacyPackages."${system}".appendOverlays [ overlay ];
+          devshell = inputs.devshell.legacyPackages."${system}";
+          btest = inputs.nixpkgs-hardenedlinux.packages.${system}.btest;
+        in
           rec {
             inherit (pkgs) zeek-sources;
-            packages = { inherit (pkgs) zeek-release zeek-latest; inherit btest;} // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux
+            packages =
+              {
+                inherit (pkgs) zeek-release zeek-latest;
+                inherit btest;
+              }
+              // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux
               {
                 inherit (pkgs.zeek-vm-tests) zeek-standalone-vm-systemd zeek-cluster-vm-systemd;
               };
@@ -77,7 +81,7 @@
             defaultPackage = packages.zeek-release;
             defaultApp = apps.zeek-release;
           }
-        )
+      )
       // {
         nixosModules = {
           zeek = {

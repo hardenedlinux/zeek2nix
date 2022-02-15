@@ -677,11 +677,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1644885069,
-        "narHash": "sha256-2PIENWAW4ywYll0owwOlUtYs1haqIiXqgxj67rnr+Rk=",
+        "lastModified": 1644887136,
+        "narHash": "sha256-8Z0aZPC1e6rjF5jEkZT4Kmg48CxFjFqmfMRUt2g82fE=",
         "owner": "hardenedlinux",
         "repo": "nixpkgs-hardenedlinux",
-        "rev": "ea42ca0ef0da975cf87790b423bbbf726c32764c",
+        "rev": "ec276a2c06a4558dfd3e2f485f099e3bb3ec87e3",
         "type": "github"
       },
       "original": {
