@@ -24,7 +24,7 @@ jobs:
             extra-trusted-public-keys = zeek.cachix.org-1:Jv0hB/P5eF7RQUZgSQiVqzqzgweP29YIwpSiukGlDWQ=
 
       - name: Run Nvfetcher Updates
-        run: nix -Lv develop github:hardenedlinux/nixpkgs-hardenedlinux -c update nvfetcher ./nix/sources.toml
+        run: nix -Lv develop ./devshell -c nvfetcher-update ./nix/sources.toml
 
       - name: Check Spicy2nix Latest Rev
         run: nix flake lock --update-input spicy2nix

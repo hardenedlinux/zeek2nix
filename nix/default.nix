@@ -1,40 +1,42 @@
-{ stdenv
-, lib
-, fetchurl
-, cmake
-, flex
-, bison
-, openssl
-, libpcap
-, zlib
-, file
-, curl
-, libmaxminddb
-, gperftools
-, swig
-, ncurses5
-, caf
+{
+  stdenv,
+  lib,
+  fetchurl,
+  cmake,
+  flex,
+  bison,
+  openssl,
+  libpcap,
+  zlib,
+  file,
+  curl,
+  libmaxminddb,
+  gperftools,
+  swig,
+  ncurses5,
+  caf
   ## Plugin dependencies
-, pkgs
-, rdkafka
-, postgresql
-, coreutils
-, libnghttp2
-, brotli
-, python3
-, llvmPackages
-, libzip
-, glibc
-, which
-, makeWrapper
-, git
-, podofo
-, linuxHeaders
-, zeek-sources
-, spicy-sources
-, zeekctl ? true
-, confDir ? "/var/lib/zeek"
-, plugins ? [ ]
+  ,
+  pkgs,
+  rdkafka,
+  postgresql,
+  coreutils,
+  libnghttp2,
+  brotli,
+  python3,
+  llvmPackages,
+  libzip,
+  glibc,
+  which,
+  makeWrapper,
+  git,
+  podofo,
+  linuxHeaders,
+  zeek-sources,
+  spicy-sources,
+  zeekctl ? true,
+  confDir ? "/var/lib/zeek",
+  plugins ? [ ],
 }
 @ args:
 let

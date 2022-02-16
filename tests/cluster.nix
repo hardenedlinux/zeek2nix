@@ -1,6 +1,7 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }:
 with pkgs.lib; {
   imports = [ inputs.self.nixosModules.zeek ];

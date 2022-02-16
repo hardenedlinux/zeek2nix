@@ -9,14 +9,14 @@
     flake-compat.flake = false;
   };
   outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , flake-compat
-    , devshell
-    , nixpkgs-hardenedlinux
-    , spicy2nix
-    , ...
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      flake-compat,
+      nixpkgs-hardenedlinux,
+      spicy2nix,
+      ...
     }
     @ inputs:
     (
@@ -30,6 +30,7 @@
         in
           rec {
             inherit (pkgs) zeek-sources;
+            inherit overlay;
             packages =
               {
                 inherit (pkgs) zeek-release zeek-latest;
@@ -42,27 +43,7 @@
 
             hydraJobs = { inherit packages; };
 
-            devShell = devshell.mkShell {
-              imports = [
-                (devshell.importTOML ./misc/spicy-plugin.toml)
-                (devshell.importTOML ./devshell.toml)
-              ];
-              commands = [
-                {
-                  name = "cachix-push";
-                  help = "push zeek-master binary cachix to cachix";
-                  command = ''
-                    nix -Lv build .\#zeek-release --no-link --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek
-                    nix -Lv build .\#zeek-microvm --no-link --json | jq -r '.[].outputs | to_entries[].value' | cachix push zeek
-                  '';
-                }
-                {
-                  name = "spicy-plugin-btest";
-                  help = "Test";
-                  command = "btest -d -j -a installation && btest -d -j";
-                }
-              ];
-            };
+            # devShell = devshell.mkShell {};
             #
             apps = {
               zeek-latest = inputs.flake-utils.lib.mkApp {
