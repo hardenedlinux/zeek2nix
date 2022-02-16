@@ -1,5 +1,0 @@
-[[commands]]
-name = "nvfetcher"
-category = "Update"
-command = "nix -Lv develop github:hardenedlinux/nixpkgs-hardenedlinux --no-update-lock-file --no-write-lock-file -c update nvfetcher"
-help = "run nvfetcher for updating"

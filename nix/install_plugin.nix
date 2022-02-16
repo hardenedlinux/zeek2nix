@@ -1,6 +1,7 @@
-{ llvmPackages
-, linuxHeaders
-, confDir
+{
+  llvmPackages,
+  linuxHeaders,
+  confDir,
 }:
 ''
 

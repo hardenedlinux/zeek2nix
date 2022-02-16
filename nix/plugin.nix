@@ -1,10 +1,11 @@
-{ args
-, linuxHeaders
-, llvmPackages
-, confDir
-, zeekctl
-, plugins
-, checkPlugin
+{
+  args,
+  linuxHeaders,
+  llvmPackages,
+  confDir,
+  zeekctl,
+  plugins,
+  checkPlugin,
 }:
 with args.pkgs; rec {
   spicyInZeek = runCommand "patchedSpicy" {

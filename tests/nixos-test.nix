@@ -1,7 +1,8 @@
-{ makeTest ? import (pkgs.path + "/nixos/tests/make-test-python.nix")
-, pkgs
-, inputs
-, ...
+{
+  makeTest ? import (pkgs.path + "/nixos/tests/make-test-python.nix"),
+  pkgs,
+  inputs,
+  ...
 }:
 {
   zeek-standalone-vm-systemd = makeTest {
@@ -49,8 +50,9 @@
           // import ./sensor.nix { inherit pkgs inputs; };
     };
     testScript =
-      { nodes
-      , ...
+      {
+        nodes,
+        ...
       }:
       ''
         start_all()
