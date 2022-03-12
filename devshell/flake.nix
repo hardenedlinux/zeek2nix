@@ -1,13 +1,14 @@
 {
-  description = "Vast Cells development shell";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs.main.url = "../.";
+  inputs.nixpkgs.follows = "main/nixpkgs";
+  inputs.flake-utils.follows = "main/flake-utils";
+
   inputs.devshell.url = "github:numtide/devshell";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.cells.url = "github:GTrunSec/DevSecOps-cells";
   outputs = inputs:
     inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (
       system: let
-        cellsProfiles = inputs.cells.devshellProfiles.${system};
+        cellsProfiles = inputs.cells.${system};
         devshell = inputs.devshell.legacyPackages.${system};
         nixpkgs = inputs.nixpkgs.legacyPackages.${system};
       in
@@ -15,7 +16,7 @@
           devShell = devshell.mkShell {
             name = "zeek2nix";
             imports = [
-              cellsProfiles.common
+              cellsProfiles.update.devshellProfiles.default
               (devshell.importTOML ../misc/spicy.toml)
             ];
             commands = [

@@ -68,6 +68,20 @@
         "type": "indirect"
       }
     },
+    "devshell_3": {
+      "locked": {
+        "lastModified": 1640301433,
+        "narHash": "sha256-eplae8ZNiEmxbOgwUn9IihaJfEUxoUilkwciRPGskYE=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "f87fb932740abe1c1b46f6edd8a36ade17881666",
+        "type": "github"
+      },
+      "original": {
+        "id": "devshell",
+        "type": "indirect"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -316,11 +330,11 @@
     },
     "latest": {
       "locked": {
-        "lastModified": 1644994982,
-        "narHash": "sha256-SvXFMwBIs3tuKRnJHYzjZK0w3qCytLn0eFqAFI4bWiw=",
+        "lastModified": 1645695090,
+        "narHash": "sha256-q3FYGic9v062MeHGh0MdfUVmIp3qJU16PwAsA/zXigA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6d5e3764dd3802fe55d8753e27daeb14a76ce0e0",
+        "rev": "3b2d630a2a859375fcc8945b324a9107caef80e0",
         "type": "github"
       },
       "original": {
@@ -415,11 +429,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1645046891,
-        "narHash": "sha256-dMTsYCtmrPJ75KTEGIo9UnNJ3mOgwJphEMKB3x770b4=",
+        "lastModified": 1647042234,
+        "narHash": "sha256-SNtTR515CllBAeTfrJPhkItSlHKkA+0ysX1VL8rAolA=",
         "owner": "hardenedlinux",
         "repo": "nixpkgs-hardenedlinux",
-        "rev": "898565483c1bda7a1cf70ff689742af7f9029678",
+        "rev": "1f0256625a81b75bcb101a77f666948e49faec8f",
         "type": "github"
       },
       "original": {
@@ -430,7 +444,7 @@
     "nixpkgs-hardenedlinux_2": {
       "inputs": {
         "check_journal": "check_journal_2",
-        "devshell": "devshell_2",
+        "devshell": "devshell_3",
         "flake-compat": "flake-compat_6",
         "gomod2nix": "gomod2nix_2",
         "latest": "latest_2",
@@ -660,17 +674,18 @@
     },
     "spicy2nix": {
       "inputs": {
+        "devshell": "devshell_2",
         "flake-compat": "flake-compat_4",
         "flake-utils": "flake-utils_5",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux_2"
       },
       "locked": {
-        "lastModified": 1645047473,
-        "narHash": "sha256-IWp52sIvmx3g+GNps+LHmQ0ohnLtRnnoSSAqddomD+Q=",
+        "lastModified": 1647041064,
+        "narHash": "sha256-ZCxqQJZ667/fVya5hJ/QUTzP2tqjBIfDWrJMLO/m/8A=",
         "owner": "gtrunsec",
         "repo": "spicy2nix",
-        "rev": "ff60ccebf54729908cb45fde2968fe94e38f500a",
+        "rev": "3ac46ad842af58a63d1bfb006cd7b33df851638f",
         "type": "github"
       },
       "original": {
