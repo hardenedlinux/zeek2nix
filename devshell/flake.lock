@@ -3149,12 +3149,12 @@
         "spicy2nix": "spicy2nix_5"
       },
       "locked": {
-        "narHash": "sha256-GL94h4SwURhjhh1cL8TNGZJJtjonC4eJ4xgJ9g/M5aU=",
-        "path": "/nix/store/03zvhsi710n3yfgnllr23iwcajxx4cx8-source",
+        "narHash": "sha256-/6hQTrDwxYxqJABzofZUTWhi7uHJG6iYnpb5S7l+Kug=",
+        "path": "/nix/store/7xv065i92wzf1cdp2pflw3bwsn9dqijw-source",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/03zvhsi710n3yfgnllr23iwcajxx4cx8-source",
+        "path": "/nix/store/7xv065i92wzf1cdp2pflw3bwsn9dqijw-source",
         "type": "path"
       }
     },

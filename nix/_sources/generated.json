@@ -1,36 +1,21 @@
 {
-    "zeek-tls": {
-        "pinned": false,
-        "cargoLock": null,
-        "name": "zeek-tls",
-        "version": "4.0.5",
-        "passthru": null,
-        "src": {
-            "url": "https://github.com/zeek/zeek/archive/refs/tags/v4.0.5.tar.gz",
-            "name": null,
-            "type": "url",
-            "sha256": "sha256-GhMA5oDL0AHQys3knxAM7tVHtAVFkMDmsB3Is0CPGYg="
-        },
-        "extract": null,
-        "rustGitDeps": null
-    },
     "zeek-plugin-http2": {
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-http2",
-        "version": "7dc14042d1602065d60601d193b99b005f08fe34",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "MITRECND",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "bro-http2",
             "type": "github",
             "sha256": "sha256-EbO6WV1fcFtHRSaFkd/pPPNjMYkDeeZtn8KZHM3gug8=",
-            "rev": "7dc14042d1602065d60601d193b99b005f08fe34"
+            "rev": "7dc14042d1602065d60601d193b99b005f08fe34",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "7dc14042d1602065d60601d193b99b005f08fe34",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -38,34 +23,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-agent",
-        "version": "c67772b3acbeb1b5d3d74349aee9e6a8521da983",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "zeek",
-            "fetchSubmodules": true,
             "name": null,
             "repo": "zeek-agent",
             "type": "github",
             "sha256": "sha256-gqGt4yDLkU3J8vm8Gxroz1VUfssFsJJOaAScSUsEvic=",
-            "rev": "c67772b3acbeb1b5d3d74349aee9e6a8521da983"
+            "rev": "c67772b3acbeb1b5d3d74349aee9e6a8521da983",
+            "leaveDotGit": false,
+            "fetchSubmodules": true
         },
-        "extract": null,
-        "rustGitDeps": null
-    },
-    "zeek-release": {
-        "pinned": false,
-        "cargoLock": null,
-        "name": "zeek-release",
-        "version": "4.2.0",
+        "version": "c67772b3acbeb1b5d3d74349aee9e6a8521da983",
         "passthru": null,
-        "src": {
-            "url": "https://github.com/zeek/zeek/releases/download/v4.2.0/zeek-4.2.0.tar.gz",
-            "name": null,
-            "type": "url",
-            "sha256": "sha256-jZoCjKn+x61KnkinY+KWBSOEz0AupM03FXe/8YPCdFE="
-        },
         "extract": null,
         "rustGitDeps": null
     },
@@ -73,39 +43,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "icsnpp-bacnet",
-        "version": "be9aca1cf826010252a1516b5c2027ec68a6e88c",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "cisagov",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "icsnpp-bacnet",
             "type": "github",
             "sha256": "sha256-PBEZl8NL8IxQcj0CuxnSiI5wFksIHzgeZuw98SHR5U0=",
-            "rev": "be9aca1cf826010252a1516b5c2027ec68a6e88c"
-        },
-        "extract": null,
-        "rustGitDeps": null
-    },
-    "zeek-plugin-af_packet": {
-        "pinned": false,
-        "cargoLock": null,
-        "name": "zeek-plugin-af_packet",
-        "version": "af219c493d279d178161f7eacf44543771cfa71e",
-        "passthru": null,
-        "src": {
-            "deepClone": false,
+            "rev": "be9aca1cf826010252a1516b5c2027ec68a6e88c",
             "leaveDotGit": false,
-            "owner": "J-Gras",
-            "fetchSubmodules": false,
-            "name": null,
-            "repo": "zeek-af_packet-plugin",
-            "type": "github",
-            "sha256": "sha256-xyjiHkBZKbSvV6dR6FrccSJtovNuzdZ7G1pUHfiQw4Q=",
-            "rev": "af219c493d279d178161f7eacf44543771cfa71e"
+            "fetchSubmodules": false
         },
+        "version": "be9aca1cf826010252a1516b5c2027ec68a6e88c",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -113,19 +63,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-zip",
-        "version": "df3344f1e161da9349d5257fc9137acc09d4af55",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "reservoirlabs",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "zeek-zip-analyzer",
             "type": "github",
             "sha256": "sha256-1JKcDOVLQh9wyipGrVtmDnVrEXoMqjxtXqPs1rQo150=",
-            "rev": "df3344f1e161da9349d5257fc9137acc09d4af55"
+            "rev": "df3344f1e161da9349d5257fc9137acc09d4af55",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "df3344f1e161da9349d5257fc9137acc09d4af55",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -133,39 +83,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-ikev2",
-        "version": "5b62d506573da388bb4df0446cc87cdffc12a438",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "ukncsc",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "zeek-ikev2",
             "type": "github",
             "sha256": "sha256-ct1nQcbDGQ2V9lrKD/snhmF3EEkDXCbQfiJpSwOmKPI=",
-            "rev": "5b62d506573da388bb4df0446cc87cdffc12a438"
-        },
-        "extract": null,
-        "rustGitDeps": null
-    },
-    "zeek-latest": {
-        "pinned": false,
-        "cargoLock": null,
-        "name": "zeek-latest",
-        "version": "ff4f3f359c2eb3117cdd4fd0a2764eb1c214eb17",
-        "passthru": null,
-        "src": {
-            "deepClone": false,
+            "rev": "5b62d506573da388bb4df0446cc87cdffc12a438",
             "leaveDotGit": false,
-            "owner": "zeek",
-            "fetchSubmodules": true,
-            "name": null,
-            "repo": "zeek",
-            "type": "github",
-            "sha256": "sha256-R8WR0AE4zCoL/v1LoxMs9E9W/7C0PSu4wxoc2FaMW5c=",
-            "rev": "ff4f3f359c2eb3117cdd4fd0a2764eb1c214eb17"
+            "fetchSubmodules": false
         },
+        "version": "5b62d506573da388bb4df0446cc87cdffc12a438",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -173,19 +103,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-pdf",
-        "version": "3b52f87943f04685da600f4b00b4ad27f8cd28c6",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "reservoirlabs",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "zeek-pdf-analyzer",
             "type": "github",
             "sha256": "sha256-0zO7RwCJx8W8rn5ebjZUn/xLGl0M1ljCSNWSxawflLA=",
-            "rev": "3b52f87943f04685da600f4b00b4ad27f8cd28c6"
+            "rev": "3b52f87943f04685da600f4b00b4ad27f8cd28c6",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "3b52f87943f04685da600f4b00b4ad27f8cd28c6",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -193,19 +123,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-spicy",
-        "version": "13d822c3ede6bfab79a7ffe57aa74f1e3ef830f8",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "zeek",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "spicy-plugin",
             "type": "github",
-            "sha256": "sha256-HQfDTjkCNahjFozjz6puvvaWbg0CAWWEgR+rOt6VuTE=",
-            "rev": "13d822c3ede6bfab79a7ffe57aa74f1e3ef830f8"
+            "sha256": "sha256-Bo02eHlCht5rznvTnGQ1zopmlhA+j4wxmEX2xQFW4ls=",
+            "rev": "c3f3ffda75b81c22e254b506df0452e5a28cd5aa",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "c3f3ffda75b81c22e254b506df0452e5a28cd5aa",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -213,19 +143,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-community-id",
-        "version": "ea6df2b8c9c2fbb62cba8dba88d48a5c6a83e83a",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "corelight",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "zeek-community-id",
             "type": "github",
             "sha256": "sha256-UDU6vGrpxwqtXd36oUhUKdGAV5c9LKpvoB/rcN/ICXY=",
-            "rev": "ea6df2b8c9c2fbb62cba8dba88d48a5c6a83e83a"
+            "rev": "ea6df2b8c9c2fbb62cba8dba88d48a5c6a83e83a",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "ea6df2b8c9c2fbb62cba8dba88d48a5c6a83e83a",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -233,19 +163,89 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-postgresql",
-        "version": "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "0xxon",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "zeek-postgresql",
             "type": "github",
             "sha256": "sha256-Z5ImP8/WPcnfuXC8ZnE5ijERePRC6MdL12CiRuJJfTg=",
-            "rev": "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5"
+            "rev": "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "zeek-tls": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "zeek-tls",
+        "src": {
+            "url": "https://github.com/zeek/zeek/archive/refs/tags/v4.0.5.tar.gz",
+            "name": null,
+            "type": "url",
+            "sha256": "sha256-GhMA5oDL0AHQys3knxAM7tVHtAVFkMDmsB3Is0CPGYg="
+        },
+        "version": "4.0.5",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "zeek-release": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "zeek-release",
+        "src": {
+            "url": "https://github.com/zeek/zeek/releases/download/v4.2.0/zeek-4.2.0.tar.gz",
+            "name": null,
+            "type": "url",
+            "sha256": "sha256-jZoCjKn+x61KnkinY+KWBSOEz0AupM03FXe/8YPCdFE="
+        },
+        "version": "4.2.0",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "zeek-plugin-af_packet": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "zeek-plugin-af_packet",
+        "src": {
+            "deepClone": false,
+            "owner": "J-Gras",
+            "name": null,
+            "repo": "zeek-af_packet-plugin",
+            "type": "github",
+            "sha256": "sha256-xyjiHkBZKbSvV6dR6FrccSJtovNuzdZ7G1pUHfiQw4Q=",
+            "rev": "af219c493d279d178161f7eacf44543771cfa71e",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
+        },
+        "version": "af219c493d279d178161f7eacf44543771cfa71e",
+        "passthru": null,
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "zeek-latest": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "zeek-latest",
+        "src": {
+            "deepClone": false,
+            "owner": "zeek",
+            "name": null,
+            "repo": "zeek",
+            "type": "github",
+            "sha256": "sha256-/LQ6UsptxBbxvocEnHa+zpSNddC+ZuKHyZcd8W6XFSw=",
+            "rev": "c99a5c8d1163f58114874a97e7fdada5e03e3110",
+            "leaveDotGit": false,
+            "fetchSubmodules": true
+        },
+        "version": "c99a5c8d1163f58114874a97e7fdada5e03e3110",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     },
@@ -253,19 +253,19 @@
         "pinned": false,
         "cargoLock": null,
         "name": "zeek-plugin-kafka",
-        "version": "a2003110fe68e07a4f738b7c4ed440e07173ed84",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
             "owner": "SeisoLLC",
-            "fetchSubmodules": false,
             "name": null,
             "repo": "zeek-kafka",
             "type": "github",
             "sha256": "sha256-sui3z1mJshNqVErYtDiaQ97nbt+vu1FKvUSylxuNt5A=",
-            "rev": "a2003110fe68e07a4f738b7c4ed440e07173ed84"
+            "rev": "a2003110fe68e07a4f738b7c4ed440e07173ed84",
+            "leaveDotGit": false,
+            "fetchSubmodules": false
         },
+        "version": "a2003110fe68e07a4f738b7c4ed440e07173ed84",
+        "passthru": null,
         "extract": null,
         "rustGitDeps": null
     }
