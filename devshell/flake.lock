@@ -3198,12 +3198,12 @@
         "spicy2nix": "spicy2nix_5"
       },
       "locked": {
-        "narHash": "sha256-A1m+kBBxETQIeJyKuH2BwYYmNdwFECtyA4eHkoInzFE=",
-        "path": "/nix/store/7kgdwjn2xj49nzd08kan4lvlxh9ckisd-source",
+        "narHash": "sha256-JYXdV9JFuIE/KaStR7O10oBfkxQU/MIsTnH1hfyMzaA=",
+        "path": "/nix/store/w6377pikv2lw21r5bvbrymjlgyaidq2y-source",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/7kgdwjn2xj49nzd08kan4lvlxh9ckisd-source",
+        "path": "/nix/store/w6377pikv2lw21r5bvbrymjlgyaidq2y-source",
         "type": "path"
       }
     },

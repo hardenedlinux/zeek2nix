@@ -129,12 +129,12 @@
             "name": null,
             "repo": "spicy-plugin",
             "type": "github",
-            "sha256": "sha256-Bo02eHlCht5rznvTnGQ1zopmlhA+j4wxmEX2xQFW4ls=",
-            "rev": "c3f3ffda75b81c22e254b506df0452e5a28cd5aa",
+            "sha256": "sha256-J8pJ/W6hz3UNLydpCd01Tf5F7kX2S3XsSv2/ej6O7Xc=",
+            "rev": "ae2fc8849c3034121596e6641b9c47026d49a83b",
             "leaveDotGit": false,
             "fetchSubmodules": false
         },
-        "version": "c3f3ffda75b81c22e254b506df0452e5a28cd5aa",
+        "version": "ae2fc8849c3034121596e6641b9c47026d49a83b",
         "passthru": null,
         "extract": null,
         "rustGitDeps": null
@@ -239,12 +239,12 @@
             "name": null,
             "repo": "zeek",
             "type": "github",
-            "sha256": "sha256-/LQ6UsptxBbxvocEnHa+zpSNddC+ZuKHyZcd8W6XFSw=",
-            "rev": "c99a5c8d1163f58114874a97e7fdada5e03e3110",
+            "sha256": "sha256-ZNJl1oKQHyA376DZtDuVzZWTh2cV6MWT5+BeEp7oh84=",
+            "rev": "0a344a3ad760ae73d7b15225edc3a5da0ea1c2f2",
             "leaveDotGit": false,
             "fetchSubmodules": true
         },
-        "version": "c99a5c8d1163f58114874a97e7fdada5e03e3110",
+        "version": "0a344a3ad760ae73d7b15225edc3a5da0ea1c2f2",
         "passthru": null,
         "extract": null,
         "rustGitDeps": null
