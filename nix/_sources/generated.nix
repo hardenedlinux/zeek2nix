@@ -25,13 +25,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "0a344a3ad760ae73d7b15225edc3a5da0ea1c2f2";
+    version = "aa8f11fa17f411a50410cf5743d1a66e6809b70c";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "0a344a3ad760ae73d7b15225edc3a5da0ea1c2f2";
+      rev = "aa8f11fa17f411a50410cf5743d1a66e6809b70c";
       fetchSubmodules = true;
-      sha256 = "sha256-ZNJl1oKQHyA376DZtDuVzZWTh2cV6MWT5+BeEp7oh84=";
+      sha256 = "sha256-UKmYGoqkkxK971hFoe6DzFUD4g8zM3ScTXlzgovI/4o=";
     });
   };
   zeek-plugin-af_packet = {
@@ -89,17 +89,6 @@
       sha256 = "sha256-sui3z1mJshNqVErYtDiaQ97nbt+vu1FKvUSylxuNt5A=";
     });
   };
-  zeek-plugin-pdf = {
-    pname = "zeek-plugin-pdf";
-    version = "3b52f87943f04685da600f4b00b4ad27f8cd28c6";
-    src = fetchFromGitHub ({
-      owner = "reservoirlabs";
-      repo = "zeek-pdf-analyzer";
-      rev = "3b52f87943f04685da600f4b00b4ad27f8cd28c6";
-      fetchSubmodules = false;
-      sha256 = "sha256-0zO7RwCJx8W8rn5ebjZUn/xLGl0M1ljCSNWSxawflLA=";
-    });
-  };
   zeek-plugin-postgresql = {
     pname = "zeek-plugin-postgresql";
     version = "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5";
@@ -113,24 +102,13 @@
   };
   zeek-plugin-spicy = {
     pname = "zeek-plugin-spicy";
-    version = "ae2fc8849c3034121596e6641b9c47026d49a83b";
+    version = "be662a28f09de91b0e8c5fea460d18365bb0a813";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "spicy-plugin";
-      rev = "ae2fc8849c3034121596e6641b9c47026d49a83b";
+      rev = "be662a28f09de91b0e8c5fea460d18365bb0a813";
       fetchSubmodules = false;
-      sha256 = "sha256-J8pJ/W6hz3UNLydpCd01Tf5F7kX2S3XsSv2/ej6O7Xc=";
-    });
-  };
-  zeek-plugin-zip = {
-    pname = "zeek-plugin-zip";
-    version = "df3344f1e161da9349d5257fc9137acc09d4af55";
-    src = fetchFromGitHub ({
-      owner = "reservoirlabs";
-      repo = "zeek-zip-analyzer";
-      rev = "df3344f1e161da9349d5257fc9137acc09d4af55";
-      fetchSubmodules = false;
-      sha256 = "sha256-1JKcDOVLQh9wyipGrVtmDnVrEXoMqjxtXqPs1rQo150=";
+      sha256 = "sha256-BkmQq39RP1ypyNMDWHcQwYDd01uyGCBzvdl+GVgQ0gk=";
     });
   };
   zeek-release = {

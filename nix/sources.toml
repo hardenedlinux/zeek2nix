@@ -22,14 +22,6 @@ src.prefix = "v"
 src.git = "https://github.com/J-Gras/zeek-af_packet-plugin"
 fetch.github = "J-Gras/zeek-af_packet-plugin"
 
-[zeek-plugin-pdf]
-src.git = "https://github.com/reservoirlabs/zeek-pdf-analyzer"
-fetch.github = "reservoirlabs/zeek-pdf-analyzer"
-
-[zeek-plugin-zip]
-src.git = "https://github.com/reservoirlabs/zeek-zip-analyzer"
-fetch.github = "reservoirlabs/zeek-zip-analyzer"
-
 [zeek-plugin-ikev2]
 src.git = "https://github.com/ukncsc/zeek-ikev2"
 fetch.github = "ukncsc/zeek-ikev2"

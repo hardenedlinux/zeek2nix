@@ -59,26 +59,6 @@
         "extract": null,
         "rustGitDeps": null
     },
-    "zeek-plugin-zip": {
-        "pinned": false,
-        "cargoLock": null,
-        "name": "zeek-plugin-zip",
-        "src": {
-            "deepClone": false,
-            "owner": "reservoirlabs",
-            "name": null,
-            "repo": "zeek-zip-analyzer",
-            "type": "github",
-            "sha256": "sha256-1JKcDOVLQh9wyipGrVtmDnVrEXoMqjxtXqPs1rQo150=",
-            "rev": "df3344f1e161da9349d5257fc9137acc09d4af55",
-            "leaveDotGit": false,
-            "fetchSubmodules": false
-        },
-        "version": "df3344f1e161da9349d5257fc9137acc09d4af55",
-        "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
-    },
     "zeek-plugin-ikev2": {
         "pinned": false,
         "cargoLock": null,
@@ -99,26 +79,6 @@
         "extract": null,
         "rustGitDeps": null
     },
-    "zeek-plugin-pdf": {
-        "pinned": false,
-        "cargoLock": null,
-        "name": "zeek-plugin-pdf",
-        "src": {
-            "deepClone": false,
-            "owner": "reservoirlabs",
-            "name": null,
-            "repo": "zeek-pdf-analyzer",
-            "type": "github",
-            "sha256": "sha256-0zO7RwCJx8W8rn5ebjZUn/xLGl0M1ljCSNWSxawflLA=",
-            "rev": "3b52f87943f04685da600f4b00b4ad27f8cd28c6",
-            "leaveDotGit": false,
-            "fetchSubmodules": false
-        },
-        "version": "3b52f87943f04685da600f4b00b4ad27f8cd28c6",
-        "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
-    },
     "zeek-plugin-spicy": {
         "pinned": false,
         "cargoLock": null,
@@ -129,12 +89,12 @@
             "name": null,
             "repo": "spicy-plugin",
             "type": "github",
-            "sha256": "sha256-J8pJ/W6hz3UNLydpCd01Tf5F7kX2S3XsSv2/ej6O7Xc=",
-            "rev": "ae2fc8849c3034121596e6641b9c47026d49a83b",
+            "sha256": "sha256-BkmQq39RP1ypyNMDWHcQwYDd01uyGCBzvdl+GVgQ0gk=",
+            "rev": "be662a28f09de91b0e8c5fea460d18365bb0a813",
             "leaveDotGit": false,
             "fetchSubmodules": false
         },
-        "version": "ae2fc8849c3034121596e6641b9c47026d49a83b",
+        "version": "be662a28f09de91b0e8c5fea460d18365bb0a813",
         "passthru": null,
         "extract": null,
         "rustGitDeps": null
@@ -239,12 +199,12 @@
             "name": null,
             "repo": "zeek",
             "type": "github",
-            "sha256": "sha256-ZNJl1oKQHyA376DZtDuVzZWTh2cV6MWT5+BeEp7oh84=",
-            "rev": "0a344a3ad760ae73d7b15225edc3a5da0ea1c2f2",
+            "sha256": "sha256-UKmYGoqkkxK971hFoe6DzFUD4g8zM3ScTXlzgovI/4o=",
+            "rev": "aa8f11fa17f411a50410cf5743d1a66e6809b70c",
             "leaveDotGit": false,
             "fetchSubmodules": true
         },
-        "version": "0a344a3ad760ae73d7b15225edc3a5da0ea1c2f2",
+        "version": "aa8f11fa17f411a50410cf5743d1a66e6809b70c",
         "passthru": null,
         "extract": null,
         "rustGitDeps": null
