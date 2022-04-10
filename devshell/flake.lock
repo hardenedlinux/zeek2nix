@@ -12400,12 +12400,12 @@
         "spicy2nix": "spicy2nix_17"
       },
       "locked": {
-        "narHash": "sha256-+6l2ap7gmiKcpGrHXEqSJ5hFFCMH9Kb569MfuZCqHLs=",
-        "path": "/nix/store/1ba4z9pix4mqaxg04hx6qypz08i59yx0-source",
+        "narHash": "sha256-sLWqNCBZpwpPGQaCHA30R3E5CC+Df3e2bASLGay871M=",
+        "path": "/nix/store/65aipn91rymd4j16fci0mamkg65nycda-source",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/1ba4z9pix4mqaxg04hx6qypz08i59yx0-source",
+        "path": "/nix/store/65aipn91rymd4j16fci0mamkg65nycda-source",
         "type": "path"
       }
     },

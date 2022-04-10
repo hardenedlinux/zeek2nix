@@ -681,11 +681,11 @@
         "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux_2"
       },
       "locked": {
-        "lastModified": 1648341807,
-        "narHash": "sha256-8MyyuCYe+6YX6mE8FI5TUNj73MgkGLXaWH4H7DsGtlg=",
+        "lastModified": 1648946821,
+        "narHash": "sha256-wPLPY27EEgmKdPoMOBQCwhzOKxzdSvb4f+ooyg+bZGc=",
         "owner": "gtrunsec",
         "repo": "spicy2nix",
-        "rev": "62fdbe15cdfb5d4c0733d36318057eaaaaa2c819",
+        "rev": "adee1041b10ff46f4cd6ab3f93ac18c6d0aedf05",
         "type": "github"
       },
       "original": {
