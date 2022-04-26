@@ -1,9 +1,8 @@
-{ inputs }:
-final: prev: {
+{inputs}: final: prev: {
   btest = inputs.nixpkgs-hardenedlinux.packages."${prev.stdenv.hostPlatform.system}".btest;
   spicy-sources = inputs.spicy2nix.spicy-sources."${prev.stdenv.hostPlatform.system}";
 
-  zeek-sources = prev.callPackage ./_sources/generated.nix { };
+  zeek-sources = prev.callPackage ./_sources/generated.nix {};
 
   zeek-release = prev.callPackage ./. {
     llvmPackages = prev.llvmPackages_11;
@@ -21,7 +20,7 @@ final: prev: {
   };
 
   zeek-latest = final.zeek-release.overrideAttrs (
-    old: rec { inherit (final.zeek-sources.zeek-latest) src pname version; }
+    old: rec {inherit (final.zeek-sources.zeek-latest) src pname version;}
   );
 
   zeek-vm-tests = prev.callPackage ../tests/nixos-test.nix {

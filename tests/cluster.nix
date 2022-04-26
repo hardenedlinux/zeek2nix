@@ -4,8 +4,8 @@
   ...
 }:
 with pkgs.lib; {
-  imports = [ inputs.self.nixosModules.zeek ];
-  environment.systemPackages = [ inputs.self.packages."${pkgs.system}".zeek-release ];
+  imports = [inputs.self.nixosModules.zeek];
+  environment.systemPackages = [inputs.self.packages."${pkgs.system}".zeek-release];
   services.openssh = {
     enable = true;
     permitRootLogin = "yes";
@@ -64,6 +64,6 @@ with pkgs.lib; {
       lb_procs=1
       pin_cpus=0,1
     '';
-    package = inputs.self.packages."${pkgs.system}".zeek-release.override { };
+    package = inputs.self.packages."${pkgs.system}".zeek-release.override {};
   };
 }

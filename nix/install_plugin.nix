@@ -2,8 +2,7 @@
   llvmPackages,
   linuxHeaders,
   confDir,
-}:
-''
+}: ''
 
   install_plugin(){
       name=$1

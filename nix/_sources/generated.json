@@ -1,7 +1,7 @@
 {
     "zeek-plugin-http2": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-http2",
         "src": {
             "deepClone": false,
@@ -16,12 +16,11 @@
         },
         "version": "7dc14042d1602065d60601d193b99b005f08fe34",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-agent": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-agent",
         "src": {
             "deepClone": false,
@@ -36,12 +35,11 @@
         },
         "version": "c67772b3acbeb1b5d3d74349aee9e6a8521da983",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "icsnpp-bacnet": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "icsnpp-bacnet",
         "src": {
             "deepClone": false,
@@ -56,12 +54,11 @@
         },
         "version": "be9aca1cf826010252a1516b5c2027ec68a6e88c",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-plugin-ikev2": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-ikev2",
         "src": {
             "deepClone": false,
@@ -76,12 +73,11 @@
         },
         "version": "5b62d506573da388bb4df0446cc87cdffc12a438",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-plugin-spicy": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-spicy",
         "src": {
             "deepClone": false,
@@ -89,19 +85,18 @@
             "name": null,
             "repo": "spicy-plugin",
             "type": "github",
-            "sha256": "sha256-/rta2jte1SIPHMqBJdWA6c5z8BqLw+Ot5juCIuHOorE=",
-            "rev": "83fe7c69f5ac73841997a339f70700682a03bed4",
+            "sha256": "sha256-3WEmaFzSz8x4WdqwqCiTRs5lll3I95LMdxCUjZLDL8w=",
+            "rev": "0435d34acf92ff07558d72524fb2669eca78b1c9",
             "leaveDotGit": false,
             "fetchSubmodules": false
         },
-        "version": "83fe7c69f5ac73841997a339f70700682a03bed4",
+        "version": "0435d34acf92ff07558d72524fb2669eca78b1c9",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-plugin-community-id": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-community-id",
         "src": {
             "deepClone": false,
@@ -116,12 +111,11 @@
         },
         "version": "ea6df2b8c9c2fbb62cba8dba88d48a5c6a83e83a",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-plugin-postgresql": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-postgresql",
         "src": {
             "deepClone": false,
@@ -136,42 +130,39 @@
         },
         "version": "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-tls": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-tls",
         "src": {
-            "url": "https://github.com/zeek/zeek/archive/refs/tags/v4.0.5.tar.gz",
+            "url": "https://github.com/zeek/zeek/archive/refs/tags/v4.2.1.tar.gz",
             "name": null,
             "type": "url",
-            "sha256": "sha256-GhMA5oDL0AHQys3knxAM7tVHtAVFkMDmsB3Is0CPGYg="
+            "sha256": "sha256-iJ40RiZjTqdGgbdQDkfK1QQj715f3L8G5Ge3NKjB61Q="
         },
-        "version": "4.0.5",
+        "version": "4.2.1",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-release": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-release",
         "src": {
-            "url": "https://github.com/zeek/zeek/releases/download/v4.2.0/zeek-4.2.0.tar.gz",
+            "url": "https://github.com/zeek/zeek/releases/download/v4.2.1/zeek-4.2.1.tar.gz",
             "name": null,
             "type": "url",
-            "sha256": "sha256-jZoCjKn+x61KnkinY+KWBSOEz0AupM03FXe/8YPCdFE="
+            "sha256": "sha256-axNImzBJTHxd2kU/xQmB5ZQ9ZxW2ybW3qFq7gLvm0RY="
         },
-        "version": "4.2.0",
+        "version": "4.2.1",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-plugin-af_packet": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-af_packet",
         "src": {
             "deepClone": false,
@@ -186,12 +177,11 @@
         },
         "version": "af219c493d279d178161f7eacf44543771cfa71e",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-latest": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-latest",
         "src": {
             "deepClone": false,
@@ -199,19 +189,18 @@
             "name": null,
             "repo": "zeek",
             "type": "github",
-            "sha256": "sha256-ildthgilC6I3Cp0Nipq8IINbhuTLjl+gAceYVxB+ICI=",
-            "rev": "acaa9ec01e00447b0deca37385f08797895b00b1",
+            "sha256": "sha256-0trN6YuhpiGMXzqG4qY5dn1cR7uFOOHyCCLhMzdt3AE=",
+            "rev": "4d24b9d9b86e59fcdcc806840f5716c93a372066",
             "leaveDotGit": false,
             "fetchSubmodules": true
         },
-        "version": "acaa9ec01e00447b0deca37385f08797895b00b1",
+        "version": "4d24b9d9b86e59fcdcc806840f5716c93a372066",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zeek-plugin-kafka": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zeek-plugin-kafka",
         "src": {
             "deepClone": false,
@@ -219,14 +208,13 @@
             "name": null,
             "repo": "zeek-kafka",
             "type": "github",
-            "sha256": "sha256-sui3z1mJshNqVErYtDiaQ97nbt+vu1FKvUSylxuNt5A=",
-            "rev": "a2003110fe68e07a4f738b7c4ed440e07173ed84",
+            "sha256": "sha256-aoIdKeNO833lT/WKQWsXuQqd3kzO5N13ONUScA3Xyao=",
+            "rev": "9c160d81b04373454494b3bcfe5170c9f741d759",
             "leaveDotGit": false,
             "fetchSubmodules": false
         },
-        "version": "a2003110fe68e07a4f738b7c4ed440e07173ed84",
+        "version": "9c160d81b04373454494b3bcfe5170c9f741d759",
         "passthru": null,
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     }
 }

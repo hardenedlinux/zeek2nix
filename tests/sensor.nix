@@ -2,10 +2,9 @@
   pkgs,
   inputs,
   ...
-}:
-{
-  imports = [ inputs.self.nixosModules.zeek ];
-  environment.systemPackages = [ inputs.self.packages."${pkgs.system}".zeek-release pkgs.coreutils ];
+}: {
+  imports = [inputs.self.nixosModules.zeek];
+  environment.systemPackages = [inputs.self.packages."${pkgs.system}".zeek-release pkgs.coreutils];
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC83r2CCh6kWQ5liGNavwlk5NR+j5uqdNNKa4pjb45Ij zeek-cluster"
   ];
