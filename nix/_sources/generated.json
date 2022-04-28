@@ -189,12 +189,12 @@
             "name": null,
             "repo": "zeek",
             "type": "github",
-            "sha256": "sha256-0trN6YuhpiGMXzqG4qY5dn1cR7uFOOHyCCLhMzdt3AE=",
-            "rev": "4d24b9d9b86e59fcdcc806840f5716c93a372066",
+            "sha256": "sha256-HE2RtWNAj5fU83Qg7MpPWrD8c/9ZaLz1XlZoYNuFdF4=",
+            "rev": "03bcc3523b17b6aaa4b3b7af6cc43da759a61498",
             "leaveDotGit": false,
             "fetchSubmodules": true
         },
-        "version": "4d24b9d9b86e59fcdcc806840f5716c93a372066",
+        "version": "03bcc3523b17b6aaa4b3b7af6cc43da759a61498",
         "passthru": null,
         "extract": null
     },
