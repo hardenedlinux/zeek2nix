@@ -736,11 +736,11 @@
         "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux_2"
       },
       "locked": {
-        "lastModified": 1650157884,
-        "narHash": "sha256-dFOaRK+T6iaikIVoq16jMYjH559Yltry4cJhZ/1mz9M=",
+        "lastModified": 1651367677,
+        "narHash": "sha256-4SyM50wep4X9bUGxt+kjFqpw20k6t6ZVIKmkiCd2cVo=",
         "owner": "gtrunsec",
         "repo": "spicy2nix",
-        "rev": "6e2e0b15108c70a8de5549797cd2c3674761af1f",
+        "rev": "0bb437be524f0185a47caa15cb58d09f82eb1aa1",
         "type": "github"
       },
       "original": {
