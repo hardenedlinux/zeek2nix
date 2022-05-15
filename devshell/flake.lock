@@ -23948,12 +23948,12 @@
         "spicy2nix": "spicy2nix_29"
       },
       "locked": {
-        "narHash": "sha256-JnEETfIbtr+DDSk7xQrUj1uYidIEyxjY9Iqo0puHNog=",
-        "path": "/nix/store/13b7cl1y0i9bbbr8phy54hi9qlx6hi1q-source",
+        "narHash": "sha256-Nv5sRg8PlkPc/kNwqyz9jGWA4DK5DCGmsp07K4xGofw=",
+        "path": "/nix/store/sby1g9l7vsss2yn24milp59caz912rx4-source",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/13b7cl1y0i9bbbr8phy54hi9qlx6hi1q-source",
+        "path": "/nix/store/sby1g9l7vsss2yn24milp59caz912rx4-source",
         "type": "path"
       }
     },
