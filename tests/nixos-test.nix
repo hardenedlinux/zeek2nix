@@ -7,7 +7,7 @@
   zeek-standalone-vm-systemd =
     makeTest {
       name = "zeek-standalone-vm-systemd";
-      machine = {...}:
+      nodes.machine = {...}:
         {virtualisation.memorySize = 2046;}
         // import ./standalone.nix {inherit pkgs inputs;};
       testScript = ''

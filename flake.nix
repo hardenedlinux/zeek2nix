@@ -8,6 +8,8 @@
   inputs = {
     flake-compat.flake = false;
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    cells-lab.url = "github:GTrunSec/DevSecOps-Cells-Lab";
   };
   outputs = {
     self,
@@ -16,18 +18,17 @@
     flake-compat,
     nixpkgs-hardenedlinux,
     spicy2nix,
+    devshell,
     ...
   } @ inputs: (
     inputs.flake-utils.lib.eachDefaultSystem
     (
       system: let
-        overlay = import ./nix/overlay.nix {inherit inputs;};
-        pkgs = inputs.nixpkgs.legacyPackages."${system}".appendOverlays [overlay];
+        pkgs = inputs.nixpkgs.legacyPackages."${system}".appendOverlays [self.overlay];
         devshell = inputs.devshell.legacyPackages."${system}";
         btest = inputs.nixpkgs-hardenedlinux.packages.${system}.btest;
       in rec {
         inherit (pkgs) zeek-sources;
-        inherit overlay;
         packages =
           {
             inherit (pkgs) zeek-release zeek-latest;
@@ -40,8 +41,8 @@
 
         hydraJobs = {inherit packages;};
 
-        # devShell = devshell.mkShell {};
-        #
+        devShells.default = devshell.mkShell {imports = [./devshell];};
+
         apps = {
           zeek-latest = inputs.flake-utils.lib.mkApp {
             drv = packages.zeek-latest;
@@ -61,6 +62,7 @@
       }
     )
     // {
+      overlay = import ./nix/overlay.nix {inherit inputs;};
       nixosModules = {
         zeek = {
           imports = [
