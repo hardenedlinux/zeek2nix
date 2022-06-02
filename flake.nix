@@ -8,8 +8,6 @@
   inputs = {
     flake-compat.flake = false;
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    cells-lab.url = "github:GTrunSec/DevSecOps-Cells-Lab";
   };
   outputs = {
     self,
