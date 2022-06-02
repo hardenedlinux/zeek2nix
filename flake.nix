@@ -24,7 +24,7 @@
     inputs.flake-utils.lib.eachDefaultSystem
     (
       system: let
-        pkgs = inputs.nixpkgs.legacyPackages."${system}".appendOverlays [self.overlay];
+        pkgs = inputs.nixpkgs.legacyPackages."${system}".appendOverlays [self.overlays.default];
         devshell = inputs.devshell.legacyPackages."${system}";
         btest = inputs.nixpkgs-hardenedlinux.packages.${system}.btest;
       in rec {
@@ -33,6 +33,7 @@
           {
             inherit (pkgs) zeek-release zeek-latest;
             inherit btest;
+            default = packages.zeek-release;
           }
           // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux
           {
@@ -40,10 +41,10 @@
           };
 
         hydraJobs = {inherit packages;};
-
         devShells.default = devshell.mkShell {imports = [./devshell];};
 
-        apps = {
+        apps = rec {
+          default = zeek-release;
           zeek-latest = inputs.flake-utils.lib.mkApp {
             drv = packages.zeek-latest;
             exePath = "/bin/zeek";
@@ -57,12 +58,10 @@
             exePath = "/bin/spicyz";
           };
         };
-        defaultPackage = packages.zeek-release;
-        defaultApp = apps.zeek-release;
       }
     )
     // {
-      overlay = import ./nix/overlay.nix {inherit inputs;};
+      overlays = import ./nix/overlays.nix {inherit inputs;};
       nixosModules = {
         zeek = {
           imports = [
