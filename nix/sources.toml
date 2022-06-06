@@ -9,7 +9,7 @@ git.fetchSubmodules = true
 # fetch.github = "zeek/broker"
 # git.fetchSubmodules = true
 [zeek-release]
-src.manual = "v4.2.1"
+src.manual = "v4.2.2"
 fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
 src.prefix = "v"
 

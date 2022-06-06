@@ -46,8 +46,8 @@ jobs:
       - name: Check Zeek Systemd stand-alone module
         run: nix -Lv build ./#zeek-standalone-vm-systemd
 
-      - name: Check Zeek Systemd Cluster module
-        run: nix -Lv build ./#zeek-cluster-vm-systemd
+      # - name: Check Zeek Systemd Cluster module
+      #   run: nix -Lv build ./#zeek-cluster-vm-systemd
 
       - name: Commit changes
         if: ${{ env.COMMIT_MSG != null }}

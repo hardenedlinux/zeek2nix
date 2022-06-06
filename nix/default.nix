@@ -78,9 +78,13 @@ in
         git
         makeWrapper
       ];
+
     ZEEK_DIST = "${placeholder "out"}";
+
     inherit preConfigure;
+
     enableParallelBuilding = true;
+
     cmakeFlags = [
       "-DPYTHON_EXECUTABLE=${python3}/bin/python"
       "-DPYTHON_INCLUDE_DIR=${python3}/include"
