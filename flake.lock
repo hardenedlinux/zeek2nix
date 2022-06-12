@@ -573,11 +573,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1654202483,
-        "narHash": "sha256-OXtl4dAdI1T/5PxEBoRkom5e3w50wZv2Pb5+NM5duBY=",
+        "lastModified": 1654389990,
+        "narHash": "sha256-deG7HnI7r8ebtzl6nKmXV3CaWlj5sNgmajNO3tRhsf0=",
         "owner": "gtrunsec",
         "repo": "spicy2nix",
-        "rev": "e7e7b713ca4f5a29636c350b175537609a50a129",
+        "rev": "af9ce2960c7a5531740eaff978639abfdcbe1710",
         "type": "github"
       },
       "original": {

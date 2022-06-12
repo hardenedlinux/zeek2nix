@@ -50,11 +50,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "5668a6a6de9fc583e7e0f5ecae94c14d853dc626",
-            "sha256": "sha256-JVyOEMKY4Ce08DlDtJwcE17MJ1b+jeKtOaL/QwU2/aU=",
+            "rev": "58588e7955c199c1dd77d19f9107c19f13846c13",
+            "sha256": "sha256-cPIhMscQEexy44vasRDx3+sx9UztSEc95Sm49agY3ac=",
             "type": "github"
         },
-        "version": "5668a6a6de9fc583e7e0f5ecae94c14d853dc626"
+        "version": "58588e7955c199c1dd77d19f9107c19f13846c13"
     },
     "zeek-plugin-af_packet": {
         "cargoLocks": null,
@@ -183,11 +183,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "spicy-plugin",
-            "rev": "9100cf7f5fa8f32bc6b20ebd27574e61f4e56deb",
-            "sha256": "sha256-EMohZHSAOVKwxhefpE8z8Jsj877ZyM/ieh7vyPmO4qQ=",
+            "rev": "8cd9a0b9f38f130422f821966a3e865e59e8c036",
+            "sha256": "sha256-4H2C5e8ywSf5SVH1sJDQOqN92wo0m4u1Hnl+2sIx6Ys=",
             "type": "github"
         },
-        "version": "9100cf7f5fa8f32bc6b20ebd27574e61f4e56deb"
+        "version": "8cd9a0b9f38f130422f821966a3e865e59e8c036"
     },
     "zeek-release": {
         "cargoLocks": null,
