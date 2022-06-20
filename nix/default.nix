@@ -15,6 +15,7 @@
   swig,
   ncurses5,
   caf,
+  jemalloc,
   ## Plugin dependencies
   pkgs,
   rdkafka,
@@ -48,10 +49,12 @@ in
     inherit (zeek-sources.zeek-release) src pname version;
     ##for spicy ccache
     HOME = ".";
+
     nativeBuildInputs =
       [cmake flex bison file]
       ++ lib.optionals (checkPlugin "zeek-plugin-spicy") [python3]
       ++ lib.optionals (checkPlugin "zeek-plugin-af_packet") [linuxHeaders];
+
     buildInputs =
       [
         openssl
@@ -64,6 +67,7 @@ in
         swig
         caf
         ncurses5
+        jemalloc
       ]
       ++ lib.optionals (checkPlugin "zeek-plugin-kafka") [rdkafka]
       ++ lib.optionals (checkPlugin "zeek-plugin-postgresql") [postgresql]
@@ -93,7 +97,11 @@ in
       "-DINSTALL_AUX_TOOLS=true"
       "-DINSTALL_ZEEKCTL=true"
       "-DZEEK_ETC_INSTALL_DIR=${placeholder "out"}/etc"
+    ] ++ [
+      "-DENABLE_JEMALLOC=true"
+      "-DUSE_PERFTOOLS_TCMALLOC=true"
     ];
+
     postInstall = ''
       for file in $out/share/zeek/base/frameworks/notice/actions/pp-alarms.zeek $out/share/zeek/base/frameworks/notice/main.zeek; do
         substituteInPlace $file \
