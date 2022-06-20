@@ -6,6 +6,9 @@
 }:
 with lib; let
   cfg = config.services.zeek;
+
+  writeLocal = pkgs.writeText "local.zeek" cfg.privateScripts;
+
   standaloneConfig = ''
     [zeek]
     type=standalone
@@ -150,9 +153,8 @@ in {
         chmod -R +rw ${cfg.dataDir}/scripts/{helpers,postprocessors}
         cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
-
         ${
-          optionalString (cfg.privateScripts != null) "echo \"${cfg.privateScripts}\" >> ${cfg.dataDir}/policy/local.zeek"
+          optionalString (cfg.privateScripts != null) "ln -sf ${writeLocal} ${cfg.dataDir}/policy/local.zeek"
         }
         ${
           optionalString (cfg.privateSpicyScripts != []) "${
