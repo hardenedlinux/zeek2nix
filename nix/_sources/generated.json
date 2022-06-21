@@ -145,11 +145,11 @@
             "name": null,
             "owner": "SeisoLLC",
             "repo": "zeek-kafka",
-            "rev": "9c160d81b04373454494b3bcfe5170c9f741d759",
-            "sha256": "sha256-aoIdKeNO833lT/WKQWsXuQqd3kzO5N13ONUScA3Xyao=",
+            "rev": "03f0a34bbe97096f59a1de53e393a3385e956f9a",
+            "sha256": "sha256-hJdBDdYmSM3a+yQPxMFt2iUM/074lIRT61TNsB1b2CQ=",
             "type": "github"
         },
-        "version": "9c160d81b04373454494b3bcfe5170c9f741d759"
+        "version": "03f0a34bbe97096f59a1de53e393a3385e956f9a"
     },
     "zeek-plugin-postgresql": {
         "cargoLocks": null,

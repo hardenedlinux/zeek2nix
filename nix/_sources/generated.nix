@@ -80,13 +80,13 @@
   };
   zeek-plugin-kafka = {
     pname = "zeek-plugin-kafka";
-    version = "9c160d81b04373454494b3bcfe5170c9f741d759";
+    version = "03f0a34bbe97096f59a1de53e393a3385e956f9a";
     src = fetchFromGitHub ({
       owner = "SeisoLLC";
       repo = "zeek-kafka";
-      rev = "9c160d81b04373454494b3bcfe5170c9f741d759";
+      rev = "03f0a34bbe97096f59a1de53e393a3385e956f9a";
       fetchSubmodules = false;
-      sha256 = "sha256-aoIdKeNO833lT/WKQWsXuQqd3kzO5N13ONUScA3Xyao=";
+      sha256 = "sha256-hJdBDdYmSM3a+yQPxMFt2iUM/074lIRT61TNsB1b2CQ=";
     });
   };
   zeek-plugin-postgresql = {
