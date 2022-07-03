@@ -25,13 +25,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "6acb626eceb3eaa2c604e88d9e762690b5480265";
+    version = "035c543e9fc14f987566124790299323c5d8d456";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "6acb626eceb3eaa2c604e88d9e762690b5480265";
+      rev = "035c543e9fc14f987566124790299323c5d8d456";
       fetchSubmodules = true;
-      sha256 = "sha256-gB7YMMK975q9N1tnUZO/tni8bJibQ+zirScPmFf/OLg=";
+      sha256 = "sha256-Jz56OYwYNTjmKdZePGWWVuOuODmOHkDBqBlNhCA9vP4=";
     });
   };
   zeek-plugin-af_packet = {
@@ -80,13 +80,13 @@
   };
   zeek-plugin-kafka = {
     pname = "zeek-plugin-kafka";
-    version = "03f0a34bbe97096f59a1de53e393a3385e956f9a";
+    version = "b632187c7afdc75365a256a7d9bb2e5cc81ab46f";
     src = fetchFromGitHub ({
       owner = "SeisoLLC";
       repo = "zeek-kafka";
-      rev = "03f0a34bbe97096f59a1de53e393a3385e956f9a";
+      rev = "b632187c7afdc75365a256a7d9bb2e5cc81ab46f";
       fetchSubmodules = false;
-      sha256 = "sha256-hJdBDdYmSM3a+yQPxMFt2iUM/074lIRT61TNsB1b2CQ=";
+      sha256 = "sha256-CJXnPam24gPx7Jd4CZJRsdUh7e4H5P7gaf/v2Q4xZ60=";
     });
   };
   zeek-plugin-postgresql = {
@@ -102,13 +102,13 @@
   };
   zeek-plugin-spicy = {
     pname = "zeek-plugin-spicy";
-    version = "8cea518b5f6d833239b0be90da81cad2bfe4a2bc";
+    version = "ebaa2b20233a79171f603175aa08132f527adfde";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "spicy-plugin";
-      rev = "8cea518b5f6d833239b0be90da81cad2bfe4a2bc";
+      rev = "ebaa2b20233a79171f603175aa08132f527adfde";
       fetchSubmodules = false;
-      sha256 = "sha256-FMKV+bUvBamd0ibK8DDxhcX5IUoix4b+RlCXBbZYzSY=";
+      sha256 = "sha256-8/ofTzGNR4QbIGMkEtwn56q1xEBWqjEDr24FRvB5f14=";
     });
   };
   zeek-release = {
