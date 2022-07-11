@@ -3,13 +3,13 @@
 {
   icsnpp-bacnet = {
     pname = "icsnpp-bacnet";
-    version = "f58b905cee9d6f32ac95d08594d7b82944dec864";
+    version = "35243a1a3e821216df693761bc67ef1b7f3203f5";
     src = fetchFromGitHub ({
       owner = "cisagov";
       repo = "icsnpp-bacnet";
-      rev = "f58b905cee9d6f32ac95d08594d7b82944dec864";
+      rev = "35243a1a3e821216df693761bc67ef1b7f3203f5";
       fetchSubmodules = false;
-      sha256 = "sha256-JJrMZdR0/rWYR53lwYROrkLC5IV42Ta/Bt3JTxQqgFU=";
+      sha256 = "sha256-/Tm1XAVO+SonIDnM6Tafq9iiGJ+YB0wnqebTdpnbM6I=";
     });
   };
   zeek-agent = {
@@ -25,13 +25,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "035c543e9fc14f987566124790299323c5d8d456";
+    version = "d957f883df242ef159cfd846884e673addeea7a5";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "035c543e9fc14f987566124790299323c5d8d456";
+      rev = "d957f883df242ef159cfd846884e673addeea7a5";
       fetchSubmodules = true;
-      sha256 = "sha256-Jz56OYwYNTjmKdZePGWWVuOuODmOHkDBqBlNhCA9vP4=";
+      sha256 = "sha256-14hHGyNzHKc0/Wco8juHYeg3MCE/YOmEVABK5VisB2w=";
     });
   };
   zeek-plugin-af_packet = {
@@ -91,13 +91,13 @@
   };
   zeek-plugin-postgresql = {
     pname = "zeek-plugin-postgresql";
-    version = "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5";
+    version = "b2b70900a3b4779efbcb9a39eae8cab1d714f97f";
     src = fetchFromGitHub ({
       owner = "0xxon";
       repo = "zeek-postgresql";
-      rev = "fa8e9acba569bcbf0046a8ae3d08cc069e847ac5";
+      rev = "b2b70900a3b4779efbcb9a39eae8cab1d714f97f";
       fetchSubmodules = false;
-      sha256 = "sha256-Z5ImP8/WPcnfuXC8ZnE5ijERePRC6MdL12CiRuJJfTg=";
+      sha256 = "sha256-O2yWL2Ippv5GFxSesv7Eclw78p2YnT3UWnZ8W54NMdc=";
     });
   };
   zeek-plugin-spicy = {
@@ -121,10 +121,10 @@
   };
   zeek-tls = {
     pname = "zeek-tls";
-    version = "4.0.7";
+    version = "5.0.0";
     src = fetchurl {
-      url = "https://github.com/zeek/zeek/archive/refs/tags/v4.0.7.tar.gz";
-      sha256 = "sha256-gUEREZo+uQPWXWu0WFncBGZzb63Lxe5AujV5CDCuPW8=";
+      url = "https://github.com/zeek/zeek/archive/refs/tags/v5.0.0.tar.gz";
+      sha256 = "sha256-UxSVgzp6QwIgMa4oY/RY0SQrPUdLrgc/it+ntvobjX0=";
     };
   };
 }

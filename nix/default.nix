@@ -48,6 +48,7 @@ in
   stdenv.mkDerivation rec {
     inherit (zeek-sources.zeek-release) src pname version;
     ##for spicy ccache
+
     HOME = ".";
 
     nativeBuildInputs =
@@ -86,8 +87,6 @@ in
     ZEEK_DIST = "${placeholder "out"}";
 
     inherit preConfigure;
-
-    enableParallelBuilding = true;
 
     cmakeFlags = [
       "-DPYTHON_EXECUTABLE=${python3}/bin/python"
