@@ -10,10 +10,7 @@
   };
 
   inputs = {};
-  outputs = {
-    std,
-    ...
-  } @ inputs:
+  outputs = {std, ...} @ inputs:
     std.growOn {
       inherit inputs;
       cellsFrom = ./cells;
