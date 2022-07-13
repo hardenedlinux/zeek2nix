@@ -3,6 +3,8 @@
     btest = inputs.nixpkgs-hardenedlinux.packages."${prev.stdenv.hostPlatform.system}".btest;
     spicy-sources = inputs.spicy2nix.spicy-sources."${prev.stdenv.hostPlatform.system}";
 
+    pf_ring = prev.callPackage ./pf_ring.nix {};
+
     zeek-sources = prev.callPackage ./_sources/generated.nix {};
 
     zeek-release = prev.callPackage ./. {

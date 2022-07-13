@@ -29,7 +29,7 @@
         inherit (pkgs) zeek-sources;
         packages =
           {
-            inherit (pkgs) zeek-release zeek-latest;
+            inherit (pkgs) zeek-release zeek-latest pf_ring;
             inherit btest;
             default = packages.zeek-release;
           }
