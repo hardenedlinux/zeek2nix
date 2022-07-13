@@ -1,0 +1,12 @@
+[book]
+language = "en"
+multilingual = false
+src = "docs"
+title = "Documentation"
+
+[build]
+build-dir = "docs/book"
+
+[preprocessor.kroki-preprocessor]
+command = "/nix/store/dzm41m4zbjg8gmmf1b72d63kyb39cmai-mdbook-kroki-preprocessor-0.1.0/bin/mdbook-kroki-preprocessor"
+
