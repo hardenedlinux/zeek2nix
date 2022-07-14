@@ -61,7 +61,7 @@
         ''
       );
     in
-      prev.runCommand "zeek-fix" {
+      prev.runCommand "zeek-plugins-ci" {
         inherit (zeek) nativeBuildInputs;
         buildInputs = buildInputs ++ [prev.gcc] ++ zeek.buildInputs;
       } ''
