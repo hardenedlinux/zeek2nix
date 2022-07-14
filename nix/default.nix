@@ -88,18 +88,20 @@ in
 
     inherit preConfigure;
 
-    cmakeFlags = [
-      "-DPYTHON_EXECUTABLE=${python3}/bin/python"
-      "-DPYTHON_INCLUDE_DIR=${python3}/include"
-      "-DPY_MOD_INSTALL_DIR=${placeholder "out"}/${python3.sitePackages}"
-      "-DENABLE_PERFTOOLS=true"
-      "-DINSTALL_AUX_TOOLS=true"
-      "-DINSTALL_ZEEKCTL=true"
-      "-DZEEK_ETC_INSTALL_DIR=${placeholder "out"}/etc"
-    ] ++ [
-      "-DENABLE_JEMALLOC=true"
-      "-DUSE_PERFTOOLS_TCMALLOC=true"
-    ];
+    cmakeFlags =
+      [
+        "-DPYTHON_EXECUTABLE=${python3}/bin/python"
+        "-DPYTHON_INCLUDE_DIR=${python3}/include"
+        "-DPY_MOD_INSTALL_DIR=${placeholder "out"}/${python3.sitePackages}"
+        "-DENABLE_PERFTOOLS=true"
+        "-DINSTALL_AUX_TOOLS=true"
+        "-DINSTALL_ZEEKCTL=true"
+        "-DZEEK_ETC_INSTALL_DIR=${placeholder "out"}/etc"
+      ]
+      ++ [
+        "-DENABLE_JEMALLOC=true"
+        "-DUSE_PERFTOOLS_TCMALLOC=true"
+      ];
 
     postInstall = ''
       for file in $out/share/zeek/base/frameworks/notice/actions/pp-alarms.zeek $out/share/zeek/base/frameworks/notice/main.zeek; do

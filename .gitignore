@@ -9,3 +9,4 @@ nix/changelog
 misc/*.hlto
 spicy-plugin
 *.img
+.std
