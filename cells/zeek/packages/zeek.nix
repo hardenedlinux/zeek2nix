@@ -18,7 +18,7 @@
   coreutils,
   ncurses,
   fetchFromGitHub,
-  which
+  which,
 }:
 clangStdenv.mkDerivation rec {
   pname = "zeek";
@@ -84,7 +84,6 @@ clangStdenv.mkDerivation rec {
     done
     tar -czvf $out/include/zeek-dist.tar.gz .
   '';
-
 
   preFixup = ''
     cd /build/source/auxil/spicy/spicy
