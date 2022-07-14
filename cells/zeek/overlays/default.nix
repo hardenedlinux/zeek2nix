@@ -40,7 +40,7 @@
       zeek.overrideAttrs (old:
         {
           preFixup = old.preFixup + buildPlugins;
-          # buildInputs = old.buildInputs ++ pluginsInputs;
+          buildInputs = old.buildInputs ++ pluginsInputs;
         }
         // (builtins.removeAttrs _args ["plugins"]));
 

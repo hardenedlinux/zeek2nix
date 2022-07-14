@@ -7,9 +7,6 @@
     {
       src = nixpkgs.zeek-sources.zeek-plugin-community-id;
     }
-    {
-      src = nixpkgs.zeek-sources.zeek-netmap;
-    }
   ];
 in {
   inherit (nixpkgs) zeek zeek-release netmap;
@@ -19,7 +16,11 @@ in {
   };
 
   mkZeekPluginCI = nixpkgs.zeekPluginCi {
-    inherit plugins;
+    plugins = [
+      {
+        src = nixpkgs.zeek-sources.zeek-netmap;
+      }
+    ];
     buildInputs = [nixpkgs.netmap];
   };
 
