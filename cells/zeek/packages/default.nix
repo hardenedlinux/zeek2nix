@@ -3,24 +3,21 @@
   cell,
 }: let
   inherit (cell.library) nixpkgs;
+  plugins = [
+    {
+      src = nixpkgs.zeek-sources.zeek-plugin-community-id;
+    }
+  ];
 in {
-  inherit (nixpkgs) zeek;
-
-  zeek-release = nixpkgs.zeek;
+  inherit (nixpkgs) zeek zeek-release;
 
   mkZeek = nixpkgs.zeekWithPlugins {
-    plugins = [
-      {
-        src = nixpkgs.zeek-sources.zeek-plugin-community-id;
-      }
-    ];
+    inherit plugins;
   };
-  zeek-fix =
-    nixpkgs.runCommand "zeek-fix" {
-    } ''
-      mkdir -p $out
-      cp -r ${nixpkgs.zeek-sources.zeek-plugin-community-id.src} ${nixpkgs.zeek-sources.zeek-plugin-community-id.pname}
-    '';
+
+  mkZeekPluginCI = nixpkgs.zeekPluginCi {
+    inherit plugins;
+  };
 
   inherit
     (nixpkgs.zeek-vm-tests)

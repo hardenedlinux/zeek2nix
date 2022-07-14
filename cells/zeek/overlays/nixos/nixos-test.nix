@@ -45,7 +45,7 @@
               cores = 2;
             };
           }
-          // import ./sensor.nix {inherit pkgs inputs;};
+          // import ./sensor.nix args;
       };
       testScript = {nodes, ...}: ''
         start_all()
