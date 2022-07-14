@@ -91,11 +91,6 @@ clangStdenv.mkDerivation rec {
     --disable-precompiled-headers
     make -j $NIX_BUILD_CORES && make install
 
-    cd /build/source/auxil/spicy/spicy
-    ./configure --prefix=$out --build-type=Release \
-    --disable-precompiled-headers
-    make -j $NIX_BUILD_CORES && make install
-
     export PATH="$out/bin:$PATH"
     cd /build/source/auxil/spicy-plugin
     mkdir build && cd build
