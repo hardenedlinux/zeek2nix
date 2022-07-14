@@ -5,8 +5,7 @@ zeek-profile*
 tmp/
 
 result
-nix/changelog
-misc/*.hlto
+*.hlto
 spicy-plugin
 *.img
 .std

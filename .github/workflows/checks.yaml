@@ -39,9 +39,7 @@ jobs:
         run: nix -Lv run .#zeek-release -- --version
 
       - name: Check Spicy
-        run: |
-          nix -Lv run .#zeek-release -- -NN Zeek::Spicy
-          nix -Lv run .#spicyz -- -D zeek misc/my-http.spicy misc/my-http.evt -o misc/my-http.hlto
+        run: nix -Lv run .#x86_64-linux.zeek.entrypoints.spicyCheck
 
       - name: Check Zeek Systemd stand-alone module
         run: nix -Lv build ./#zeek-standalone-vm-systemd
