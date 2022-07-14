@@ -14,8 +14,6 @@
 in {
   inherit (nixpkgs) zeek zeek-release netmap;
 
-  #test = builtins.concatMap ({src}: ["${src.src}"]) plugins;
-
   mkZeek = nixpkgs.zeekWithPlugins {
     inherit plugins;
   };

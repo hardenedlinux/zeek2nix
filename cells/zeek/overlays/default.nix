@@ -14,6 +14,12 @@
     zeek-release = zeek;
 
     zeekWithPlugins = {plugins, ...} @ _args: let
+      names = builtins.concatMap ({src}: ["${src.pname}"]) plugins;
+
+      pluginsInputs = prev.lib.optionals (builtins.all (x: x == "zeek-netmap") names) [
+        netmap
+      ];
+
       buildPlugins = prev.lib.flip prev.lib.concatMapStrings plugins (
         {
           src,
@@ -31,6 +37,7 @@
       zeek.overrideAttrs (old:
         {
           preFixup = old.preFixup + buildPlugins;
+          # buildInputs = old.buildInputs ++ pluginsInputs;
         }
         // (builtins.removeAttrs _args ["plugins"]));
 
