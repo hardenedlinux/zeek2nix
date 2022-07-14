@@ -53,7 +53,7 @@
     in
       prev.runCommand "zeek-fix" {
         inherit (zeek) nativeBuildInputs;
-        buildInputs = zeek.buildInputs ++ [prev.gcc] ++ buildInputs;
+        buildInputs = buildInputs ++ [prev.gcc] ++ zeek.buildInputs;
       } ''
         mkdir -p $out
         cp -r ${zeek.src} /build/source && chmod -R +rw /build/source
