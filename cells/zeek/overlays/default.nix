@@ -1,7 +1,7 @@
 {
   inputs,
   cell,
-}: {
+} @ args: {
   default = prev: final: rec {
     zeek-sources = prev.callPackage ../packages/_sources/generated.nix {};
 
@@ -26,4 +26,5 @@
         }
         // (builtins.removeAttrs _args ["plugins"]));
   };
+  nixos-test = import ./nixos args;
 }

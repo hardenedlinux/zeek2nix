@@ -5,6 +5,9 @@
   inherit (cell.library) nixpkgs;
 in {
   inherit (nixpkgs) zeek;
+
+  zeek-release = nixpkgs.zeek;
+
   mkZeek = nixpkgs.zeekWithPlugins {
     plugins = [
       {
@@ -18,4 +21,10 @@ in {
       mkdir -p $out
       cp -r ${nixpkgs.zeek-sources.zeek-plugin-community-id.src} ${nixpkgs.zeek-sources.zeek-plugin-community-id.pname}
     '';
+
+  inherit
+    (nixpkgs.zeek-vm-tests)
+    zeek-cluster-vm-systemd
+    zeek-standalone-vm-systemd
+    ;
 }
