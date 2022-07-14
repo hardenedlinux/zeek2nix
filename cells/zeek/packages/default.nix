@@ -4,12 +4,15 @@
 }: let
   inherit (cell.library) nixpkgs;
   plugins = [
+    # {
+    #   src = nixpkgs.zeek-sources.zeek-plugin-community-id;
+    # }
     {
-      src = nixpkgs.zeek-sources.zeek-plugin-community-id;
+      src = nixpkgs.zeek-sources.zeek-netmap;
     }
   ];
 in {
-  inherit (nixpkgs) zeek zeek-release;
+  inherit (nixpkgs) zeek zeek-release netmap;
 
   mkZeek = nixpkgs.zeekWithPlugins {
     inherit plugins;
@@ -17,6 +20,7 @@ in {
 
   mkZeekPluginCI = nixpkgs.zeekPluginCi {
     inherit plugins;
+    buildInputs = [nixpkgs.netmap];
   };
 
   inherit

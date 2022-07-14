@@ -5,6 +5,10 @@
   default = prev: final: rec {
     zeek-sources = prev.callPackage ../packages/_sources/generated.nix {};
 
+    pf_ring = prev.callPackage ../packages/pr_ring.nix {};
+
+    netmap = prev.callPackage ../packages/netmap.nix {};
+
     zeek = prev.callPackage ../packages/zeek.nix {};
 
     zeek-release = zeek;
@@ -30,7 +34,10 @@
         }
         // (builtins.removeAttrs _args ["plugins"]));
 
-    zeekPluginCi = {plugins, ...} @ _args: let
+    zeekPluginCi = {
+      plugins,
+      buildInputs ? [],
+    } @ _args: let
       buildPlugins = prev.lib.flip prev.lib.concatMapStrings plugins (
         {
           src,
@@ -44,11 +51,10 @@
         ''
       );
     in
-      prev.runCommand "zeek-fix" ({
-          inherit (zeek) nativeBuildInputs;
-          buildInputs = zeek.buildInputs ++ [prev.gcc];
-        }
-        // builtins.removeAttrs _args ["plugins"]) ''
+      prev.runCommand "zeek-fix" {
+        inherit (zeek) nativeBuildInputs;
+        buildInputs = zeek.buildInputs ++ [prev.gcc] ++ buildInputs;
+      } ''
         mkdir -p $out
         cp -r ${zeek.src} /build/source && chmod -R +rw /build/source
         mkdir -p /build/source/build

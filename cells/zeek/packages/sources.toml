@@ -38,6 +38,14 @@ fetch.github = "MITRECND/bro-http2"
 src.git = "https://github.com/corelight/zeek-community-id"
 fetch.github = "corelight/zeek-community-id"
 
+[zeek-netmap]
+src.git = "https://github.com/zeek/zeek-netmap"
+fetch.github = "zeek/zeek-netmap"
+
+[netmap]
+src.git = "https://github.com/luigirizzo/netmap"
+fetch.github = "luigirizzo/netmap"
+
 [icsnpp-bacnet]
 src.git = "https://github.com/cisagov/icsnpp-bacnet"
 fetch.github = "cisagov/icsnpp-bacnet"
