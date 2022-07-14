@@ -16,11 +16,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1657523363,
-        "narHash": "sha256-qjqURL2MgTpMT7cH4LJw9Mnqh2bbssBI9K6aUDLB0LM=",
+        "lastModified": 1657784397,
+        "narHash": "sha256-8xkFJgMpy+NbMGWtHWIN6K7/bBHiPj0+kZtn4o0cRKI=",
         "owner": "GTrunSec",
         "repo": "cells-lab",
-        "rev": "cc88a8db129e94f718605c39670103a3a6c96fca",
+        "rev": "4578bf03e855a4135bb90595a493f86d67ef1612",
         "type": "github"
       },
       "original": {
@@ -514,11 +514,11 @@
         "yants": "yants_2"
       },
       "locked": {
-        "lastModified": 1656991367,
-        "narHash": "sha256-LiDOUBDYsR1cnPxdBgyENJYLwwZyovxvkGg/aUX7NXg=",
+        "lastModified": 1657780861,
+        "narHash": "sha256-FpSLfuWn/rgMDm+wGJWTkd1fXh9cVpINALuMQQOVpiA=",
         "owner": "divnix",
         "repo": "std",
-        "rev": "72e384ce8e22f04b63d3c5d9b02ba4a6704f96c5",
+        "rev": "c7793310b545c605dcdc623caa37255b42085c64",
         "type": "github"
       },
       "original": {
@@ -538,11 +538,11 @@
         "yants": "yants_3"
       },
       "locked": {
-        "lastModified": 1657682956,
-        "narHash": "sha256-ny5HztmSYSLdIqgAuc4Ua+prX+yhbVucZzxM3ySab6s=",
+        "lastModified": 1657780861,
+        "narHash": "sha256-FpSLfuWn/rgMDm+wGJWTkd1fXh9cVpINALuMQQOVpiA=",
         "owner": "divnix",
         "repo": "std",
-        "rev": "d1f237c23da9fa16c35af07825a8b7ba7bd046eb",
+        "rev": "c7793310b545c605dcdc623caa37255b42085c64",
         "type": "github"
       },
       "original": {
