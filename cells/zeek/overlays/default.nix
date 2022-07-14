@@ -16,9 +16,12 @@
     zeekWithPlugins = {plugins, ...} @ _args: let
       names = builtins.concatMap ({src}: ["${src.pname}"]) plugins;
 
-      pluginsInputs = prev.lib.optionals (builtins.all (x: x == "zeek-netmap") names) [
-        netmap
-      ];
+      pluginsInputs = let
+        hasPlugin = n: (builtins.all (x: x == n) plugins);
+      in
+        prev.lib.optionals (hasPlugin "zeek-netmap") [
+          netmap
+        ];
 
       buildPlugins = prev.lib.flip prev.lib.concatMapStrings plugins (
         {
