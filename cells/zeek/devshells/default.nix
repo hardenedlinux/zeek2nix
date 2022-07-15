@@ -17,3 +17,9 @@ in
       ];
     };
   }
+  // {
+    compile = nixpkgs.mkShell {
+      buildInputs = [cell.entrypoints.localCompile];
+      inputsFrom = [cell.packages.zeek-release];
+    };
+  }

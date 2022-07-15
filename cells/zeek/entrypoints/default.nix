@@ -13,4 +13,11 @@ in {
       spicyz -D zeek my-http.spicy my-http.evt -o my-http.hlto
     '';
   };
+  localCompile = writeShellApplication {
+    name = "localCompile";
+    runtimeInputs = [];
+    text = ''
+      ./configure --prefix="$*"
+    '';
+  };
 }
