@@ -102,10 +102,9 @@ clangStdenv.mkDerivation rec {
 
   preFixup =
     lib.optionalString zeekctl ''
-      substituteInPlace $out/etc/zeekctl.cfg \
-      --replace "CfgDir = $out/etc" "CfgDir = ${configDir}/etc" \
-      --replace "SpoolDir = $out/spool" "SpoolDir = ${configDir}/spool" \
-      --replace "LogDir = $out/logs" "LogDir = ${configDir}/logs"
+      sed -i 's|'$out'/|${configDir}/|' $out/etc/zeekctl.cfg
+      sed -i 's|'$out'/|${configDir}/|' $out/share/zeek/base/misc/installation.zeek
+
       echo "scriptsdir = ${configDir}/scripts" >> $out/etc/zeekctl.cfg
       echo "helperdir = ${configDir}/scripts/helpers" >> $out/etc/zeekctl.cfg
       echo "postprocdir = ${configDir}/scripts/postprocessors" >> $out/etc/zeekctl.cfg

@@ -9,7 +9,7 @@
     }
   ];
 in {
-  inherit (nixpkgs) zeek zeek-release netmap;
+  inherit (nixpkgs) zeek zeek-release netmap zeek-latest;
 
   mkZeek = nixpkgs.zeekWithPlugins {
     inherit plugins;

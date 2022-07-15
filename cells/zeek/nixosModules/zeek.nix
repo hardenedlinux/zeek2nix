@@ -97,10 +97,6 @@ in {
       default = null;
       type = types.nullOr types.lines;
     };
-    privateSpicyScripts = mkOption {
-      description = "Zeek load private Spicy *.htl";
-      default = [];
-    };
     node = mkOption {
       type = types.nullOr types.lines;
       default = null;
@@ -141,24 +137,16 @@ in {
       ];
       script = ''
         if [[ ! -d "${cfg.dataDir}/logs/current" ]];then
-        mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc,zeek-spicy/modules}
+        mkdir -p ${cfg.dataDir}/{policy,spool,logs,scripts,etc}
         fi
         for file in ${cfg.package}/share/zeekctl/scripts/*; do
-        cp -rf $file ${cfg.dataDir}/scripts/.
+            cp -rf $file ${cfg.dataDir}/scripts/.
         done
         chmod -R +rw ${cfg.dataDir}/scripts/{helpers,postprocessors}
         cp -rf ${nodeConf} ${cfg.dataDir}/etc/node.cfg
         cp -rf ${networkConf} ${cfg.dataDir}/etc/networks.cfg
         ${
           optionalString (cfg.privateScripts != null) "ln -sf ${writeLocal} ${cfg.dataDir}/policy/local.zeek"
-        }
-        ${
-          optionalString (cfg.privateSpicyScripts != []) "${
-            lib.concatStringsSep "\n" (
-              map (f: "cp -rf ${f} ${cfg.dataDir}/zeek-spicy/modules")
-              cfg.privateSpicyScripts
-            )
-          }"
         }
         ${
           optionalString cfg.sensor ''

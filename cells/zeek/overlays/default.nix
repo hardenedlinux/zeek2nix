@@ -13,6 +13,12 @@
 
     zeek-release = zeek;
 
+    zeek-latest = zeek.overrideAttrs (
+      old: {
+        inherit (zeek-sources.zeek-latest) src pname version;
+      }
+    );
+
     zeekWithPlugins = {plugins, ...} @ _args: let
       names = builtins.concatMap ({src}: ["${src.pname}"]) plugins;
 

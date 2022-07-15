@@ -1,15 +1,17 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    cells-lab.url = "github:GTrunSec/cells-lab";
+    nixos.url = "github:NixOS/nixpkgs/nixos-22.05";
+  };
 
+  inputs = {
+    cells-lab.url = "github:GTrunSec/cells-lab";
     std.url = "github:divnix/std";
     data-merge.follows = "cells-lab/data-merge";
     yants.follows = "std/yants";
     std.inputs.kroki-preprocessor.follows = "cells-lab/kroki-preprocessor";
   };
 
-  inputs = {};
   outputs = {std, ...} @ inputs:
     std.growOn {
       inherit inputs;
@@ -29,6 +31,8 @@
         (std.files "templates")
 
         (std.functions "library")
+
+        (std.microvms "microvmProfiles")
 
         (std.functions "overlays")
 
