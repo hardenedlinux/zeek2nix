@@ -20,27 +20,13 @@
   fetchFromGitHub,
   which,
   jemalloc,
+  zeek-sources,
   ## optional features
   zeekctl ? true,
   configDir ? "/var/lib/zeek",
 }:
 clangStdenv.mkDerivation rec {
-  pname = "zeek";
-  version = "5.0.0";
-
-  src = fetchFromGitHub {
-    owner = "zeek";
-    repo = "zeek";
-    rev = "10d62ec132c95f4683e8c89e8ab1c31853eecc08";
-    sha256 = "sha256-hcoqO3ey4zr6onOZET9ZANpZnNNpU/hAZSvFLE+l06s=";
-    fetchSubmodules = true;
-  };
-  # src = fetchurl {
-  #   url = "https://download.zeek.org/zeek-${version}.tar.gz";
-  #   sha256 = "sha256-0NMA/Y2aGkhaAZjFLpdz23xTKCD6rqeX5MY6r6xj/X4=";
-  # };
-
-  patches = [];
+  inherit (zeek-sources.zeek-release) pname src version;
 
   nativeBuildInputs = [
     bison
@@ -90,11 +76,9 @@ clangStdenv.mkDerivation rec {
 
   postInstall = ''
     for file in $out/share/zeek/base/frameworks/notice/actions/pp-alarms.zeek \
-    $out/lib/${python3.libPrefix}/site-packages/zeekctl/ZeekControl/ssh_runner.py \
     $out/share/zeek/base/frameworks/notice/main.zeek; do
       substituteInPlace $file \
          --replace "/bin/rm" "${coreutils}/bin/rm" \
-         --replace "/bin/echo" "${coreutils}/bin/echo" \
          --replace "/bin/cat" "${coreutils}/bin/cat"
     done
     for file in $out/share/zeek/policy/misc/trim-trace-file.zeek $out/share/zeek/base/frameworks/logging/postprocessors/scp.zeek $out/share/zeek/base/frameworks/logging/postprocessors/sftp.zeek; do
@@ -107,6 +91,7 @@ clangStdenv.mkDerivation rec {
     lib.optionalString zeekctl ''
       sed -i 's|'$out'/|${configDir}/|' $out/etc/zeekctl.cfg
       sed -i 's|'$out'/|${configDir}/|' $out/share/zeek/base/misc/installation.zeek
+      sed -i 's|/bin/echo|${coreutils}/bin/echo|' $out/lib/${python3.libPrefix}/site-packages/zeekctl/ZeekControl/ssh_runner.py
 
       echo "scriptsdir = ${configDir}/scripts" >> $out/etc/zeekctl.cfg
       echo "helperdir = ${configDir}/scripts/helpers" >> $out/etc/zeekctl.cfg

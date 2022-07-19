@@ -5,7 +5,7 @@
   inherit (cell.library) nixpkgs;
   plugins = [
     {
-      src = nixpkgs.zeek-sources.zeek-plugin-community-id;
+      src = nixpkgs.zeek-sources.zeek-community-id;
     }
   ];
 in {

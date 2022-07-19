@@ -7,7 +7,6 @@ in {
   dev = makeVM {
     channel = inputs.nixos.legacyPackages;
     module = _: {
-      disabledModules = ["services/networking/nomad.nix"];
       imports = [
         cell.nixosModules.zeek
         ./dev.nix

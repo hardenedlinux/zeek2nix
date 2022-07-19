@@ -4,37 +4,34 @@ src.git = "https://github.com/zeek/zeek"
 fetch.github = "zeek/zeek"
 git.fetchSubmodules = true
 
-# [vast-broker]
-# src.manual= "v1.4.0"
-# fetch.github = "zeek/broker"
-# git.fetchSubmodules = true
 [zeek-release]
-src.manual = "v5.0.0"
-fetch.url = "https://github.com/zeek/zeek/releases/download/v$ver/zeek-$ver.tar.gz"
-src.prefix = "v"
+src.github_tag = "zeek/zeek"
+src.include_regex = "v5.0.0"
+fetch.github = "zeek/zeek"
+git.fetchSubmodules = true
 
 [zeek-tls]
 src.github = "zeek/zeek"
 fetch.url = "https://github.com/zeek/zeek/archive/refs/tags/v$ver.tar.gz"
 src.prefix = "v"
 
-[zeek-plugin-af_packet]
+[zeek-af_packet]
 src.git = "https://github.com/J-Gras/zeek-af_packet-plugin"
 fetch.github = "J-Gras/zeek-af_packet-plugin"
 
-[zeek-plugin-ikev2]
+[zeek-ikev2]
 src.git = "https://github.com/ukncsc/zeek-ikev2"
 fetch.github = "ukncsc/zeek-ikev2"
 
-[zeek-plugin-postgresql]
+[zeek-postgresql]
 src.git = "https://github.com/0xxon/zeek-postgresql"
 fetch.github = "0xxon/zeek-postgresql"
 
-[zeek-plugin-http2]
+[zeek-http2]
 src.git = "https://github.com/MITRECND/bro-http2"
 fetch.github = "MITRECND/bro-http2"
 
-[zeek-plugin-community-id]
+[zeek-community-id]
 src.git = "https://github.com/corelight/zeek-community-id"
 fetch.github = "corelight/zeek-community-id"
 
@@ -50,11 +47,11 @@ fetch.github = "luigirizzo/netmap"
 src.git = "https://github.com/cisagov/icsnpp-bacnet"
 fetch.github = "cisagov/icsnpp-bacnet"
 
-[zeek-plugin-kafka]
+[zeek-kafka]
 src.git = "https://github.com/SeisoLLC/zeek-kafka"
 fetch.github = "SeisoLLC/zeek-kafka"
 
-[zeek-plugin-spicy]
+[zeek-spicy]
 #src.manual = "073b94bc4f49c1920e7f0f78075e10160cadcbc1"
 src.git = "https://github.com/zeek/spicy-plugin"
 fetch.github = "zeek/spicy-plugin"
