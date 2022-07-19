@@ -89,9 +89,12 @@ clangStdenv.mkDerivation rec {
     ];
 
   postInstall = ''
-    for file in $out/share/zeek/base/frameworks/notice/actions/pp-alarms.zeek $out/share/zeek/base/frameworks/notice/main.zeek; do
+    for file in $out/share/zeek/base/frameworks/notice/actions/pp-alarms.zeek \
+    $out/lib/${python3.libPrefix}/site-packages/zeekctl/ZeekControl/ssh_runner.py \
+    $out/share/zeek/base/frameworks/notice/main.zeek; do
       substituteInPlace $file \
          --replace "/bin/rm" "${coreutils}/bin/rm" \
+         --replace "/bin/echo" "${coreutils}/bin/echo" \
          --replace "/bin/cat" "${coreutils}/bin/cat"
     done
     for file in $out/share/zeek/policy/misc/trim-trace-file.zeek $out/share/zeek/base/frameworks/logging/postprocessors/scp.zeek $out/share/zeek/base/frameworks/logging/postprocessors/sftp.zeek; do

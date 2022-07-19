@@ -16,7 +16,6 @@
         machine.wait_for_unit("zeek.service")
         machine.sleep(5)
         print(machine.succeed("zeekctl status"))
-        print(machine.succeed("ls -il /var/lib/zeek/zeek-spicy/modules"))
         machine.sleep(5)
         # for privateScripts
         machine.wait_for_file("/var/lib/zeek/spool/zeek/loaded_scripts.log")
