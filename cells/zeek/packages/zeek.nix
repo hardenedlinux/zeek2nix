@@ -118,6 +118,7 @@ clangStdenv.mkDerivation rec {
     '';
 
   meta = with lib; {
+    mainProgram = "zeek";
     description = "Network analysis framework much different from a typical IDS";
     homepage = "https://www.zeek.org";
     changelog = "https://github.com/zeek/zeek/blob/v${version}/CHANGES";
