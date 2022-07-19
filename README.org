@@ -1,28 +1,38 @@
 #+TITLE: Zeek to Nix Flake's feature
 
-* Building Zeek with nix-build -> result/bin/zeek (Current version)
-- nix run zeekctl app with flake
-- [[*create zeek dynamic dir to /var/lib/zeek][create zeek dynamic dir to /var/lib/zeek]] before you run command with ~zeekctl deploy~
-  nix run to zeekctl
-#+begin_src sh :async t :exports both :results output
-nix run
-#+end_src
-
-- with native nix-build -> ./result/bin/zeek -N
-
-
-#+begin_src sh :async t :exports both :results output
-# flake feature
-nix build
-# or
-nix-build
-#+end_src
-
 * Building Zeek with nix-shell(shell mode)
 #+begin_src sh :async t :exports both :results output
 nix develop
 # or
 nix-shell
+#+end_src
+
+* Library
+
+** Building zeek with plugins
+
+#+begin_src nix :async :exports both :results output
+mkZeekPlugins = inputs.zeek2nix.lib.zeekWithPlugins {
+  package = inputs.zeek2nix.packages.${system}.zeek-latest;
+  plugins = [
+    {
+      src = inputs.zeek2nix.lib.nixpkgs.zeek-sources.zeek-community-id;
+    }
+  ];
+  };
+#+end_src
+
+** Testing your Zeek Plugin src with Nix-CI
+
+#+begin_src nix :async :exports both :results output
+mkZeekPluginCI = nixpkgs.zeekPluginCi {
+    plugins = [
+      {
+        src = inputs.zeek2nix.lib.nixpkgs.zeek-sources.zeek-netmap;
+      }
+    ];
+    buildInputs = [inputs.zeek2nix.lib.nixpkgs.netmap];
+  };
 #+end_src
 
 * Deploying Zeek with NixOS (flakes feature)
@@ -48,15 +58,15 @@ nix-shell
                 standalone = true;
                 interface = "eno1";
                 listenAddress = "localhost";
-                package = pkgs.zeek.override {
+                package = pkgs.zeekWithPlugins {
+                  package = pkgs.zeek-latest;
                   plugins = [
-                    "zeek-plugin-kafka"
-                    "zeek-plugin-spicy"
-                    "zeek-plugin-community-id"
-                    "zeek-plugin-af_packet"
-                    "zeek-plugin-postgresql"
+                    {
+                      src = pkgs.zeek-sources.zeek-community-id;
+                    }
                   ];
                 };
+
                 privateScript = ''
                   @load /home/gtrun/project/hardenedlinux-zeek-script/scripts/zeek-query.zeek
                   @load /home/gtrun/project/hardenedlinux-zeek-script/scripts/log-passwords.zeek

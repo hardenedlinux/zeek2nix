@@ -41,6 +41,7 @@
     } {
       overlays = inputs.std.deSystemize "x86_64-linux" (inputs.std.harvest inputs.self ["zeek" "overlays"]);
       devShells = inputs.std.harvest inputs.self ["zeek" "devshells"];
+      lib = inputs.std.harvest inputs.self ["zeek" "library"];
       nixosModules = inputs.std.deSystemize "x86_64-linux" (inputs.std.harvest inputs.self ["zeek" "nixosModules"]);
       packages = inputs.std.harvest inputs.self ["zeek" "packages"];
     };

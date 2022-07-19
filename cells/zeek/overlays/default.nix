@@ -19,7 +19,11 @@
       }
     );
 
-    zeekWithPlugins = {plugins, ...} @ _args: let
+    zeekWithPlugins = {
+      plugins,
+      package ? zeek,
+      ...
+    } @ _args: let
       names = builtins.concatMap ({src}: ["${src.pname}"]) plugins;
 
       pluginsInputs = let
@@ -43,7 +47,7 @@
         ''
       );
     in
-      zeek.overrideAttrs (old:
+      package.overrideAttrs (old:
         {
           preFixup = old.preFixup + buildPlugins;
           buildInputs = old.buildInputs ++ pluginsInputs;
