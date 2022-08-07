@@ -164,11 +164,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "6d16f9bb420fa8f65ad1c0a862e5ab6a8ba321e4",
-            "sha256": "sha256-8Gqk1jo4wbxsFyIz5KzE5k00TGFDRiWYxv+gArBkfEQ=",
+            "rev": "857b21ae73b967485e499f84f5cb474ab22a3dfe",
+            "sha256": "sha256-NlhM52gRXrs5f1lKlhnqsZQBqsaPvsLMPd4GFq/C/b8=",
             "type": "github"
         },
-        "version": "6d16f9bb420fa8f65ad1c0a862e5ab6a8ba321e4"
+        "version": "857b21ae73b967485e499f84f5cb474ab22a3dfe"
     },
     "zeek-netmap": {
         "cargoLocks": null,
