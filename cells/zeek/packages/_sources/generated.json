@@ -12,11 +12,11 @@
             "name": null,
             "owner": "cisagov",
             "repo": "icsnpp-bacnet",
-            "rev": "35243a1a3e821216df693761bc67ef1b7f3203f5",
-            "sha256": "sha256-/Tm1XAVO+SonIDnM6Tafq9iiGJ+YB0wnqebTdpnbM6I=",
+            "rev": "aab668e86be5b56c5deaf4b11589937597a242de",
+            "sha256": "sha256-5239chgjkQjX0zvc4TpMxfapBd/yivpmpi/DSl6lIlE=",
             "type": "github"
         },
-        "version": "35243a1a3e821216df693761bc67ef1b7f3203f5"
+        "version": "aab668e86be5b56c5deaf4b11589937597a242de"
     },
     "netmap": {
         "cargoLocks": null,
@@ -164,11 +164,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "857b21ae73b967485e499f84f5cb474ab22a3dfe",
-            "sha256": "sha256-NlhM52gRXrs5f1lKlhnqsZQBqsaPvsLMPd4GFq/C/b8=",
+            "rev": "148f5c1403c1485cae126de8350eb5cefa977e70",
+            "sha256": "sha256-Aq2TOvFEr+2XO93kXJkgz3AyTRPgVC8RFBPEgFSPFdY=",
             "type": "github"
         },
-        "version": "857b21ae73b967485e499f84f5cb474ab22a3dfe"
+        "version": "148f5c1403c1485cae126de8350eb5cefa977e70"
     },
     "zeek-netmap": {
         "cargoLocks": null,
