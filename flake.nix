@@ -1,21 +1,19 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-lock.follows = "nixpkgs";
     nixos.url = "github:NixOS/nixpkgs/nixos-22.05";
   };
 
   inputs = {
     cells-lab.url = "github:GTrunSec/cells-lab";
     std.url = "github:divnix/std";
-    data-merge.follows = "cells-lab/data-merge";
-    yants.follows = "std/yants";
-    std.inputs.kroki-preprocessor.follows = "cells-lab/kroki-preprocessor";
   };
 
   outputs = {std, ...} @ inputs:
     std.growOn {
       inherit inputs;
-      cellsFrom = ./cells;
+      cellsFrom = ./nix;
       organelles = [
         (std.installables "packages")
 

@@ -6,7 +6,7 @@ git.fetchSubmodules = true
 
 [zeek-release]
 src.github_tag = "zeek/zeek"
-src.include_regex = "v5.0.0"
+src.include_regex = "v5.0.*"
 fetch.github = "zeek/zeek"
 git.fetchSubmodules = true
 

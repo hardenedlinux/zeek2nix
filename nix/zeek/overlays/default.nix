@@ -84,5 +84,10 @@
       '';
   };
 
+  static = final: prev: let
+    inherit (final.stdenv.hostPlatform) isStatic;
+  in {
+  };
+
   nixos-test = import ./nixos args;
 }

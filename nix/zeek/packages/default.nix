@@ -11,6 +11,8 @@
 in {
   inherit (nixpkgs) zeek zeek-release netmap zeek-latest;
 
+  zeekStatic = nixpkgs.pkgsStatic.zeek;
+
   mkZeek = nixpkgs.zeekWithPlugins {
     inherit plugins;
   };
