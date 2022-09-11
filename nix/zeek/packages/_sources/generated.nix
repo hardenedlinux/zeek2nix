@@ -14,24 +14,24 @@
   };
   netmap = {
     pname = "netmap";
-    version = "a315cf3f731e90430cc0fe92d41c53041a1e9144";
+    version = "d89953a20a90e2df228ff5031ab4a5358f1cb8bc";
     src = fetchFromGitHub ({
       owner = "luigirizzo";
       repo = "netmap";
-      rev = "a315cf3f731e90430cc0fe92d41c53041a1e9144";
+      rev = "d89953a20a90e2df228ff5031ab4a5358f1cb8bc";
       fetchSubmodules = false;
-      sha256 = "sha256-LcSaR9cYclVa3tTWAac3EHpiHRm7k20BweoEOlxjIos=";
+      sha256 = "sha256-CTmMrrP0XnwYFOzDNWhT1uzOfT3a+CPzKZ8HsQ0P29E=";
     });
   };
   zeek-af_packet = {
     pname = "zeek-af_packet";
-    version = "8fec808efd9aa9f392fde644d5857ce498827db4";
+    version = "7191152d14dfab0f6534263a180729b7be7b9011";
     src = fetchFromGitHub ({
       owner = "J-Gras";
       repo = "zeek-af_packet-plugin";
-      rev = "8fec808efd9aa9f392fde644d5857ce498827db4";
+      rev = "7191152d14dfab0f6534263a180729b7be7b9011";
       fetchSubmodules = false;
-      sha256 = "sha256-0ti8Aym6JTfm9pvGZxdd4lnc97WOceiRzJec8tgm4NY=";
+      sha256 = "sha256-VLaPXFGOWslYsiK4xbcEtXqnzrp7kiQubxMKS9KhQEI=";
     });
   };
   zeek-agent = {
@@ -91,13 +91,13 @@
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "875e81883c666e2058a976bd84e5ebd734e9faf2";
+    version = "b6512e82c57f2b632b6b328a3a413d77c55d79c8";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "875e81883c666e2058a976bd84e5ebd734e9faf2";
+      rev = "b6512e82c57f2b632b6b328a3a413d77c55d79c8";
       fetchSubmodules = true;
-      sha256 = "sha256-o9kSK/ZAykufJfE4QafBVv7ZvXJTY3IUsMG7ieNDOdU=";
+      sha256 = "sha256-23q//Y3KwTu3LVvkx2VfTrZQejzhGg/YprWVLvyN5uE=";
     });
   };
   zeek-netmap = {
@@ -135,13 +135,13 @@
   };
   zeek-spicy = {
     pname = "zeek-spicy";
-    version = "776af17c62af28fe5513242d3d9ac91b351c4e0d";
+    version = "ab743fb55a3f45dc87c780f396e99b6227bbf25b";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "spicy-plugin";
-      rev = "776af17c62af28fe5513242d3d9ac91b351c4e0d";
+      rev = "ab743fb55a3f45dc87c780f396e99b6227bbf25b";
       fetchSubmodules = false;
-      sha256 = "sha256-7TM3dVFopHrSHQhvCoULqWtDjOryq/4VSqXTdczrhz4=";
+      sha256 = "sha256-o3J0UHCJNdbvH7wqNXnbYKRKG2FHtykgEb0rzzk43+U=";
     });
   };
   zeek-tls = {
