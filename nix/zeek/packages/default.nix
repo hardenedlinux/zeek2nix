@@ -7,6 +7,9 @@
     {
       src = nixpkgs.zeek-sources.zeek-community-id;
     }
+    {
+      src = nixpkgs.zeek-sources.zeek-netmap;
+    }
   ];
 in {
   inherit (nixpkgs) zeek zeek-release netmap zeek-latest;

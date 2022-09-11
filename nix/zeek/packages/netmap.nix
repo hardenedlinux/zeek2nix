@@ -3,16 +3,15 @@
   lib,
   fetchFromGitHub,
   zeek-sources,
-  linuxPackages_5_15,
+  linuxPackages,
 }: let
-  k = linuxPackages_5_15;
+  k = linuxPackages;
 in
   stdenv.mkDerivation {
     inherit (zeek-sources.netmap) pname src version;
-    preConfigure = ''
-    '';
+
     configureFlags = [
-      "--kernel-dir=${k.kernel.dev}/lib/modules/5.15.39/build"
+      "--kernel-dir=${k.kernel.dev}/lib/modules/${k.kernel.modDirVersion}/build"
       "--install-mod-path=${placeholder "out"}"
       #"--no-drivers"
     ];

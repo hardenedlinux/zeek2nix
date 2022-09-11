@@ -14,27 +14,29 @@
     std.growOn {
       inherit inputs;
       cellsFrom = ./nix;
-      organelles = [
-        (std.installables "packages")
+      cellBlocks = [
+        (std.blockTypes.installables "packages")
 
-        (std.functions "devshellProfiles")
-        (std.devshells "devshells")
+        (std.blockTypes.functions "devshellProfiles")
+        (std.blockTypes.devshells "devshells")
 
-        (std.runnables "entrypoints")
+        (std.blockTypes.runnables "entrypoints")
 
-        (std.data "config")
+        (std.blockTypes.data "config")
 
-        (std.files "configFiles")
+        (std.blockTypes.files "configFiles")
 
-        (std.files "templates")
+        (std.blockTypes.files "templates")
 
-        (std.functions "library")
+        (std.blockTypes.functions "library")
 
-        (std.microvms "microvmProfiles")
+        (std.blockTypes.microvms "microvmProfiles")
 
-        (std.functions "overlays")
+        (std.blockTypes.functions "overlays")
 
-        (std.functions "nixosModules")
+        (std.blockTypes.nixago "nixago")
+
+        (std.blockTypes.functions "nixosModules")
       ];
     } {
       overlays = inputs.std.deSystemize "x86_64-linux" (inputs.std.harvest inputs.self ["zeek" "overlays"]);

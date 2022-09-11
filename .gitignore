@@ -9,3 +9,6 @@ result
 spicy-plugin
 *.img
 .std
+
+# nixago: ignore-linked-files
+treefmt.toml
