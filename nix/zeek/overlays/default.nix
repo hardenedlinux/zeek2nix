@@ -24,18 +24,17 @@
       package ? zeek,
       ...
     } @ _args: let
-      names = builtins.concatMap ({src}: ["${src.pname}"]) plugins;
-
-      pluginsInputs = let
-        hasPlugin = n: (builtins.all (x: x == n) plugins);
-      in
-        prev.lib.optionals (hasPlugin "zeek-netmap") [
-          netmap
-        ];
+      pluginInputs = builtins.concatMap ({
+        src,
+        buildInputs ? [],
+      }:
+        [] ++ buildInputs)
+      plugins;
 
       buildPlugins = prev.lib.flip prev.lib.concatMapStrings plugins (
         {
           src,
+          buildInputs ? [],
           arg ? "--zeek-dist=/build/source",
         }: ''
           export ZEEK_DIST=${placeholder "out"};
@@ -50,7 +49,7 @@
       package.overrideAttrs (old:
         {
           preFixup = old.preFixup + buildPlugins;
-          buildInputs = old.buildInputs ++ pluginsInputs;
+          buildInputs = old.buildInputs ++ pluginInputs;
         }
         // (builtins.removeAttrs _args ["plugins"]));
 
@@ -58,9 +57,17 @@
       plugins,
       buildInputs ? [],
     } @ _args: let
+      buildInputs = builtins.concatMap ({
+        src,
+        buildInputs ? [],
+      }:
+        [] ++ buildInputs)
+      plugins;
+
       buildPlugins = prev.lib.flip prev.lib.concatMapStrings plugins (
         {
           src,
+          buildInputs ? [],
           arg ? "--zeek-dist=/build/source",
         }: ''
           cp -r ${src.src} /build/${src.pname}

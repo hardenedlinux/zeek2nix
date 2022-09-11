@@ -9,6 +9,7 @@
     }
     {
       src = nixpkgs.zeek-sources.zeek-netmap;
+      buildInputs = [nixpkgs.netmap];
     }
   ];
 in {
@@ -24,9 +25,9 @@ in {
     plugins = [
       {
         src = nixpkgs.zeek-sources.zeek-netmap;
+        buildInputs = [nixpkgs.netmap];
       }
     ];
-    buildInputs = [nixpkgs.netmap];
   };
 
   inherit
