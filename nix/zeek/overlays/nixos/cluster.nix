@@ -6,7 +6,7 @@
 }:
 with pkgs.lib; {
   imports = [cell.nixosModules.zeek];
-  environment.systemPackages = [cell.packages.zeek-release];
+  environment.systemPackages = [cell.packages.mkZeek];
   services.openssh = {
     enable = true;
     permitRootLogin = "yes";
@@ -18,7 +18,7 @@ with pkgs.lib; {
   '';
   environment.etc.zeekSshKey = {
     mode = "0600";
-    source = ../config/zeek-cluster;
+    source = ../conf/zeek-cluster;
   };
   networking = {
     dhcpcd.enable = false;
@@ -65,6 +65,6 @@ with pkgs.lib; {
       lb_procs=1
       pin_cpus=0,1
     '';
-    package = cell.packages.zeek-release.override {};
+    package = cell.packages.mkZeek.override {};
   };
 }

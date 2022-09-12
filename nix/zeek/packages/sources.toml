@@ -19,6 +19,10 @@ src.prefix = "v"
 src.git = "https://github.com/J-Gras/zeek-af_packet-plugin"
 fetch.github = "J-Gras/zeek-af_packet-plugin"
 
+[zeek-xdp_packet]
+src.git = "https://github.com/0xxon/zeek-xdp_packet-plugin"
+fetch.github = "0xxon/zeek-xdp_packet-plugin"
+
 [zeek-ikev2]
 src.git = "https://github.com/ukncsc/zeek-ikev2"
 fetch.github = "ukncsc/zeek-ikev2"

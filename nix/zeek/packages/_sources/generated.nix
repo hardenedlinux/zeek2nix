@@ -152,4 +152,15 @@
       sha256 = "sha256-S6haCrTYptUA/bsk1A1JrayZdEMIYnMTGl/R4mYg49I=";
     };
   };
+  zeek-xdp_packet = {
+    pname = "zeek-xdp_packet";
+    version = "a550256ba92cbddff392fbb01cf8fcbe6e945850";
+    src = fetchFromGitHub ({
+      owner = "0xxon";
+      repo = "zeek-xdp_packet-plugin";
+      rev = "a550256ba92cbddff392fbb01cf8fcbe6e945850";
+      fetchSubmodules = false;
+      sha256 = "sha256-ghDDSCAxaiaDuygJemGUm1Uq+aKac2MNc2dW84i7qSo=";
+    });
+  };
 }

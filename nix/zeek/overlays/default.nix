@@ -60,6 +60,7 @@
       buildInputs = builtins.concatMap ({
         src,
         buildInputs ? [],
+        ...
       }:
         [] ++ buildInputs)
       plugins;
@@ -67,12 +68,14 @@
       buildPlugins = prev.lib.flip prev.lib.concatMapStrings plugins (
         {
           src,
+          args ? [],
           buildInputs ? [],
-          arg ? "--zeek-dist=/build/source",
-        }: ''
+        }: let
+          args' = prev.lib.concatStringsSep " " args;
+        in ''
           cp -r ${src.src} /build/${src.pname}
           chmod -R +rw /build/${src.pname} && cd /build/${src.pname}
-          ./configure ${arg}
+          ./configure --zeek-dist=/build/source ${args'}
           cd build
           make -j $NIX_BUILD_CORES
         ''

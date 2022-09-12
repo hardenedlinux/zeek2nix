@@ -259,5 +259,24 @@
             "url": "https://github.com/zeek/zeek/archive/refs/tags/v5.0.1.tar.gz"
         },
         "version": "5.0.1"
+    },
+    "zeek-xdp_packet": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "zeek-xdp_packet",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "0xxon",
+            "repo": "zeek-xdp_packet-plugin",
+            "rev": "a550256ba92cbddff392fbb01cf8fcbe6e945850",
+            "sha256": "sha256-ghDDSCAxaiaDuygJemGUm1Uq+aKac2MNc2dW84i7qSo=",
+            "type": "github"
+        },
+        "version": "a550256ba92cbddff392fbb01cf8fcbe6e945850"
     }
 }

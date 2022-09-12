@@ -27,5 +27,6 @@
   services.zeek = {
     enable = true;
     sensor = true;
+    package = cell.packages.mkZeek;
   };
 }
