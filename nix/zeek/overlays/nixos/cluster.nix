@@ -5,7 +5,10 @@
   ...
 }:
 with pkgs.lib; {
-  imports = [cell.nixosModules.zeek];
+  imports = [
+    cell.nixosModules.zeek
+    ../../microvmProfiles/dpdk.nix
+  ];
   environment.systemPackages = [cell.packages.mkZeek];
   services.openssh = {
     enable = true;

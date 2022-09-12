@@ -7,12 +7,20 @@
     {
       src = nixpkgs.zeek-sources.zeek-community-id;
     }
-    {
-      src = nixpkgs.zeek-sources.zeek-netmap;
-      buildInputs = [nixpkgs.netmap];
-    }
+    # {
+    #   src = nixpkgs.zeek-sources.zeek-netmap;
+    #   buildInputs = [nixpkgs.netmap];
+    # }
     {
       src = nixpkgs.zeek-sources.zeek-af_packet;
+    }
+    {
+      src = nixpkgs.zeek-sources.zeek-dpdk;
+      buildInputs = [nixpkgs.dpdk];
+      env = [
+        "CXXFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+        "CFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+      ];
     }
   ];
 in {
@@ -26,13 +34,19 @@ in {
 
   mkZeekPluginCI = nixpkgs.zeekPluginCi {
     plugins = [
-      {
-        src = nixpkgs.zeek-sources.zeek-netmap;
-        buildInputs = [nixpkgs.netmap];
-      }
+      # {
+      #   src = nixpkgs.zeek-sources.zeek-netmap;
+      #   buildInputs = [nixpkgs.netmap];
+      # }
       {
         src = nixpkgs.zeek-sources.zeek-dpdk;
         buildInputs = [nixpkgs.dpdk];
+        # gcc g++
+
+        env = [
+          "CXXFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+          "CFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+        ];
       }
       # {
       #   src = nixpkgs.zeek-sources.zeek-xdp_packet;
@@ -46,9 +60,12 @@ in {
       #     "--with-llc=${nixpkgs.llvmPackages.llvm}/bin/llc"
       #   ];
       # }
-      {
-        src = nixpkgs.zeek-sources.zeek-community-id;
-      }
+      # {
+      #   src = nixpkgs.zeek-sources.zeek-af_packet;
+      # }
+      # {
+      #   src = nixpkgs.zeek-sources.zeek-community-id;
+      # }
     ];
   };
 

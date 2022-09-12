@@ -27,6 +27,7 @@
       pluginInputs = builtins.concatMap ({
         src,
         buildInputs ? [],
+        ...
       }:
         [] ++ buildInputs)
       plugins;
@@ -35,12 +36,16 @@
         {
           src,
           buildInputs ? [],
-          arg ? "--zeek-dist=/build/source",
-        }: ''
+          args ? [],
+          env ? [],
+        }: let
+          args' = prev.lib.concatStringsSep " " args;
+          env' = prev.lib.concatStringsSep " " env;
+        in ''
           export ZEEK_DIST=${placeholder "out"};
           cp -r ${src.src} /build/${src.pname}
           chmod -R +rw /build/${src.pname} && cd /build/${src.pname}
-          ./configure ${arg}
+          ${env'} ./configure [<35;49;10M]--zeek-dist=/build/source ${args'}
           cd build
           make -j $NIX_BUILD_CORES && make install
         ''
@@ -49,6 +54,8 @@
       package.overrideAttrs (old:
         {
           preFixup = old.preFixup + buildPlugins;
+          # CXXFLAGS = "-march=x86-64 -msse4.1 -msse3";
+          # CFLAGS = "-march=x86-64 -msse4.1 -msse3";
           buildInputs = old.buildInputs ++ pluginInputs;
         }
         // (builtins.removeAttrs _args ["plugins"]));
@@ -70,12 +77,14 @@
           src,
           args ? [],
           buildInputs ? [],
+          env ? [],
         }: let
           args' = prev.lib.concatStringsSep " " args;
+          env' = prev.lib.concatStringsSep " " env;
         in ''
           cp -r ${src.src} /build/${src.pname}
           chmod -R +rw /build/${src.pname} && cd /build/${src.pname}
-          ./configure --zeek-dist=/build/source ${args'}
+          ${env'} ./configure --zeek-dist=/build/source ${args'}
           cd build
           make -j $NIX_BUILD_CORES
         ''

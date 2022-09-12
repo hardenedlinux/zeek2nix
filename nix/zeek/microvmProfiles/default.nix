@@ -11,6 +11,7 @@ in {
         cell.nixosModules.zeek
         ./dev.nix
         ./microvm.nix
+        # ./dpdk.nix
       ];
       _module.args = {
         inherit (cell) packages;
