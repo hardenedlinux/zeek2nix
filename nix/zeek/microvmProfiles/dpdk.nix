@@ -22,6 +22,7 @@ with lib; {
     };
   };
   config = {
+    environment.systemPackages = [pkgs.dpdk];
     nixpkgs.config.allowBroken = true;
     boot.kernelParams = [
       # spdk/dpdk hugepages
@@ -38,7 +39,15 @@ with lib; {
       # }))
       config.boot.kernelPackages.dpdk-kmods
     ];
-    boot.kernelModules = ["igb_uio"];
+    # https://stackoverflow.com/questions/37626041/using-dpdk-kernel-nic-interface-in-a-virtualized-environment
+    boot.initrd.kernelModules = [ "virtio_scsi" ];
+    boot.kernelModules = [ "virtio_pci" "virtio_net" ];
+    # boot.initrd.kernelModules = [
+    #   "igb_uio"
+    #   "vfio-pci"
+    #   "uio_pci_generic"
+    #   "virtio_pci"
+    # ];
     boot.extraModprobeConfig = ''
       blacklist ice
     '';

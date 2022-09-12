@@ -52,8 +52,13 @@
         machine.wait_for_unit("sshd.service")
         sensor.wait_for_unit("network-online.target")
         sensor.wait_for_unit("sshd.service")
-        sensor.wait_for_unit("zeek.service")
 
+        # print(machine.succeed("dpdk-devbind.py --status"))
+
+        # print(machine.succeed("dpdk-devbind.py --bind=virtio-pci 00:03.0"))
+        # print(sensor.succeed("dpdk-devbind.py --bind=virtio-pci 00:03.0"))
+
+        sensor.wait_for_unit("zeek.service")
         machine.wait_for_unit("zeek.service")
 
         machine.sleep(5)

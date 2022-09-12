@@ -45,7 +45,7 @@
           export ZEEK_DIST=${placeholder "out"};
           cp -r ${src.src} /build/${src.pname}
           chmod -R +rw /build/${src.pname} && cd /build/${src.pname}
-          ${env'} ./configure [<35;49;10M]--zeek-dist=/build/source ${args'}
+          ${env'} ./configure --zeek-dist=/build/source ${args'}
           cd build
           make -j $NIX_BUILD_CORES && make install
         ''
