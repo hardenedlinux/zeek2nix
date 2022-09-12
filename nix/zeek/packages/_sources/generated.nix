@@ -56,6 +56,17 @@
       sha256 = "sha256-YDqeva8xkIj1emaqwh7Rohi6u5G3NuJfUW52iH9phTs=";
     });
   };
+  zeek-dpdk = {
+    pname = "zeek-dpdk";
+    version = "e8d4febf8c1f9ef5f39c97e11988e059b5e715f4";
+    src = fetchFromGitHub ({
+      owner = "esnet";
+      repo = "dpdk-plugin";
+      rev = "e8d4febf8c1f9ef5f39c97e11988e059b5e715f4";
+      fetchSubmodules = false;
+      sha256 = "sha256-OjHqN25lZBVeIQjdbRcQ6944TrVWOo1gMQPZEydzoIQ=";
+    });
+  };
   zeek-http2 = {
     pname = "zeek-http2";
     version = "7dc14042d1602065d60601d193b99b005f08fe34";

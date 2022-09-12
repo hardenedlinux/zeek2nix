@@ -94,6 +94,25 @@
         },
         "version": "424a13eebf5efcc91dd77a9c5f762297fc2bba39"
     },
+    "zeek-dpdk": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "zeek-dpdk",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "esnet",
+            "repo": "dpdk-plugin",
+            "rev": "e8d4febf8c1f9ef5f39c97e11988e059b5e715f4",
+            "sha256": "sha256-OjHqN25lZBVeIQjdbRcQ6944TrVWOo1gMQPZEydzoIQ=",
+            "type": "github"
+        },
+        "version": "e8d4febf8c1f9ef5f39c97e11988e059b5e715f4"
+    },
     "zeek-http2": {
         "cargoLocks": null,
         "extract": null,

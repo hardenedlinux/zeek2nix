@@ -30,6 +30,10 @@ in {
         src = nixpkgs.zeek-sources.zeek-netmap;
         buildInputs = [nixpkgs.netmap];
       }
+      {
+        src = nixpkgs.zeek-sources.zeek-dpdk;
+        buildInputs = [nixpkgs.dpdk];
+      }
       # {
       #   src = nixpkgs.zeek-sources.zeek-xdp_packet;
       #   buildInputs = [nixpkgs.libbpf];
