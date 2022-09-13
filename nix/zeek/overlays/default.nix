@@ -54,8 +54,6 @@
       package.overrideAttrs (old:
         {
           preFixup = old.preFixup + buildPlugins;
-          # CXXFLAGS = "-march=x86-64 -msse4.1 -msse3";
-          # CFLAGS = "-march=x86-64 -msse4.1 -msse3";
           buildInputs = old.buildInputs ++ pluginInputs;
         }
         // (builtins.removeAttrs _args ["plugins"]));

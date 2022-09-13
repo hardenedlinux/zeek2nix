@@ -29,25 +29,20 @@ with lib; {
       "default_hugepagesz=${config.boot.hugepages.size}"
       "hugepagesz=${config.boot.hugepages.size}"
       "hugepages=${toString config.boot.hugepages.number}"
+      # "intel_iommu=on"
+      # "iommu=pt"
     ];
     boot.extraModulePackages = [
-      # (config.boot.kernelPackages.dpdk-kmods.overrideAttrs (oldAttrs: {
-      #   src = pkgs.fetchzip {
-      #     url = "https://git.dpdk.org/dpdk-kmods/snapshot/dpdk-kmods-e68a705cc5dc3d1333bbcd722fe4e9a6ba3ee648.zip";
-      #     sha256 = "sha256-kgaCmw0mGeXAuLGekuEk3AfMm5sD3CtrSQJO4H7TJno=";
-      #   };
-      # }))
-      config.boot.kernelPackages.dpdk-kmods
+      (config.boot.kernelPackages.dpdk-kmods.overrideAttrs (oldAttrs: {
+        src = pkgs.fetchzip {
+          url = "https://git.dpdk.org/dpdk-kmods/snapshot/dpdk-kmods-e68a705cc5dc3d1333bbcd722fe4e9a6ba3ee648.zip";
+          sha256 = "sha256-kgaCmw0mGeXAuLGekuEk3AfMm5sD3CtrSQJO4H7TJno=";
+        };
+      }))
+      # config.boot.kernelPackages.dpdk-kmods
     ];
     # https://stackoverflow.com/questions/37626041/using-dpdk-kernel-nic-interface-in-a-virtualized-environment
-    boot.initrd.kernelModules = [ "virtio_scsi" ];
-    boot.kernelModules = [ "virtio_pci" "virtio_net" ];
-    # boot.initrd.kernelModules = [
-    #   "igb_uio"
-    #   "vfio-pci"
-    #   "uio_pci_generic"
-    #   "virtio_pci"
-    # ];
+    boot.kernelModules = ["igb_uio" "vfio-pci" "uio_pci_generic" "kvm-intel"];
     boot.extraModprobeConfig = ''
       blacklist ice
     '';

@@ -53,7 +53,7 @@
         sensor.wait_for_unit("network-online.target")
         sensor.wait_for_unit("sshd.service")
 
-        # print(machine.succeed("dpdk-devbind.py --status"))
+        print(machine.succeed("dpdk-devbind.py --status"))
 
         # print(machine.succeed("dpdk-devbind.py --bind=virtio-pci 00:03.0"))
         # print(sensor.succeed("dpdk-devbind.py --bind=virtio-pci 00:03.0"))

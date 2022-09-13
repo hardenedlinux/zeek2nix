@@ -18,13 +18,16 @@
       src = nixpkgs.zeek-sources.zeek-dpdk;
       buildInputs = [nixpkgs.dpdk];
       env = [
-        "CXXFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
-        "CFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+        # check your cpu flags
+        # cat /proc/cpuinfo | grep "flags" | sort | uniq
+        # qemu: https://superuser.com/questions/1467225/how-to-make-the-kvm-enable-cpu-flags-sse4-2-to-the-guest
+        "CXXFLAGS=\"-march=x86-64 -msse4.2 -msse4.1 -msse3\""
+        "CFLAGS=\"-march=x86-64 -msse4.2 -msse4.1 -msse3\""
       ];
     }
   ];
 in {
-  inherit (nixpkgs) zeek zeek-release netmap zeek-latest;
+  inherit (nixpkgs) zeek zeek-release netmap zeek-latest spdk;
 
   zeekStatic = nixpkgs.pkgsStatic.zeek;
 
@@ -44,8 +47,17 @@ in {
         # gcc g++
 
         env = [
-          "CXXFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
-          "CFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+          /*
+          ERROR: This system does not support "SSSE3".Please check that RTE_MACHINE is set correctly.
+          EAL: FATAL: unsupported cpu type.EAL: unsupported cpu type.
+          fatal error: Error with EAL initialization
+          */
+
+          # "CXXFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+          # "CFLAGS=\"-march=x86-64 -msse4.1 -msse3\""
+
+          "CXXFLAGS=\"-march=native\""
+          "CFLAGS=\"-march=native\""
         ];
       }
       # {

@@ -4,7 +4,7 @@
 }: let
   inherit (inputs) std;
 in {
-  treefmt = std.std.nixago.treefmt {
+  treefmt = std.presets.nixago.treefmt {
     configData.formatter.nix = {
       excludes = [
         "generated.nix"
