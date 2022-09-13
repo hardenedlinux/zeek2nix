@@ -34,6 +34,7 @@
             virtualisation = {
               memorySize = 4046;
               cores = 2;
+              qemu.options = [ "-cpu qemu64,+ssse3,+sse4.1,+sse4.2" ];
             };
           }
           // import ./cluster.nix args;
@@ -53,10 +54,15 @@
         sensor.wait_for_unit("network-online.target")
         sensor.wait_for_unit("sshd.service")
 
-        print(machine.succeed("dpdk-devbind.py --status"))
 
-        # print(machine.succeed("dpdk-devbind.py --bind=virtio-pci 00:03.0"))
-        # print(sensor.succeed("dpdk-devbind.py --bind=virtio-pci 00:03.0"))
+        print(machine.succeed("cat /proc/cpuinfo | grep flags | head -n 1"))
+        # http://doc.dpdk.org/guides/linux_gsg/linux_drivers.html?highlight=binding%20network%20port#linux-gsg-binding-kernel
+        # print(machine.succeed("""
+        #   ifconfig eth1 down
+        #   dpdk-devbind.py --unbind 00:09.0
+        #   dpdk-devbind.py --bind=igb_uio 00:09.0
+        #   dpdk-devbind.py --status
+        # """))
 
         sensor.wait_for_unit("zeek.service")
         machine.wait_for_unit("zeek.service")
