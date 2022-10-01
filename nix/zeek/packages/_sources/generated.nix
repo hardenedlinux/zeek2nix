@@ -3,36 +3,39 @@
 {
   icsnpp-bacnet = {
     pname = "icsnpp-bacnet";
-    version = "0f7ded1e33d90d3e5c0aad90dbdc43508496d0bc";
+    version = "5602b2a754cf41b1be063a1ab7d7fdbc1130b92a";
     src = fetchFromGitHub ({
       owner = "cisagov";
       repo = "icsnpp-bacnet";
-      rev = "0f7ded1e33d90d3e5c0aad90dbdc43508496d0bc";
+      rev = "5602b2a754cf41b1be063a1ab7d7fdbc1130b92a";
       fetchSubmodules = false;
-      sha256 = "sha256-20v2JYz9xiw6C3d/bWO9LvqR4dqn92OQ+jrip8Hl59w=";
+      sha256 = "sha256-rrevI7uGhGN2LaHBUbO5rkgjdjt6zJOJONh/lorHg24=";
     });
+    date = "2022-09-27";
   };
   netmap = {
     pname = "netmap";
-    version = "d89953a20a90e2df228ff5031ab4a5358f1cb8bc";
+    version = "81d0e5acab8856f5df89537415e39362046987d3";
     src = fetchFromGitHub ({
       owner = "luigirizzo";
       repo = "netmap";
-      rev = "d89953a20a90e2df228ff5031ab4a5358f1cb8bc";
+      rev = "81d0e5acab8856f5df89537415e39362046987d3";
       fetchSubmodules = false;
-      sha256 = "sha256-CTmMrrP0XnwYFOzDNWhT1uzOfT3a+CPzKZ8HsQ0P29E=";
+      sha256 = "sha256-Dw2Ys2cAl6QtCLGTq4hZnkHSAacxqO8mCEyuh/FU9Y0=";
     });
+    date = "2022-09-29";
   };
   zeek-af_packet = {
     pname = "zeek-af_packet";
-    version = "7191152d14dfab0f6534263a180729b7be7b9011";
+    version = "2dc70c8bda2cf0ff4d170d15293e276ba202e45f";
     src = fetchFromGitHub ({
       owner = "J-Gras";
       repo = "zeek-af_packet-plugin";
-      rev = "7191152d14dfab0f6534263a180729b7be7b9011";
+      rev = "2dc70c8bda2cf0ff4d170d15293e276ba202e45f";
       fetchSubmodules = false;
-      sha256 = "sha256-VLaPXFGOWslYsiK4xbcEtXqnzrp7kiQubxMKS9KhQEI=";
+      sha256 = "sha256-9OPAXrtG3AYbGGL/o6uNMwVFyx2nHBMK85+ePHvTP+E=";
     });
+    date = "2022-09-26";
   };
   zeek-agent = {
     pname = "zeek-agent";
@@ -44,6 +47,7 @@
       fetchSubmodules = true;
       sha256 = "sha256-gqGt4yDLkU3J8vm8Gxroz1VUfssFsJJOaAScSUsEvic=";
     });
+    date = "2020-11-19";
   };
   zeek-community-id = {
     pname = "zeek-community-id";
@@ -55,6 +59,7 @@
       fetchSubmodules = false;
       sha256 = "sha256-YDqeva8xkIj1emaqwh7Rohi6u5G3NuJfUW52iH9phTs=";
     });
+    date = "2022-07-16";
   };
   zeek-dpdk = {
     pname = "zeek-dpdk";
@@ -66,6 +71,7 @@
       fetchSubmodules = false;
       sha256 = "sha256-OjHqN25lZBVeIQjdbRcQ6944TrVWOo1gMQPZEydzoIQ=";
     });
+    date = "2022-08-26";
   };
   zeek-http2 = {
     pname = "zeek-http2";
@@ -77,6 +83,7 @@
       fetchSubmodules = false;
       sha256 = "sha256-EbO6WV1fcFtHRSaFkd/pPPNjMYkDeeZtn8KZHM3gug8=";
     });
+    date = "2021-10-06";
   };
   zeek-ikev2 = {
     pname = "zeek-ikev2";
@@ -88,6 +95,7 @@
       fetchSubmodules = false;
       sha256 = "sha256-ct1nQcbDGQ2V9lrKD/snhmF3EEkDXCbQfiJpSwOmKPI=";
     });
+    date = "2020-01-27";
   };
   zeek-kafka = {
     pname = "zeek-kafka";
@@ -99,17 +107,19 @@
       fetchSubmodules = false;
       sha256 = "sha256-CJXnPam24gPx7Jd4CZJRsdUh7e4H5P7gaf/v2Q4xZ60=";
     });
+    date = "2022-06-30";
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "5389ad69f87f3a2533005b59cf55108d0b6de97b";
+    version = "19632925e6099eb90daa35c2822ce18f696497f4";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "5389ad69f87f3a2533005b59cf55108d0b6de97b";
+      rev = "19632925e6099eb90daa35c2822ce18f696497f4";
       fetchSubmodules = true;
-      sha256 = "sha256-PdUSicgLD67r4GWizOGH+UDYdGNQ9IaPAhxA77Ovi/8=";
+      sha256 = "sha256-c1LWcWAn/3kMhyPRr0Ty3Yy/LSHSFpYYe0oJRcb5JD0=";
     });
+    date = "2022-10-01";
   };
   zeek-netmap = {
     pname = "zeek-netmap";
@@ -121,6 +131,7 @@
       fetchSubmodules = false;
       sha256 = "sha256-yObo/IFaPVwSkprCjL1ehjU3HS+PqmjN2cuXf6bQDl4=";
     });
+    date = "2022-06-07";
   };
   zeek-postgresql = {
     pname = "zeek-postgresql";
@@ -132,16 +143,17 @@
       fetchSubmodules = false;
       sha256 = "sha256-O2yWL2Ippv5GFxSesv7Eclw78p2YnT3UWnZ8W54NMdc=";
     });
+    date = "2022-07-06";
   };
   zeek-release = {
     pname = "zeek-release";
-    version = "v5.0.1";
+    version = "v5.0.2";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "v5.0.1";
+      rev = "v5.0.2";
       fetchSubmodules = true;
-      sha256 = "sha256-/yO0uf5O4lb2cgKnZUw77CizS9jyFg6RT7qLNFSF2Fw=";
+      sha256 = "sha256-SY/JkY1uUvZa77DTHhTJlr26Eo9/b1IjE4//VnZ2W60=";
     });
   };
   zeek-spicy = {
@@ -154,13 +166,14 @@
       fetchSubmodules = false;
       sha256 = "sha256-o3J0UHCJNdbvH7wqNXnbYKRKG2FHtykgEb0rzzk43+U=";
     });
+    date = "2022-09-06";
   };
   zeek-tls = {
     pname = "zeek-tls";
-    version = "5.0.1";
+    version = "5.0.2";
     src = fetchurl {
-      url = "https://github.com/zeek/zeek/archive/refs/tags/v5.0.1.tar.gz";
-      sha256 = "sha256-S6haCrTYptUA/bsk1A1JrayZdEMIYnMTGl/R4mYg49I=";
+      url = "https://github.com/zeek/zeek/archive/refs/tags/v5.0.2.tar.gz";
+      sha256 = "sha256-RLykfcQSb4Mnu/K9+OOBegPdIub826yZlLyiynjGLFg=";
     };
   };
   zeek-xdp_packet = {
@@ -173,5 +186,6 @@
       fetchSubmodules = false;
       sha256 = "sha256-ghDDSCAxaiaDuygJemGUm1Uq+aKac2MNc2dW84i7qSo=";
     });
+    date = "2021-04-27";
   };
 }

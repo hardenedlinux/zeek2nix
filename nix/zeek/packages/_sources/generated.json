@@ -1,6 +1,7 @@
 {
     "icsnpp-bacnet": {
         "cargoLocks": null,
+        "date": "2022-09-27",
         "extract": null,
         "name": "icsnpp-bacnet",
         "passthru": null,
@@ -12,14 +13,15 @@
             "name": null,
             "owner": "cisagov",
             "repo": "icsnpp-bacnet",
-            "rev": "0f7ded1e33d90d3e5c0aad90dbdc43508496d0bc",
-            "sha256": "sha256-20v2JYz9xiw6C3d/bWO9LvqR4dqn92OQ+jrip8Hl59w=",
+            "rev": "5602b2a754cf41b1be063a1ab7d7fdbc1130b92a",
+            "sha256": "sha256-rrevI7uGhGN2LaHBUbO5rkgjdjt6zJOJONh/lorHg24=",
             "type": "github"
         },
-        "version": "0f7ded1e33d90d3e5c0aad90dbdc43508496d0bc"
+        "version": "5602b2a754cf41b1be063a1ab7d7fdbc1130b92a"
     },
     "netmap": {
         "cargoLocks": null,
+        "date": "2022-09-29",
         "extract": null,
         "name": "netmap",
         "passthru": null,
@@ -31,14 +33,15 @@
             "name": null,
             "owner": "luigirizzo",
             "repo": "netmap",
-            "rev": "d89953a20a90e2df228ff5031ab4a5358f1cb8bc",
-            "sha256": "sha256-CTmMrrP0XnwYFOzDNWhT1uzOfT3a+CPzKZ8HsQ0P29E=",
+            "rev": "81d0e5acab8856f5df89537415e39362046987d3",
+            "sha256": "sha256-Dw2Ys2cAl6QtCLGTq4hZnkHSAacxqO8mCEyuh/FU9Y0=",
             "type": "github"
         },
-        "version": "d89953a20a90e2df228ff5031ab4a5358f1cb8bc"
+        "version": "81d0e5acab8856f5df89537415e39362046987d3"
     },
     "zeek-af_packet": {
         "cargoLocks": null,
+        "date": "2022-09-26",
         "extract": null,
         "name": "zeek-af_packet",
         "passthru": null,
@@ -50,14 +53,15 @@
             "name": null,
             "owner": "J-Gras",
             "repo": "zeek-af_packet-plugin",
-            "rev": "7191152d14dfab0f6534263a180729b7be7b9011",
-            "sha256": "sha256-VLaPXFGOWslYsiK4xbcEtXqnzrp7kiQubxMKS9KhQEI=",
+            "rev": "2dc70c8bda2cf0ff4d170d15293e276ba202e45f",
+            "sha256": "sha256-9OPAXrtG3AYbGGL/o6uNMwVFyx2nHBMK85+ePHvTP+E=",
             "type": "github"
         },
-        "version": "7191152d14dfab0f6534263a180729b7be7b9011"
+        "version": "2dc70c8bda2cf0ff4d170d15293e276ba202e45f"
     },
     "zeek-agent": {
         "cargoLocks": null,
+        "date": "2020-11-19",
         "extract": null,
         "name": "zeek-agent",
         "passthru": null,
@@ -77,6 +81,7 @@
     },
     "zeek-community-id": {
         "cargoLocks": null,
+        "date": "2022-07-16",
         "extract": null,
         "name": "zeek-community-id",
         "passthru": null,
@@ -96,6 +101,7 @@
     },
     "zeek-dpdk": {
         "cargoLocks": null,
+        "date": "2022-08-26",
         "extract": null,
         "name": "zeek-dpdk",
         "passthru": null,
@@ -115,6 +121,7 @@
     },
     "zeek-http2": {
         "cargoLocks": null,
+        "date": "2021-10-06",
         "extract": null,
         "name": "zeek-http2",
         "passthru": null,
@@ -134,6 +141,7 @@
     },
     "zeek-ikev2": {
         "cargoLocks": null,
+        "date": "2020-01-27",
         "extract": null,
         "name": "zeek-ikev2",
         "passthru": null,
@@ -153,6 +161,7 @@
     },
     "zeek-kafka": {
         "cargoLocks": null,
+        "date": "2022-06-30",
         "extract": null,
         "name": "zeek-kafka",
         "passthru": null,
@@ -172,6 +181,7 @@
     },
     "zeek-latest": {
         "cargoLocks": null,
+        "date": "2022-10-01",
         "extract": null,
         "name": "zeek-latest",
         "passthru": null,
@@ -183,14 +193,15 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "5389ad69f87f3a2533005b59cf55108d0b6de97b",
-            "sha256": "sha256-PdUSicgLD67r4GWizOGH+UDYdGNQ9IaPAhxA77Ovi/8=",
+            "rev": "19632925e6099eb90daa35c2822ce18f696497f4",
+            "sha256": "sha256-c1LWcWAn/3kMhyPRr0Ty3Yy/LSHSFpYYe0oJRcb5JD0=",
             "type": "github"
         },
-        "version": "5389ad69f87f3a2533005b59cf55108d0b6de97b"
+        "version": "19632925e6099eb90daa35c2822ce18f696497f4"
     },
     "zeek-netmap": {
         "cargoLocks": null,
+        "date": "2022-06-07",
         "extract": null,
         "name": "zeek-netmap",
         "passthru": null,
@@ -210,6 +221,7 @@
     },
     "zeek-postgresql": {
         "cargoLocks": null,
+        "date": "2022-07-06",
         "extract": null,
         "name": "zeek-postgresql",
         "passthru": null,
@@ -229,6 +241,7 @@
     },
     "zeek-release": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "zeek-release",
         "passthru": null,
@@ -240,14 +253,15 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "v5.0.1",
-            "sha256": "sha256-/yO0uf5O4lb2cgKnZUw77CizS9jyFg6RT7qLNFSF2Fw=",
+            "rev": "v5.0.2",
+            "sha256": "sha256-SY/JkY1uUvZa77DTHhTJlr26Eo9/b1IjE4//VnZ2W60=",
             "type": "github"
         },
-        "version": "v5.0.1"
+        "version": "v5.0.2"
     },
     "zeek-spicy": {
         "cargoLocks": null,
+        "date": "2022-09-06",
         "extract": null,
         "name": "zeek-spicy",
         "passthru": null,
@@ -267,20 +281,22 @@
     },
     "zeek-tls": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "zeek-tls",
         "passthru": null,
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-S6haCrTYptUA/bsk1A1JrayZdEMIYnMTGl/R4mYg49I=",
+            "sha256": "sha256-RLykfcQSb4Mnu/K9+OOBegPdIub826yZlLyiynjGLFg=",
             "type": "url",
-            "url": "https://github.com/zeek/zeek/archive/refs/tags/v5.0.1.tar.gz"
+            "url": "https://github.com/zeek/zeek/archive/refs/tags/v5.0.2.tar.gz"
         },
-        "version": "5.0.1"
+        "version": "5.0.2"
     },
     "zeek-xdp_packet": {
         "cargoLocks": null,
+        "date": "2021-04-27",
         "extract": null,
         "name": "zeek-xdp_packet",
         "passthru": null,
