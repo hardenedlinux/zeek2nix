@@ -21,7 +21,7 @@
     },
     "netmap": {
         "cargoLocks": null,
-        "date": "2022-10-22",
+        "date": "2022-10-25",
         "extract": null,
         "name": "netmap",
         "passthru": null,
@@ -33,15 +33,15 @@
             "name": null,
             "owner": "luigirizzo",
             "repo": "netmap",
-            "rev": "6a01145df7dbf63f7cdc7f06105cc17a1225224a",
-            "sha256": "sha256-T5ahZ87nE1mQMBTcEdmjFMXn2d+OO5E9kU77WTIvDJ4=",
+            "rev": "d67a604e805b67efb563ea8d5eb2d1318acf6ed8",
+            "sha256": "sha256-kqQNCx0a3ZU6wlgmPze7YxT/0cysHkpEQtbul8tehyo=",
             "type": "github"
         },
-        "version": "6a01145df7dbf63f7cdc7f06105cc17a1225224a"
+        "version": "d67a604e805b67efb563ea8d5eb2d1318acf6ed8"
     },
     "zeek-af_packet": {
         "cargoLocks": null,
-        "date": "2022-10-13",
+        "date": "2022-10-29",
         "extract": null,
         "name": "zeek-af_packet",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "J-Gras",
             "repo": "zeek-af_packet-plugin",
-            "rev": "c138512c03dd943653b75b035fba521f884c7f3f",
-            "sha256": "sha256-w12V1/GhFKC7oiWN3Ssy1gFqw0HmSMP7ZnArNcz3sdE=",
+            "rev": "201480f59421378b433688927d1fb73c6699cac4",
+            "sha256": "sha256-HOEAMWyXebCvGUQdQiboUSBn9TMR2yq2NB6qtl9gVRI=",
             "type": "github"
         },
-        "version": "c138512c03dd943653b75b035fba521f884c7f3f"
+        "version": "201480f59421378b433688927d1fb73c6699cac4"
     },
     "zeek-agent": {
         "cargoLocks": null,
@@ -181,7 +181,7 @@
     },
     "zeek-latest": {
         "cargoLocks": null,
-        "date": "2022-10-22",
+        "date": "2022-10-28",
         "extract": null,
         "name": "zeek-latest",
         "passthru": null,
@@ -193,11 +193,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "9f3c7cb5170fac85483828905452e9dea28ff41e",
-            "sha256": "sha256-WyBtA5W82C2pGHjZsZJzU1m6SZPrhVWYo+fFNG0wTJM=",
+            "rev": "95151e1da9a3fd7f42cc5ef2cb64ce0a79857fb5",
+            "sha256": "sha256-xD5dbMYVAnqjjrTQzD74e+51uWFyvGFVdrR7OXkNnfc=",
             "type": "github"
         },
-        "version": "9f3c7cb5170fac85483828905452e9dea28ff41e"
+        "version": "95151e1da9a3fd7f42cc5ef2cb64ce0a79857fb5"
     },
     "zeek-netmap": {
         "cargoLocks": null,
@@ -261,7 +261,7 @@
     },
     "zeek-spicy": {
         "cargoLocks": null,
-        "date": "2022-10-15",
+        "date": "2022-10-27",
         "extract": null,
         "name": "zeek-spicy",
         "passthru": null,
@@ -273,11 +273,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "spicy-plugin",
-            "rev": "930f01f44ef55064e1b9afb7477f3dec5311b5f9",
-            "sha256": "sha256-7YPV8rK0yZLt1sZbnyqhkxV6vhkePheWgHvJeZ7n2ys=",
+            "rev": "e062e377e64fce925506258e9432c22a51a6d06e",
+            "sha256": "sha256-VgKs6HJ8xBfqBhuwidrjzCAizZoAuvLfg5knJ4kbaew=",
             "type": "github"
         },
-        "version": "930f01f44ef55064e1b9afb7477f3dec5311b5f9"
+        "version": "e062e377e64fce925506258e9432c22a51a6d06e"
     },
     "zeek-tls": {
         "cargoLocks": null,
