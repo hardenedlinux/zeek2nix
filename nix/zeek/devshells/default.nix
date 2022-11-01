@@ -5,18 +5,16 @@
   l = nixpkgs.lib // builtins;
   inherit (inputs) nixpkgs std;
 in
-  l.mapAttrs (_: std.std.lib.mkShell) {
+  l.mapAttrs (_: std.lib.dev.mkShell) {
     default = {lib, ...}: {
       name = "Std: zeek2nix";
 
-      std.docs.enable = lib.mkForce true;
-
       imports = [
-        inputs.cells-lab.main.devshellProfiles.default
+        inputs.std.std.devshellProfiles.default
         cell.devshellProfiles.default
       ];
       nixago = [
-        inputs.cells.automation.nixago.treefmt
+        inputs.cells._automation.nixago.treefmt
       ];
     };
   }

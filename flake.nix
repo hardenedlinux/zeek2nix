@@ -1,48 +1,50 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-lock.follows = "nixpkgs";
     nixos.url = "github:NixOS/nixpkgs/nixos-22.05";
   };
 
   inputs = {
     cells-lab.url = "github:GTrunSec/cells-lab";
-    std.url = "github:divnix/std";
+    std.follows = "cells-lab/std";
   };
 
   outputs = {std, ...} @ inputs:
     std.growOn {
+
       inherit inputs;
+
       cellsFrom = ./nix;
-      cellBlocks = [
-        (std.blockTypes.installables "packages")
 
-        (std.blockTypes.functions "devshellProfiles")
-        (std.blockTypes.devshells "devshells")
+      cellBlocks = with std.blockTypes;[
+        (installables "packages")
 
-        (std.blockTypes.runnables "entrypoints")
+        (functions "devshellProfiles")
+        (devshells "devshells")
 
-        (std.blockTypes.data "config")
+        (runnables "entrypoints")
 
-        (std.blockTypes.files "configFiles")
+        (data "config")
 
-        (std.blockTypes.files "templates")
+        (files "configFiles")
 
-        (std.blockTypes.functions "library")
+        (files "templates")
 
-        (std.blockTypes.microvms "microvmProfiles")
+        (functions "library")
 
-        (std.blockTypes.functions "overlays")
+        (microvms "microvmProfiles")
 
-        (std.blockTypes.nixago "nixago")
+        (functions "overlays")
 
-        (std.blockTypes.functions "nixosModules")
+        (nixago "nixago")
+
+        (functions "nixosModules")
       ];
     } {
-      overlays = inputs.std.deSystemize "x86_64-linux" (inputs.std.harvest inputs.self ["zeek" "overlays"]);
+      overlays = (inputs.std.harvest inputs.self ["zeek" "overlays"]).x86_64-linux;
       devShells = inputs.std.harvest inputs.self ["zeek" "devshells"];
-      lib = inputs.std.harvest inputs.self ["zeek" "library"];
-      nixosModules = inputs.std.deSystemize "x86_64-linux" (inputs.std.harvest inputs.self ["zeek" "nixosModules"]);
+      lib = (inputs.std.harvest inputs.self ["zeek" "library"]).x86_64-linux;
+      nixosModules = (inputs.std.harvest inputs.self ["zeek" "nixosModules"]).x86_64-linux;
       packages = inputs.std.harvest inputs.self ["zeek" "packages"];
     };
 
