@@ -2,7 +2,7 @@
   inputs,
   cell,
 }: let
-  inherit (inputs.cells-lab._writers.library) writeShellApplication;
+  inherit (inputs.cells-lab._writers.lib) writeShellApplication;
 in {
   spicyCheck = writeShellApplication {
     name = "spicyCheck";
