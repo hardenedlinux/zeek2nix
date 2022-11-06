@@ -181,7 +181,7 @@
     },
     "zeek-latest": {
         "cargoLocks": null,
-        "date": "2022-11-01",
+        "date": "2022-11-05",
         "extract": null,
         "name": "zeek-latest",
         "passthru": null,
@@ -193,11 +193,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "bc0284aefabfd1eabbdb6c3fa924d96d65a29bf3",
-            "sha256": "sha256-cOdS2scHyY+LYb1dbjEj0z4aJuLNU54bkEAzeqmM99M=",
+            "rev": "c71d2878c9ae1ebc4d395b1aa756e65b458233ba",
+            "sha256": "sha256-vZoK9QQfoKUBZXTcefwCpzYOhQJbam0MR8lnsfCUikc=",
             "type": "github"
         },
-        "version": "bc0284aefabfd1eabbdb6c3fa924d96d65a29bf3"
+        "version": "c71d2878c9ae1ebc4d395b1aa756e65b458233ba"
     },
     "zeek-netmap": {
         "cargoLocks": null,
