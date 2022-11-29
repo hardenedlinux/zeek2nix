@@ -19,6 +19,20 @@
       }
     );
 
+    # zeek-latest =
+    #   zeek.override
+    #   {
+    #     spicy-parser = final.spicy-parser.overrideAttrs (old: {
+    #       inherit (zeek-sources.zeek-latest) pname version;
+    #       src = zeek-sources.zeek-latest.src + "/auxil/spicy/spicy";
+    #     });
+    #   }
+    #   .overrideAttrs (
+    #     old: {
+    #       inherit (zeek-sources.zeek-latest) src pname version;
+    #     }
+    #   );
+
     zeekWithPlugins = {
       plugins,
       package ? zeek,

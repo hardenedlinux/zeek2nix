@@ -20,6 +20,7 @@
   fetchFromGitHub,
   which,
   jemalloc,
+  libkqueue,
   zeek-sources,
   ## optional features
   zeekctl ? true,
@@ -48,6 +49,7 @@ clangStdenv.mkDerivation rec {
       zlib
       which
       jemalloc
+      libkqueue
     ]
     ++ lib.optionals clangStdenv.isDarwin [
       gettext
@@ -63,6 +65,7 @@ clangStdenv.mkDerivation rec {
       "-DENABLE_PERFTOOLS=true"
       "-DINSTALL_AUX_TOOLS=true"
       "-DDISABLE_SPICY=true"
+      "-DLIBKQUEUE_ROOT_DIR=${libkqueue}"
     ]
     ++ lib.optionals zeekctl [
       "-DINSTALL_ZEEKCTL=true"

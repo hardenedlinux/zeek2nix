@@ -14,7 +14,7 @@ in
         cell.devshellProfiles.default
       ];
       nixago = [
-        inputs.cells._automation.nixago.treefmt
+        inputs.cells.automation.nixago.treefmt
       ];
     };
   }

@@ -6,6 +6,7 @@
     cell.overlays.default
     cell.overlays.nixos-test
     cell.overlays.static
+    inputs.cells.spicy.overlays.spicy
   ];
 in {
   inherit nixpkgs;
