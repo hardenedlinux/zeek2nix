@@ -15,15 +15,15 @@
   };
   netmap = {
     pname = "netmap";
-    version = "d67a604e805b67efb563ea8d5eb2d1318acf6ed8";
+    version = "2abc64bc68119c729c57410233a99b78593655f0";
     src = fetchFromGitHub ({
       owner = "luigirizzo";
       repo = "netmap";
-      rev = "d67a604e805b67efb563ea8d5eb2d1318acf6ed8";
+      rev = "2abc64bc68119c729c57410233a99b78593655f0";
       fetchSubmodules = false;
-      sha256 = "sha256-kqQNCx0a3ZU6wlgmPze7YxT/0cysHkpEQtbul8tehyo=";
+      sha256 = "sha256-zKm3KQtQokQuXpqucb3mo1dCs9or3bbN/cZrui5i31A=";
     });
-    date = "2022-10-25";
+    date = "2022-12-03";
   };
   zeek-af_packet = {
     pname = "zeek-af_packet";
@@ -99,27 +99,27 @@
   };
   zeek-kafka = {
     pname = "zeek-kafka";
-    version = "b632187c7afdc75365a256a7d9bb2e5cc81ab46f";
+    version = "39e9dbfdb924f1fb309dc1323f5963a244aa5551";
     src = fetchFromGitHub ({
       owner = "SeisoLLC";
       repo = "zeek-kafka";
-      rev = "b632187c7afdc75365a256a7d9bb2e5cc81ab46f";
+      rev = "39e9dbfdb924f1fb309dc1323f5963a244aa5551";
       fetchSubmodules = false;
-      sha256 = "sha256-CJXnPam24gPx7Jd4CZJRsdUh7e4H5P7gaf/v2Q4xZ60=";
+      sha256 = "sha256-8HD3K10QefxOF7ydd1k60nhg0z5WVG+mmSxBahOuagM=";
     });
-    date = "2022-06-30";
+    date = "2022-12-03";
   };
   zeek-latest = {
     pname = "zeek-latest";
-    version = "17039c12988c9cc03144c71d4c2a32fdd7c1f55d";
+    version = "3c33728a2aea5ee1762e8955e523721bc26b0c73";
     src = fetchFromGitHub ({
       owner = "zeek";
       repo = "zeek";
-      rev = "17039c12988c9cc03144c71d4c2a32fdd7c1f55d";
+      rev = "3c33728a2aea5ee1762e8955e523721bc26b0c73";
       fetchSubmodules = true;
-      sha256 = "sha256-0L/Z+TywmoMk1CiLa9sxMHjXJSxJnG2cKOtkg3qLuHY=";
+      sha256 = "sha256-BhXFuT2GITNeaq9bG9sQZxVAtPmg6H+c5XBVvS45vhE=";
     });
-    date = "2022-11-28";
+    date = "2022-12-02";
   };
   zeek-netmap = {
     pname = "zeek-netmap";
