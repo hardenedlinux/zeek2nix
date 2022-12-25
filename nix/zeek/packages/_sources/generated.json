@@ -21,7 +21,7 @@
     },
     "netmap": {
         "cargoLocks": null,
-        "date": "2022-12-12",
+        "date": "2022-12-24",
         "extract": null,
         "name": "netmap",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "luigirizzo",
             "repo": "netmap",
-            "rev": "1e902cd98d5439417fc27be4c31656c892441fb4",
-            "sha256": "sha256-z+JvN0+Ob4HBJ0tjXbFib+F76HZQgEJv0lFLQqezl4E=",
+            "rev": "c81004f2790ca83e35f034947649b8421a2b6d74",
+            "sha256": "sha256-tKRTECD2bIC9ZGGFX8ELj/nl6G9NdURDB/aK8QGmbqY=",
             "type": "github"
         },
-        "version": "1e902cd98d5439417fc27be4c31656c892441fb4"
+        "version": "c81004f2790ca83e35f034947649b8421a2b6d74"
     },
     "zeek-af_packet": {
         "cargoLocks": null,
@@ -121,7 +121,7 @@
     },
     "zeek-http2": {
         "cargoLocks": null,
-        "date": "2021-10-06",
+        "date": "2022-12-19",
         "extract": null,
         "name": "zeek-http2",
         "passthru": null,
@@ -133,11 +133,11 @@
             "name": null,
             "owner": "MITRECND",
             "repo": "bro-http2",
-            "rev": "7dc14042d1602065d60601d193b99b005f08fe34",
-            "sha256": "sha256-EbO6WV1fcFtHRSaFkd/pPPNjMYkDeeZtn8KZHM3gug8=",
+            "rev": "3b270120d9058db178b88eebe1902fed42fb7420",
+            "sha256": "sha256-743Klf9PIoEIT+iarXlajc4i1V9eWV0/nlbumMzPJEs=",
             "type": "github"
         },
-        "version": "7dc14042d1602065d60601d193b99b005f08fe34"
+        "version": "3b270120d9058db178b88eebe1902fed42fb7420"
     },
     "zeek-ikev2": {
         "cargoLocks": null,
