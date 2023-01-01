@@ -15,15 +15,15 @@
   };
   netmap = {
     pname = "netmap";
-    version = "c81004f2790ca83e35f034947649b8421a2b6d74";
+    version = "9d3072351f5f61f9e82e32a5bd35d1766b4ba007";
     src = fetchFromGitHub ({
       owner = "luigirizzo";
       repo = "netmap";
-      rev = "c81004f2790ca83e35f034947649b8421a2b6d74";
+      rev = "9d3072351f5f61f9e82e32a5bd35d1766b4ba007";
       fetchSubmodules = false;
-      sha256 = "sha256-tKRTECD2bIC9ZGGFX8ELj/nl6G9NdURDB/aK8QGmbqY=";
+      sha256 = "sha256-9FksMdSj2SnunhArHt06IFkxEgBMD49KJblDkWiwXXY=";
     });
-    date = "2022-12-24";
+    date = "2022-12-31";
   };
   zeek-af_packet = {
     pname = "zeek-af_packet";
