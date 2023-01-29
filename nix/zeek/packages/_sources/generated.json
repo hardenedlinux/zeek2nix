@@ -21,7 +21,7 @@
     },
     "netmap": {
         "cargoLocks": null,
-        "date": "2023-01-13",
+        "date": "2023-01-24",
         "extract": null,
         "name": "netmap",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "luigirizzo",
             "repo": "netmap",
-            "rev": "5e9937ec2452cd1c177d1c829d18fa2480dd9bd3",
-            "sha256": "sha256-9s7f4SL673X1wE5HqpMQnjqQ5yIAvnPirH3uVPfB+oE=",
+            "rev": "439ea2dfda451ab9920334836b9b97dfab4fc353",
+            "sha256": "sha256-6hh6Ma80ZDSXJzArmi/WxwBHYENEpw44hexSqj2+Ubs=",
             "type": "github"
         },
-        "version": "5e9937ec2452cd1c177d1c829d18fa2480dd9bd3"
+        "version": "439ea2dfda451ab9920334836b9b97dfab4fc353"
     },
     "zeek-af_packet": {
         "cargoLocks": null,
@@ -181,7 +181,7 @@
     },
     "zeek-latest": {
         "cargoLocks": null,
-        "date": "2023-01-19",
+        "date": "2023-01-28",
         "extract": null,
         "name": "zeek-latest",
         "passthru": null,
@@ -193,11 +193,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "zeek",
-            "rev": "80a3f5814bf8a6154c3e0ace06e91bb7f7475a01",
-            "sha256": "sha256-k9xjndbABSvXFo8G91UbcEjwYoENwuyDhHhpGJalSbQ=",
+            "rev": "a1b003a9e2d0bc2960b766ad3a82c0c9de6c65e3",
+            "sha256": "sha256-EmU8jeLRBMrvnq9YE2kL0TC/6ayEwLsXMvSVgFoG3aQ=",
             "type": "github"
         },
-        "version": "80a3f5814bf8a6154c3e0ace06e91bb7f7475a01"
+        "version": "a1b003a9e2d0bc2960b766ad3a82c0c9de6c65e3"
     },
     "zeek-netmap": {
         "cargoLocks": null,
@@ -261,7 +261,7 @@
     },
     "zeek-spicy": {
         "cargoLocks": null,
-        "date": "2023-01-09",
+        "date": "2023-01-28",
         "extract": null,
         "name": "zeek-spicy",
         "passthru": null,
@@ -273,11 +273,11 @@
             "name": null,
             "owner": "zeek",
             "repo": "spicy-plugin",
-            "rev": "5313a1bf79d03c3170c69c7a27c815be104b2cda",
-            "sha256": "sha256-dEDORKuLlq4VUTKvmvwndv95hY1hnY8bj6RhY/tj0yM=",
+            "rev": "25cf1a83f10e0b5c81eea37e03beeda6035df5ba",
+            "sha256": "sha256-TkuEDpJJsomHWfFYqjiWP4di9vG1dzEtLQvFkOArp0I=",
             "type": "github"
         },
-        "version": "5313a1bf79d03c3170c69c7a27c815be104b2cda"
+        "version": "25cf1a83f10e0b5c81eea37e03beeda6035df5ba"
     },
     "zeek-tls": {
         "cargoLocks": null,
